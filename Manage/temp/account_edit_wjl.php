@@ -29,7 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid'])) {
     $s_F_Name = $_POST['s_F_Name'];
     $lock = $_POST['lock'];
     if (!Matchs::isStringChi($s_F_Name, 2, 8)) exit(back('輸入名稱錯誤！'));
-    $userList = $userModel->GetUserModel(null, $name);
+    if ($cid == 5) {
+        $userList = $userModel->GetMemberModel($name);
+    } else {
+        $userList = $userModel->GetUserModel(null, $name);
+    }
     if ($userList) {
         if (!empty($s_Pwd)) {
             if (!Matchs::isString($s_Pwd, 8, 20)) exit(back('輸入密碼錯誤！'));
@@ -42,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid'])) {
         $db = new DB();
         if ($cid == 1 && $LoginId == 89) {
             $s_size_ky = $_POST['s_size_ky'];
-            $s_next_ky = $_POST['s_next_KY'];
+            $s_next_ky = $_POST['s_next_ky'];
             $s_money = $_POST['s_money'];
 
             if (!Matchs::isNumber($s_size_ky) || !Matchs::isNumber($s_next_ky)) exit(back('輸入占成錯誤'));
@@ -86,14 +90,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid'])) {
             $s_b_lock = isset($_POST['s_b_lock']) ? $_POST['s_b_lock'] : 1;
             if ($p == true) {
                 $s_size_ky = $_POST['s_size_ky'];
-                $s_next_ky = $_POST['s_next_KY'];
+                $s_next_ky = $_POST['s_next_ky'];
             } else {
                 $s_size_ky = $_POST['s_size_ky'];
                 $s_next_ky = $userList[0]['g_distribution'];
             }
 
             /*$s_size_ky = $_POST['s_size_ky']; //上級占成
-            $s_next_ky = $_POST['s_next_KY'] ;*/ //當前被修改帳號占成
+            $s_next_ky = $_POST['s_next_ky'] ;*/ //當前被修改帳號占成
             if ($s_a_lock != $userList[0]['g_Immediate_lock']) {
                 if ($Luser[0]['g_Immediate_lock'] != 1) {
                     exit(back('更變權限不足！'));
@@ -235,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid'])) {
             //end of 用户信息修改
 
             //start 退水修改
-            update_MR();
+            update_MR($_GET['cid']);
             exit(alert_href('更變成功！', 'Actfor.php?cid=' . $cid));
         }
 
@@ -290,7 +294,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid'])) {
         } else {
             $result = $userModel->GetUserMR($uid);
         }
-
+        //获取上级信息
+        $top_info = array();
+        $top_info = $userModel->get_upper($userList[0]['g_nid']);
+        $top_info['rank'] = $userModel->Get_rank_from_name($top_info['g_name']);//获取该等级的名称
 
         if (!$result) exit(alert_href('無法讀取退水設置！請于上級聯繫', "Actfor.php?cid={$cid}"));
     } else {
@@ -300,13 +307,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid'])) {
 else {
     exit(href('quit.php'));
 }
-function update_MR()
+function update_MR($cid)
 {
     echo "enter update_MR";
     global $_POST;
     $uModel = new UserModel();
     $name = $_POST['name'];
-    $usersModel = $uModel->GetUserModel(null, $name);
+    if ($cid == 5) {
+        $usersModel = $uModel->GetMemberModel($name);
+    } else {
+        $usersModel = $uModel->GetUserModel(null, $name);
+    }
     if ($usersModel) {
         $Lname = mb_substr($usersModel[0]['g_nid'], 0, mb_strlen($usersModel[0]['g_nid']) - 32);
         $Lname = $uModel->GetUserName_Like($Lname); //返回查询出来的用户信息
@@ -401,6 +412,7 @@ function upDateRankLock($db, $result, $lock, $p=0){
         $(document).ready(function(){
             var win_height = window.innerHeight;
             $("#layout").css('height',win_height+'px');
+
         });
     </script>
     <script type="text/javascript" src="/Manage/temp/js/common.js"></script>
@@ -413,11 +425,16 @@ function upDateRankLock($db, $result, $lock, $p=0){
 
 <div id="rightLoader" dom="right" class="main-content bet-content" style="display: block;">
 <div id="member" class="member">
-<div class="title"><span id="account_name">修改<?php echo $Rank[0] ?><?php echo $userList[0]['g_f_name'] ?>
-            </span>上级<span id="superior"><?php echo $Rank[1] ?>？？？</span><a href="Actfor.php?cid=<?php echo $cid ?>"
+<div class="title">
+    <span id="account_name">修改<?php echo $userModel->Get_rank_from_name($userList[0]['g_f_name']) ?><?php echo $userList[0]['g_f_name'] ?>
+            </span>上级<span id="superior"><?php echo $top_info['rank'].$top_info['g_name'] ?></span><a href="Actfor.php?cid=<?php echo $cid ?>"
                                                                             id="reback" level="1"
                                                                             class="mag-btn1">返回</a></div>
-<form method="post" action="?cid=<?php echo $cid ?>">
+<?php if ($cid == 5) {?>
+<form method="post" action="Manage_Up.php?cid=<?php echo $cid?>&uid=<?php echo $uid?>">
+<?php } else { ?>
+<form method="post" action="?cid=<?php echo $cid ?>&uid=<?php echo $uid ?>">
+<?php } ?>
 <table class="clear-table base-info">
     <caption>
         <div>基本资料</div>
@@ -445,7 +462,9 @@ function upDateRankLock($db, $result, $lock, $p=0){
         <td><input autocomplete="off" type="text" name="s_money" maxlength="9" vname="credit"
                    vmessage="10000~47000" title="10000~47000" value="<?php echo $userList[0]['g_money'] ?>"></td>
         <th>所属盘口</th>
-        <td><select name="odds_set"></select>？？盘</td>
+        <td><select name="odds_set">
+
+        </select>？？盘</td>
         <th>状态</th>
         <td><select name="lock">
                 <option value="3"
@@ -470,13 +489,13 @@ function upDateRankLock($db, $result, $lock, $p=0){
                 </option>
             </select></td>
         <th>补货设定</th>
-        <td><label for="short_covering1"><input id="short_covering1" value="1" name="s_b_lock"
+        <td><label for="short_covering1"><input id="short_covering1" value="1" name="s_a_lock"
                                                 type="radio"
                     <?php if ($userList[0]['g_Immediate_lock'] == 1) {
                         echo 'checked="checked"';
                     } ?>
                     >允许</label>
-            <label for="short_covering2"><input id="short_covering2" value="2" name="s_b_lock"
+            <label for="short_covering2"><input id="short_covering2" value="2" name="s_a_lock"
                                                 type="radio"
                     <?php if ($userList[0]['g_Immediate_lock'] != 1) {
                         echo 'checked="checked"';
@@ -490,42 +509,28 @@ function upDateRankLock($db, $result, $lock, $p=0){
                     id="share_flag2" value="false" name="share_flag" type="radio">否</label></td>
         <th name="currentname"><?php echo $Rank[0] ?>及下级占成权限总和(%)??</th>
         <td><!--<select name='share_total'><option value="0"></option></select>-->
-            <div class="share_up_div"><input name="s_size_ky" type="text" maxlength="3"
-                                             vname="share_total" value="<?php echo $userList[0]['g_distribution']?>"> <a href="javascript:void(0)"
-                                                                              class="select"
-                                                                              id="share_total"></a>
-                <ul id="share_total_list" class="share_up_list">
-                    <li>0</li>
-                </ul>
+            <div class="share_up_div"><select name="s_size_ky"  >
+                    <?php for ($i=0;$i<=$top_info['g_distribution_limit'];$i += 5)  {
+                        $add_str = $i==$userList[0]['g_distribution']? 'selected="selected"':'';
+                        echo '<option value="'. $i .'" '.$add_str.'>'.$i.'</option>';
+                    }
+                    ?>
+               </select>
             </div>
         </td>
-        <th name="parentname"><?php echo $Rank[3] ?>占成(%)</th>
+<!--        上级占成其实是 上级总占成-当前等级占城-->
+        <th name="parentname"><?php echo $top_info['rank'] ?>占成(%)</th>
         <td><!--<select name='share_up'><option value="0"></option></select>-->
-            <div class="share_up_div"><input name="s_next_KY" type="text" maxlength="3" vname="share_up"
-                                             value="<?php echo 100 - $userList[0]['g_distribution']?>"> <a href="javascript:void(0)" class="select"
-                                                          id="share_up"></a>
-                <ul id="share_up_list" class="share_up_list" style="display: none;">
-                    <li>0</li>
-                    <li>5</li>
-                    <li>10</li>
-                    <li>15</li>
-                    <li>20</li>
-                    <li>25</li>
-                    <li>30</li>
-                    <li>35</li>
-                    <li>40</li>
-                    <li>45</li>
-                    <li>50</li>
-                    <li>55</li>
-                    <li>60</li>
-                    <li>65</li>
-                    <li>70</li>
-                    <li>75</li>
-                    <li>80</li>
-                    <li>85</li>
-                    <li>90</li>
-                    <li>95</li>
-                </ul>
+            <div class="share_up_div"><select name="s_next_ky" type="text" maxlength="3" vname="share_up"
+                                             value="<?php echo $userList[0]['g_distribution_limit']?>">
+                    <?php for ($i=0;$i<=$top_info[0]['g_distribution_limit'];$i += 5)  {
+                        $add_str =
+                            $i==($userList[0]['g_distribution'] - $userList[0]['g_distribution'])? 'selected="selected"':'';
+                        echo '<option value="'. $i .'" '.$add_str.'>'.$i.'</option>';
+                    }
+                    ?>
+                    </select>
+
             </div>
         </td>
         <th>倍数投注</th>
@@ -548,50 +553,69 @@ function upDateRankLock($db, $result, $lock, $p=0){
         <tr>
             <th>总信用额度</th>
             <td><input autocomplete="off" type="text" name="s_money" maxlength="9" vname="credit"
-                       vmessage="10000~47000" title="10000~47000" value="0"></td>
+                       vmessage="10000~47000" title="10000~47000" value="<?php echo $validMoney;?>"></td>
             <th>所属盘口</th>
-            <td><select name="odds_set"></select>？？盘</td>
+            <td><select name="odds_set">
+                    <?php $panlu = $userList[0]['g_panlus'];?>
+                    <?php if (!$detList){?>
+                    <option value="a" <?php if(strstr($P,'A')!=''){echo 'selected="selected"';}?>>A</option>
+                    <option value="b" <?php if(strstr($P,'B')!=''){echo 'selected="selected"';}?>>B</option>
+                    <option value="c" <?php if(strstr($P,'C')!=''){echo 'selected="selected"';}?>>C</option>
+                    <?php } else { ?>
+                    <?php } ?>
+            </select>盘</td>
             <th>状态</th>
             <td><select name="lock">
                     <option value="3"
+                        <?php if($userList[0]['g_look']==3){
+                            echo 'selected="selected"';
+                        } ?>
                         >停用
                     </option>
                     <option value="2"
+                        <?php if($userList[0]['g_look']==2){
+                            echo 'selected="selected"';
+                        } ?>
                         >停押
                     </option>
                     <option value="1"
-                            selected="selected"
+                            <?php if($userList[0]['g_look']==1){
+                                echo 'selected="selected"';
+                            } ?>
                         >启用
                     </option>
                 </select></td>
-            <th>对此<?php echo $Rank[1] ?>的实际占成数(%)</th>
+            <?php //TODO:这里要到官网实验以下搞清楚到底是多少 ?>
+            <th>对此<?php echo $Rank[0] ?>的实际占成数(%)</th>
             <td>
                 <div class="share_up_div">
+                    <?php if (!$detList){?>
                     <select name="s_size_ky" type="text" maxlength="3" vname="share_up" value="0">
-                        <option value="0">0</option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                        <option value="30">30</option>
-                        <option value="35">35</option>
-                        <option value="40">40</option>
-                        <option value="45">45</option>
-                        <option value="50">50</option>
-                        <option value="55">55</option>
-                        <option value="60">60</option>
-                        <option value="65">65</option>
-                        <option value="70">70</option>
-                        <option value="75">75</option>
-                        <option value="80">80</option>
-                        <option value="85">85</option>
-                        <option value="90">90</option>
+                        <?php for ($i=0;$i<=$top_info['g_distribution'];$i += 5)  {
+                            $add_str =
+                                $i==($top_info['g_distribution'] - $userList[0]['g_distribution'])? 'selected="selected"':'';
+                            echo '<option value="'. $i .'" '.$add_str.'>'.$i.'</option>';
+                        }
+                        ?>
                     </select>
+                    <?php } ?>
                 </div>
             </td>
         </tr>
-    <?php  } ?>
+        <tr>
+            <th>倍数投注</th>
+            <td><label for="beishu_set1"><input id="beishu_set1" value="true" name="beishu_set"
+                                                type="radio">允许</label><label
+                    for="beishu_set2"><input id="beishu_set2" value="false" name="beishu_set" type="radio"
+                                             checked="">不允许</label></td>
+            <th></th>
+            <td></td>
+            <th></th>
+            <td></td>
+            <th></th>
+            <td></td>
+        </tr>
+    <?php } ?>
     </tbody>
 </table>
 <table class="general_info games_info" id="general_info"><!-- 快速设置-->

@@ -3,23 +3,29 @@ var Urls = "/Manage/temp/ajax/json.php";
 var EstateTime = 90;
 var EndTime = 90;
 var StartTime = 90;
-var phasesNumber, EndTimeHtml, RefreshTimeHtml, NumberHtml, CountNumHtml, 
+var phasesNumber/*当前期数*/, EndTimeHtml, RefreshTimeHtml, NumberHtml, CountNumHtml, 
 CountNumsHtml, CountLoseHtml, CountWinHtml, TimeArr = new Array();
-$(function (){
+$(document).ready(function (){
 			
-	url = location.href.split("?")[1].split("=")[1];
+	//url = location.href.split("?")[1].split("=")[1];
+    url = location.href;
+    url = url.split("?")[1];
+    if (url != undefined) {
+        url = url.split("=")[1];
+    }
+    alert(url);
 	if (url !=10) setList ();
 	EstateTime = $("#EstateTime").val();
 	NumberHtml = $("#number");
-	EndTimeHtml = $("#EndTime");
+	EndTimeHtml = $("#EndTime");//结束时间 offtime为封盘时间
 	RefreshTimeHtml = $("#RefreshTime");
 	CountNumHtml = $("#CountNum");
 	CountNumsHtml = $("#CountNums");
 	CountLoseHtml = $("#CountLose");
 	CountWinHtml = $("#CountWin");
-	loadUserInfo (url);
-	setLists();
-	_loadInfo();
+	loadUserInfo (url);//加载所有用户数据
+	setLists();//期数获取，不知道具体是干啥的
+	_loadInfo();//开奖号码加载
 });
 
 /**
@@ -35,20 +41,24 @@ function _Number (number, ballArr) {
 	var idArr = ["#q_a","#q_b","#q_c","#q_d","#q_e","#q_f","#q_g","#q_h"];
 	$("#q_number").html(number);
 	for (var i = 0; i<ballArr.length; i++) {
-		Clss = "No_gd"+ballArr[i];
+		Clss = "number num"+ballArr[i];
 		$(idArr[i]).removeClass().addClass(Clss);
 	}
 }
 function setList () {
 	$.post (Urls, {typeid : 3}, function (data) {
+        console.log(data);
 		if (data.num != ""){
 			var row_1Html = new Array();
 			var setResult = new Array();
 			for (var key in data.num){
-				row_1Html.push("<tr bgcolor=\"#fff\" height=\"18\"><td  class=\"uo\">"+key+"</td><td class=\"fe\">"+data.num[key]+" 期</td></tr>");
+				//row_1Html.push("<tr bgcolor=\"#fff\" height=\"18\"><td  class=\"uo\">"+key+"</td><td class=\"fe\">"+data.num[key]+" 期</td></tr>");
+                row_1Html.push( '<tr> <td class="grey blue" style="border-right:none;width:38%;">'+key+'</td> <td class="grey blue" style="border-left:none;width:32%;">??</td> <td class="bg-pink bg-pink2" style="width:30%;">'+data.num[key]+'</td> </tr>')
 			}
-			var cHtml = '<tr class="tr_top"><th colspan="2">兩面長龍排行</th></tr>';
-			$("#cl").html(cHtml+row_1Html.join(""));
+            console.log(row_1Html);
+			//var cHtml = '<tr class="tr_top"><th colspan="2">兩面長龍排行</th></tr>';
+			//$("#changlong").html(cHtml+row_1Html.join(""));
+			$("#changlong").html(row_1Html.join(""));
 		}
 	}, "json");
 };
@@ -59,36 +69,61 @@ function setList () {
  */
 function loadUserInfo (cid){
 	$.post(Urls, {typeid : 5, cid : cid}, function(data){
+		/*data解释:
+		 * ==>endTime//关闭时间
+		 * ==>openTime//开盘时间
+		 * ==>phasesNumber//最新期数
+		 * ==>userList 用户盈亏,注单等
+		 * 		--count 用户投注额
+		 * 		--count_c//下注金额
+		 * 		--count_d//seems to for debug
+		 * 		--list countList 总投注额
+		 * 		--list_s //盈亏
+		 * 		--list_x
+		 * */
+        console.log(data);
 		phasesNumber = data.infoList.phasesNumber;
 		NumberHtml.html(phasesNumber);
-		$("#win").html(data.dayWin);
-		if (data.infoList.endTime>0){
-			$("#offTime").html("距封盤：").css("color","#333");
+		$("#win").html(data.dayWin);//填入今天输赢
+		if (data.infoList.endTime>0){//如果封盘时间大于0
+			$("#offTime").css("color","#333");
 		}
 		EndTime = data.infoList.endTime //封盤時間
 		StartTime =data.infoList.openTime; //開獎時間
-		if (data.infoList.userList != null){
+		if (data.infoList.userList != null){//如果用户注单不为空	
+			//what the fuck are these
 			CountNumHtml.html(Math.round(data.infoList.userList.count[0]));
 			CountLoseHtml.html(Math.round(data.infoList.userList.count[1]));
 			CountWinHtml.html(Math.round((data.infoList.userList.count[0]-data.infoList.userList.count[8])));
 			CountNumsHtml.html(Math.round(data.infoList.userList.count_c[0]));
 			if (cid == 10) dataList = data.infoList.userList;
-			sumIsNumLose(data.infoList.userList, cid);
+			sumIsNumLose(data.infoList.userList, cid);//拿来填写注单
 		} else {
-			initialize ();
+			initialize ();//初始化，没有数据显示'-'之类的
 		}
-		setOdds(data.infoList.oddList);
+		setOdds(data.infoList.oddList);//赔率都是在这里设置的。
+        if (cid != undefined) {
+            setOddsByOrder(data.infoList.oddList);//按亏损排行 by wjl
+        }
 		if (lock == false){
 			endTime ();
 			lock = true;
 		}
 		planning();
+        set_sorted_list(data.infoList);
 	}, "json");
+}
+/*
+* 按亏损排行填写
+* 基本思路：对json数据进行排行，然后依次填写1到20
+* */
+function setOddsByOrder(dataList)
+{
 }
 
 
 /**
- * 賠率
+ * 赔率是在这里设置的。
  */
 function setOdds (oddsList){
 	for (var i in oddsList[0]){
@@ -106,7 +141,7 @@ function isFloat(sInt){
 	}
 	return sInt;
 }
-
+//盈亏都是在这里设置的
 function sumIsNumLose (infoList, cid){
 	if (infoList.list != "" && infoList.list_s !=""){
 		for (var key in infoList.list){
@@ -143,6 +178,7 @@ function setLists(){
 			setTimeout(setLists, 500);
 		} else {
 			$.post(Urls, {typeid : 7}, function(data){
+				console.log("期数setLists"+data);
 				var opNumber = parseInt(data);
 				var sum = parseInt(phasesNumber) - opNumber;
 				if (sum == 2){
@@ -169,14 +205,14 @@ function endTime () {
 	if (EndTime <1) {
 		//封盤時間結束 切換開獎時間
 		$("td.odds").css("background", "#eee");
-		$("#offTime").html("距開獎：").css("color","red");
+		$("#offTime").html("距离开奖：").css("color","red");
 	}
 	if (StartTime <1){
 		//開獎時間結束
 		lock = false;
 		$.post(Urls, {typeid : 9}, function(){});
 		$("td.odds").css("background", "#fff");
-		$("#offTime").html("距封盤：").css("color","#333");
+		$("#offTime").html("距离封盘：").css("color","#333");
 		loadUserInfo(url);
 		setLists();
 		return;
@@ -442,6 +478,128 @@ function Gost(){
 			GoPos(null, 3);
 		}
 	}
+}
+
+
+
+function my_sort(arr, cmp)
+{
+    var len = arr.length;
+    for (var i = 0; i < len; i++) {
+        for (var j = i+1; j < len; j++) {
+            var greater = cmp(arr[i], arr[j]);
+            if (greater >= 0) {
+                var tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+            }
+        }
+    }
+}
+
+function my_cmp(a, b) {
+    return b['value'] - a['value'];
+}
+
+function sub_and_sort(list, tmp_array)
+{
+    var i = 1;
+    for (var key in list) {
+        if (key <= 20) {
+            if (i < key) {
+                for (; i < key; i++) {
+                    var fuck = new Array();
+                    fuck['value']= 0;
+                    fuck['key'] = i;
+                    tmp_array.push(fuck);
+                }
+            }
+
+            var tmp = new Array();
+            tmp['value']= list[key];
+            tmp['key'] = key;
+            tmp_array.push(tmp);
+
+        }
+        i++;
+    }
+    my_sort(tmp_array, my_cmp);
+    return tmp_array;
+}
+
+function convert_num(val)
+{
+    return isNaN(val)?0:val;
+}
+
+
+/*
+ * 填写排序后的两个div
+ * @param data json返回回来的赔率，注单等信息
+ * @return null
+ * */
+function set_sorted_list(data) {
+    var infoList = data.userList;
+    var oddList = data.oddList;
+    var sorted = new Array();
+    //排序：可以单独对list进行排序，再使用键名一起写入
+    //先进行裁剪，因为我们只需要对1-20球进行排序
+
+    console.log(infoList);
+    //infoList.list.length = 20;
+    //获取前20位数字，然后排序
+    sorted = sub_and_sort(infoList.list_s,sorted);
+    console.log("排序后的注额数组");
+    console.log(sorted);
+    var counter = 1;
+    var current_ball = '00';
+    console.log("key record start");
+    for (var i=0; i<20; i++) {
+        var key = sorted[i]['key'];
+        console.log(key);
+        console.log(isFloat(oddList[0]['h'+key]));
+        console.log(oddList[0]['h'+key]);
+        if (parseInt(key) < 10) {
+            current_ball = "0" + key;
+        } else {
+            current_ball = key;
+        }
+        console.log(current_ball);
+        $("#nsorted" + counter).html(current_ball);
+        $("#hsorted" + counter).html(isFloat(oddList[0]['h'+key]));
+        $("#asorted" + counter).html(convert_num(Math.round(infoList.list[key])));
+        $("#dsorted" + counter).html(convert_num(Math.round(infoList.list_s[key])));
+
+        $("#nsort_extra" + counter).html(current_ball);
+        $("#hsort_extra" + counter).html(isFloat(oddList[0]['h'+key]));
+        $("#asort_extra" + counter).html(convert_num(Math.round(infoList.list[key])));
+        $("#dsort_extra" + counter).html(convert_num(Math.round(infoList.list_s[key])));
+        counter++;
+    }
+    console.log("key record end");
+
+}
+/*todo:需要进行测试*/
+/*控制排序div的隐藏和现实*/
+function sorted_toggle(value) {
+    var $not_sortedtable = $('#not_sorted');
+    var $sorted_table = $('#sorted');
+    var $sorted_extra_table = $('#sorted_extra');
+    var $zhongfabai = $('#zhongfabai');
+    if (value == 1) {
+        $not_sortedtable.show();
+        $sorted_extra_table.show();
+        $sorted_table.hide();
+        $not_sortedtable.css('width','33.1%');
+        $sorted_extra_table.css('width','33.1%');
+        $zhongfabai.css('width','33.1%');
+    } else if (value == 2) {
+        $not_sortedtable.hide();
+        $sorted_extra_table.hide();
+        $sorted_table.show();
+        $not_sortedtable.css('width','49.8%');
+        $zhongfabai.css('width','49.8%');
+    }
 }
 
 

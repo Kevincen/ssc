@@ -80,7 +80,6 @@ JSON;
 		for ($i=0; $i<count($user); $i++){
 			$u[$i]= $user[$i]['g_name'];
 		}
-					
 		$u = json_encode($u);
 		echo <<<JSON
 				{
@@ -111,7 +110,7 @@ JSON;
 		$_SESSION['Mean'.$cid] = $Mean;
 		echo $_SESSION['Mean'.$cid];
 	}
-	else if ($typeID == 5)
+	else if ($typeID == 5)//获取用户即时注单信息
 	{
 		$cid = $_POST['cid'];
 		$userReportInfo = new UserReportInfo($Users, $cid);
@@ -196,7 +195,7 @@ JSON;
 				}
 JSON;
 	}
-	else if ($typeID == 7)
+	else if ($typeID == 7) //最新期数获取
 	{
 		$opNumber = $db->query("SELECT `g_qishu` FROM `g_history` WHERE g_ball_1 is not null ORDER BY g_qishu DESC LIMIT 1 ", 0);
 		echo $opNumber[0][0];

@@ -20,8 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 	$s_F_Name = $_POST['s_F_Name'];
 	$s_Pwd = $_POST['s_Pwd'];
 	$s_money = $_POST['s_money'];
-	$Size_ky = isset($_POST['Size_KY']) ? $_POST['Size_KY'] : null;
-	$user_lock = $_POST['user_lock'];
+	$Size_ky = isset($_POST['s_size_ky']) ? $_POST['s_size_ky'] : null;
+	//$user_lock = $_POST['user_lock'];
+    $user_lock = $_POST['s_money'];
 	$lock = $_POST['lock'];
 	$s_pan = isset($_POST['s_pan']) ? $_POST['s_pan'] : null;
 	

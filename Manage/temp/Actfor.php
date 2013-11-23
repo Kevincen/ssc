@@ -8,7 +8,7 @@ $left_html = '';
 //TODO:要获得所有上级
 $tmprank = UserModel::GetNextRank(1,89,$Users);
 $userModel = new UserModel();
-$all_count = $userModel->Get_all_count(3);//获取所有阶层的个数
+$all_count = $userModel->Get_all_count(3,$Users[0]['g_nid'],$Users[0]['g_login_id']);//TODO:这个获取的是所有人，需要根据当前获取
 $son_count = $db->query("SELECT g_id, g_s_name, g_s_f_name,g_s_date, g_lock, g_out FROM
 	g_relation_user WHERE g_s_nid = '{$Users[0]['g_nid']}' AND {$sName} g_s_login_id = '{$Users[0]['g_login_id']}'
 	ORDER BY g_s_date DESC", 3);//获取子账号个数
@@ -19,6 +19,28 @@ if (isset($_GET['cid'])) {
     //默认先显示会员
     $cid = 5;
 }
+$stock_count = 0;
+$main_agent_count = 0;
+$agent_count = 0;
+$memenber_count = 0;
+$loginid = $Users[0]['g_login_id'];
+if ($loginid == $userModel->cop_id) {
+    $stock_count = $all_count[1];
+    $main_agent_count = $all_count[2];
+    $agent_count = $all_count[3];
+    $memenber_count = $all_count[4];
+} else if ($loginid == $userModel->stock_id) {
+    $main_agent_count = $all_count[1];
+    $agent_count = $all_count[2];
+    $memenber_count = $all_count[3];
+} else if ($loginid == $userModel->maina_id) {
+    $agent_count = $all_count[1];
+    $memenber_count = $all_count[2];
+} else if ($loginid == $userModel->agent_id) {
+    $memenber_count = $all_count[1];
+} else {
+    exit(alert("当前用户登录id错误,请联系管理员"));
+}
 $left_html =
     '<div dom="left" class="sidebar" style="display: block;">
         <div id="account_nav">
@@ -26,19 +48,19 @@ $left_html =
                 <ul id="nav" class="left_nav">';
 $left_html .= '<li level="0"  onclick="Actfor_load(\'AccountSon_List.php\')">管理员<em id="accounts0">'. $son_count.'</em></li>';
 
-if ($LoginId == 89 || $LoginId == 56) {
-    $left_html .= '<li level="1"  onclick="Actfor_load(\'Actfor.php?cid=1\')">分公司<em id="accounts0">'. $all_count[1].'</em></li>';
+if ($LoginId == 89 ) {
+    $left_html .= '<li level="1"  onclick="Actfor_load(\'Actfor.php?cid=1\')">分公司<em id="accounts0">'. $all_count[0].'</em></li>';
 }
 if ($LoginId == 89 || $LoginId == 56) {
-    $left_html .= ' <li level="2" onclick="Actfor_load(\'Actfor.php?cid=2\')">股东<em id="accounts2">'. $all_count[2].'</em></li> ';
+    $left_html .= ' <li level="2" onclick="Actfor_load(\'Actfor.php?cid=2\')">股东<em id="accounts2">'. $stock_count.'</em></li> ';
 }
 if ($LoginId == 89 || $LoginId == 56 || $LoginId == 22) {
-    $left_html .= ' <li level="3"  onclick="Actfor_load(\'Actfor.php?cid=3\')">总代理<em id="accounts3">'. $all_count[3].'</em></li> ';
+    $left_html .= ' <li level="3"  onclick="Actfor_load(\'Actfor.php?cid=3\')">总代理<em id="accounts3">'. $main_agent_count.'</em></li> ';
 }
 if ($LoginId == 89 || $LoginId == 56 || $LoginId == 22 || $LoginId == 78) {
-    $left_html .= '<li level="4" class="" onclick="Actfor_load(\'Actfor.php?cid=4\')">代理<em id="accounts4">'. $all_count[4].'</em></li>';
+    $left_html .= '<li level="4" class="" onclick="Actfor_load(\'Actfor.php?cid=4\')">代理<em id="accounts4">'. $agent_count.'</em></li>';
 }
-$left_html .= '<li level="5"  onclick="Actfor_load(\'Actfor.php?cid=5\')">会员<em id="accounts5">'. $all_count[5].'</em></li>';
+$left_html .= '<li level="5"  onclick="Actfor_load(\'Actfor.php?cid=5\')">会员<em id="accounts5">'. $memenber_count.'</em></li>';
 //TODO:子账号 没有么？
 if (!isset($Users[0]['g_lock_6'])) {
 }
@@ -62,7 +84,6 @@ if (isset($_GET['searchName']) && isset($_GET['FindType'])) {
     $s_name = $Estate == 0 ? "" : " AND `{$lock}` = '{$Estate}' ";
 }
 $Rank = UserModel::GetNextRank($cid, $LoginId, $Users);
-
 $pageNum = 15;
 $db = new DB();
 if ($LoginId == 48 || $cid == 5) {
@@ -109,7 +130,6 @@ function get_upper($user_nid) {
     $ret['dis'] = $tmp[0]['g_distribution'];
     return $ret;
 }
-//TODO:同级显示不出来
 ?>
 <!DOCTYPE html>
 <html>
@@ -129,8 +149,29 @@ function get_upper($user_nid) {
             var win_height = window.innerHeight;
             $("#layout").css('height',win_height+'px');
             $("#add").click(function(){
-                $('#rightLoader').hide();
-                $('#new_add').show();
+                var current_cid = <?php echo $cid?>;
+                var current_top_id
+                    = <?php
+                    $loginid = $Users[0]['g_login_id'];
+                    if ($loginid == $userModel->cop_id) {
+                        echo 1;
+                    } else if ($loginid == $userModel->stock_id) {
+                        echo 2;
+                    } else if ($loginid == $userModel->maina_id) {
+                        echo 3;
+                    } else if ($loginid == $userModel->agent_id) {
+                        echo 4;
+                    } else {
+                        exit(alert("当前用户登录id错误,请联系管理员"));
+                    }
+                    ?>;
+                var current_name = '<?php echo $Users[0]['g_name']; ?>';
+                if (current_cid == current_top_id + 1) {
+                    select_upper(current_name,current_cid, 1);
+                } else {
+                    $('#rightLoader').hide();
+                    $('#new_add').show();
+                }
             })
         });
     </script>
@@ -290,7 +331,7 @@ function get_upper($user_nid) {
                        onclick="act_change_use('<?php echo $result[$i]['g_name']; ?>',this);">
                         <?php echo $result[$i]['g_lock'] == 2 ? '停用' : '停押'; ?>
                     </a> /
-                    <a href="Account_Up.php?cid=<?php echo $cid ?>&uid=<?php echo $result[$i]['g_name'] ?>"
+                    <a href="account_edit_wjl.php?cid=<?php echo $cid ?>&uid=<?php echo $result[$i]['g_name'] ?>"
                        edit='753'>修改</a>/
                     <a account_name='aaa11' log='753'
                        href="LoginLog.php?uid=<?php echo $result[$i]['g_name'] ?>&cid=<?php echo $cid?>">日志</a>/
@@ -396,7 +437,7 @@ function get_upper($user_nid) {
                        onclick="act_change_use('<?php echo $result[$i]['g_name']; ?>',this);">
                         <?php echo $result[$i]['g_lock'] == 2 ? '停用' : '停押'; ?>
                     </a> /
-                    <a href="Account_Up.php?cid=<?php echo $cid ?>&uid=<?php echo $result[$i]['g_name'] ?>"
+                    <a href="account_edit_wjl.php?cid=<?php echo $cid ?>&uid=<?php echo $result[$i]['g_name'] ?>"
                        edit='753'>修改</a>/
                     <a account_name='aaa11' log='753'
                        href="LoginLog.php?uid=<?php echo $result[$i]['g_name'] ?>&cid=<?php echo $cid?>">日志</a>/
@@ -520,7 +561,7 @@ function get_upper($user_nid) {
                        onclick="act_change_use('<?php echo $result[$i]['g_name']; ?>',this);">
                         <?php echo $result[$i]['g_lock'] == 2 ? '停用' : '停押'; ?>
                     </a> /
-                    <a href="Account_Up.php?cid=<?php echo $cid ?>&uid=<?php echo $result[$i]['g_name'] ?>"
+                    <a href="account_edit_wjl.php?cid=<?php echo $cid ?>&uid=<?php echo $result[$i]['g_name'] ?>"
                        edit='753'>修改</a>/
                     <a account_name='aaa11' log='753'
                        href="LoginLog.php?uid=<?php echo $result[$i]['g_name'] ?>&cid=<?php echo $cid?>">日志</a>/
@@ -677,6 +718,7 @@ function get_upper($user_nid) {
         </tr>
     <?php } else { ?>
         <?php for ($i = 0; $i < count($result); $i++) {
+
             if ($result[$i]['g_mumber_type'] == 2) {
                 $agent = array(null); //代理
                 $main_agent = array(null); //总代理
@@ -704,12 +746,13 @@ function get_upper($user_nid) {
                     $stockholder['name'] = $_nid['g_name'];
                     $stockholder['dis'] = $result[$i]['g_distribution'];
                     $v = mb_substr($user_nid, 0, mb_strlen($user_nid, 'utf-8') - 32);
+                    echo $v;
                     $d = $userModel->GetUserName_Like($v);
                     $topname = $stockholder['name'];
                 } else if ($_nid['g_login_id'] == 56) { //分公司直屬
                     $mumberType = '<font class="red">直屬分公司</font>';
-                    $comp = $_nid['g_name'];
-                    $comp = $result[$i]['g_distribution'];
+                    $comp['name'] = $_nid['g_name'];
+                    $comp['dis'] = $result[$i]['g_distribution'];
                     $v = mb_substr($user_nid, 0, mb_strlen($user_nid, 'utf-8') - 32);
                     $d = $userModel->GetUserName_Like($v);
                     $topname = $comp['name'];
@@ -723,6 +766,8 @@ function get_upper($user_nid) {
                 $stockholder = get_upper($main_agent['nid']); //股东
                 $topname = $agent['name'];
             }
+            var_dump($_nid['g_login_id']);
+
             $linkName = $LoginId == 89 ? '<a href="information.php?uid=' . $result[$i]['g_name'] . '&mid=1">' . $result[$i]['g_name'] . '</a>' : $result[$i]['g_name'];
             ?>
             <tr id='' account='<?php echo $result[$i]['g_name']; ?>' class=''>
@@ -801,13 +846,29 @@ function get_upper($user_nid) {
 <?php } //if cid end?>
 </div>
 <?php
-    $all_account = $userModel->Get_all_count(1);
+    $loginid = $Users[0]['g_login_id'];
+    $all_account = $userModel->Get_all_count(1,$Users[0]['g_nid'],$Users[0]['g_login_id']);
     $end_index = $cid;
-    $id_name_array = array(
-        1=> '分公司',
-        2=>'股东',
-        3=>'总代理',
-        4=>'代理');
+    $id_name_array = array();
+    if ($loginid == $userModel->cop_id) {
+        $id_name_array = array(
+            '分公司',
+            '股东',
+            '总代理',
+            '代理');
+    } else if ($loginid == $userModel->stock_id) {
+        $id_name_array = array(
+            '股东',
+            '总代理',
+            '代理');
+    } else if ($loginid == $userModel->maina_id) {
+        $id_name_array = array(
+            '总代理',
+            '代理');
+    } else if ($loginid == $userModel->agent_id) {
+    } else {
+    }
+
 ?>
 
 </div>
@@ -834,7 +895,7 @@ function get_upper($user_nid) {
                 <td>
                     <select id="superior_new" onchange="select_upper(this.value,<?php echo $end_index?>, 1)" >
                         <option value="0">选择上级</option>
-                        <?php for ($i=1; $i<$end_index; $i++) { ?>
+                        <?php for ($i=0; $i<count($id_name_array); $i++) { ?>
                             <optgroup label="<?php echo $id_name_array[$i] ?>">
                                 <?php for($j=0;$j <count($all_account[$i]); $j++) { ?>
                                     <option value="<?php echo $all_account[$i][$j]['g_name']; ?>">

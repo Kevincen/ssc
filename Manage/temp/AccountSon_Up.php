@@ -85,7 +85,9 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['uid']))
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/Manage/temp/js/Pwd_Safety.js"></script>
 <title></title>
-<script type="text/javascript">
+    <link rel="stylesheet" href="/wjl_tmp/steal.css"/>
+
+    <script type="text/javascript">
 <!--
 	$(function(){
 		var lock_1 = $("#lock_1");
@@ -120,161 +122,188 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['uid']))
 </script>
 </head>
 <body>
-<form action="" method="post" onsubmit="return isForm()">
-<input type="hidden" name="sid" value="<?php echo$result[0]['g_password']?>" /> 
-	<table width="100%" height="100%" border="0" cellspacing="0" class="a">
-    	<tr>
-        	<td width="6" height="99%" bgcolor="#1873aa"></td>
-            <td class="c">
-            	<table border="0" cellspacing="0" class="main">
-                	<tr>
-                    	<td width="12"><img src="/Manage/temp/images/tab_03.gif" alt="" /></td>
-                        <td background="/Manage/temp/images/tab_05.gif">
-                        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                  <tr>
-	                                    <td width="17"><img src="/Manage/temp/images/tb.gif" width="16" height="16" /></td>
-	                                    <td width="99%">&nbsp;新增子帳號</td>
-                                  </tr>
-                            </table>
-                        </td>
-                        <td width="16"><img src="/Manage/temp/images/tab_07.gif" alt="" /></td>
-                    </tr>
-                    <tr>
-                    	<td class="t"></td>
-                        <td class="c">
-                        <!-- strat -->
-                            <table border="0" cellspacing="0" class="conter">
-                            	<tr class="tr_top">
-                                	<th colspan="2">新增子帳號</th>
-                                </tr>
-                                <tr style="height:28px">
-                                    <td class="bj">帳號:</td>
-                                    <td class="left_p5"><?php echo$result[0]['g_s_name']?></td>
-                                </tr>
-                                <tr style="height:28px">
-                                    <td class="bj">名稱:</td>
-                                    <td class="left_p5"><input class="text" type="text" name="s_f_Name" id="s_f_Name" value="<?php echo$result[0]['g_s_f_name']?>"  maxlength="20" /></td>
-                                </tr>
-                                <tr style="height:28px">
-                                    <td class="bj">密碼:</td>
-                                    <td class="left_p5"><input class="text" type="password" name="s_pwd" id="s_pwd" maxlength="20" /></td>
-                                </tr>
-                                <tr style="height:28px">
-                                    <td class="bj">狀態:</td>
-                                    <td class="left_p5">
-                                    	<input name="lock" style="position:relative;top:2px"	 <?php if($result[0]['g_lock']==1){echo 'checked="checked"';}?>  type="radio" value="1" />啟用&nbsp;&nbsp;
-                                    	<input name="lock" style="position:relative;top:2px" <?php if($result[0]['g_lock']==2){echo 'checked="checked"';}?> type="radio" value="2" />凍結&nbsp;&nbsp;
-                                    	<input name="lock" style="position:relative;top:2px" <?php if($result[0]['g_lock']==3){echo 'checked="checked"';}?> type="radio" value="3" />停用
-									</td>
-                                </tr>
-                                <tr style="height:28px">
-                                    <td class="bj">功能:</td>
-                                    <td class="left_p5">
-                                    	<?php if($lock && !$lock_6){?>
-                                內部管理 <input name="lock_1" id="lock_1" <?php if($result[0]['g_lock_1']==1){echo 'checked="checked"';}?> onclick="setManages(this)" style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }else if($lock_6 && $Users[0]['g_lock_1']==1){?>
-                                		內部管理 <input name="lock_1" id="lock_1" <?php if($result[0]['g_lock_1']==1){echo 'checked="checked"';}?> onclick="setManages(this)" style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                		
-                                		<?php if(!$lock_6){?>
-                                    	下線管理 <input name="lock_2" <?php if($result[0]['g_lock_2']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_2']==1){?>
-                                		下線管理 <input name="lock_2" <?php if($result[0]['g_lock_2']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                		
-                                		<?php if($LoginId != 89 && $LoginId != 56 && !$lock_6){?>
-                                    	自動補倉 <input name="lock_3" <?php if($result[0]['g_lock_3']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($LoginId != 89 && $LoginId != 56 && $lock_6 && $Users[0]['g_lock_3']==1){?>
-                                    	自動補倉 <input name="lock_3" <?php if($result[0]['g_lock_3']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }?>
-                                    	
-                                    	<?php if(!$lock_6){?>
-                                    	即時注單 <input name="lock_4" <?php if($result[0]['g_lock_4']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_4']==1){?>
-                                		即時注單 <input name="lock_4" <?php if($result[0]['g_lock_4']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                    	
-                                    	<?php if(!$lock_6){?>
-                                    	報表查詢 <input name="lock_5" <?php if($result[0]['g_lock_5']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_5']==1){?>
-                                		報表查詢 <input name="lock_5" <?php if($result[0]['g_lock_5']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                    	
-                                    	<?php if(!$lock_6){?>
-                                    	子帳管理 <input name="lock_6" <?php if($result[0]['g_lock_6']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_6']==1){?>
-                                		子帳管理 <input name="lock_6" <?php if($result[0]['g_lock_6']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />
-                                		<?php }?>
-                                    </td>
-                                </tr>
-                                <?php if($lock){?>
-                                <tr style="height:28px;display:none" id="manages">
-                                    <td class="bj">內部管理:</td>
-                                    <td class="left_p5">
-                                    	<?php if(!$lock_6){?>
-                                    	系統設置 <input name="lock_1_1" <?php if($result[0]['g_lock_1_1']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_1_1']==1){?>
-                                		系統設置 <input name="lock_1_1" <?php if($result[0]['g_lock_1_1']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                		
-                                		<?php if(!$lock_6){?>
-                                    	賠率設置 <input name="lock_1_2" <?php if($result[0]['g_lock_1_2']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_1_2']==1){?>
-                                		賠率設置 <input name="lock_1_2" <?php if($result[0]['g_lock_1_2']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                    	
-                                    	<?php if(!$lock_6){?>
-                                    	公告設置 <input name="lock_1_3" <?php if($result[0]['g_lock_1_3']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_1_3']==1){?>
-                                		公告設置 <input name="lock_1_3" <?php if($result[0]['g_lock_1_3']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                		
-                                		<?php if(!$lock_6){?>
-                                    	注單設置 <input name="lock_1_4" <?php if($result[0]['g_lock_1_4']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_1_4']==1){?>
-                                		注單設置 <input name="lock_1_4" <?php if($result[0]['g_lock_1_4']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                		
-                                		<?php if(!$lock_6){?>
-                                    	開獎設置 <input name="lock_1_5" <?php if($result[0]['g_lock_1_5']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_1_5']==1){?>
-                                		開獎設置 <input name="lock_1_5" <?php if($result[0]['g_lock_1_5']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                		
-                                		<?php if(!$lock_6){?>
-                                    	開盤設置 <input name="lock_1_6" <?php if($result[0]['g_lock_1_6']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_1_6']==1){?>
-                                		開盤設置 <input name="lock_1_6" <?php if($result[0]['g_lock_1_6']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
-                                		<?php }?>
-                                    	
-                                    	<?php if(!$lock_6){?>
-                                    	數據備份 <input name="lock_1_7" <?php if($result[0]['g_lock_1_7']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />
-                                    	<?php }else if ($lock_6 && $Users[0]['g_lock_1_7']==1){?>
-                                		數據備份 <input name="lock_1_7" <?php if($result[0]['g_lock_1_7']==1){echo 'checked="checked"';}?> style="position:relative;top:3px" type="checkbox" value="1" />
-                                		<?php }?>
-                                    </td>
-                                </tr>
-                                <?php }?>
-                            </table>
-                        <!-- end -->
-                        </td>
-                        <td class="r"></td>
-                    </tr>
-                    <tr>
-                    	<td width="12"><img src="/Manage/temp/images/tab_18.gif" alt="" /></td>
-                        <td class="f" align="center"><input type="submit" class="inputs" value="確認更變" /></td>
-                        <td width="16"><img src="/Manage/temp/images/tab_20.gif" alt="" /></td>
-                    </tr>
-                </table>
-            </td>
-            <td width="6" bgcolor="#1873aa"></td>
-        </tr>
-        <tr>
-        	<td height="6" bgcolor="#1873aa"><img src="/Manage/images/main_59.gif" alt="" /></td>
-            <td bgcolor="#1873aa"></td>
-            <td height="6" bgcolor="#1873aa"><img src="/Manage/images/main_62.gif" alt="" /></td>
-        </tr>
-    </table>
-    </form>
+<div id="layout" class="container" style="height: 274px;">
+    <form action="" method="post" onsubmit="return isForm()">
+        <div id="rightLoader" dom="right" class="main-content bet-content" style="display: block;">
+            <form id="user_info">
+                <div id="guanliyuan" class=" guanliyuan">
+                    <div class="title"><span id="account_name">修改管理员</span><a href="AccountSon_List.php?cid=0"
+                                                                              id="reback" level="0"
+                                                                              class="mag-btn1">返回</a></div>
+                    <table class="clear-table base-info ">
+                        <caption>
+                            <div>基本资料</div>
+                        </caption>
+                        <tbody>
+                        <tr>
+                            <th>名称</th>
+                            <td><input id="s_f_Name" autocomplete="off" type="text" name="s_f_Name" vname="name"
+                                       vmessage="由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！"
+                                        value="<?php echo$result[0]['g_s_f_name']?>">
+                                <span
+                                    class="g-vd-status"></span></td>
+                            <th>账号</th>
+                            <td><input id="s_Name" autocomplete="off" type="text" name="s_Name" vname="account"
+                                       vmessage="账号由1-12位英文字母、数字、下划线组成，且第一位不能是下划线！"
+                                       value="<?php echo$result[0]['g_s_name']?>" readonly>
+                                <span class="g-vd-status"></span>
+                            </td>
+                            <th>状态</th>
+                            <td><select name="lock">
+                                    <option value="0" <?php if($userList[0]['g_lock']==3){echo 'selected="selected"';}?> >停用</option>
+                                    <option value="2" <?php if($userList[0]['g_lock']==2){echo 'selected="selected"';}?>>
+                                        停押
+                                    </option>
+                                    <option value="1" <?php if($userList[0]['g_lock']==1){echo 'selected="selected"';}?> >
+                                        启用
+                                    </option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th>密码</th>
+                            <td><input id="s_pwd" autocomplete="off" type="password" name="s_pwd" vname="password"
+                                       vmessage="6~16位数字、字母组成！"><span class="g-vd-status"></span></td>
+                            <th>确认密码</th>
+                            <td><input autocomplete="off" type="password" name="repassword" vname="repassword"
+                                       vmessage="6~16位数字、字母组成！"><span class="g-vd-status"></span></td>
+                            <th id="ylch_t"></th>
+                            <td id="ylch_c"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="clear-table base-info right">
+                        <caption>
+                            <div><label><input type="checkbox" id="selectAll" checked="">全选</label>权限</div>
+                        </caption>
+                        <tbody>
+                        <tr id="rights">
+
+                            <?php if (($lock && !$lock_6 )
+                                || ($lock_6 && $Users[0]['g_lock_1'] == 1)) { ?>
+                                <td>
+                                    內部管理 <input name="lock_1" onclick="setManages(this)" style="position:relative;top:3px"
+                                                <?php if($result[0]['g_lock_1']==1){echo 'checked="checked"';}?>
+                                                type="checkbox" value="1" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                            <?php } ?>
+
+                            <?php if ((!$lock_6) || ($lock_6 && $Users[0]['g_lock_2'] == 1)) { ?>
+                                <td>
+                                    下線管理 <input name="lock_2" style="position:relative;top:3px"
+                                    <?php if($result[0]['g_lock_2']==1){echo 'checked="checked"';}?>
+                                                type="checkbox"  value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                            <?php } ?>
+
+                            <?php if (($LoginId != 89 && $LoginId != 56 && !$lock_6)
+                                || ($LoginId != 89 && $LoginId != 56 && $lock_6 && $Users[0]['g_lock_3'] == 1)) { ?>
+                                <td>
+                                    自動補倉 <input name="lock_3" style="position:relative;top:3px" type="checkbox"
+                                        <?php if($result[0]['g_lock_3']==1){echo 'checked="checked"';}?>
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                            <?php } ?>
+
+                            <?php if (!$lock_6
+                                    ||($lock_6 && $Users[0]['g_lock_4'] == 1)) { ?>
+                                <td>
+                                    即時注單 <input name="lock_4" style="position:relative;top:3px" type="checkbox"
+                                        <?php if($result[0]['g_lock_4']==1){echo 'checked="checked"';}?>
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                            <?php } ?>
+
+                            <?php if (!$lock_6
+                                        || ($lock_6 && $Users[0]['g_lock_5'] == 1)) { ?>
+                                <td>
+                                    報表查詢 <input name="lock_5" style="position:relative;top:3px" type="checkbox"
+                                        <?php if($result[0]['g_lock_5']==1){echo 'checked="checked"';}?>
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                            <?php } ?>
+
+                            <?php if (!$lock_6
+                                        || ($lock_6 && $Users[0]['g_lock_6'] == 1)) { ?>
+                                <td>
+                                    子帳管理 <input name="lock_6" style="position:relative;top:3px" type="checkbox"
+                                        <?php if($result[0]['g_lock_6']==1){echo 'checked="checked"';}?>
+                                                value="1"/>
+                                </td>
+                            <?php } ?>
+                            <!--<td right="ZDGL"><label for="ZDGL"><input type="checkbox" name="right" id="ZDGL" checked/>注单管理</label></td>-->
+                        </tr>
+                        <?php if ($lock) { ?>
+                            <tr id="manages">
+                                <?php if (!$lock_6) { ?>
+                                    系統設置 <input name="lock_1_1" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } else if ($lock_6 && $Users[0]['g_lock_1_1'] == 1) { ?>
+                                    系統設置 <input name="lock_1_1" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } ?>
+
+                                <?php if (!$lock_6) { ?>
+                                    賠率設置 <input name="lock_1_2" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } else if ($lock_6 && $Users[0]['g_lock_1_2'] == 1) { ?>
+                                    賠率設置 <input name="lock_1_2" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } ?>
+
+                                <?php if (!$lock_6) { ?>
+                                    公告設置 <input name="lock_1_3" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } else if ($lock_6 && $Users[0]['g_lock_1_3'] == 1) { ?>
+                                    公告設置 <input name="lock_1_3" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } ?>
+
+                                <?php if (!$lock_6) { ?>
+                                    注單設置 <input name="lock_1_4" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } else if ($lock_6 && $Users[0]['g_lock_1_4'] == 1) { ?>
+                                    注單設置 <input name="lock_1_4" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } ?>
+
+                                <?php if (!$lock_6) { ?>
+                                    開獎設置 <input name="lock_1_5" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } else if ($lock_6 && $Users[0]['g_lock_1_5'] == 1) { ?>
+                                    開獎設置 <input name="lock_1_5" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } ?>
+
+                                <?php if (!$lock_6) { ?>
+                                    開盤設置 <input name="lock_1_6" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } else if ($lock_6 && $Users[0]['g_lock_1_6'] == 1) { ?>
+                                    開盤設置 <input name="lock_1_6" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } ?>
+
+                                <?php if (!$lock_6) { ?>
+                                    數據備份 <input name="lock_1_7" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <?php } else if ($lock_6 && $Users[0]['g_lock_1_7'] == 1) { ?>
+                                    數據備份 <input name="lock_1_7" style="position:relative;top:3px" type="checkbox"
+                                                value="1"/>
+                                <?php } ?>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                    <div class="btn-line"><input type="submit" class="yellow-btn" id="submit" value="保 存"/>
+                        <input
+                            type="reset" class="white-btn" id="reset" value="取 消" /></div>
+                </div>
+            </form>
+
+        </div>
+        <!--bet content-->
+        <div dom="main_nav" class="main-content1" style="display: none;"></div>
+        <div dom="main" class="main-content1" style="display: none;"></div>
+        <!--main content-->
+</div>
 </body>
 </html>

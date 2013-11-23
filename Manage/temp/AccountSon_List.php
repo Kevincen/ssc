@@ -247,8 +247,8 @@ if (isset($_GET['del'])) {
                                 <a status="0" href="javascript:void(0)">停用</a>/
                                 <a status="2" href="javascript:void(0)">停押</a>/
                                 <a href="AccountSon_Up.php?uid=<?php echo $result[$i]['g_id']?>" edit="852">修改</a>/
-                                <a account_name="ad888" log="852" href="LoginLog.php?uid=<?php echo$result[$i]['g_s_name']?>">日志</a>/
-                                <a account_name="ad888" record="852" href="LoginLog.php?uid=<?php echo$result[$i]['g_s_name']?>">记录</a>
+                                <a account_name="ad888" log="852" href="LoginLog.php?uid=<?php echo$result[$i]['g_s_name']?>&cid=0">日志</a>/
+                                <a account_name="ad888" record="852" href="LoginLog.php?uid=<?php echo$result[$i]['g_s_name']?>&cid=0">记录</a>
                             </td>
                         </tr>
                     <?php

@@ -68,7 +68,7 @@ $password_url = "UpdatePwd.php";
         function selectType(p_type){
             var current_col_id = $('.on').attr('id');
             var url = targetphp[p_type];
-            $('#XCJD').find('a').attr('href', url)
+            $('#XCJD').find('a').attr('href', url+"?cid=1");
             $('#SFTJ').find('a').attr('href',bill_url + "?tid=" + p_type);
             $('#KJGL').find('a').attr('href',result_url + "?tid=" + p_type);
             $('#XTSD').find('a').attr('href',xtsd_url + "?tid=" + p_type);

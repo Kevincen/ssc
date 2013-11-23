@@ -114,7 +114,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op']=
 		exit;
 	}
 	$userModel->AddMumberUser($userList);
-    update_MR();
+    $cid = $_GET['cid'];
+    update_MR($cid);
 	alert_href('新增成功', 'Actfor.php?cid='.$_GET['cid']);
 	exit;
 }
@@ -150,6 +151,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['sid']) && isset($_G
 		} else if ($Users[0]['g_login_id'] == 78) {
 			$select =$o1.'<input type="radio" onclick="Gos(this);" name="tse" value="2">總代理';
 		}
+
 	}
 }
 
@@ -166,14 +168,19 @@ function getSelect ($Rank, $userModel, $p=FALSE)
 	}
 	return $option1.$select.$option2;
 }
+
 //插入项目退水等信息
-function update_MR()
+function update_MR($cid)
 {
     echo "enter update_MR";
     global $_POST;
     $uModel = new UserModel();
     $name = $_POST['s_Name'];
-    $usersModel = $uModel->GetUserModel(null, $name);
+    if ($cid == 5) {
+        $usersModel = $uModel->GetMemberModel($name);
+    } else {
+        $usersModel = $uModel->GetUserModel(null, $name);
+    }
     if ($usersModel) {
         $Lname = mb_substr($usersModel[0]['g_nid'], 0, mb_strlen($usersModel[0]['g_nid']) - 32);
         $Lname = $uModel->GetUserName_Like($Lname); //返回查询出来的用户信息

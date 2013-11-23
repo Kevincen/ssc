@@ -27,7 +27,7 @@ function _Number (number, ballArr) {
 	var idArr = ["#q_a","#q_b","#q_c","#q_d","#q_e","#q_f","#q_g","#q_h"];
 	$("#q_number").html(number);
 	for (var i = 0; i<ballArr.length; i++) {
-		Clss = "No_cq"+ballArr[i];
+		Clss = "number num"+ballArr[i];
 		$(idArr[i]).removeClass().addClass(Clss);
 	}
 }
@@ -50,8 +50,8 @@ function loadInfos(){
 			for (var key in data.result){
 				rowHtml.push("<tr bgcolor=\"#fff\" height=\"18\"><td  class=\"uo\">"+key+"</td><td class=\"fe\">"+data.result[key]+" 期</td></tr>");
 			}
-			var cHtml = '<tr class="tr_top"><th colspan="2">兩面長龍排行</th></tr>';
-			$("#cl").html(cHtml+rowHtml.join(""));
+			//var cHtml = '<tr class="tr_top"><th colspan="2">兩面長龍排行</th></tr>';
+			$("#cl").html(/*cHtml+*/rowHtml.join(""));
 		}
 	}, "json");
 }
@@ -59,9 +59,13 @@ function loadInfos(){
 function loadOdds(){
 	$.post(url, {mid : 2}, function(data){
 		var a = ["a","b","c","d","e", "h", "i", "s", "x"];
+        var sum;
 		for (var i=0; i<data.oddsList.length; i++){
+            sum = 0;
 			for (var n in data.oddsList[i]){
 				$("#"+a[i]+n).html(data.oddsList[i][n]);
+                //要添加每一个球的总额。
+                sum += data.oddList[i][n];
 			}
 		}
 	}, "json");

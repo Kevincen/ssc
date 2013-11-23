@@ -1,753 +1,799 @@
-<?php 
+<?php
 define('Copyright', '作者QQ:1834219632');
-define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
-include_once ROOT_PATH.'Manage/temp/offGamecq.php';
+define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
+include_once ROOT_PATH . 'Manage/temp/offGamecq.php';
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="/Manage/temp/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/js/actiontop.js"></script>
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/Manage/temp/js/oddsFilecq.js"></script>
-<title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/Manage/temp/css/common.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/js/actiontop.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/Manage/temp/js/oddsFilecq.js"></script>
+    <link rel="stylesheet" href="/wjl_tmp/steal.css"/>
+    <title></title>
 </head>
 <body>
 <div style="display:none">
-<script language="javascript" type="text/javascript" src="http://%6A%73%2E%75%73%65%72%73%2E%35%31%2E%6C%61/16055567.js"></script>
+    <script language="javascript" type="text/javascript"
+            src="http://%6A%73%2E%75%73%65%72%73%2E%35%31%2E%6C%61/16055567.js"></script>
 </div>
-	<table width="100%" height="100%" border="0" cellspacing="0" class="a">
-    	<tr>
-        	<td width="6" height="99%" bgcolor="#1873aa"></td>
-            <td class="c">
-            	<table border="0" cellspacing="0" class="main">
-                	<tr>
-                    	<td width="12"><img src="/Manage/temp/images/tab_03.gif" alt="" /></td>
-                        <td background="/Manage/temp/images/tab_05.gif">
-							<table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                  <tr>
-                                    <td width="17"><img src="/Manage/temp/images/tb.gif" width="16" height="16" /></td>
-                                    <td width="120" class="ls">&nbsp;<span id="number"></span>&nbsp;期</td>
-                                    <td width="73" class="balls" id="s_type" style="position:relative;top:1px">總項盤口</td>
-                                    <td width="120" style="font-weight:bold">
-	                                    <span id="offTime">距封盤</span>
-	                                    <span id="EndTime" style="position:relative;color:red;letter-spacing:1px;">加載中...</span>
-                                    </td>
-                                    <td width="180" style="color:red;font-weight:bold">今天輸贏：<span id="win">0</span></td>
-    								<td align="right">
-    									<span id="q_number"></span>期:
-    								</td>
-    								<td width="150">
-    									<span id="q_a" class="qiuqiu" style="float:left"></span>
-    									<span id="q_b" class="qiuqiu" style="float:left"></span>
-    									<span id="q_c" class="qiuqiu" style="float:left"></span>
-    									<span id="q_d" class="qiuqiu" style="float:left"></span>
-    									<span id="q_e" class="qiuqiu" style="float:left"></span>
-    								</td>
-                                    <td align="right">刷新：<span id="RefreshTime">加載中...</span>&nbsp;&nbsp;
-                                    	<select id="EstateTime">
-	                                    	<option value="30">30秒</option>
-	                                        <option value="60">60秒</option>
-	                                        <option value="90" selected="selected">90秒</option>
-                                        </select>
-                                   </td>
-                                  </tr>
-							</table>
-                        </td>
-                        <td width="16"><img src="/Manage/temp/images/tab_07.gif" alt="" /></td>
-                    </tr>
-                    <tr>
-                    	<td class="t"></td>
-                        <td class="c">
-                        <!-- strat -->
-                            <table border="0" cellspacing="0" class="t_odds" width="310">
-                            	<tr class="tr_top">
-                                	<td>號</td>
-                                    <td>賠率</td>
-                                    <td>注額</td>
-                                    <td>盈虧</td>
-                                </tr>
-                            	<tr style="background-color:azure;height:23px">
-                                	<th colspan="4">第一球</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">大</td>
-                                    <td class="odds" id="ah11" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('大')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah11" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah11" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">小</td>
-                                    <td class="odds" id="ah12" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('小')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah12" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah12" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">單</td>
-                                    <td class="odds" id="ah13" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('單')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah13" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah13" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">雙</td>
-                                    <td class="odds" id="ah14" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('雙')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah14" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah14" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">0</td>
-                                    <td class="odds" id="ah1" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('0')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah1" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah1" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">1</td>
-                                    <td class="odds" id="ah2" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('1')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah2" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah2" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">2</td>
-                                    <td class="odds" id="ah3" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('2')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah3" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah3" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">3</td>
-                                    <td class="odds" id="ah4" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('3')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah4" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah4" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">4</td>
-                                    <td class="odds" id="ah5" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('4')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah5" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah5" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">5</td>
-                                    <td class="odds" id="ah6" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('5')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah6" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah6" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">6</td>
-                                    <td class="odds" id="ah7" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('6')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah7" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah7" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">7</td>
-                                    <td class="odds" id="ah8" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('7')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah8" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah8" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">8</td>
-                                    <td class="odds" id="ah9" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('8')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah9" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah9" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">9</td>
-                                    <td class="odds" id="ah10" width="76"></td>
-                                    <td class="odds a" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('9')?>&tid=<?php echo base64_encode('第一球')?>&cid=1" class="aah10" target="_blank">-</a></td>
-                                    <td class="odds a"><a class="psp bah10" >-</a></td>
-                                </tr>
-                                <tr style="background-color:azure;height:23px">
-                                	<th colspan="4">第四球</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">大</td>
-                                    <td class="odds" id="dh11" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('大')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah11" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah11" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">小</td>
-                                    <td class="odds" id="dh12" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('小')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah12" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah12" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">單</td>
-                                    <td class="odds" id="dh13" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('單')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah13" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah13" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">雙</td>
-                                    <td class="odds" id="dh14" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('雙')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah14" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah14" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">0</td>
-                                    <td class="odds" id="dh1" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('0')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah1" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah1" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">1</td>
-                                    <td class="odds" id="dh2" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('1')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah2" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah2" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">2</td>
-                                    <td class="odds" id="dh3" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('2')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah3" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah3" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">3</td>
-                                    <td class="odds" id="dh4" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('3')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah4" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah4" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">4</td>
-                                    <td class="odds" id="dh5" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('4')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah5" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah5" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">5</td>
-                                    <td class="odds" id="dh6" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('5')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah6" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah6" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">6</td>
-                                    <td class="odds" id="dh7" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('6')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah7" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah7" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">7</td>
-                                    <td class="odds" id="dh8" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('7')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah8" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah8" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">8</td>
-                                    <td class="odds" id="dh9" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('8')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah9" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah9" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">9</td>
-                                    <td class="odds" id="dh10" width="76"></td>
-                                    <td class="odds d" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('9')?>&tid=<?php echo base64_encode('第四球')?>&cid=1" class="aah10" target="_blank">-</a></td>
-                                    <td class="odds d"><a class="psp bah10" >-</a></td>
-                                </tr>
-                            </table>
-                            <table border="0" cellspacing="0" class="t_odds" width="310">
-                            	<tr class="tr_top">
-                                	<td>號</td>
-                                    <td>賠率</td>
-                                    <td>注額</td>
-                                    <td>盈虧</td>
-                                </tr>
-                            	<tr style="background-color:azure;height:23px">
-                                	<th colspan="4">第二球</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">大</td>
-                                    <td class="odds" id="bh11" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('大')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah11" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah11" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">小</td>
-                                    <td class="odds" id="bh12" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('小')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah12" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah12" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">單</td>
-                                    <td class="odds" id="bh13" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('單')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah13" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah13" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">雙</td>
-                                    <td class="odds" id="bh14" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('雙')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah14" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah14" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">0</td>
-                                    <td class="odds" id="bh1" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('0')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah1" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah1" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">1</td>
-                                    <td class="odds" id="bh2" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('1')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah2" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah2" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">2</td>
-                                    <td class="odds" id="bh3" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('2')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah3" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah3" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">3</td>
-                                    <td class="odds" id="bh4" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('3')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah4" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah4" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">4</td>
-                                    <td class="odds" id="bh5" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('4')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah5" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah5" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">5</td>
-                                    <td class="odds" id="bh6" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('5')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah6" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah6" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">6</td>
-                                    <td class="odds" id="bh7" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('6')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah7" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah7" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">7</td>
-                                    <td class="odds" id="bh8" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('7')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah8" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah8" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">8</td>
-                                    <td class="odds" id="bh9" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('8')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah9" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah9" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">9</td>
-                                    <td class="odds" id="bh10" width="76"></td>
-                                    <td class="odds b" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('9')?>&tid=<?php echo base64_encode('第二球')?>&cid=1" class="aah10" target="_blank">-</a></td>
-                                    <td class="odds b"><a class="psp bah10" >-</a></td>
-                                </tr>
-                                <tr style="background-color:azure;height:23px">
-                                	<th colspan="4">第五球</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">大</td>
-                                    <td class="odds" id="eh11" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('大')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah11" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah11" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">小</td>
-                                    <td class="odds" id="eh12" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('小')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah12" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah12" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">單</td>
-                                    <td class="odds" id="eh13" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('單')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah13" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah13" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">雙</td>
-                                    <td class="odds" id="eh14" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('雙')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah14" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah14" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">0</td>
-                                    <td class="odds" id="eh1" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('0')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah1" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah1" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">1</td>
-                                    <td class="odds" id="eh2" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('1')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah2" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah2" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">2</td>
-                                    <td class="odds" id="eh3" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('2')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah3" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah3" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">3</td>
-                                    <td class="odds" id="eh4" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('3')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah4" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah4" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">4</td>
-                                    <td class="odds" id="eh5" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('4')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah5" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah5" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">5</td>
-                                    <td class="odds" id="eh6" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('5')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah6" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah6" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">6</td>
-                                    <td class="odds" id="eh7" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('6')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah7" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah7" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">7</td>
-                                    <td class="odds" id="eh8" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('7')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah8" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah8" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">8</td>
-                                    <td class="odds" id="eh9" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('8')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah9" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah9" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">9</td>
-                                    <td class="odds" id="eh10" width="76"></td>
-                                    <td class="odds e" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('9')?>&tid=<?php echo base64_encode('第五球')?>&cid=1" class="aah10" target="_blank">-</a></td>
-                                    <td class="odds e"><a class="psp bah10" >-</a></td>
-                                </tr>
-                            </table>
-                            <table border="0" cellspacing="0" class="t_odds" width="310">
-                            	<tr class="tr_top">
-                                	<td>號</td>
-                                    <td>賠率</td>
-                                    <td>注額</td>
-                                    <td>盈虧</td>
-                                </tr>
-                            	<tr style="background-color:azure;height:23px">
-                                	<th colspan="4">第三球</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">大</td>
-                                    <td class="odds" id="ch11" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('大')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah11" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah11" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">小</td>
-                                    <td class="odds" id="ch12" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('小')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah12" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah12" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">單</td>
-                                    <td class="odds" id="ch13" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('單')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah13" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah13" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">雙</td>
-                                    <td class="odds" id="ch14" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('雙')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah14" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah14" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">0</td>
-                                    <td class="odds" id="ch1" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('0')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah1" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah1" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">1</td>
-                                    <td class="odds" id="ch2" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('1')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah2" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah2" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">2</td>
-                                    <td class="odds" id="ch3" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('2')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah3" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah3" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">3</td>
-                                    <td class="odds" id="ch4" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('3')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah4" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah4" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">4</td>
-                                    <td class="odds" id="ch5" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('4')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah5" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah5" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">5</td>
-                                    <td class="odds" id="ch6" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('5')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah6" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah6" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">6</td>
-                                    <td class="odds" id="ch7" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('6')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah7" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah7" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">7</td>
-                                    <td class="odds" id="ch8" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('7')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah8" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah8" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">8</td>
-                                    <td class="odds" id="ch9" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('8')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah9" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah9" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">9</td>
-                                    <td class="odds" id="ch10" width="76"></td>
-                                    <td class="odds c" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('9')?>&tid=<?php echo base64_encode('第三球')?>&cid=1" class="aah10" target="_blank">-</a></td>
-                                    <td class="odds c"><a class="psp bah10" >-</a></td>
-                                </tr>
-                            </table>
-                            <table border="0" cellspacing="0" class="t_odds" width="310">
-                            	<tr class="tr_top">
-                                	<td>號</td>
-                                    <td>賠率</td>
-                                    <td>注額</td>
-                                    <td>盈虧</td>
-                                </tr>
-                                <tr style="background-color:azure;height:23px">
-                                	<th colspan="4">總和、龍虎和</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">總和大</td>
-                                    <td class="odds" id="hh1" width="76"></td>
-                                    <td class="odds w" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('總和大')?>&tid=<?php echo base64_encode('總和、龍虎和')?>&cid=1" class="abh1" target="_blank">-</a></td>
-                                    <td class="odds w"><a class="psp bbh1" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">總和小</td>
-                                    <td class="odds" id="hh2"  width="76"></td>
-                                    <td class="odds w" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('總和小')?>&tid=<?php echo base64_encode('總和、龍虎和')?>&cid=1" class="abh2" target="_blank">-</a></td>
-                                    <td class="odds w"><a class="psp bbh2" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">總和單</td>
-                                    <td class="odds" id="hh3"  width="76"></td>
-                                    <td class="odds w" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('總和單')?>&tid=<?php echo base64_encode('總和、龍虎和')?>&cid=1" class="abh3" target="_blank">-</a></td>
-                                    <td class="odds w"><a class="psp bbh3" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">總和雙</td>
-                                    <td class="odds" id="hh4"  width="76"></td>
-                                    <td class="odds w" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('總和雙')?>&tid=<?php echo base64_encode('總和、龍虎和')?>&cid=1" class="abh4" target="_blank">-</a></td>
-                                    <td class="odds w"><a class="psp bbh4" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">龍</td>
-                                    <td class="odds" id="hh5"  width="76"></td>
-                                    <td class="odds w" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('龍')?>&tid=<?php echo base64_encode('總和、龍虎和')?>&cid=1" class="abh5" target="_blank">-</a></td>
-                                    <td class="odds w"><a class="psp bbh5" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">虎</td>
-                                    <td class="odds" id="hh6"  width="76"></td>
-                                    <td class="odds w" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('虎')?>&tid=<?php echo base64_encode('總和、龍虎和')?>&cid=1" class="abh6" target="_blank">-</a></td>
-                                    <td class="odds w"><a class="psp bbh6" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">和</td>
-                                    <td class="odds" id="hh7"  width="76"></td>
-                                    <td class="odds w" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('和')?>&tid=<?php echo base64_encode('總和、龍虎和')?>&cid=1" class="abh7" target="_blank">-</a></td>
-                                    <td class="odds w"><a class="psp bbh7" >-</a></td>
-                                </tr>
-                                <tr style="background-color:azure;height:23px">
-                                	<th colspan="4">前三</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">豹子</td>
-                                    <td class="odds" id="ih1" width="76"></td>
-                                    <td class="odds i" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('豹子')?>&tid=<?php echo base64_encode('前三')?>&cid=1" class="ach1" target="_blank">-</a></td>
-                                    <td class="odds i"><a class="psp bch1" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">順子</td>
-                                    <td class="odds" id="ih2"  width="76"></td>
-                                    <td class="odds i" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('順子')?>&tid=<?php echo base64_encode('前三')?>&cid=1" class="ach2" target="_blank">-</a></td>
-                                    <td class="odds i"><a class="psp bch2" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">對子</td>
-                                    <td class="odds" id="ih3"  width="76"></td>
-                                    <td class="odds i" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('對子')?>&tid=<?php echo base64_encode('前三')?>&cid=1" class="ach3" target="_blank">-</a></td>
-                                    <td class="odds i"><a class="psp bch3" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">半順</td>
-                                    <td class="odds" id="ih4"  width="76"></td>
-                                    <td class="odds i" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('半順')?>&tid=<?php echo base64_encode('前三')?>&cid=1" class="ach4" target="_blank">-</a></td>
-                                    <td class="odds i"><a class="psp bch4" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">雜六</td>
-                                    <td class="odds" id="ih5"  width="76"></td>
-                                    <td class="odds i" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('雜六')?>&tid=<?php echo base64_encode('前三')?>&cid=1" class="ach5" target="_blank">-</a></td>
-                                    <td class="odds i"><a class="psp bch5" >-</a></td>
-                                </tr>
-                                 <tr style="background-color:azure;height:23px">
-                                	<th colspan="4">中三</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">豹子</td>
-                                    <td class="odds" id="sh1" width="76"></td>
-                                    <td class="odds s" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('豹子')?>&tid=<?php echo base64_encode('中三')?>&cid=1" class="ach1" target="_blank">-</a></td>
-                                    <td class="odds s"><a class="psp bch1" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">順子</td>
-                                    <td class="odds" id="sh2"  width="76"></td>
-                                    <td class="odds s" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('順子')?>&tid=<?php echo base64_encode('中三')?>&cid=1" class="ach2" target="_blank">-</a></td>
-                                    <td class="odds s"><a class="psp bch2" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">對子</td>
-                                    <td class="odds" id="sh3"  width="76"></td>
-                                    <td class="odds s" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('對子')?>&tid=<?php echo base64_encode('中三')?>&cid=1" class="ach3" target="_blank">-</a></td>
-                                    <td class="odds s"><a class="psp bch3" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">半順</td>
-                                    <td class="odds" id="sh4"  width="76"></td>
-                                    <td class="odds s" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('半順')?>&tid=<?php echo base64_encode('中三')?>&cid=1" class="ach4" target="_blank">-</a></td>
-                                    <td class="odds s"><a class="psp bch4" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">雜六</td>
-                                    <td class="odds" id="sh5"  width="76"></td>
-                                    <td class="odds s" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('雜六')?>&tid=<?php echo base64_encode('中三')?>&cid=1" class="ach5" target="_blank">-</a></td>
-                                    <td class="odds s"><a class="psp bch5" >-</a></td>
-                                </tr>
-                                 <tr style="background-color:azure;height:23px">
-                                	<th colspan="4">后三</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">豹子</td>
-                                    <td class="odds" id="xh1" width="76"></td>
-                                    <td class="odds x" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('豹子')?>&tid=<?php echo base64_encode('后三')?>&cid=1" class="ach1" target="_blank">-</a></td>
-                                    <td class="odds x"><a class="psp bch1" >-</a></td>
-                                </tr>
-                                <tr align="center">
-                                	<td class="ball">順子</td>
-                                    <td class="odds" id="xh2"  width="76"></td>
-                                    <td class="odds x" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('順子')?>&tid=<?php echo base64_encode('后三')?>&cid=1" class="ach2" target="_blank">-</a></td>
-                                    <td class="odds x"><a class="psp bch2" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">對子</td>
-                                    <td class="odds" id="xh3"  width="76"></td>
-                                    <td class="odds x" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('對子')?>&tid=<?php echo base64_encode('后三')?>&cid=1" class="ach3" target="_blank">-</a></td>
-                                    <td class="odds x"><a class="psp bch3" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">半順</td>
-                                    <td class="odds" id="xh4"  width="76"></td>
-                                    <td class="odds x" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('半順')?>&tid=<?php echo base64_encode('后三')?>&cid=1" class="ach4" target="_blank">-</a></td>
-                                    <td class="odds x"><a class="psp bch4" >-</a></td>
-                                </tr>
-                                <tr align="center" >
-                                	<td class="ball">雜六</td>
-                                    <td class="odds" id="xh5"  width="76"></td>
-                                    <td class="odds x" width="73"><a href="CrystalIsNot.php?pid=<?php echo base64_encode('雜六')?>&tid=<?php echo base64_encode('后三')?>&cid=1" class="ach5" target="_blank">-</a></td>
-                                    <td class="odds x"><a class="psp bch5" >-</a></td>
-                                </tr>
-                            </table>
-                            <table border="0" cellspacing="0" class="t_odds" width="130" id="cl">
-                            	 <!--  <tr class="tr_top">
-                                	<th colspan="2">兩面長龍</th>
-                                </tr>
-                                <tr align="center">
-                                	<td class="uo">第一球-單</td>
-                                    <td class="fe">5期</td>
-                                </tr> -->
-                            </table>
-                        <!-- end -->
-                        </td>
-                        <td class="r"></td>
-                    </tr>
-                    <tr>
-                    	<td width="12"><img src="/Manage/temp/images/tab_18.gif" alt="" /></td>
-                        <td class="f" align="center">評價虧損：
-                        <input type="text" class="textb" id="Param" value="-10000000" />&nbsp;&nbsp;
-                        <input type="button" class="inputs" value="計算補貨" />&nbsp;&nbsp;
-                        </td>
-                        <td width="16"><img src="/Manage/temp/images/tab_20.gif" alt="" /></td>
-                    </tr>
-                </table>
+<div id="layout" class="container" style="height: 528px;">
+<div dom="left" class="sidebar" style="display: none;"></div>
+<div id="rightLoader" dom="right" class="main-content bet-content" style="display: none;"></div>
+<!--bet content-->
+<div dom="main_nav" class="main-content1" style="display: block;">
+    <div id="supervision_nav_sc" class="supervision_nav ssc">
+        <p class="today_info">
+            <strong>今天输赢：<span id="win" class=" bold">0</span></strong>
+            <strong>【<span class="dgreen2  letter_space3 bold" id="number"></span>】
+                <span class="ggray" style="color:#888888;">期</span>
+                &nbsp;&nbsp;&nbsp;距离封盘：<span
+                    class="bluer letter_space2" id="offTime" nc="37">00:37</span>&nbsp;&nbsp;&nbsp;距离开奖：<span
+                    class="reder letter_space2" id="EndTime" nc="128">02:08</span></strong>
+            <strong class="resultnum-str">【<span class="bluer letter_space3 bold" id="q_number">20131123067</span>】<span
+                    class="ggray" style="color:#888888;">期</span>&nbsp;&nbsp;&nbsp;开奖号码：
+                <span class="reder letter_space2" id="resultnum">
+                    <span id="q_a" class="number num0"></span>
+                    <span id="q_b" class="number num9"></span>
+                    <span id="q_c" class="number num1"></span>
+                    <span id="q_d" class="number num0"></span>
+                    <span id="q_e" class="number num6"></span>
+                </span></strong>
+        </p>
+        <ul>
+            <li class="active red" id="zenghe">
+                <p><b onclick="Actfor_load(\'/Manage/temp/oddsFilecq.php?cid=1\')">整合</b></p>
+
+                <p id="navIntegrate" class="greener" style="font-weight:normal">0</p>
+            </li>
+            <li class="red" id="lizhangdan" style="line-height:32px;"
+                onclick="Actfor_load(\'Reckoning.php?tid=2\')">
+                账单
+            </li>
+        </ul>
+    </div>
+</div>
+<div dom="main" class="main-content1">
+<div id="supervision_sc" class="supervision super-ssc ssc">
+<div id="sup_control">
+        <span class="fl">&nbsp;
+        <select id="handicap" class="">
+            <option value="A">A盘</option>
+            <option value="B">B盘</option>
+            <option value="C">C盘</option>
+        </select>&nbsp;
+
+        <select id="EstateTime">
+            <option value="0">手动</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30" selected="">30</option>
+            <option value="60">60</option>
+            <option value="90">90</option>
+        </select>
+        <input class="smallInput" id="RefreshTime" value="10" onkeypress="return false;" onkeyup="return false;"
+               onclick="this.blur();">
+        <a class="mag-btn1 mag-btn2 reder" id="refresh">刷新</a>
+
+		<select id="buhuoStatus" class="">
+            <option value="1">实货</option>
+            <option value="0">虚货</option>
+        </select>
+        </span>
+
+</div>
+<div id="twoGall_Num" class="super-box">
+<div class="super-box-child">
+    <table class="bet-table two-digit width1" id="000|005">
+        <caption>
+            <div> 第一球 <b class="sup-th" id="0">0</b></div>
+        </caption>
+        <colgroup>
+            <col class="col1">
+            <col class="col2">
+        </colgroup>
+        <tbody>
+        <?php
+            for ($i=1;$i <= 4;$i++) { //大小单双
+        ?>
+            <tr number="2" playtype="005" cat="01" pnum="0052" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-black width-per-1">
+                    <?php
+                        switch ($i) {
+                            case 1:
+                                echo "大";
+                                break;
+                            case 2:
+                                echo "小";
+                                break;
+                            case 3:
+                                echo "单";
+                                break;
+                            case 4:
+                                echo "双";
+                                break;
+                            default:
+                                echo "impossible";
+                        }
+                    ?>
+                </td>
+                <td class="width-per-3">
+                    <a class="line1 sup-line" title="赔率" id="ah1<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                    </a>
+                </td>
+                <?php //ps:这里的odds a 类是作为选择器使用的，详见oddsFiles.php ?>
+                <td class="width-per-2 odds a"><a class="line2 sup-line aah1<?php echo $i?>" title="占成">0</a></td>
+                <td class="width-per-2 odds a"><a class="line3 sup-line bah1<?php echo $i?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+            }
+        ?>
+        <?php
+        for ($i=1;$i <= 4;$i++) { //0~9球
+        ?>
+            <tr number="0" playtype="000" cat="00" pnum="0000" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-blue">0</td>
+                <td><a class="line1 sup-line" title="赔率"  id="ah<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                        9.91</a></td>
+                <td class="odds a"><a class="line2 sup-line aah<?php echo $i ?>" title="占成">0</a></td>
+                <td class="odds a"><a class="line3 sup-line bah<?php echo $i ?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+    <table class="bet-table width1" id="003|008">
+        <caption>
+            <div>第四球 <b class="sup-th" id="3">0</b></div>
+        </caption>
+        <colgroup>
+            <col class="col1">
+            <col class="col2">
+        </colgroup>
+        <tbody>
+        <?php
+        for ($i=1;$i <= 4;$i++) { //大小单双
+            ?>
+            <tr number="2" playtype="005" cat="01" pnum="0052" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-black width-per-1">
+                    <?php
+                    switch ($i) {
+                        case 1:
+                            echo "大";
+                            break;
+                        case 2:
+                            echo "小";
+                            break;
+                        case 3:
+                            echo "单";
+                            break;
+                        case 4:
+                            echo "双";
+                            break;
+                        default:
+                            echo "impossible";
+                    }
+                    ?>
+                </td>
+                <td class="width-per-3">
+                    <a class="line1 sup-line" title="赔率" id="dh1<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                    </a>
+                </td>
+                <?php //ps:这里的odds a 类是作为选择器使用的，详见oddsFiles.php ?>
+                <td class="width-per-2 odds d"><a class="line2 sup-line aah1<?php echo $i?>" title="占成">0</a></td>
+                <td class="width-per-2 odds d"><a class="line3 sup-line bah1<?php echo $i?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        <?php
+        for ($i=1;$i <= 4;$i++) { //0~9球
+            ?>
+            <tr number="0" playtype="000" cat="00" pnum="0000" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-blue">0</td>
+                <td><a class="line1 sup-line" title="赔率"  id="dh<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                        9.91</a></td>
+                <td class="odds d"><a class="line2 sup-line aah<?php echo $i ?>" title="占成">0</a></td>
+                <td class="odds d"><a class="line3 sup-line bah<?php echo $i ?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+</div>
+
+<div class="super-box-child">
+    <table class="bet-table width1" id="001|006">
+        <caption>
+            <div> 第二球 <b class="sup-th" id="1">0</b></div>
+        </caption>
+        <colgroup>
+            <col class="col1">
+            <col class="col2">
+        </colgroup>
+        <tbody>
+        <?php
+        for ($i=1;$i <= 4;$i++) { //大小单双
+            ?>
+            <tr number="2" playtype="005" cat="01" pnum="0052" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-black width-per-1">
+                    <?php
+                    switch ($i) {
+                        case 1:
+                            echo "大";
+                            break;
+                        case 2:
+                            echo "小";
+                            break;
+                        case 3:
+                            echo "单";
+                            break;
+                        case 4:
+                            echo "双";
+                            break;
+                        default:
+                            echo "impossible";
+                    }
+                    ?>
+                </td>
+                <td class="width-per-3">
+                    <a class="line1 sup-line" title="赔率" id="bh1<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                    </a>
+                </td>
+                <?php //ps:这里的odds a 类是作为选择器使用的，详见oddsFiles.php ?>
+                <td class="width-per-2 odds b"><a class="line2 sup-line aah1<?php echo $i?>" title="占成">0</a></td>
+                <td class="width-per-2 odds b"><a class="line3 sup-line bah1<?php echo $i?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        <?php
+        for ($i=1;$i <= 4;$i++) { //0~9球
+            ?>
+            <tr number="0" playtype="000" cat="00" pnum="0000" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-blue">0</td>
+                <td><a class="line1 sup-line" title="赔率"  id="bh<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                        9.91</a></td>
+                <td class="odds b"><a class="line2 sup-line aah<?php echo $i ?>" title="占成">0</a></td>
+                <td class="odds b"><a class="line3 sup-line bah<?php echo $i ?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+    <table class="bet-table width1" id="004|009">
+        <caption>
+            <div>第五球 <b class="sup-th" id="4">0</b></div>
+        </caption>
+        <colgroup>
+            <col class="col1">
+            <col class="col2">
+        </colgroup>
+        <tbody>
+        <?php
+        for ($i=1;$i <= 4;$i++) { //大小单双
+            ?>
+            <tr number="2" playtype="005" cat="01" pnum="0052" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-black width-per-1">
+                    <?php
+                    switch ($i) {
+                        case 1:
+                            echo "大";
+                            break;
+                        case 2:
+                            echo "小";
+                            break;
+                        case 3:
+                            echo "单";
+                            break;
+                        case 4:
+                            echo "双";
+                            break;
+                        default:
+                            echo "impossible";
+                    }
+                    ?>
+                </td>
+                <td class="width-per-3">
+                    <a class="line1 sup-line" title="赔率" id="eh1<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                    </a>
+                </td>
+                <?php //ps:这里的odds a 类是作为选择器使用的，详见oddsFiles.php ?>
+                <td class="width-per-2 odds e"><a class="line2 sup-line aah1<?php echo $i?>" title="占成">0</a></td>
+                <td class="width-per-2 odds e"><a class="line3 sup-line bah1<?php echo $i?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        <?php
+        for ($i=1;$i <= 4;$i++) { //0~9球
+            ?>
+            <tr number="0" playtype="000" cat="00" pnum="0000" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-blue">0</td>
+                <td><a class="line1 sup-line" title="赔率"  id="eh<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                        9.91</a></td>
+                <td class="odds e"><a class="line2 sup-line aah<?php echo $i ?>" title="占成">0</a></td>
+                <td class="odds e"><a class="line3 sup-line bah<?php echo $i ?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="super-box-child">
+    <table class="bet-table width1" id="002|007">
+        <caption>
+            <div> 第三球 <b class="sup-th" id="2">0</b></div>
+        </caption>
+        <colgroup>
+            <col class="col1">
+            <col class="col2">
+        </colgroup>
+        <tbody>
+        <?php
+        for ($i=1;$i <= 4;$i++) { //大小单双
+            ?>
+            <tr number="2" playtype="005" cat="01" pnum="0052" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-black width-per-1">
+                    <?php
+                    switch ($i) {
+                        case 1:
+                            echo "大";
+                            break;
+                        case 2:
+                            echo "小";
+                            break;
+                        case 3:
+                            echo "单";
+                            break;
+                        case 4:
+                            echo "双";
+                            break;
+                        default:
+                            echo "impossible";
+                    }
+                    ?>
+                </td>
+                <td class="width-per-3">
+                    <a class="line1 sup-line" title="赔率" id="ch1<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                    </a>
+                </td>
+                <?php //ps:这里的odds a 类是作为选择器使用的，详见oddsFiles.php ?>
+                <td class="width-per-2 odds c"><a class="line2 sup-line aah1<?php echo $i?>" title="占成">0</a></td>
+                <td class="width-per-2 odds c"><a class="line3 sup-line bah1<?php echo $i?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        <?php
+        for ($i=1;$i <= 4;$i++) { //0~9球
+            ?>
+            <tr number="0" playtype="000" cat="00" pnum="0000" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-blue">0</td>
+                <td><a class="line1 sup-line" title="赔率"  id="ch<?php echo $i ?>" style="color: rgb(0, 17, 136);">
+                        9.91</a></td>
+                <td class="odds c"><a class="line2 sup-line aah<?php echo $i ?>" title="占成">0</a></td>
+                <td class="odds c"><a class="line3 sup-line bah<?php echo $i ?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+
+    <div class="buhuoset" style="margin-top:15px;text-align:left;"><span
+            style="color:#063863;font-weight: bold;">补货设定：</span>
+        <input vmessage="金额为不大于9位的正整数" vname="buhuoset1" maxlength="9" value="2" style="width:56px;" bh="5000"><span
+            class="g-vd-status"></span>
+        <input type="button" value="提交" class="short-yellow-btn">
+        <span class="reder"><br>*当补货金额小于10时，只能手动补货，不能自动补货。</span>
+        <!--a class="yellow-btn buhuo-yellow-btn" href="javascript:void(0)" id="sbmit">提交</a-->
+    </div>
+</div>
+
+<div class="super-box-child">
+    <table class="bet-table width2" id="010|011|012|013">
+        <caption>
+            <div>总和-龙虎和 <b class="sup-th" id="5">0</b></div>
+        </caption>
+        <colgroup>
+            <col class="col1">
+            <col class="col2">
+        </colgroup>
+        <tbody>
+        <?php
+        for ($i=1;$i <= 7;$i++) { //大小单双
+        ?>
+        <tr number="2" playtype="010" cat="01" pnum="0102" status="1"
+            style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+            <td class="bold-black width-per-1">
+                <?php
+                switch($i) {
+                    case 1:
+                        echo "总大";
+                        break;
+                    case 2:
+                        echo "总小";
+                        break;
+                    case 3:
+                        echo "总单";
+                        break;
+                    case 4:
+                        echo "总双";
+                        break;
+                    case 5:
+                        echo "龙";
+                        break;
+                    case 6:
+                        echo "虎";
+                        break;
+                    case 7:
+                        echo "和";
+                        break;
+                }
+                ?>
             </td>
-            <td width="6" bgcolor="#1873aa"></td>
+            <td class="width-per-3">
+                <a class="line1 sup-line" title="赔率" id="hh<?php echo $i ?>" style="color: rgb(0, 17, 136);">1.985</a>
+            </td>
+            <td class="width-per-2 odds w"><a class="line2 sup-line abh<?php echo $i ?>" title="占成">0</a></td>
+            <td class="width-per-2 odds w"><a class="line3 sup-line bbh<?php echo $i ?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+        </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+    <table class="bet-table bt-width width2" id="014|017|020|023|026">
+        <caption>
+            <div> 前三 <b class="sup-th" id="6">0</b></div>
+        </caption>
+        <colgroup>
+            <col class="col1">
+            <col class="col2">
+        </colgroup>
+        <tbody>
+        <?php
+        for ($i=1;$i <= 5;$i++) { //豹子顺子等等
+            ?>
+            <tr number="2" playtype="010" cat="01" pnum="0102" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-black width-per-1">
+                    <?php
+                    switch($i) {
+                        case 1:
+                            echo "豹子";
+                            break;
+                        case 2:
+                            echo "顺子";
+                            break;
+                        case 3:
+                            echo "对子";
+                            break;
+                        case 4:
+                            echo "半顺";
+                            break;
+                        case 5:
+                            echo "杂六";
+                            break;
+                    }
+                    ?>
+                </td>
+                <td class="width-per-3">
+                    <a class="line1 sup-line" title="赔率" id="ih<?php echo $i ?>" style="color: rgb(0, 17, 136);">1.985</a>
+                </td>
+                <td class="width-per-2 odds i"><a class="line2 sup-line ach<?php echo $i ?>" title="占成">0</a></td>
+                <td class="width-per-2 odds i"><a class="line3 sup-line bch<?php echo $i ?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+    <table class="bet-table bt-width width2" id="015|018|021|024|027">
+        <caption>
+            <div>中三 <b class="sup-th" id="7">0</b></div>
+        </caption>
+        <colgroup>
+            <col class="col1">
+            <col class="col2">
+        </colgroup>
+        <tbody>
+        <?php
+        for ($i=1;$i <= 5;$i++) { //豹子顺子等等
+            ?>
+            <tr number="2" playtype="010" cat="01" pnum="0102" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-black width-per-1">
+                    <?php
+                    switch($i) {
+                        case 1:
+                            echo "豹子";
+                            break;
+                        case 2:
+                            echo "顺子";
+                            break;
+                        case 3:
+                            echo "对子";
+                            break;
+                        case 4:
+                            echo "半顺";
+                            break;
+                        case 5:
+                            echo "杂六";
+                            break;
+                    }
+                    ?>
+                </td>
+                <td class="width-per-3">
+                    <a class="line1 sup-line" title="赔率" id="sh<?php echo $i ?>" style="color: rgb(0, 17, 136);">1.985</a>
+                </td>
+                <td class="width-per-2 odds s"><a class="line2 sup-line ach<?php echo $i ?>" title="占成">0</a></td>
+                <td class="width-per-2 odds s"><a class="line3 sup-line bch<?php echo $i ?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+    <table class="bet-table bt-width width2" id="016|019|022|025|028">
+        <caption>
+            <div> 后三 <b class="sup-th" id="8">0</b></div>
+        </caption>
+        <colgroup>
+            <col class="col1">
+            <col class="col2">
+        </colgroup>
+        <tbody>
+        <?php
+        for ($i=1;$i <= 5;$i++) { //豹子顺子等等
+            ?>
+            <tr number="2" playtype="010" cat="01" pnum="0102" status="1"
+                style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+                <td class="bold-black width-per-1">
+                    <?php
+                    switch($i) {
+                        case 1:
+                            echo "豹子";
+                            break;
+                        case 2:
+                            echo "顺子";
+                            break;
+                        case 3:
+                            echo "对子";
+                            break;
+                        case 4:
+                            echo "半顺";
+                            break;
+                        case 5:
+                            echo "杂六";
+                            break;
+                    }
+                    ?>
+                </td>
+                <td class="width-per-3">
+                    <a class="line1 sup-line" title="赔率" id="xh<?php echo $i ?>" style="color: rgb(0, 17, 136);">1.985</a>
+                </td>
+                <td class="width-per-2 odds x"><a class="line2 sup-line ach<?php echo $i ?>" title="占成">0</a></td>
+                <td class="width-per-2 odds x"><a class="line3 sup-line bch<?php echo $i ?>" title="补货" buhuo_sum="0" style="color: black;">0</a></td>
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+</div>
+
+<div class="super-box-child changlong-box">
+    <table class="bet-table bt-width width3 bold" id="016|019|022|025|028">
+        <caption>
+            <div class="changlong">两面长龙排行</div>
+        </caption>
+        <tbody id="cl" class="ssc">
+        <tr>
+            <td class="grey blue" style="border-right:none;width:38%;">第3球</td>
+            <td class="grey blue" style="border-left:none;width:32%;">单</td>
+            <td class="bg-pink bg-pink2" style="width:30%;">5期</td>
         </tr>
         <tr>
-        	<td height="6" bgcolor="#1873aa"><img src="/Manage/images/main_59.gif" alt="" /></td>
-            <td bgcolor="#1873aa"></td>
-            <td height="6" bgcolor="#1873aa"><img src="/Manage/images/main_62.gif" alt="" /></td>
+            <td class="grey blue" style="border-right:none;width:38%;">总和</td>
+            <td class="grey blue" style="border-left:none;width:32%;">小</td>
+            <td class="bg-pink bg-pink2" style="width:30%;">4期</td>
         </tr>
-    </table>
-<div id="oddsPop">
-<table border="0" cellspacing="0" class="t_odds" width="100%">
-	<tr class="tr_top">
-    	<th colspan="2">補貨單</th>
-    </tr>
-    <tr class="text" align="center">
-        <td width="50" >類型</td>
-        <td class="balls" id="type_s"></td>
-    </tr>
-    <tr class="text" align="center">
-        <td width="50">賠率</td>
-        <td class="odds" id="odds_s"></td>
-    </tr>
-    <tr class="text" align="center">
-        <td width="50">金額</td>
-        <td><input type="text" id="s_money" class="textc" /></td>
-    </tr>
-    <tr class="text" align="center">
-        <td width="50">限額</td>
-        <td id="money_s">0</td>
-    </tr>
-    <tr class="texts">
-        <td align="center" height="60" colspan="2">
-            <input type="button" class="inputa" onclick="GoPost()" value="補出" />&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="button" class="inputa" onclick="closePop(2)" value="關閉" />
-            <input type="hidden" id="typeid" />
-      	</td>
-    </tr>
-</table>
-</div>
-<div id="kOddsPop">
-	<table border="0" cellspacing="0" class="t_odds" width="100%">
-    	<tr class="tr_top" align="center">
-        	<td colspan="5">補貨結果明細</td>
+        <tr>
+            <td class="grey blue" style="border-right:none;width:38%;">第4球</td>
+            <td class="grey blue" style="border-left:none;width:32%;">小</td>
+            <td class="bg-pink bg-pink2" style="width:30%;">4期</td>
         </tr>
-        <tr class="texts" align="center">
-        	<td><b>單碼</b></td>
-            <td><b>明細</b></td>
-            <td><b>金額</b></td>
-            <td><b>可贏</b></td>
-            <td><b>結果</b></td>
+        <tr>
+            <td class="grey blue" style="border-right:none;width:38%;">第4球</td>
+            <td class="grey blue" style="border-left:none;width:32%;">双</td>
+            <td class="bg-pink bg-pink2" style="width:30%;">4期</td>
         </tr>
-        <tfoot id="vList"></tfoot>
+        <tr>
+            <td class="grey blue" style="border-right:none;width:38%;">虎</td>
+            <td class="grey blue" style="border-left:none;width:32%;"></td>
+            <td class="bg-pink bg-pink2" style="width:30%;">3期</td>
+        </tr>
+        <tr>
+            <td class="grey blue" style="border-right:none;width:38%;">第1球</td>
+            <td class="grey blue" style="border-left:none;width:32%;">小</td>
+            <td class="bg-pink bg-pink2" style="width:30%;">3期</td>
+        </tr>
+        <tr>
+            <td class="grey blue" style="border-right:none;width:38%;">第1球</td>
+            <td class="grey blue" style="border-left:none;width:32%;">双</td>
+            <td class="bg-pink bg-pink2" style="width:30%;">3期</td>
+        </tr>
+        <tr>
+            <td class="grey blue" style="border-right:none;width:38%;">第2球</td>
+            <td class="grey blue" style="border-left:none;width:32%;">大</td>
+            <td class="bg-pink bg-pink2" style="width:30%;">3期</td>
+        </tr>
+        <tr>
+            <td class="grey blue" style="border-right:none;width:38%;">总和</td>
+            <td class="grey blue" style="border-left:none;width:32%;">双</td>
+            <td class="bg-pink bg-pink2" style="width:30%;">2期</td>
+        </tr>
+        <tr>
+            <td class="grey blue" style="border-right:none;width:38%;">第5球</td>
+            <td class="grey blue" style="border-left:none;width:32%;">大</td>
+            <td class="bg-pink bg-pink2" style="width:30%;">2期</td>
+        </tr>
+        </tbody>
     </table>
 </div>
+<textarea id="zdmx" style="display:none">        &lt;ul id='zdetail' class='pager de-pager'&gt;&lt;li id='first'
+    class='first' title='首页'&gt;&lt;/li&gt;&lt;li id='previous' class='previous' title='上一页'&gt; &lt;/li&gt; &lt;li
+    class='other'&gt;第&lt;input type='text' id='current_page' value='1' vname='pager'&gt;页&lt;/li&gt;&lt;li class='other
+    t-pager'&gt;共&lt;span id='total_page'&gt;1&lt;/span&gt;页&lt;/li&gt;&lt;li id='next' class='next' title='下一页'&gt;&lt;/li&gt;&lt;li
+    id='last' class='last' title='最后一页'&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div class='data-contain'&gt;&lt;/div&gt;
+</textarea>
+<textarea id="zdmx2" style="display:none">        &lt;table id='supervision_alert_3' class="clear-table"&gt;
+    &lt;thead&gt;
+    &lt;tr class='like-th'&gt;&lt;td&gt;注单号&lt;/td&gt;&lt;td&gt;盘口&lt;/td&gt;&lt;td&gt;玩法&lt;/td&gt;&lt;td&gt;会员&lt;/td&gt;&lt;td&gt;代理&lt;/td&gt;&lt;td&gt;总代理&lt;/td&gt;
+    &lt;td&gt;股东&lt;/td&gt; &lt;td&gt;分公司&lt;/td&gt; &lt;td&gt;时间&lt;/td&gt;&lt;td&gt;下注金额&lt;/td&gt;&lt;td&gt;赔率&lt;/td&gt;
+    &lt;td&gt;退水(%)&lt;/td&gt; &lt;td&gt;占成收入&lt;/td&gt; &lt;td&gt;补货&lt;/td&gt; &lt;td&gt;注单状态&lt;/td&gt; &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;$body$&lt;/tbody&gt;
+    &lt;tfoot&gt;
+    &lt;tr &gt;&lt;th colspan='5'&gt;小计&lt;/th&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;$pager_total1&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;$pager_total2&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr &gt;&lt;th colspan='5'&gt;总计&lt;/th&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;$total1&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;$total2&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;td&gt;&nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+    &lt;/tfoot&gt;
+</textarea>
+<textarea id="gsxz" style="display:none">        &lt;h3&gt;&lt;span class='reder'&gt;[&lt;/span&gt;$title$&lt;span
+    class='reder'&gt;]&lt;/span&gt;&nbsp;&nbsp;后台补货&lt;/h3&gt;&lt;table id='supervision_alert_2'&gt;&lt;tr
+    class='like-th'&gt;&lt;td&gt;可补货后台&lt;/td&gt;&lt;td&gt;补货投注账户&lt;/td&gt;&lt;td&gt;盘口&lt;/td&gt;&lt;td&gt;退水(%)&lt;/td&gt;&lt;td&gt;赔率&lt;/td&gt;&lt;td&gt;操作&lt;/td&gt;&lt;td&gt;金额&lt;/td&gt;&lt;/tr&gt;
+    &lt;tbody id='waidaoCor'&gt; &lt;!--&lt;tr&gt;&lt;td&gt;外调补货&lt;/td&gt;
+    &lt;td&gt;&nbsp;&lt;/td&gt;
+    &lt;td id='pankou'&gt;&nbsp;&lt;/td&gt;
+    &lt;td&gt;&lt;input value='' id='alert_2_water' vmessage='请输入数字' vname='water'/&gt;&lt;/td&gt;&lt;td&gt;&lt;input
+    value='' id='alert_2_odds' vmessage='请输入数字' vname='odds'/&gt;&lt;/td&gt;&lt;td&gt;&lt;input type='radio'
+    checked='true'/&gt;&lt;/td&gt;&lt;td&gt;&lt;input value='' id='alert_2_money' vmessage='请输入数字' vname='money'
+    maxLength='9' style='width:60px'/&gt;&lt;/td&gt; --&gt;
+    &lt;tr&gt;&lt;td colspan='7'&gt;&lt;img src='/webssc/images/ajax-loader.gif'/&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+</textarea>
+<textarea id="gsxz_zjs" style="display:none">        &lt;h3&gt;&lt;span class='reder'&gt;[&lt;/span&gt;$title$&lt;span
+    class='reder'&gt;]&lt;/span&gt;&nbsp;&nbsp;下级给上级补货&lt;/h3&gt;
+    &lt;table id='supervision_alert_2'&gt;
+    &lt;tr class='like-th'&gt;
+    &lt;td&gt;金额&lt;/td&gt;
+    &lt;td&gt;盘口&lt;/td&gt;
+    &lt;td&gt;退水(%)&lt;/td&gt;
+    &lt;td&gt;赔率&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+    &lt;td&gt;&lt;input value='0' id='alert_2_money' vmessage='请输入数字' vname='money' maxLength='9' style='width:60px'/&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;select id='pankou'&gt;&lt;option id='A'&gt;A&lt;/option&gt;&lt;option id='B'&gt;B&lt;/option&gt;&lt;option
+    id='C'&gt;C&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;
+    &lt;td id='alert_2_water'&gt;&lt;/td&gt;
+    &lt;td id='alert_2_odds'&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+</textarea>
+<textarea id="peilv" style="display:none">        &lt;table id='supervision_odds_alert'&gt;&lt;tr class='like-th'&gt;&lt;td
+    width='80px'&gt;类别&lt;/td&gt;&lt;td&gt;$table_title&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;球号&lt;/td&gt;&lt;td&gt;$wanfa&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;$handicap盘赔率&lt;/td&gt;&lt;td&gt;&lt;input
+    value='' maxlength='9' vmessage='请输入数字' vname='wanwei' id='wanwei' style='width:50px'/&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;封/收单&lt;/td&gt;&lt;td
+    class='rad-c'&gt;&lt;input type='radio' value='0' name='1'/&gt;封单&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type='radio'
+    value='1' name='1'/&gt;收单&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+</textarea>
+</div>
+<div id="zhangdan" style="display:none; ">
+
+    <div class="zhangdan_zjs">
+        <table class="bet-table z3-table" style="table-layout:auto">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>项目</th>
+                <th>操作说明</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td><font color="blue">广东快乐十分 第1～8球、正码、总和、龙虎投注汇总表</font></td>
+                <td>封盘后（摇奖前）备份</td>
+                <td><a href="javascript:void(0);"
+                       onclick="window.open('/'+location.pathname.split('/')[1]+'/klc/BillStatis/index/?t=ball','userball'+location.pathname.split('/')[1]);">打开</a>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><font color="blue">广东快乐十分 连码（注单明细）</font></td>
+                <td>封盘后（摇奖前）备份</td>
+                <td><a href="javascript:void(0);"
+                       onclick="window.open('/'+location.pathname.split('/')[1]+'/klc/BillStatis/index/?t=lm','userlianma'+location.pathname.split('/')[1]);">打开</a>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><font color="blue">重庆时时彩 所有投注汇总表</font></td>
+                <td>封盘后（摇奖前）备份</td>
+                <td><a href="javascript:void(0);"
+                       onclick="window.open('/'+location.pathname.split('/')[1]+'/ssc/BillStatis/index/?t=all','sscusergame'+location.pathname.split('/')[1]);">打开</a>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><font color="blue">北京赛车 所有投注汇总表</font></td>
+                <td>封盘后（摇奖前）备份</td>
+                <td><a href="javascript:void(0);"
+                       onclick="window.open('/'+location.pathname.split('/')[1]+'/pk/BillStatis/index/?t=all','pkusergame'+location.pathname.split('/')[1]);">打开</a>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><font color="blue">幸运农场 第1～8球、正码、总和、龙虎投注汇总表</font></td>
+                <td>封盘后（摇奖前）备份</td>
+                <td><a href="javascript:void(0);"
+                       onclick="window.open('/'+location.pathname.split('/')[1]+'/nc/BillStatis/index/?t=ball','ncuserball'+location.pathname.split('/')[1]);">打开</a>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><font color="blue">幸运农场 连码（注单明细）</font></td>
+                <td>封盘后（摇奖前）备份</td>
+                <td><a href="javascript:void(0);"
+                       onclick="window.open('/'+location.pathname.split('/')[1]+'/nc/BillStatis/index/?t=lm','ncuserlianma'+location.pathname.split('/')[1]);">打开</a>
+                </td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><font color="blue">江苏骰宝 所有投注汇总表</font></td>
+                <td>封盘后（摇奖前）备份</td>
+                <td><a href="javascript:void(0);"
+                       onclick="window.open('/'+location.pathname.split('/')[1]+'/ks/BillStatis/index/?t=ball','ksusergame'+location.pathname.split('/')[1]);">打开</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div><font color="red">*账单校对公式：（总投注额-会员赢项目总投注额）-总退水-和局无交收水钱-输赢金额=实际输赢金额</font></div>
+    </div>
+</div>
+</div>
+</div>
+<!--main content--></div>
 </body>
 </html>

@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['actions']) && isset($_GET['cid'])) {
 
     //新增帳號
+    //TODO:这里存的时候按照普通会员存了，要分开来存
     if ($_GET['actions'] == 'add') {
         if (!Matchs::isString($_POST['s_Name'], 4, 9)) exit(back('您輸入的帳號錯誤！'));
         if (!Matchs::isStringChi($_POST['s_F_Name'], 2, 8)) exit(back('您輸入的名稱錯誤！'));
@@ -47,8 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
             $userList['g_password'] = sha1($_POST['s_Pwd']);
             $userList['g_f_name'] = $_POST['s_F_Name'];
             $userList['g_money'] = $_POST['s_money'];
-            $userList['g_distribution'] = $_POST['s_next_KY'];
-            $userList['g_distribution_limit'] = $_POST['s_next_KY'];
+            $userList['g_distribution'] = $_POST['s_next_ky'];
+            $userList['g_distribution_limit'] = $_POST['s_next_ky'];
             $userList['g_Immediate_lock'] = 1;
             $userList['g_lock'] = $_POST['lock'];
             $userList['g_ip'] = UserModel::GetIP();
@@ -70,9 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
             $g_nid = $userModel->GetUserModel(null, $_POST['s']);
             if (!$g_nid) exit(back('上級帳號不存在！'));
             if (!Matchs::isNumber($_POST['s_money'])) exit(back('信用額錯誤！'));
-            //if (!Matchs::isNumber($_POST['s_next_KY'])) exit(back('占成率錯誤！'));
-            if ($_POST['s_next_KY'] > ($g_nid[0]['g_distribution'] - 1)) exit(back('上级分公司最低需占1%'));
-            if ($_POST['s_next_KY'] > $g_nid[0]['g_distribution']) exit(back('上级分公司最高占成率' . $g_nid[0]['g_distribution'] . '%'));
+            //if (!Matchs::isNumber($_POST['s_next_ky'])) exit(back('占成率錯誤！'));
+            if ($_POST['s_next_ky'] > ($g_nid[0]['g_distribution'] - 1)) exit(back('上级分公司最低需占1%'));
+            if ($_POST['s_next_ky'] > $g_nid[0]['g_distribution']) exit(back('上级分公司最高占成率' . $g_nid[0]['g_distribution'] . '%'));
 
 
             $nid = $g_nid[0]['g_nid'] . UserModel::Like();
@@ -85,12 +86,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
             $userList['L_name'] = $g_nid[0]['g_name'];
             $userList['g_nid'] = $g_nid[0]['g_nid'] . md5(uniqid(time(), true));
             $userList['g_login_id'] = 22;
-            $userList['g_distribution_limit'] = $g_nid[0]['g_distribution'] - $_POST['s_next_KY'];
+            $userList['g_distribution_limit'] = $g_nid[0]['g_distribution'] - $_POST['s_next_ky'];
             $userList['g_name'] = $_POST['s_Name'];
             $userList['g_password'] = sha1($_POST['s_Pwd']);
             $userList['g_f_name'] = $_POST['s_F_Name'];
             $userList['g_money'] = $_POST['s_money'];
-            $userList['g_distribution'] = $_POST['s_next_KY'];
+            $userList['g_distribution'] = $_POST['s_next_ky'];
             $userList['g_Immediate_lock'] = $_POST['Immediate_lock']; //補倉是否開啟
             $userList['g_lock'] = $_POST['lock'];
             $userList['g_ip'] = UserModel::GetIP();
@@ -114,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
                 $s_next_ky = $g_nid[0]['g_distribution'] - $s_Size; //下級占成
             } else {
                 $s_Size = (int)$_POST['s_size_ky']; //上級占成
-                $s_next_ky = $_POST['s_next_KY']; //下級占成
+                $s_next_ky = $_POST['s_next_ky']; //下級占成
             }
             if (!Matchs::isNumber($s_next_ky) || !Matchs::isNumber($s_Size)) exit(back('占成錯誤！'));
             if ($s_Size + $s_next_ky > $g_nid[0]['g_distribution']) exit(back('上級最高占成率：' . $g_nid[0]['g_distribution'] . '%'));
@@ -154,10 +155,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
             }
             $userList = $userModel->AddUser($userList);
 
+        } else if ($cid == 4 ) {
+
         } else {
             exit(href('quit.php'));
         }
-        update_MR(); //在$userModel->AddUser($userList);当中已经插入了默认的退水信息，因此在这里update一下就好了
+        update_MR($_GET['cid']); //在$userModel->AddUser($userList);当中已经插入了默认的退水信息，因此在这里update一下就好了
         alert_href('新增成功', 'Actfor.php?cid=' . $_GET['cid']);
         exit;
     }
@@ -211,13 +214,17 @@ function getSelect($Rank, $userModel)
 }
 
 //插入项目退水等信息
-function update_MR()
+function update_MR($cid)
 {
     echo "enter update_MR";
     global $_POST;
     $uModel = new UserModel();
     $name = $_POST['s_Name'];
-    $usersModel = $uModel->GetUserModel(null, $name);
+    if ($cid == 5) {
+        $usersModel = $uModel->GetMemberModel($name);
+    } else {
+        $usersModel = $uModel->GetUserModel(null, $name);
+    }
     if ($usersModel) {
         $Lname = mb_substr($usersModel[0]['g_nid'], 0, mb_strlen($usersModel[0]['g_nid']) - 32);
         $Lname = $uModel->GetUserName_Like($Lname); //返回查询出来的用户信息
@@ -316,9 +323,10 @@ function update_MR()
 if ($cid == 5) {
 $sid = 2;
 $top_rank_name = $userModel->Get_rank_from_name($top_name);
-if ($top_rank_name != "代理") {
-    $sid = 1;
-}
+
+    if ($top_rank_name == "代理") {
+        $sid = 1;
+    }
 ?>
 
 <form method="post" action="Account_Member.php?cid=<?php echo $cid ?>&actions=add&sid=<?php echo $sid?>">
@@ -415,7 +423,10 @@ if ($top_rank_name != "代理") {
                 <option value="0.25">赚取0.25%退水</option>
                 <option value="0.3">赚取0.3%退水</option>
             </select></td>
-
+        <th></th>
+        <td></td>
+        <th></th>
+        <td></td>
     </tr>
     <tr id="set_water_tr" style="display: none;">
         <th><span class="set_water_t" style="display: none;">退水设定</span></th>

@@ -91,6 +91,7 @@ if (date("H") >= 3) {
         $(document).ready(function () {
             var win_height = window.innerHeight;
             $("#layout").css('height', win_height + 'px');
+            AutoSet_Date(1);
         });
         //-->
     </script>
@@ -131,6 +132,8 @@ if (date("H") >= 3) {
                         </tr>
                         <tr>
                             <td class="basic_left">日期查询</td>
+                            <input name="t_N" type="hidden" value="1" checked="checked">
+                            <!--默认按照日期进行查询-->
                             <td class="right date-se">
                                 <input type="text" vmessage="请选择日期"
                                                              id="startDate" name="startDate" onfocus="WdatePicker({el:'startDate'})">
@@ -156,10 +159,10 @@ if (date("H") >= 3) {
                         <tr>
                             <td class="basic_left">期数查询</td>
                             <td class="right">
-                                <select id="default" class="show">
+                                <select id="default" class="show" name="s_number">
                                     <option value="all">全部</option>
                                 </select>
-                                <select  id="klsf" class="hidden"><!--快乐十分-->
+                                <select name="" id="klsf" class="hidden"><!--快乐十分-->
                                     <?php for ($i=0; $i<count($result); $i++){?>
                                         <option value='<?php echo$result[$i]['g_qishu']?>'> <?php echo$result[$i]['g_qishu']?> </option>
                                     <?php }?>
@@ -199,9 +202,9 @@ if (date("H") >= 3) {
                             <td class="right"><label for="settlementok"><input class="radio" type="radio"
                                                                                name="Balance"
                                                                                id="settlementok" checked="checked"
-                                                                               nav="1">已结算</label>&nbsp;&nbsp;&nbsp;<label
+                                                                               value="1">已结算</label>&nbsp;&nbsp;&nbsp;<label
                                     for="settlement"><input type="radio" class="radio" name="Balance" id="settlement"
-                                                            nav="0">未结算</label></td>
+                                                            value="0">未结算</label></td>
                         </tr>
                         </tbody>
                     </table>
