@@ -1,0 +1,75 @@
+2013/11/19
+
+快乐十分-》第一球-第八球 总和，龙虎
+
+2013/11/17
+
+快乐十分-》两面球 版面及风格切换
+
+
+2013/11/12
+
+ajax 增加 oddsJson_cn.php 
+
+
+2013/11/11
+
+修改左侧及底部版面
+
+
+
+2013/11/10
+
+导航更换为获取配置文件线路
+
+主界面增加一层，以适用在主界面弹浮动窗口，在templates_cn 下增加main.php文件
+
+弹窗3套风格完成，采用artDialog插件
+
+界面风格切换结构完成，采用切换body样式进行切换
+
+主界面顶部完成
+
+线路切换差登陆同步
+
+
+2013/11/09
+g_user 增加 g_skin 字段用于保存用户的风格 默认为 skin_brown
+
+skin_brown 棕色
+skin_red 红色
+skin_blue 蓝色
+
+修改login.php
+
+调整的简繁体的目录结构,打算不采用js切换繁体
+
+config/html.php 增加提示语言简繁
+
+class/ 增加lang.php
+
+function/global.php 增加引入 lang.php
+
+daohang/index.php 把手机图片放出来
+	
+
+brown
+
+red
+
+blue
+
+
+2013/11/07
+
+根目录增加 speed.gif 用于测速
+
+修改了 pagef文件夹
+
+修改了 daohan文件夹
+
+修改了login.php
+
+
+程序有后门
+

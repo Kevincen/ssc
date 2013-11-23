@@ -1,0 +1,184 @@
+﻿/* css document */
+
+/* body */
+body {
+	font-size:9pt;
+	margin-left:15px;
+	color:#c0c0c0;
+	font-weight:600;
+}
+/* div */
+div.title {
+	font-size:15pt;
+	clear:both;
+	color:#000000;
+	margin-bottom:5px;
+	height:35px;
+	font-weight:700;
+}
+#agent,#seller {
+	width:70pt;
+}
+#first div {
+	margin-top:15px;
+	margin-left:15px;
+}
+#firstTitle,#demoTitle {
+	font-size:10pt;
+	color:darkgray;
+	margin-bottom:5px;
+	height:35px;
+	font-weight:700;
+}
+#exsitUsers div {
+	float:left;
+	margin-top:5px;
+	margin-left:30px;
+}
+
+#register,#payment {
+	color:#993399;
+	background-color:#ffffff;
+	font-weight:700;
+	border:1px solid darkgray;
+}
+#demo {
+	display:none;
+	width:750;
+}	
+#demo div {
+	clear:both;
+	margin-top:15px;
+	margin-left:15px;
+	
+}
+#amountView {
+	float:left;
+	width:150;
+	
+}
+
+#needThawingOrderList li {
+	padding:2pt;
+}
+.needThawingOrdersWithBorder {
+	margin-left:100px;
+	margin-top:20px;
+	float:left;
+	width:400;
+	border-style:solid;
+	border-color:#993399;
+	border-width:1px;
+	padding-top:8px;
+	padding-left:1px;
+}
+
+.needThawingOrders {
+	margin-top:20px;
+	margin-left:100px;
+	float:left;
+	width:400;
+}
+.block {
+	height:210px;
+}
+
+/* img */
+
+/* hr */
+hr {
+ width:100%;
+ height:1px;
+ margin-bottom:10px;	
+
+}
+ul.left {
+	width:150px;
+	float:left;
+	margin-left:1px;
+}
+
+li {
+	margin-bottom:8px;
+	list-style-type:none;
+}
+
+ul.standard {
+	padding-left:1pt;
+}
+
+ul.standard li {
+	list-style-type:decimal;
+}
+li.title {
+	margin-bottom:15px;
+}
+li.textChanging {
+	float:left;
+	width:150px;
+	color:#993399;
+	font-size:12pt;
+	font-weight:800;
+}
+#exsitUsers ul {
+	clear:both;
+	width:630px;
+	margin-bottom:1px;
+}
+#exsitUsers li {
+	float:left;
+	width:125px;
+}
+
+#exsitUsersTitle li {
+	font-size:10pt;
+	color:darkgray;
+	margin-bottom:5px;
+	height:35px;
+	font-weight:700;
+}
+input {
+	border:1px solid #c0c0c0;
+}
+
+#ticketAmount,#X,#sysFee,#agentFee {
+	border-bottom:1px solid #c0c0c0;
+	border-right:0px;
+	border-left:0px;
+	border-top:0px;
+	font-size:13pt;
+	font-weight:700;
+	color:#993399;
+	width:50px;
+}
+.stressed,select {
+	color:#993399;
+	font-weight:700;
+	font-size:13pt;
+}
+/* a */
+a {
+	text-decoration:none;
+}
+a:link {
+	margin:auto;
+	color:#c0c0c0;
+}
+
+a:hover {
+	margin:auto;
+	color:#993399;
+	text-decoration:underline;
+}
+
+a:active {
+	margin:auto;
+	color:#c0c0c0;
+	
+}
+
+a:visited {
+	margin:auto;
+	color:#cccccc;
+}
+

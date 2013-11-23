@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript">
+function myrefresh(){
+   window.location.reload();
+}
+setTimeout('myrefresh()',180000); //指定300秒刷新一次
+</script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="tools.js"></script>
+<script type="text/javascript" src="tools2.js"></script>
+<script type="text/javascript" src="toolsgx.js"></script>
+<title>開獎號碼採集</title>
+<style type="text/css">
+body {
+	margin:0 0 0 0;
+	padding:0;
+	font-family:"宋体";
+}
+table {
+	width:70%;
+	margin:0 auto;
+	text-align:center;
+	border:1px solid #ccc;
+}
+table tr.top {
+	color:#990000;
+	font-size:26px;
+	font-weight:bold;
+}
+table tr td, th {
+	border:1px solid #ccc;
+	height:20px;
+}
+</style>
+
+</head>
+<body>
+<table>
+	<tr class="top">
+    	<th>廣東快樂十分鐘</th>
+    	<th>重慶時時彩</th>
+		<th>廣西快樂十分</th>
+    </tr>
+    <tr class="top">
+    	<td id="number">加載中...</td>
+    	<td id="number_s">加載中...</td>
+		<td id="number_gxs">加載中...</td>
+    </tr>
+	<tr class="top">
+    	<th id="endTime"></th>
+    	<th id="endTime_s"></th>
+		<th id="endTime_gxs"></th>
+    </tr>
+	<tr class="top">
+    	<th id="test"></th>
+    	<th id="test_s"></th>
+		<th id="test_gxs"></th>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,106 @@
+body, div, span, p, b, textarea, input, select, form, table, tr, td {
+    color: #FED7AD;
+    font-family: Verdana,"宋体",Arial,Sans;
+    font-size: 12px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    z-index: auto;
+}
+body {
+    margin: 0;
+}
+img, table {
+    border: 0 none;
+    border-collapse: collapse;
+}
+td {
+    cursor: default;
+}
+a {
+    color: #4F260D;
+    text-decoration: none;
+}
+.T_a {
+    color: #FED7AD;
+    text-decoration: none;
+}
+a:hover {
+    color: #F1AD45;
+    font-weight: bold;
+    text-decoration: none;
+}
+.NewS_Fone {
+    color: #FFFFA2;
+}
+.LeftBackdrop {
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    text-indent: -30px;
+}
+.T2 {
+    background-image: url("images/T2.jpg");
+    background-repeat: no-repeat;
+}
+.T3 {
+    background-image: url("images/T3.jpg");
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.top {
+    background-image: url("images/m_top.jpg");
+    background-repeat: repeat-x;
+}
+.Menu_WB {
+    background-color: #FFFFFF;
+    background-image: url("images/menu_WB.jpg");
+    background-position: 0 0;
+    border: 0 solid #FF9224;
+    height: 25px;
+    width: 99px;
+}
+.bST_1, .bST_1_s {
+    background-color: #B3C5EF;
+    background-image: url("Images/But1.jpg");
+    border: 0 solid #FF9224;
+    font-weight: bold;
+    height: 33px;
+    width: 132px;
+}
+.bST_1 {
+    background-position: 0 50%;
+    color: #FFF5D7;
+}
+.bST_1_s {
+    background-position: -132px 50%;
+    color: #4F260D;
+}
+.bSB_1, .bSB_1_m, .bSB_2, .bSB_2_m {
+    background-color: #B3C5EF;
+    background-image: url("Images/But2.jpg");
+    border: 0 solid #FF9224;
+    font-weight: bold;
+    height: 33px;
+}
+.bSB_1 {
+    background-position: 0 50%;
+    width: 77px;
+}
+.bSB_1_m {
+    background-position: -171px 50%;
+    width: 77px;
+}
+.bSB_2 {
+    background-position: -77px 50%;
+    width: 94px;
+}
+.bSB_2_m {
+    background-position: -248px 50%;
+    width: 94px;
+}
+.red{
+	color:red;
+}

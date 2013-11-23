@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "YeePay_HTMLcommon", "YeePay_HTMLcommon\", "{30CF0260-90DB-4890-8611-C572FE0F9AFC}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "3.5"
+		ProjectReferences = "{4E5F0454-1852-457D-B495-9C421309553A}|com.yeepay.icc.dll;{B48E309A-35F6-4F2B-9E94-083EB87E6505}|com.yeepay.utils.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/YeePay_HTMLcommon"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\Desktop\C#\C#(VS08)\YeePay_HTMLcommon\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\YeePay_HTMLcommon\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/YeePay_HTMLcommon"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\Desktop\C#\C#(VS08)\YeePay_HTMLcommon\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\YeePay_HTMLcommon\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "19405"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.yeepay.utils", "com.yeepay.utils\com.yeepay.utils\com.yeepay.utils.csproj", "{B48E309A-35F6-4F2B-9E94-083EB87E6505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.yeepay.icc", "com.yeepay.icc\com.yeepay.icc\com.yeepay.icc.csproj", "{4E5F0454-1852-457D-B495-9C421309553A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Debug|.NET.ActiveCfg = Debug|.NET
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Debug|.NET.Build.0 = Debug|.NET
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Release|.NET.ActiveCfg = Debug|.NET
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Release|.NET.Build.0 = Debug|.NET
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{30CF0260-90DB-4890-8611-C572FE0F9AFC}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Release|.NET.ActiveCfg = Release|Any CPU
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B48E309A-35F6-4F2B-9E94-083EB87E6505}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Release|.NET.ActiveCfg = Release|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4E5F0454-1852-457D-B495-9C421309553A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

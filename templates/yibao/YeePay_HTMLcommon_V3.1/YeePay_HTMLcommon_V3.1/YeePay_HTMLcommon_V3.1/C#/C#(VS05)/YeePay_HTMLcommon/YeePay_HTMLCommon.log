@@ -1,0 +1,28 @@
+﻿2011/4/24 17:50:41[217991732724112B][RefundOrd10001126856217991732724112B0.01CNY何政][3d9de3d921c7e86d22755b27d0ac0e09]
+2011/4/24 17:50:41[217991732724112B][http://www.yeepay.com/app-merchant-proxy/command?p0_Cmd=RefundOrd&p1_MerId=10001126856&pb_TrxId=217991732724112B&p3_Amt=0.01&p4_Cur=CNY&p5_Desc=%ba%ce%d5%fe&hmac=3d9de3d921c7e86d22755b27d0ac0e09][]
+2011/4/24 17:50:41[217991732724112B][r0_Cmd=RefundOrd
+r1_Code=1
+r2_TrxId=217991732724112B
+r3_Amt=0.01
+r4_Cur=RMB
+hmac=3ee1aa6ac96e44f03758b86d02ada190
+][]
+2011/4/24 17:50:41[退款返回流水号：217991732724112B][RefundOrd1217991732724112B0.01RMB][3ee1aa6ac96e44f03758b86d02ada190]
+2011/4/24 17:53:14[][Buy100011268560.01CNYproductnameproducttypeproductdeschttp://localhost:8080/Callback.aspx0userId or other1][7d116c2f5c4e0850d1f9129cba611a9e]
+2011/4/24 17:53:14[][<form name='yeepay' action='https://www.yeepay.com/app-merchant-proxy/node' method='post'> 
+ <input type='hidden' name='p0_Cmd'	value='Buy'>
+<input type='hidden' name='p1_MerId'	value='10001126856'>
+<input type='hidden' name='p2_Order'	value=''>
+<input type='hidden' name='p3_Amt'	value='0.01'>
+<input type='hidden' name='p4_Cur'	value='CNY'>
+<input type='hidden' name='p5_Pid'	value='productname'>
+<input type='hidden' name='p6_Pcat'	value='producttype'>
+<input type='hidden' name='p7_Pdesc'	value='productdesc'>
+<input type='hidden' name='p8_Url'	value='http://localhost:8080/Callback.aspx'>
+<input type='hidden' name='p9_SAF'	value='0'>
+<input type='hidden' name='pa_MP'	value='userId or other'>
+<input type='hidden' name='pd_FrpId'	value=''>
+<input type='hidden' name='pr_NeedResponse'	value='1'>
+<input type='hidden' name='hmac'	value='7d116c2f5c4e0850d1f9129cba611a9e'>
+</form>
+][]

@@ -1,0 +1,51 @@
+关于java的DNS解析IP缓存问题：
+
+java对DNS解析IP进行缓存，默认缓存超时时间为-1（在重启JVM前永久缓存），
+在第一次访问某域名后将会缓存解析到的IP地址，之后直接从缓存里获得所需的信息（如IP地址），而无需再访问DNS服务器，
+但如果在进行支付的时候DNS解析IP的地址有变更的话，提交的地址仍为原解析的IP地址，这将会访问到无效的IP地址而无法进行支付
+
+建议在java虚拟机的设置中将缓存的时间设置为较小的时间，例如1分钟(60秒)
+
+由于是全局的变量，在设置后会影响所有的应用程序，请先衡量一下对您平台所有的应用程序是否有影响后再进行设置
+
+设置方法：
+在命令启动JVM的时候设置参数"-Dnetworkaddress.cache.ttl=60 -Dsun.net.inetaddr.ttl=60"
+例如：运行Test.class
+java -Dnetworkaddress.cache.ttl=60 -Dsun.net.inetaddr.ttl=60 Test
+
+Resin
+第一个方式：
+修改resin.conf,在 <server-default>下，添加如下配置即可
+<jvm-arg>-Dnetworkaddress.cache.ttl=60</jvm-arg>
+<jvm-arg>-Dsun.net.inetaddr.ttl=60</jvm-arg>
+第二个方式：
+在linux /unix 下或编辑 httpd.sh
+args='-Dnetworkaddress.cache.ttl=60 -Dsun.net.inetaddr.ttl=60'
+
+websphere
+第一个方式：
+选择服务器-> 应用程序服务器-> Server1-> 进程定义->Java 虚拟机。
+滚动到通用 JVM 参数,添加：
+-Dnetworkaddress.cache.ttl=60 -Dsun.net.inetaddr.ttl=60
+单击确定以保存更改
+第二个方式：
+修改XML文件
+IBM\WebSphere\AppServer\profiles\AppSrv01\config\cells\liangwgNode01Cell\nodes\liangwgNode01\servers\server.xml
+在文件末尾，在属性“disableJIT="false"”之前的位置，
+添加：genericJvmArguments="-Dnetworkaddress.cache.ttl=60 -Dsun.net.inetaddr.ttl=60" 
+
+Tomcat
+第一个方式：
+1：进入TOMCAT的bin目录下，找到tomcat5w.exe文件，双击，选择java,找到java options
+在文本框里添加: -Dnetworkaddress.cache.ttl=60 -Dsun.net.inetaddr.ttl=60
+第二个方式：
+2: 进入TOMCAT的bin目录下,找到文件catalina.bat，增加：
+JAVA_OPTS="-Xms256 -Xmx512 -Dnetworkaddress.cache.ttl=60 -Dsun.net.inetaddr.ttl=60"
+
+Weblogic
+Weblogic目录下的两个文件：
+%Weblogic_home%\user_projects\domains\domain-name\startWebLogic.cmd（如果是UNIX系统，就是startWebLogic.sh ）
+%Weblogic_home%\user_projects\domains\domain-name\startManagedWebLogic.cmd
+（如果是UNIX系统，就是startManagedWebLogic.sh ）
+加入：set JAVA_OPTIONS=-Xms256m –Xmx256m -Dnetworkaddress.cache.ttl=60 -Dsun.net.inetaddr.ttl=60
+

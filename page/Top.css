@@ -1,0 +1,74 @@
+body{
+	background-image: url(Images/top_right.jpg);
+	background-repeat: repeat-x;
+	margin:0;
+}
+body, div, span, p, b, textarea, input, select, form, table,tr,td {
+	color:#f8ff2d;
+}
+a{
+	text-decoration:none;
+	color:#F8FFFF;
+}
+a:hover{
+	cursor: hand;
+	text-decoration:underline;
+	color:#C3F1F6;
+}
+.but_1, .but_1_m{
+	color: #FFFFFF;
+	border: 0px solid #FF9224; 
+	background-color: #B3C5EF; 
+	background-image: url('Images/But_S.jpg');
+	height: 26px;
+	width: 78px;
+}
+
+.but_1 {
+	background-position:-78px
+}
+.but_1_m {
+	cursor: hand;
+	background-position:0px
+}
+
+.Font_New {
+	color: #deff00;
+}
+.Font_Count {
+	color: #d8f5ff;
+}
+
+.bST_1, .bST_1_s, .bST_2, .bST_2_s, .bST_3, .bST_3_s{
+	border: 0px solid #FF9224; 
+	background-color: #B3C5EF; 
+	background-image: url('Images/But_S3.jpg');
+	height: 29px;
+}
+.bST_1 {
+	background-position:0px;
+	width: 104px;
+}
+.bST_1_s {
+	background-position:-307px;
+	width: 104px;
+}
+.bST_2 {
+	background-position:-104px;
+	width: 102px;
+}
+
+.bST_2_s {
+	background-position:-411px;
+	width: 102px;
+}
+.bST_3 {
+	background-position:-206px;
+	width: 101px;
+	color: #99CCFF;
+}
+.bST_3_s {
+	background-position:-513px;
+	width: 101px;
+	color: #99CCFF;
+}

@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" oncontextmenu="return false">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/Manage/temp/css/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/actiontop.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/Manage/temp/js/oddsInfo83.js"></script>
+<title></title>
+</head>
+<body>
+<input type="hidden" id="s_odds" value="1" />
+	<table width="100%" height="100%" border="0" cellspacing="0" class="a">
+    	<tr>
+        	<td width="6" height="99%" bgcolor="#1873aa"></td>
+            <td class="c">
+            	<table border="0" cellspacing="0" class="main">
+                	<tr>
+                    	<td width="12"><img src="/Manage/temp/images/tab_03.gif" alt="" /></td>
+                        <td background="/Manage/temp/images/tab_05.gif">
+                        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="17"><img src="/Manage/temp/images/tb.gif" width="16" height="16" /></td>
+                                    <td width="145">&nbsp;賠率設置--新疆時時彩</td>
+                                    <td width="55"><a href="/templates_r/Manage/oddsInfo83.html">1-5賠率</a></td>
+                                    <td width="125"><a href="/templates_r/Manage/oddsInfo84.html">總分龍虎和連碼賠率</a></td>
+                                     <td width="60">升降總值：</td>
+                                    <td width="90"><input type="text" id="Ho" class="texta" value="0.001" /></td>
+                                    <td width="60">批量設置：</td>
+                                    <td width="80">
+                                    	<select id="oddsType">
+                                    		<option value="">---全部---</option>
+                                    		<option value="Ball_1">第一球</option>
+                                    		<option value="Ball_2">第二球</option>
+                                    		<option value="Ball_3">第三球</option>
+                                    		<option value="Ball_4">第四球</option>
+                                    		<option value="Ball_5">第五球</option>
+                                    	</select>
+									</td>
+                                    <td width="70">
+                                    	<select id="h">
+                                    	                                    		<option value="h1">00</option>
+                                    	                                    		<option value="h2">01</option>
+                                    	                                    		<option value="h3">02</option>
+                                    	                                    		<option value="h4">03</option>
+                                    	                                    		<option value="h5">04</option>
+                                    	                                    		<option value="h6">05</option>
+                                    	                                    		<option value="h7">06</option>
+                                    	                                    		<option value="h8">07</option>
+                                    	                                    		<option value="h9">08</option>
+                                    	                                    		<option value="h10">09</option>
+                                    	                                    		<option value="h11">大</option>
+                                    	                                    		<option value="h12">小</option>
+                                    	                                    		<option value="h13">單</option>
+                                    	                                    		<option value="h14">雙</option>
+                                    	                                    	</select>
+									</td>
+									<td width="45">
+                                    	<select id="s_num">
+                                    		<option value="0">降</option>
+                                    		<option value="1">升</option>
+                                    	</select>
+									</td>
+                                    <td><input type="button" class="inputs" value="確認更變" id="m1" onclick="upOddaAll(this)" /></td>
+                                  </tr>
+                            </table>
+                        </td>
+                        <td width="16"><img src="/Manage/temp/images/tab_07.gif" alt="" /></td>
+                    </tr>
+                    <tr>
+                    	<td class="t"></td>
+                        <td class="c">
+                        <!-- strat -->
+                            <table border="0" cellspacing="0" class="conter">
+                            	<tr class="tr_top">
+                                	<td>號</td>
+                                	<td>第一球</td>
+                                    <td>設置</td>
+                                    <td>第二球</td>
+                                    <td>設置</td>
+                                    <td>第三球</td>
+                                    <td>設置</td>
+                                    <td>第四球</td>
+                                    <td>設置</td>
+                                    <td>第五球</td>
+                                    <td>設置</td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">00</td>
+                                	<td width="70" id="ah1" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah1','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah1','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh1" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh1','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh1','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch1" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch1','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch1','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh1" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh1','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh1','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh1" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh1','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh1','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">01</td>
+                                	<td width="70" id="ah2" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah2','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah2','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh2" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh2','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh2','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch2" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch2','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch2','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh2" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh2','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh2','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh2" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh2','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh2','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">02</td>
+                                	<td width="70" id="ah3" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah3','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah3','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh3" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh3','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh3','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch3" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch3','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch3','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh3" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh3','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh3','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh3" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh3','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh3','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">03</td>
+                                	<td width="70" id="ah4" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah4','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah4','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh4" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh4','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh4','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch4" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch4','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch4','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh4" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh4','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh4','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh4" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh4','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh4','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">04</td>
+                                	<td width="70" id="ah5" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah5','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah5','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh5" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh5','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh5','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch5" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch5','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch5','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh5" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh5','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh5','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh5" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh5','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh5','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">05</td>
+                                	<td width="70" id="ah6" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah6','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah6','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh6" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh6','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh6','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch6" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch6','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch6','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh6" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh6','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh6','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh6" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh6','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh6','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">06</td>
+                                	<td width="70" id="ah7" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah7','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah7','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh7" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh7','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh7','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch7" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch7','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch7','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh7" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh7','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh7','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh7" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh7','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh7','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">07</td>
+                                	<td width="70" id="ah8" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah8','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah8','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh8" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh8','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh8','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch8" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch8','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch8','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh8" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh8','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh8','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh8" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh8','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh8','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">08</td>
+                                	<td width="70" id="ah9" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah9','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah9','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh9" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh9','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh9','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch9" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch9','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch9','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh9" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh9','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh9','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh9" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh9','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh9','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">09</td>
+                                	<td width="70" id="ah10" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah10','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah10','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh10" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh10','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh10','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch10" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch10','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch10','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh10" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh10','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh10','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh10" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh10','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh10','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">大</td>
+                                	<td width="70" id="ah11" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah11','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah11','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh11" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh11','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh11','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch11" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch11','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch11','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh11" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh11','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh11','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh11" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh11','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh11','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">小</td>
+                                	<td width="70" id="ah12" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah12','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah12','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh12" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh12','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh12','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch12" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch12','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch12','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh12" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh12','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh12','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh12" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh12','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh12','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">單</td>
+                                	<td width="70" id="ah13" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah13','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah13','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh13" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh13','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh13','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch13" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch13','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch13','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh13" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh13','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh13','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh13" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh13','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh13','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                                <tr align="center" >
+                                	<td class="ball">雙</td>
+                                	<td width="70" id="ah14" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ah14','Ball_1',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ah14','Ball_1',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="bh14" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('bh14','Ball_2',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('bh14','Ball_2',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="ch14" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('ch14','Ball_3',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('ch14','Ball_3',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="dh14" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('dh14','Ball_4',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('dh14','Ball_4',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                    <td width="70" id="eh14" style="font-size:14px;color:blueviolet" ></td>
+                                    <td>
+	                                    <input title="上調賠率" type="button" onclick="setodds('eh14','Ball_5',this)" class="aase aase_a" name="1" />&nbsp;
+	                                    <input title="下調賠率" type="button" onclick="setodds('eh14','Ball_5',this)" class="aase aase_b" name="0" />
+                                    </td>
+                                </tr>
+                                                            </table>
+                        <!-- end -->
+                        </td>
+                        <td class="r"></td>
+                    </tr>
+                    <tr>
+                    	<td width="12"><img src="/Manage/temp/images/tab_18.gif" alt="" /></td>
+                        <td class="f" align="center">默認賠率表更變不會即時影響正在開盤中的賠率。</td>
+                        <td width="16"><img src="/Manage/temp/images/tab_20.gif" alt="" /></td>
+                    </tr>
+                </table>
+            </td>
+            <td width="6" bgcolor="#1873aa"></td>
+        </tr>
+        <tr>
+        	<td height="6" bgcolor="#1873aa"><img src="/Manage/images/main_59.gif" alt="" /></td>
+            <td bgcolor="#1873aa"></td>
+            <td height="6" bgcolor="#1873aa"><img src="/Manage/images/main_62.gif" alt="" /></td>
+        </tr>
+    </table>
+</body>
+</html>

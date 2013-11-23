@@ -1,0 +1,160 @@
+@charset "utf-8";
+@import "/css/hide.css";
+/* CSS Document */
+* {
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.t_main {
+	height:89px;
+	background:url(../images/t_backdrop1.jpg);
+}
+.t_main dl {
+	width:991px;
+	height:89px;
+}
+.t_main dl dt {
+	width:243px;
+	height:89px;
+	float:left;
+}
+.t_main dl dd {
+	width:708px;
+	float:left;
+}
+.t_main dl dd.im {
+	width:658px;
+	height:33px;
+	background:url(../images/But_S.jpg) no-repeat;
+}
+.t_main dl dd.xm {
+	height:23px;
+	overflow:hidden;
+}
+.t_main dl dd.im div {
+	width:102px;
+	height:25px;
+	float:left;
+}
+.t_main dl dd.im div a {
+	display:block;
+	width:80px;
+	height:30px;
+	margin-left:2px;
+}
+.t_main dl dd.im div a.g {
+	width:70px;
+}
+.t_main dl dd.im div.j {
+	width:70px;
+}
+.ggf {
+	display:block;
+	float:left;
+}
+.t_o {
+	background:url(../images/T2.jpg) no-repeat;
+}
+.kj {
+	
+}
+.kj tr {
+	height:32px;
+}
+.kj tr td {
+	padding-bottom:3px;
+	padding-left:5px;
+	padding-right:5px;
+}
+.kj tr td a {
+	font-weight:bold;
+	color:#164175;
+	text-decoration:none;
+	padding-right:8px;
+	background:url(../images/gg.gif) no-repeat right;
+}
+.kj tr td a.aaa{
+	background:none;
+}
+.kj tr td a:hover {
+	color:#0066CC;
+}
+.kj tr td.ag {
+	padding-left:15px;
+	background:url(../images/T3.jpg) no-repeat 0 1px;
+}
+
+
+
+
+.but_1, .but_1_m, .but_2, .but_2_m, .but_3, .but_3_m, .but_4, .but_4_m, .but_5, .but_5_m, .but_6, .but_6_m, .but_7, .but_7_m,{
+	border: 0px solid #FF9224; 
+	background-color: #B3C5EF; 
+	background-image: url('But_S.jpg');
+	height: 33px;
+}
+.but_1 {
+	width: 97px; 
+	background-position:0px 0
+}
+.but_1_m {
+	cursor: hand;
+	width: 97px; 
+	background-position:-658px 0
+}
+.but_2 {
+	width: 104px; 
+	background-position:-97px 0
+}
+.but_2_m {
+	cursor: hand;
+	width: 104px; 
+	background-position:-755px 0
+}
+.but_3 {
+	width: 104px; 
+	background-position:-201px 0
+}
+.but_3_m {
+	cursor: hand;
+	width: 104px; 
+	background-position:-859px 0
+}
+.but_4 {
+	width: 103px; 
+	background-position:-305px 0
+}
+.but_4_m {
+	cursor: hand;
+	width: 103px; 
+	background-position:-963px 0
+}
+.but_5 {
+	width: 103px; 
+	background-position:-408px 0
+}
+.but_5_m {
+	cursor: hand;
+	width: 103px; 
+	background-position:-1066px 0
+}
+.but_6 {
+	width: 80px; 
+	background-position:-511px 0
+}
+.but_6_m {
+	cursor: hand;
+	width: 80px; 
+	background-position:-1169px 0
+}
+.but_7 {
+	width: 66px; 
+	background-position:-591px 0 
+}
+.but_7_m {
+	cursor: hand;
+	width: 66px; 
+	background-position:-1249px 0 
+}

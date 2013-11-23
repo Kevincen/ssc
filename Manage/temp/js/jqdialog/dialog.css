@@ -1,0 +1,25 @@
+.dialog-overlay {
+	BACKGROUND: #E4E4E4; FILTER: alpha(opacity:50); opacity: 0.5
+}
+.dialog {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: #00B0B0; FILTER: alpha(opacity:90); PADDING-BOTTOM: 10px; PADDING-TOP: 10px; opacity: 0.9; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px
+}
+/*download by http://down.liehuo.net*/
+.dialog .bar {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; MIN-HEIGHT: 15px; BACKGROUND: url(/Manage/temp/images/bg.gif); PADDING-BOTTOM: 6px; CURSOR: move; COLOR: #000000; PADDING-TOP: 6px
+}
+.dialog .bar .title {
+	FLOAT: left; MARGIN-RIGHT: 10px
+}
+.dialog .bar .close {
+	FLOAT: right; CURSOR: pointer; TEXT-DECORATION: underline
+}
+.dialog .content {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; BACKGROUND: #fff; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+.dialog IFRAME {
+	WIDTH: 100%; HEIGHT: 100%
+}
+.content IMG {
+	MAX-WIDTH: 700px; OVERFLOW: auto; MAX-HEIGHT: 500px
+}

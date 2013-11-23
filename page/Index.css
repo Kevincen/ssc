@@ -1,0 +1,339 @@
+body, div, span, p, b, textarea, input, select, form, table,tr,td{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	font-size:12px;
+	color:#344B50;
+	z-index:inherit;
+	font-family:Verdana, "宋体", Arial,Sans;
+}
+body{
+	margin-top: 2px;
+}
+img, table{
+	border:0px none;
+	border-collapse:collapse
+}
+td{
+	cursor: default;
+}
+a{
+	text-decoration:none;
+	color:#2C5A7A;
+}
+a:hover{
+	cursor: hand;
+	text-decoration:underline;
+	color:#47ACA4;
+}
+
+.inp1, .inp1a, .btn2, .btn2m, .btn3, .btn3m
+{background-image:url(images/frame1.gif);background-repeat:no-repeat}
+.inp1, .inp1a{border:1px solid #ABB2C5;height:20px;height/**/:18px;padding-top:1px;padding-left:1px!important;padding-left:2px;color:#000}
+.inp1{background-position:-0px 0;color:#000}
+.inp1a{border:1px solid #A7BBD3;background-position:-476px 0;color:#000;border-color: #FF8800;}
+.btn2, .btn2m{width:66px;height:17px;border:0px none; padding-top:3px!important;padding-top:3px;padding-top/**/:3px !important;padding-bottom:2px!important;margin-bottom:0;color:#0C3E09;background-color:transparent;background-position: -943px 0;cursor:hand!important;cursor:hand !important}
+.btn2{width:66px;background-position:-943px 0}
+.btn2m{cursor: hand;width:66px;background-position:-1010px 0}
+.btn3, .btn3m{width:44px;height:17px;border:0px none; padding-top:3px!important;padding-top:3px;padding-top/**/:3px !important;padding-bottom:2px!important;margin-bottom:0;color:#0C3E09;background-color:transparent;cursor:hand!important;cursor:hand !important}
+.btn3{width:44px;background-position:-1077px 0}
+.btn3m{cursor: hand;width:44px;background-position:-1122px 0}
+.t_list {
+	background-color:#B5D6E6;
+	border:1px #ffffff solid;
+	border-top-width: 4px;
+	border-right-width: 2px;
+}
+.t_RT {
+	border:0px #ffffff solid;
+	border-top-width: 4px;
+	border-right-width: 2px;
+}
+.t_list_1 {
+	background-color:#B5D6E6;
+	border:0px #ffffff solid;
+}
+.t_Edit_caption {
+	line-height: 28px;
+	background-color:#EBF4FF;
+	padding-left:5px;
+	text-align: right;
+}
+.t_Edit_td {
+	line-height: 28px;
+	background-color:#ffffff;
+	padding-left:5px;
+	text-align: left;
+	text-indent: 3px;
+}
+.t_list_tr_0 {
+	background-color:#ffffff;
+	text-align: center;
+	height: 20px;
+	line-height: 17px;
+}
+.t_list_tr_1 {
+	background-color:#EBF4FF;
+	text-align: center;
+	height: 20px;
+	line-height: 17px;
+}
+.t_list_tr_2 {
+	background-color:#ecffed;
+	text-align: center;
+	height: 20px;
+	line-height: 17px;
+}
+.t_list_tr_b {
+	background-color:#F1F1F1;
+	text-align: center;
+	height: 28px;
+}
+
+.t_list_caption {
+	background-image: url(images/bg.jpg);
+	line-height: 24px;
+	text-align:center;
+	color: #000000;
+}
+.t_list_caption_1 {
+	background-image: url(images/bg.jpg);
+	line-height: 24px;
+	text-align:center;
+	color: #000000;
+}
+.td_caption {
+	background-image: url(images/td_Caption.gif);
+	line-height: 15px;
+	text-align:center;
+	color: #ffffff;
+}
+.t_list_bottom {
+	line-height: 22px;
+	background-color:#F1F1F1;
+	text-align: center;
+	color: #000000;
+}
+.t_list_tr_sum {
+	line-height: 16px;
+	background-color:#F6FAFF;
+	text-align: center;
+	font-weight: bold;
+}
+.f_left {
+	text-align: left;
+	text-indent: 3px;
+}
+.f_center {
+	text-align: center;
+}
+.f_right {
+	text-align: right;
+}
+
+body{
+	text-align:center;
+}
+
+.Font_R {
+	color: #FF0000;
+}
+.Font_B {
+	color: #2836F4;
+}
+.Font_cB {
+	color: #666666;
+}
+.Font_G {
+	color: #339100;
+}
+.Font_Y {
+	color: #F97C00;
+}
+.Font_H {
+	color: #FFFF00;
+}
+.Font_W {
+	color: #FFFFFF;
+}
+.Font_FILL {
+	color: #7300AA;
+	font-weight: bold;
+}
+.TDb_R {
+	color: #ff0000;
+	background-color: #ffffff;
+}
+.TDb_H {
+	color: #000000;
+	background-color: #C0C0C0;
+}
+.TDb_B {
+	color: #0707d0;
+	background-color: #edf5fc;
+}
+.TDb_G {
+	color: #00A200;
+	background-color: #D5FFD5;
+}
+.TDb_Y {
+	color: #FF8000;
+	background-color: #FFEAD5;
+}
+
+.TD_R {
+	background-image: url(images/TD_R.jpg);
+	background-repeat: repeat-y;
+}
+.TD_B {
+	background-image: url(images/TD_B.jpg);
+	background-repeat: repeat-y;
+}
+.TD_G {
+	background-image: url(images/TD_G.jpg);
+	background-repeat: repeat-y;
+}
+.TD_Y {
+	background-image: url(images/TD_Y.jpg);
+	background-repeat: repeat-y;
+}
+
+.F_Multiple {
+	font-family: Arial, Helvetica, Verdana, Geneva,  sans-serif;
+	color: #2836F4;
+	font-size: 15px;
+}
+
+.F_Arial {
+	font-family: Arial, Helvetica, Verdana, Geneva,  sans-serif;
+}
+
+.F_bold {
+	font-weight: bold;
+}
+.FS_ball {
+	font-family: Arial, Helvetica, Verdana, Geneva,  sans-serif;
+	font-size: 15px
+}
+.F_Ball_1 {
+	color: #959612;
+}
+.F_Ball_2 {
+	color: #0188fe;
+}
+.F_Ball_3 {
+	color: #111111;
+}
+.F_Ball_4 {
+	color: #ff7300;
+}
+.F_Ball_5 {
+	color: #2dc3c2;
+}
+.F_Ball_6 {
+	color: #3500a8;
+}
+.F_Ball_7 {
+	color: #666666;
+}
+.F_Ball_8 {
+	color: #fe0000;
+}
+.F_Ball_9 {
+	color: #770101;
+}
+.F_Ball_10 {
+	color: #167301;
+}
+.tzFS_ball {
+	font-family: Arial, Helvetica, Verdana, Geneva,  sans-serif;
+	font-size: 15px
+}
+.FS_16 {
+	font-size: 16px;
+}
+.FS_15 {
+	font-size: 15px;
+}
+.FS_14 {
+	font-size: 14px;
+}
+.FS_13 {
+	font-size: 13px;
+}
+.Jeu_O {
+	text-align: center;
+	height: 20px;
+	background-color: #FFFFFF;
+	cursor: default;
+}
+.Jeu_Oname {
+	background-color: #EEF2FF;
+}
+.Jeu_C {
+	text-align: center;
+	height: 20px;
+	background-color: #E6E6E6;
+	cursor: default;
+}
+
+.Multiple2_open {
+	background-color: #F6FAFF;
+	cursor: default;
+}
+.mMC {
+	background-image: url(images/tzMC.jpg);
+	background-repeat: repeat-x;
+}
+.mMC1 {
+	background-image: url(images/MC.jpg);
+	background-repeat: repeat-x;
+}
+.m_Adjust{
+	height: 18px;
+	width: 18px;
+}
+.Select_0 {
+	line-height: 24px;
+	background-image: url(images/S0.jpg);
+	text-align: center;
+}
+.Select_1 {
+	line-height: 24px;
+	background-image: url(images/S1.jpg);
+	text-align: center;
+}
+.Ball_tr_H {
+	height: 27px;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+.jeu_XZ_Type {
+	color: #2836F4;
+}
+.jeu_OpenLottery {
+	color: #299A26;
+}
+.jeu_multiple {
+	font-family: Arial, Helvetica, Verdana, Geneva,  sans-serif;
+	color: #FF0000;
+	font-weight: bold;
+}
+.CI_Particular {
+	border-left:1px #ffffff solid;
+	border-bottom:1px #ffffff solid;
+	border-right:1px #ffffff solid;
+	border-top:1px #ffffff solid
+}
+.rM_S
+{
+	background-color: #F2EDF8;
+}
+.rM_F
+{
+	background-color: #EDF7E8;
+}
+.Lose {
+	background-image: url(images/Lose.jpg);
+	background-repeat: repeat-x;
+}

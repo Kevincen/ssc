@@ -1,0 +1,138 @@
+@charset "utf-8";
+@import "skin.css";
+
+body{
+	font-family: Verdana,Arial,Helvetica,sans-serif;}
+	
+body, div, span, p, b, textarea, input, select, form, table, tr, td {
+    color:#FED7AD;
+    font-size: 12px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    z-index: auto;
+}
+
+img, table {
+    border: 0 none;
+    border-collapse: collapse;
+}
+td {
+    cursor: default;
+}
+a {
+    color: #4F260D;
+    text-decoration: none;
+}
+.T_a {
+    color: #FED7AD;
+    text-decoration: none;
+}
+a:hover {
+    color: #F1AD45;
+    font-weight: bold;
+    text-decoration: none;
+}
+.NewS_Fone {
+    color: #FFFFA2;
+}
+.LeftBackdrop {
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: center;
+    text-indent: -30px;
+}
+.T2 {
+    background-image: url("../images/T2.jpg");
+    background-repeat: no-repeat;
+}
+.T3 {
+    background-image: url("../images/T3.jpg");
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.top {
+    background-image: url("../images/m_top.jpg");
+    background-repeat: repeat-x;
+}
+.Menu_WB {
+    background-color: #FFFFFF;
+    background-image: url("../images/menu_WB.jpg");
+    background-position: 0 0;
+    border: 0 solid #FF9224;
+    height: 25px;
+    width: 99px;
+}
+.bST_1{
+    font-weight: bold;
+    height: 31px;
+	line-height:31px;
+	text-align:center;
+    width: 130px;
+	margin-top:1px;
+	border:0px solid #FFF;
+	border-right: 1px solid #CF8349;
+	background:none;
+	float:left;
+	color:#FFF5D7;
+}
+.bST_1:hover{
+	color:#FFF5D7;}
+.bST_1_s {
+    background: #FEE5C7;
+	color: #4F260D;
+}
+.bST_1_s:hover{
+	color: #4F260D;
+}
+.skin_blue .bST_1{
+	color:#465196;
+	border-right: 1px solid #B5C6E2;
+	}
+.skin_blue .bST_1_s {
+    background:#3A6AB0;
+	color: #FFF;
+}
+
+.skin_red .bST_1{
+	color:#FEDDDD;
+	border-right:1px solid #E75559;
+	}
+.skin_red .bST_1_s {
+    background:#8B0D19;
+	color:#FEC613;
+}
+
+
+.bSB_1, .bSB_1_m, .bSB_2, .bSB_2_m {
+    background-color: #B3C5EF;
+    background-image: url("../images/But2.jpg");
+    border: 0 solid #FF9224;
+    font-weight: bold;
+    height: 33px;
+}
+#bST_1{
+	margin-left:5px;}
+.bSB_1 {
+    background-position: 0 50%;
+    width: 77px;
+}
+.bSB_1_m {
+    background-position: -171px 50%;
+    width: 77px;
+}
+.bSB_2 {
+    background-position: -77px 50%;
+    width: 94px;
+}
+.bSB_2_m {
+    background-position: -248px 50%;
+    width: 94px;
+}
+.red{
+	color:red;
+}
+
+

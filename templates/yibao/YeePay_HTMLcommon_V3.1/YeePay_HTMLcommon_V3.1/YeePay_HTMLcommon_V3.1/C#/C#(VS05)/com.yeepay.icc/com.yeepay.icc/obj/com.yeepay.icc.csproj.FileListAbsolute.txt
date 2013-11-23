@@ -1,0 +1,14 @@
+C:\Users\zheng.he\Desktop\C#\com.yeepay.icc\com.yeepay.icc\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\zheng.he\Desktop\C#\com.yeepay.icc\com.yeepay.icc\bin\Debug\com.yeepay.icc.dll
+C:\Users\zheng.he\Desktop\C#\com.yeepay.icc\com.yeepay.icc\bin\Debug\com.yeepay.icc.pdb
+C:\Users\zheng.he\Desktop\C#\com.yeepay.icc\com.yeepay.icc\bin\Debug\com.yeepay.utils.dll
+C:\Users\zheng.he\Desktop\C#\com.yeepay.icc\com.yeepay.icc\bin\Debug\com.yeepay.utils.pdb
+C:\Users\zheng.he\Desktop\C#\com.yeepay.icc\com.yeepay.icc\obj\Debug\com.yeepay.icc.dll
+C:\Users\zheng.he\Desktop\C#\com.yeepay.icc\com.yeepay.icc\obj\Debug\com.yeepay.icc.pdb
+C:\Users\zheng.he\Desktop\C#(VS05)\com.yeepay.icc\com.yeepay.icc\bin\Debug\com.yeepay.icc.dll
+C:\Users\zheng.he\Desktop\C#(VS05)\com.yeepay.icc\com.yeepay.icc\bin\Debug\com.yeepay.icc.pdb
+C:\Users\zheng.he\Desktop\C#(VS05)\com.yeepay.icc\com.yeepay.icc\bin\Debug\com.yeepay.utils.dll
+C:\Users\zheng.he\Desktop\C#(VS05)\com.yeepay.icc\com.yeepay.icc\bin\Debug\com.yeepay.utils.pdb
+C:\Users\zheng.he\Desktop\C#(VS05)\com.yeepay.icc\com.yeepay.icc\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\zheng.he\Desktop\C#(VS05)\com.yeepay.icc\com.yeepay.icc\obj\Debug\com.yeepay.icc.dll
+C:\Users\zheng.he\Desktop\C#(VS05)\com.yeepay.icc\com.yeepay.icc\obj\Debug\com.yeepay.icc.pdb

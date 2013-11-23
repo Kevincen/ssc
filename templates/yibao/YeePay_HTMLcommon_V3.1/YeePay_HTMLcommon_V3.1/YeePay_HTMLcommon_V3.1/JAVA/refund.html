@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+		<title>退款接口演示</title>
+	</head>
+	<body>
+		<div>退款接口演示</div>
+		<div id="input">
+		<form method="get" action="reqRefund.jsp">
+			<div>易宝交易流水号:<input type="text" name="pb_TrxId" id="pb_TrxId" value="12123123" /></div>
+			<div>扣款金额:<input type="text" name="p3_Amt" id="p3_Amt" value="1.00" /></div>
+			<div>交易币种:<select name="p4_Cur" id="p4_Cur">
+					<option value="CNY">人民币
+					</option>
+				</select></div>
+			<div>退款说明:<input type="text" name="p5_Desc" id="p5_Desc" /></div>
+			<div><input type="submit" value="提交" /></div>
+			</form>
+		</div>
+	</body>
+</html>

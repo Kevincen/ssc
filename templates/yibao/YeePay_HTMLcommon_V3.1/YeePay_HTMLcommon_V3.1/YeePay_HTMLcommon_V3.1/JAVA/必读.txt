@@ -1,0 +1,36 @@
+测试应用说明:
+1. yeepay : 易宝支付提供的测试应用.商户只需要将其部署到web应用服务器的发布目录下即可.
+ 
+文件说明:
+|----index.html:提供给商户测试的三个主要功能 在线支付,订单查询,退款接口
+|----pay.html:提供给商户测试用的的输入页面,提交后,商户输入的参数会提交到 reqpay.jsp.
+|----reqpay.jsp：提交到该文件,该文件负责根据pay.html中输入的参数获得签名串,然后构造一个form表单以POST方法请求易宝支付网关.商户无需改动该文件即可使用.
+|----refund.html：提供给商户测试用的的输入页面,提交后,商户输入的参数会提交到 reqRefund.jsp.
+|----reqRefund.jsp：提交到该文件,该文件负责根据refund.html中输入的参数获取并调用PaymentForOnlineService.refundByTrxId将参数传入
+|----query.html：提供给商户测试用的的输入页面,提交后,商户输入的参数会提交到 reqQuery.jsp.
+|----reqQuery.jsp：提交到该文件,该文件负责根据query.html中输入的参数获取并调用PaymentForOnlineService.queryByOrder将参数传入
+|----callback.jsp:该文件负责接收易宝支付返回的交易结果数据包,商户无需改动即可使用.
+|----WEB-INF----
+	|----classes----
+		|----merchantInfo.properties:商户信息配置文件.
+		|----log4j.properties:log4j的配置文件。只需将log4j.appender.R.File的属性设置为自己保存log文件的路径即可.
+		|----p1_MerId:商户编号
+		|----keyValue:商户密钥
+		|----onlinePaymentReqURL:在线支付请求地址
+		|----queryRefundReqURL:查询和退款的请求地址
+		|----lib----
+		|----YeePay_HTMLcommon_V3.0.jar:易宝支付提供的类包.其中用到了两个方法:
+			1. PaymentForOnlineService.getReqMd5HmacForOnlinePayment:获得请求参数的MD5-HMAC.
+			2. PaymentForOnlineService.verifyCallback:校验返回数据是否正确.
+			3. PaymentForOnlineService.queryByOrder:订单查询请求参数
+			4. PaymentForOnlineService.refundByTrxId:订单退款请求参数
+			
+本地的STR，商户编号和KEY的查找位置(在出现“交易签名无效”的错误时需要查找STR)
+str:在 D:/YeePay_HTML.log 中
+商户编号:在 WEB-INF\classes\merchantInfo.properties 文件中的 p1_MerId
+key:在 WEB-INF\classes\merchantInfo.properties 文件中的 keyValue
+
+log保存地址配置
+在\WEB-INF\classes\log4j.properties文件中配置log4j.appender.R.File的值
+
+在接收到支付结果通知后，判断是否进行过业务逻辑处理，不要重复进行业务逻辑处理
