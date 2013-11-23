@@ -106,6 +106,8 @@ if (date("H") >= 3) {
     <div dom="main" class="main-content1">
         <div id="reportForm" class="reportForm">
             <form action="Report_Crystals.php" method="get">
+                <input type="hidden" value="" name="s_type"/>
+                <?php //因为报表里面要判断下注类型，我们这里没有这个选项,所以设置一个空值 ?>
                 <div id="basicSettings">
                     <table class="bet-table z3-table td-cd">
                         <colgroup>
@@ -121,7 +123,7 @@ if (date("H") >= 3) {
                         <tr>
                             <td class="basic_left">彩票类型</td>
                             <td class="right">
-                                <select id="allClass" name="s_type" onchange="form_type_change(this.value)">
+                                <select id="allClass" name="s_types" onchange="form_type_change(this.value)">
                                     <option value="0">全部</option>
                                     <option value="1">广东快乐十分</option>
                                     <option value="2">重庆时时彩</option>

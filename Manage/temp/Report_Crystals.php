@@ -42,6 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $show1 = $CentetArr['userList']['s_t_N'] == 0 ? '按期數：' . $CentetArr['userList']['s_number'] :
         '按日期：' . $CentetArr['userList']['startDate'] . ' -- ' . $CentetArr['userList']['endDate'];
     $param = false;
+    /*
+     * array(7) { ["s_type"]=> string(1) "0" ["t_N"]=> string(1) "1" ["startDate"]=> string(10) "2013-11-24" ["endDate"]=> string(10) "2013-11-24" ["s_number"]=> string(3) "all" ["ReportType"]=> string(1) "1" ["Balance"]=> string(1) "1" }
+     */
     if ($CentetArr['userList']['s_name'] == null) {
         if ($Users[0]['g_login_id'] == 89) {
             //$loginid=$Users[0]['g_nid'].UserModel::Like();
@@ -378,9 +381,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     </tr>
                     </thead>
                     <tbody>
+                    <?php if (!isset($CentetArr['cryList'])) { ?>
                     <tr class="">
                         <td colspan="18" class="center">暂无数据</td>
                     </tr>
+                    <?php
+                    } else {
+                    for ($i=0; $i<count($CentetArr['cryList']); $i++){
+                        ?>
+
+                    <?php
+                        } //forend
+                    }//if else end
+                    ?>
                     </tbody>
                 </table>
             </div>

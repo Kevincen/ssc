@@ -190,7 +190,7 @@ switch ($g) {
         </tbody>
     </table>
     <!--此为排序以后的上表-->
-    <table class="bet-table two-digit numbersort nsort" id="sorted" style="display:none" >
+    <table class="bet-table two-digit numbersort nsort" id="sorted" style="display:none;width:49.8%" >
         <colgroup>
             <col class="col1">
             <col class="col2">
