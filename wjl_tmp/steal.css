@@ -2069,7 +2069,7 @@ a {
 }
 
 .share_up_div .select {
-    background: url("./select.png") no-repeat 0 -17px;
+    background: url("/wjl_tmp/select.png") no-repeat 0 -17px;
     height: 16px;
     line-height: 16px;
     font-size: 12px;
@@ -3045,7 +3045,7 @@ a {
     width: 26px;
     height: 26px;
     display: inline-block;
-    background: url(./imgf/ball-klc20130106.png) no-repeat;
+    background: url(/wjl_tmp/ball-klc20130106.png) no-repeat;
     margin: -5px 3px -5px 0;
     *margin: 0 3px -4px 0;
 }
@@ -3138,7 +3138,7 @@ a {
     width: 26px;
     height: 26px;
     display: inline-block;
-    background: url(./imgf/ball-ssc.png) no-repeat;
+    background: url(/wjl_tmp/ball-ssc.png) no-repeat;
     margin: -5px 1px;
     *margin: 0 1px -6px 1px;
     *padding-bottom: 2px;
@@ -3189,7 +3189,7 @@ a {
     height: 20px;
     line-height: 20px;
     display: inline-block;
-    background: url(./imgf/ball-pk.png) no-repeat;
+    background: url(/wjl_tmp/ball-pk.png) no-repeat;
     margin: 0 3px -4px 0;
     *margin: 0 3px -4px 0;
     padding: 0;
@@ -3240,7 +3240,7 @@ a {
     height: 33px;
     line-height: 20px;
     display: inline-block;
-    background: url(./imgf/ball-nc20130106.png) no-repeat;
+    background: url(/wjl_tmp/ball-nc20130106.png) no-repeat;
     margin: -5px 3px -4px 0;
     *margin: 0 3px -4px 0;
     padding: 0;
@@ -3331,7 +3331,7 @@ a {
     height: 27px;
     line-height: 27px;
     display: inline-block;
-    background: url(./imgf/ball-k3.png) no-repeat;
+    background: url(/wjl_tmp/ball-k3.png) no-repeat;
     margin: 0 1px;
 }
 

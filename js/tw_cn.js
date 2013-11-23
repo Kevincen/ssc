@@ -1,6 +1,6 @@
 var defaultEncoding = 2; // 1: Tranditional Chinese, 2: Simplified Chinese
 var translateDelay = 0;
-var cookieDomain = "/";
+var cookieDomain = "http://192.168.1.102";
 var msgToTraditionalChinese = "繁體";
 var msgToSimplifiedChinese = "简体"; 
 var translateButtonId = "no_use";

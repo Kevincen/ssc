@@ -26,23 +26,35 @@ class UserModel
     /*
      * 返回每个等级的个数
      * @param $query_type 查询的类型，1为查询结果，3为查询数量
-     * @return 1是分公司，依次类推
+     * @param $top_id 当前用户的nid
+     * @param $loginid 当前用户的权限id
+     * @return 0是当前下一级，以此类推
      */
-    public function  Get_all_count($query_type)
+    public function  Get_all_count($query_type,$top_id='67552ea64c6dce1646a263bae714e788',$loginid=89)
     {
+        $counter = 0;
+        if ($loginid == $this->cop_id) {
+            $counter = 5;
+        } else if ($loginid == $this->stock_id) {
+            $counter = 4;
+        } else if ($loginid == $this->maina_id) {
+            $counter = 3;
+        } else if ($loginid == $this->agent_id) {
+            $counter = 2;
+        } else {
+            $counter = 6;
+        }
         $Like= UserModel::Like();
         $ret = array();
         $sql = '';
-        $top_id = $this->top_nid;
-        //1是股东
-        for ($i=0; $i<6; $i++) {
-            if ($i != 5) {
+        for ($i=0; $i<$counter; $i++) {
+            if ($i != ($counter - 1)) {//说明是会员
                 $sql= "select g_name from `g_rank` where g_nid like '{$top_id}'";
             } else {
                 $sql = 'select g_name from `g_user`';
             }
-            $ret[$i]= $this->db->query($sql,$query_type);
             $top_id .= $Like;
+            $ret[$i]= $this->db->query($sql,$query_type);
         }
 
         return $ret;
@@ -52,32 +64,44 @@ class UserModel
         $ret = array();
         $v = mb_substr($user_nid, 0, mb_strlen($user_nid, 'utf-8') - 32);
         $tmp = $this->GetUserName_Like($v);
-
+        $tmp = $tmp[0];
         return $tmp;
     }
     //从名称获取其阶乘名称
     public function Get_rank_from_name($name)
     {
         $l = 32;//每一个等级之间相隔的数量
-        $length = strlen($name);
         $toplength = strlen($this->top_nid);
-        $sub = $toplength - $length;
+        $sql_str = "select g_nid from `g_rank` where g_name='{$name}'";
+        $result = $this->db->query($sql_str, 1);
+        if (!$result) {
+            $sql_str = "select g_nid from `g_user` where g_name='{$name}'";
+            $result = $this->db->query($sql_str,1);
+            if ($result) {
+                return "会员";
+            }
+        }
+        $length = strlen($result[0]["g_nid"]);
+        $sub = $length - $toplength;
         $i = intval( $sub / $l);
         switch ($i) {
             case 1:
                 return "分公司";
                 break;
             case 2:
-                return "总代理";
+                return "股东";
                 break;
             case 3:
-                return "代理";
+                return "总代理";
                 break;
             case 4:
+                return "代理";
+                break;
+            case 5:
                 return "会员";
                 break;
             default:
-                exit(alert("Get_rank_from_name erro!"));
+                exit(alert("Get_rank_from_name erro!i=$i,name=$name"));
         }
     }
 	/**
@@ -94,8 +118,7 @@ class UserModel
 		 
 		return $this->db->query($sql, 0);
 	}
-	
-	
+
 	public function ExistUniondl ($userName, $passWord=null)
 	{
 		$pwd = $passWord==null ? "" : " AND g_password = '{$passWord}' ";

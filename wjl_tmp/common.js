@@ -150,7 +150,7 @@ function set_credit_show(tid)
 }
 function form_type_change(value) {
     var select_str;
-    $(".show").addClass('hidden').removeClass('show');
+    $(".show").addClass('hidden').removeClass('show').attr("name","");
     switch (value) {
         case '0':
             select_str = "#default";
@@ -173,4 +173,43 @@ function form_type_change(value) {
     }
     $(select_str).addClass('show').removeClass("hidden").attr("name","s_number");
 
+}
+/*
+* 快乐十分树球转换
+* */
+function klsf_num_to_ball(value)
+{
+    var html_code = '<span class="number num'+ value +'"></span>'
+    return html_code;
+}
+
+function set_ball_in_form(ball_list, typeid)
+{
+    var func;
+    var html_code = '<tr>';
+
+    if (typeid == 1) {
+        func = klsf_num_to_ball;
+    }
+
+    for (var key in ball_list) {
+        html_code += '<td>' + func(ball_list[key]) + '</td>'
+    }
+    html_code += '</tr>';
+}
+//在期数选择的时候将底部的球号写入顶部
+function set_ball_in_top(val)
+{
+    console.log(val);
+    var $tops = $('.qiuhao').siblings(".qiuhao");
+    console.log($tops);
+    if (val != undefined) {
+        var $selected = $('#'+val);
+        var $balls = $selected.children();
+        console.log($balls);
+        for (var key in $tops) {
+            $tops[key].innerHTML = $balls[key].outerHTML;
+        }
+    }
+    //如果没有数据则什么都不做
 }
