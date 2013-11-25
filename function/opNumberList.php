@@ -369,32 +369,45 @@ function sorts($a, $p)
 	return $a;
 }
 
-function numberList($gameType, $id=false)
+function numberList($gameType, $date, $id=false)
 {
 	$db = new DB();
 	$pageNum = 15;
 	$numberList = array();
-	$from = $id == true ? "" : "WHERE g_ball_1 is not null";
+    $from = "where g_date like '$date%' ";
+	$from .= $id == true ? "" : "AND g_ball_1 is not null";
 	if ($gameType == 1)
 	{
 		$total = $db->query("SELECT `g_id` FROM `g_history` WHERE g_game_id = 1 ", 3);
-		$page = new Page($total, $pageNum);
+        //此处不需要进行分页
+		//$page = new Page($total, $pageNum);
 		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8` FROM `g_history`  {$from} ORDER BY g_qishu DESC {$page->limit} ";
 		$result = $db->query($sqls, 1);
+        $Ball = array();
 		if ($result)
 		{
 		
 			foreach ($result as $key=>$value) {
-				$week = GetWeekDay($value['g_date'],0);
-	           	$ball_1 ='<td width="27" class="No_gd'.$value['g_ball_1'].'"></td>' ;
-				$ball_2 ='<td width="27" class="No_gd'.$value['g_ball_2'].'"></td>' ;
-				$ball_3 ='<td width="27" class="No_gd'.$value['g_ball_3'].'"></td>' ;
-				$ball_4 ='<td width="27" class="No_gd'.$value['g_ball_4'].'"></td>' ;
-				$ball_5 ='<td width="27" class="No_gd'.$value['g_ball_5'].'"></td>' ;
-				$ball_6 ='<td width="27" class="No_gd'.$value['g_ball_6'].'"></td>' ;
-				$ball_7 ='<td width="27" class="No_gd'.$value['g_ball_7'].'"></td>' ;
-				$ball_8 ='<td width="27" class="No_gd'.$value['g_ball_8'].'"></td>' ;
-				$ball_count = $value['g_ball_1'] + $value['g_ball_2'] + $value['g_ball_3'] + $value['g_ball_4'] + $value['g_ball_5'] + 
+				$week = '-';
+	           	$ball_1 ='<span class="number num'.$value['g_ball_1'].'"></span>' ;
+				$ball_2 ='<span class="number num'.$value['g_ball_2'].'"></span>' ;
+				$ball_3 ='<span class="number num'.$value['g_ball_3'].'"></span>' ;
+				$ball_4 ='<span class="number num'.$value['g_ball_4'].'"></span>' ;
+				$ball_5 ='<span class="number num'.$value['g_ball_5'].'"></span>' ;
+				$ball_6 ='<span class="number num'.$value['g_ball_6'].'"></span>' ;
+				$ball_7 ='<span class="number num'.$value['g_ball_7'].'"></span>' ;
+				$ball_8 ='<span class="number num'.$value['g_ball_8'].'"></span>' ;
+//                by wjl
+/*                $Ball[1] = $value['g_ball_1'];
+                $Ball[2] = $value['g_ball_2'];
+                $Ball[3] = $value['g_ball_3'];
+                $Ball[4] = $value['g_ball_4'];
+                $Ball[5] = $value['g_ball_5'];
+                $Ball[6] = $value['g_ball_6'];
+                $Ball[7] = $value['g_ball_7'];
+                $Ball[8] = $value['g_ball_8'];*/
+//                end by wjl
+				$ball_count = $value['g_ball_1'] + $value['g_ball_2'] + $value['g_ball_3'] + $value['g_ball_4'] + $value['g_ball_5'] +
 				$value['g_ball_6'] + $value['g_ball_7'] + $value['g_ball_8'];
 				$Ball = $ball_1.$ball_2.$ball_3.$ball_4.$ball_5.$ball_6.$ball_7.$ball_8;
 				$numberList[$key][0] = $value['g_id'];
@@ -421,13 +434,14 @@ function numberList($gameType, $id=false)
 		{
 		
 			foreach ($result as $key=>$value) {
-				$week = GetWeekDay($value['g_date'],0);
-				
-				$ball_1 ='<td width="27" class="No_gx'.$value['g_ball_1'].'"></td>' ;
-				$ball_2 ='<td width="27" class="No_gx'.$value['g_ball_2'].'"></td>' ;
-				$ball_3 ='<td width="27" class="No_gx'.$value['g_ball_3'].'"></td>' ;
-				$ball_4 ='<td width="27" class="No_gx'.$value['g_ball_4'].'"></td>' ;
-				$ball_5 ='<td width="27" class="No_gx'.$value['g_ball_5'].'"></td>' ;
+				//$week = GetWeekDay($value['g_date'],0);
+                $week = '-';
+
+				$ball_1 ='<span class="number num'.$value['g_ball_1'].'"></span>' ;
+				$ball_2 ='<span class="number num'.$value['g_ball_2'].'"></span>' ;
+				$ball_3 ='<span class="number num'.$value['g_ball_3'].'"></span>' ;
+				$ball_4 ='<span class="number num'.$value['g_ball_4'].'"></span>' ;
+				$ball_5 ='<span class="number num'.$value['g_ball_5'].'"></span>' ;
 				
 				$ball_count = $value['g_ball_1'] + $value['g_ball_2'] + $value['g_ball_3'] + $value['g_ball_4'] + $value['g_ball_5'];
 				$Ball = $ball_1.$ball_2.$ball_3.$ball_4.$ball_5;
@@ -462,16 +476,16 @@ function numberList($gameType, $id=false)
 		
 			foreach ($result as $key=>$value) {
 				$week = GetWeekDay($value['g_date'],0);
-	            $ball_1 ='<td width="27" class="No_'.$value['g_ball_1'].'"></td>' ;
-				$ball_2 ='<td width="27" class="No_'.$value['g_ball_2'].'"></td>' ;
-				$ball_3 ='<td width="27" class="No_'.$value['g_ball_3'].'"></td>' ;
-				$ball_4 ='<td width="27" class="No_'.$value['g_ball_4'].'"></td>' ;
-				$ball_5 ='<td width="27" class="No_'.$value['g_ball_5'].'"></td>' ;
-				$ball_6 ='<td width="27" class="No_'.$value['g_ball_6'].'"></td>' ;
-				$ball_7 ='<td width="27" class="No_'.$value['g_ball_7'].'"></td>' ;
-				$ball_8 ='<td width="27" class="No_'.$value['g_ball_8'].'"></td>' ;
-				$ball_9 ='<td width="27" class="No_'.$value['g_ball_9'].'"></td>' ;
-				$ball_10 ='<td width="27" class="No_'.$value['g_ball_10'].'"></td>' ;
+	            $ball_1 ='<span class="number num'.$value['g_ball_1'].'"></span>' ;
+				$ball_2 ='<span class="number num'.$value['g_ball_2'].'"></span>' ;
+				$ball_3 ='<span class="number num'.$value['g_ball_3'].'"></span>' ;
+				$ball_4 ='<span class="number num'.$value['g_ball_4'].'"></span>' ;
+				$ball_5 ='<span class="number num'.$value['g_ball_5'].'"></span>' ;
+				$ball_6 ='<span class="number num'.$value['g_ball_6'].'"></span>' ;
+				$ball_7 ='<span class="number num'.$value['g_ball_7'].'"></span>' ;
+				$ball_8 ='<span class="number num'.$value['g_ball_8'].'"></span>' ;
+				$ball_9 ='<span class="number num'.$value['g_ball_9'].'"></span>' ;
+				$ball_10 ='<span class="number num'.$value['g_ball_10'].'"></span>' ;
 				$ball_count = $value['g_ball_1'] + $value['g_ball_2'] ;
 				$Ball = $ball_1.$ball_2.$ball_3.$ball_4.$ball_5.$ball_6.$ball_7.$ball_8.$ball_9.$ball_10;
 				$numberList[$key][0] = $value['g_id'];
@@ -504,15 +518,16 @@ function numberList($gameType, $id=false)
 		{
 		
 			foreach ($result as $key=>$value) {
-				$week = GetWeekDay($value['g_date'],0);
-	            $ball_1 ='<div class="nc'.$value['g_ball_1'].'">'.$value['g_ball_1'].'</div>' ;
-				$ball_2 ='<div class="nc'.$value['g_ball_2'].'">'.$value['g_ball_2'].'</div>' ;
-				$ball_3 ='<div class="nc'.$value['g_ball_3'].'">'.$value['g_ball_3'].'</div>' ;
-				$ball_4 ='<div class="nc'.$value['g_ball_4'].'">'.$value['g_ball_4'].'</div>' ;
-				$ball_5 ='<div class="nc'.$value['g_ball_5'].'">'.$value['g_ball_5'].'</div>' ;
-				$ball_6 ='<div class="nc'.$value['g_ball_6'].'">'.$value['g_ball_6'].'</div>' ;
-				$ball_7 ='<div class="nc'.$value['g_ball_7'].'">'.$value['g_ball_7'].'</div>' ;
-				$ball_8 ='<div class="nc'.$value['g_ball_8'].'">'.$value['g_ball_8'].'</div>' ;
+				//$week = GetWeekDay($value['g_date'],0);
+                $week == '-';
+	            $ball_1 ='<span class="number num'.$value['g_ball_1'].'">'.$value['g_ball_1'].'</span>' ;
+				$ball_2 ='<span class="number num'.$value['g_ball_2'].'">'.$value['g_ball_2'].'</span>' ;
+				$ball_3 ='<span class="number num'.$value['g_ball_3'].'">'.$value['g_ball_3'].'</span>' ;
+				$ball_4 ='<span class="number num'.$value['g_ball_4'].'">'.$value['g_ball_4'].'</span>' ;
+				$ball_5 ='<span class="number num'.$value['g_ball_5'].'">'.$value['g_ball_5'].'</span>' ;
+				$ball_6 ='<span class="number num'.$value['g_ball_6'].'">'.$value['g_ball_6'].'</span>' ;
+				$ball_7 ='<span class="number num'.$value['g_ball_7'].'">'.$value['g_ball_7'].'</span>' ;
+				$ball_8 ='<span class="number num'.$value['g_ball_8'].'">'.$value['g_ball_8'].'</span>' ;
 				$ball_count = $value['g_ball_1'] + $value['g_ball_2'] + $value['g_ball_3'] + $value['g_ball_4'] + $value['g_ball_5'] + 
 				$value['g_ball_6'] + $value['g_ball_7'] + $value['g_ball_8'];
 				$Ball = $ball_1.$ball_2.$ball_3.$ball_4.$ball_5.$ball_6.$ball_7.$ball_8;
@@ -628,9 +643,9 @@ function numberList($gameType, $id=false)
 		{
 			foreach ($result as $key=>$value) {
 				$week = GetWeekDay($value['g_date'],0);
-	            $ball_1 ='<td width="27" class="NO_JS_'.$value['g_ball_1'].'"></td>' ;
-				$ball_2 ='<td width="27" class="NO_JS_'.$value['g_ball_2'].'"></td>' ;
-				$ball_3 ='<td width="27" class="NO_JS_'.$value['g_ball_3'].'"></td>' ; 
+	            $ball_1 ='<span class="number num'.$value['g_ball_1'].'"></span>' ;
+				$ball_2 ='<span class="number num'.$value['g_ball_2'].'"></span>' ;
+				$ball_3 ='<span class="number num'.$value['g_ball_3'].'"></span>' ;
 				$Ball = $ball_1.$ball_2.$ball_3;
 				$ball_count = $value['g_ball_1'] + $value['g_ball_2'] + $value['g_ball_3'];
 				$numberList[$key][0] = $value['g_id'];
@@ -655,11 +670,11 @@ function numberList($gameType, $id=false)
 		{
 			foreach ($result as $key=>$value) {
 				$week = GetWeekDay($value['g_date'],0);
-	            $ball_1 ='<td width="27" class="No_cq'.$value['g_ball_1'].'"></td>' ;
-				$ball_2 ='<td width="27" class="No_cq'.$value['g_ball_2'].'"></td>' ;
-				$ball_3 ='<td width="27" class="No_cq'.$value['g_ball_3'].'"></td>' ;
-				$ball_4 ='<td width="27" class="No_cq'.$value['g_ball_4'].'"></td>' ;
-				$ball_5 ='<td width="27" class="No_cq'.$value['g_ball_5'].'"></td>' ;
+	            $ball_1 ='<span class="number num'.$value['g_ball_1'].'"></span>' ;
+				$ball_2 ='<span class="number num'.$value['g_ball_2'].'"></span>' ;
+				$ball_3 ='<span class="number num'.$value['g_ball_3'].'"></span>' ;
+				$ball_4 ='<span class="number num'.$value['g_ball_4'].'"></span>' ;
+				$ball_5 ='<span class="number num'.$value['g_ball_5'].'"></span>' ;
 				$Ball = $ball_1.$ball_2.$ball_3.$ball_4.$ball_5;
 				$ball_count = $value['g_ball_1'] + $value['g_ball_2'] + $value['g_ball_3'] + $value['g_ball_4'] + $value['g_ball_5'];
 				$numberList[$key][0] = $value['g_id'];
@@ -679,7 +694,8 @@ function numberList($gameType, $id=false)
 			}
 		}
 	}
-	$numberList['page'] = $page;
+    //此处不需要分页了。by wjl
+	//$numberList['page'] = $page;
 	return $numberList;
 }
 ?>

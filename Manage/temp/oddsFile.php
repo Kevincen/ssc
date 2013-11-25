@@ -119,7 +119,47 @@ switch ($g) {
 <div id="layout" class="container" style="height: 558px;">
 <!--bet content-->
 <div dom="main_nav" class="main-content1" style="display: block;">
-    <?php include_once ROOT_PATH . 'Manage/temp/oddsTop.php'; ?>
+    <div id="supervision_nav" class="supervision_nav sv_nav_klc klc">
+        <?php
+        $tid = 1;
+        include_once "./oddsTopBar.php"
+        ?>
+        <ul>
+            <li class="red '.(isset($g)?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php')" id="sumDT">
+                正码-总和
+            </li>
+            <li class="red '.($types != '第一球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=1')"
+                id="ball1">第一球
+            </li>
+            <li class="red '.($types != '第二球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=2')"
+                id="ball2">第二球
+            </li>
+            <li class="red '.($types != '第三球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=3')"
+                id="ball3">第三球
+            </li>
+            <li class="red '.($types != '第四球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=4')"
+                id="ball4">第四球
+            </li>
+            <li class="red '.($types != '第五球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=5')"
+                id="ball5">第五球
+            </li>
+            <li class="red '.($types != '第六球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=6')"
+                id="ball6">第六球
+            </li>
+            <li class="red '.($types != '第七球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=7')"
+                id="ball7">第七球
+            </li>
+            <li class="red '.($types != '第八球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=8')"
+                id="ball8">第八球
+            </li>
+            <li class="red '.($types != '连码'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile_LM.php?cid=10')"
+                id="evenCode">连码
+            </li>
+            <li class="red '.($types != '账单'?'':'active').'" onclick="Actfor_load('/Manage/temp/Reckoning.php?tid=1')"
+                id="lizhangdan">账单
+            </li>
+        </ul>
+    </div>
 </div>
 <div dom="main" class="main-content1" style="display: block;">
 <div id="supervision" class="supervision klc supervision-klc">

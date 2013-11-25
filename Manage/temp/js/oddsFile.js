@@ -13,7 +13,6 @@ $(document).ready(function (){
     if (url != undefined) {
         url = url.split("=")[1];
     }
-    alert(url);
 	if (url !=10) setList ();
 	EstateTime = $("#EstateTime").val();
 	NumberHtml = $("#number");

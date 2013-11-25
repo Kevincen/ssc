@@ -11,7 +11,6 @@ if (isset($Users[0]['g_lock_5']) && $Users[0]['g_lock_5'] != 1) {
 $db = new DB();
 $UserModel = new UserModel();
 global $Users;
-
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     //報表類型 1交收報表  0分類報表 暫時無法合併
     if ($_GET['ReportType'] == 0) {
@@ -199,12 +198,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $CentetArr = SumCrystalsfen($CentetArr);
 
     }
-
-
 }
-
-
-
+var_dump($CentetArr);
+exit;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -350,8 +346,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     ?>
                     -&gt;
                     <?php echo$CentetArr['userList']['s_rank']?>
-                    [<span class="bluer"><?php echo$CentetArr['userList']['s_f_name']?><span>]
-                            <?php $CentetArr['userList']['s_name'] ?><a href="Report_Center.php" id="getBack">返回</a></p>
+                    [<span class="bluer"><?php echo $Users[0]['g_name']?><span>]
+                            <?php echo $Users[0]['g_f_name'] ?><a href="Report_Center.php" id="getBack">返回</a></p>
             </div>
             <!--  总账分类   大股东  表格 -->
             <div id="fbigShareholder-reportForm" class="reportForm-table">
@@ -359,7 +355,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     <thead>
                     <tr>
                         <th>序号</th>
-                        <th>股东</th>
+                        <th><?php
+                            echo $Users[0]['g_Lnid'][1];
+                            ?></th>
                         <th>名称</th>
                         <th>注数</th>
                         <th>下注金额</th>
@@ -389,6 +387,26 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     } else {
                     for ($i=0; $i<count($CentetArr['cryList']); $i++){
                         ?>
+                        <tr>
+                            <td><?php echo $i //序号?></td>
+                            <td><?php echo $CentetArr['crylist'][$i]['g_f_name'] //名称?></td>
+                            <td><?php echo$CentetArr['cryList'][$i]['s_count']//注数?></td>
+                            <td>
+                                <?php
+                                if(($CentetArr['cryList'][$i]['cry'][0]['g_mumber_type'] == 2 && $lid == $xid) || $CentetArr['cryList'][$i]['g_login_id']==9){
+                                    $name = $CentetArr['cryList'][$i]['g_name'];
+                                    ?>
+                                    <a href="javascript:GoCryPop('<?php echo $name?>','1')" class="tt">
+                                        <?php echo is_Number2($CentetArr['cryList'][$i]['s_countMoney'], 1)?>
+                                    </a>
+                                <?php } else{
+                                    echo is_Number2($CentetArr['cryList'][$i]['s_countMoney'], 1);
+                                } //有效金额?>
+                            </td>
+                            <td>
+                                <?php echo is_Number2($CentetArr['cryList'][$i]['s_memberWin'], 1)//会员盈亏?>
+                            </td>
+                        </tr>
 
                     <?php
                         } //forend

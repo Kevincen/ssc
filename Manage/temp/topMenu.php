@@ -18,7 +18,7 @@ $account_url = "Actfor.php";
 //现场监督默认地址
 $xcjd_url = "oddsFile.php";
 //收付统计
-$bill_url = 'Reckoning.php';
+$bill_url = 'benefit_statics.php';
 //报表
 $digram_url = "Report_Center.php";
 //开奖结果
