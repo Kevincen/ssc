@@ -975,14 +975,14 @@ class UserReportInfo
 		{
 			switch ($this->cid)
 			{
-				case '1': $p=35; $g_id = "Ball_1"; break;
-				case '2': $p=35; $g_id = "Ball_2"; break;
-				case '3': $p=35; $g_id = "Ball_3"; break;
-				case '4': $p=35; $g_id = "Ball_4"; break;
-				case '5': $p=35; $g_id = "Ball_5"; break;
-				case '6': $p=35; $g_id = "Ball_6"; break;
-				case '7': $p=35; $g_id = "Ball_7"; break;
-				case '8': $p=35; $g_id = "Ball_8"; break;
+				case '1': $p=37; $g_id = "Ball_1"; break;
+				case '2': $p=37; $g_id = "Ball_2"; break;
+				case '3': $p=37; $g_id = "Ball_3"; break;
+				case '4': $p=37; $g_id = "Ball_4"; break;
+				case '5': $p=37; $g_id = "Ball_5"; break;
+				case '6': $p=37; $g_id = "Ball_6"; break;
+				case '7': $p=37; $g_id = "Ball_7"; break;
+				case '8': $p=37; $g_id = "Ball_8"; break;
 				case '9': $p=8; $g_id = "Ball_9"; break;
 				case '10': $p=8; $g_id = "Ball_10"; break;
 				default:$p = $g_id = null;
