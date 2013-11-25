@@ -12,7 +12,7 @@ $db = new DB();
 $UserModel = new UserModel();
 global $Users;
 
-if ($_SERVER["REQUEST_METHOD"] == "GET")
+if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
 	//報表類型 1交收報表  0分類報表 暫時無法合併
 	if ($_GET['ReportType']==0) 
@@ -203,9 +203,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 	
 	
 }
-
-
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php echo $oncontextmenu?>>
