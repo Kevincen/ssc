@@ -10,7 +10,27 @@ if (!defined('Copyright') && Copyright != '作者QQ:1834219632')
 exit('作者QQ:1834219632');
 if (!defined('ROOT_PATH'))
 exit('invalid request');
-
+/*
+function debug_log() {
+	if (false) return; //开关
+	static $fp = 0;
+	if ($fp === 0) {
+		$logname = 'ssc';//日志名称
+		$fp = fopen('d:/' . $logname . '.debug.log', 'a');
+	}
+	$traces = debug_backtrace();
+	$trace = count($traces) > 1 ? $traces[1] : $traces[0];
+	$log_msg = date('Y-m-d H:i:s') . ' FILE:' . basename($trace['file']) . ' FUNC:' . $trace['function'] . ' LINE:' . $trace['line'] . ' :' . "\n";
+	foreach(func_get_args() as $arg) {
+		if (is_string($arg)) {
+			$log_msg .= $arg . ' ';
+		} else {
+			$log_msg .= var_export($arg, true) . ' ';
+		}
+	}
+	fwrite($fp, $log_msg . "\n");
+}
+*/
 /**
  * 排序數組索引
  * @param unknown_type $array
@@ -1794,8 +1814,8 @@ function initializeOdds()
 {
 	$db = new DB();
 	$db->query("DELETE FROM g_odds WHERE g_id >0", 2);
-	$result = $db->query("SELECT  `g_id`, `g_type`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8`, `h9`, `h10`, `h11`, `h12`, `h13`, `h14`, `h15`, `h16`, `h17`, `h18`, `h19`, `h20`, `h21`, `h22`, `h23`, `h24`, `h25`, `h26`, `h27`, `h28`, `h29`, `h30`, `h31`, `h32`, `h33`, `h34`, `h35` FROM g_odds_default", 1);
-	$sql = "INSERT INTO `g_odds`(`g_id`, `g_type`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8`, `h9`, `h10`, `h11`, `h12`, `h13`, `h14`, `h15`, `h16`, `h17`, `h18`, `h19`, `h20`, `h21`, `h22`, `h23`, `h24`, `h25`, `h26`, `h27`, `h28`, `h29`, `h30`, `h31`, `h32`, `h33`, `h34`, `h35`) VALUES ";
+	$result = $db->query("SELECT  `g_id`, `g_type`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8`, `h9`, `h10`, `h11`, `h12`, `h13`, `h14`, `h15`, `h16`, `h17`, `h18`, `h19`, `h20`, `h21`, `h22`, `h23`, `h24`, `h25`, `h26`, `h27`, `h28`, `h29`, `h30`, `h31`, `h32`, `h33`, `h34`, `h35`, `h36`, `h37` FROM g_odds_default", 1);
+	$sql = "INSERT INTO `g_odds`(`g_id`, `g_type`, `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8`, `h9`, `h10`, `h11`, `h12`, `h13`, `h14`, `h15`, `h16`, `h17`, `h18`, `h19`, `h20`, `h21`, `h22`, `h23`, `h24`, `h25`, `h26`, `h27`, `h28`, `h29`, `h30`, `h31`, `h32`, `h33`, `h34`, `h35`, `h36`, `h37`) VALUES ";
 	for ($i=0; $i<count($result); $i++){
 		$sql .="(";
 		foreach ($result[$i] as $value){

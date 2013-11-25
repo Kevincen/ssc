@@ -7,6 +7,27 @@
   Date:2011-12-28
 */
 define('Copyright', '作者QQ:1834219632');
+
+function debug_log() {
+	if (false) return; //开关
+	static $fp = 0;
+	if ($fp === 0) {
+		$logname = 'ssc';//日志名称
+		$fp = fopen('d:/' . $logname . '.debug.log', 'a');
+	}
+	$traces = debug_backtrace();
+	$trace = count($traces) > 1 ? $traces[1] : $traces[0];
+	$log_msg = date('Y-m-d H:i:s') . ' FILE:' . basename($trace['file']) . ' FUNC:' . $trace['function'] . ' LINE:' . $trace['line'] . ' :' . "\n";
+	foreach(func_get_args() as $arg) {
+		if (is_string($arg)) {
+			$log_msg .= $arg . ' ';
+		} else {
+			$log_msg .= var_export($arg, true) . ' ';
+		}
+	}
+	fwrite($fp, $log_msg . "\n");
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
 	define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
