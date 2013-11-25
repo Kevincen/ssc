@@ -82,7 +82,7 @@ $iscash = $user[0][0];
                                     </div>
                                 </div> | 
                                 <span><a href="javascript:void(0);" id="linkChange" title="线路选择">线路选择</a></span> | 
-                                <span><a href="javascript:void(0);" class="w2em" id="logout" title="退出" >退出</a></span>
+                                <span><a href="quit.php" class="w2em" id="logout" title="退出" target="_parent" >退出</a></span>
                             </div>                            
                         </td>
                       </tr>

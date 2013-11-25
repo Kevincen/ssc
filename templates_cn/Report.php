@@ -1,23 +1,23 @@
 <?php
 define('Copyright', '作者QQ:1834219632');
-define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
-include_once ROOT_PATH.'function/cheCookie.php';
+define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
+include_once ROOT_PATH . 'function/cheCookie.php';
 global $user;
 $db = new DB();
-if(!isset($_GET['type']) || $_GET['type']==0)
-	$g_type=" ";
-	if($_GET['type']==1)
-	$g_type=" and g_type='廣東快樂十分' ";
-	if($_GET['type']==2)
-	$g_type=" and g_type='重慶時時彩' ";
-	if($_GET['type']==3)
-	$g_type=" and g_type='廣西快樂十分' ";
-	if($_GET['type']==6)
-	$g_type=" and g_type='北京赛车PK10' ";
-	if($_GET['type']==5)
-	$g_type=" and g_type='幸运农场' ";
-	if($_GET['type']==7)
-	$g_type=" and g_type='六合彩' ";
+if (!isset($_GET['type']) || $_GET['type'] == 0)
+    $g_type = " ";
+if ($_GET['type'] == 1)
+    $g_type = " and g_type='廣東快樂十分' ";
+if ($_GET['type'] == 2)
+    $g_type = " and g_type='重慶時時彩' ";
+if ($_GET['type'] == 3)
+    $g_type = " and g_type='廣西快樂十分' ";
+if ($_GET['type'] == 6)
+    $g_type = " and g_type='北京赛车PK10' ";
+if ($_GET['type'] == 5)
+    $g_type = " and g_type='幸运农场' ";
+if ($_GET['type'] == 7)
+    $g_type = " and g_type='六合彩' ";
 $total = $db->query("SELECT `g_id` FROM `g_zhudan` WHERE `g_nid` = '{$user[0]['g_name']}' AND `g_win` is null  {$g_type}", 3);
 $pageNum = 15;
 $page = new Page($total, $pageNum);
@@ -28,118 +28,111 @@ $results = $db->query($sql1, 1);
 $countBNum = 0;
 $countTNum = 0;
 $countSNum = 0;
-if ($results)
-{
-	for ($i=0; $i<count($results); $i++)
-	{
-		$countMoney = sumCountMoney ($user, $results[$i], true);
-		$countBNum += $countMoney['Num'];
-		$countTNum += $countMoney['Money'];
-		$countSNum += $countMoney['Win'];
-	}
+if ($results) {
+    for ($i = 0; $i < count($results); $i++) {
+        $countMoney = sumCountMoney($user, $results[$i], true);
+        $countBNum += $countMoney['Num'];
+        $countTNum += $countMoney['Money'];
+        $countSNum += $countMoney['Win'];
+    }
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"  >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/left.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/sc.js"></script>
-<script>
-function typechang($this){
-	if ($this.value == 1){
-		window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=1";
-	} else if ($this.value == 3){
-		window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=3";
-	} else if($this.value == 4){
-		window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=4";
-	}else  if($this.value == 2){
-		window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=2";
-	}else if($this.value == 5){
-		window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=5";
-	}else  if($this.value == 6){
-		window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=6";
-		}else  if($this.value == 7){
-		window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=7";
-		}else  if($this.value == 9){
-		window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=9";
-	}else{
-		window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=0";
-	}
-}
-</script>
-<title></title>
-</head>
-<body>
-<div style="display:none">
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "%68%6D%2E%62%61%69%64%75%2E%63%6F%6D/h.js%3F9898c9fdab97319b23cd83299998e52e' type='text/javascript'%3E%3C/script%3E"));
-</script>
-</div>
-<select id="type" onChange="typechang(this)" style="color: #FF0000;font-weight:bold;margin-top:15px;">
-                        <option value="0" <?php echo $_GET['type']==0? 'selected':''?>>全部</option>
-						<option value="1"  <?php  echo $_GET['type']==1? 'selected':''?>>廣東快樂十分</option>
-                         <option value="2" <?php  echo $_GET['type']==2? 'selected':''?>>重慶時時彩</option>
-						 <!-- <option value="3" <?php  echo $_GET['type']==3? 'selected':''?>>廣西快樂十分</option>-->
-						   <option value="6" <?php echo $_GET['type']==6? 'selected':''?>>北京赛车PK10</option>
-						<option value="9" <?php echo $_GET['type']==9? 'selected':''?>>江苏快3</option>
-						    <option value="5" <?php echo $_GET['type']==5? 'selected':''?>>幸运农场</option>
-						   <!-- <option value="7" <?php echo $_GET['type']==7? 'selected':''?>>六合彩</option>-->
-                	</select>
-<table border="0" cellpadding="0" cellspacing="1" class="t_list" width="700"  >
-        <tr class="t_list_caption_1">
-            <td width="150">註單號/時間</td>
-            <td width="120">下註類型</td>
-            <td width="290">註單明細</td>
-            <td>下註金額</td>
-            <td>可贏金額</td>
-        </tr>
-        <?php 
-        if (count($result) <1) {echo '<tr class="t_td_text" align="center"><td colspan="5">當前沒有任何記錄</td></tr>';} 
-        else {for ($i=0; $i<count($result); $i++) {
-        $SumNum = sumCountMoney ($user, $result[$i], true);
-        if ($result[$i]['g_mingxi_1_str'] == null) {
-        	if ($result[$i]['g_mingxi_1'] == '總和、龍虎' || $result[$i]['g_mingxi_1'] == '總和、龍虎和'){
-        		$n = $result[$i]['g_mingxi_2'];
-        	}else {
-        		$n = $result[$i]['g_mingxi_1'].'『'.$result[$i]['g_mingxi_2'].'』';
-        	}
-        	//$n = $result[$i]['g_mingxi_1'] == '總和、龍虎' ? $result[$i]['g_mingxi_2'] : $result[$i]['g_mingxi_1'].'『'.$result[$i]['g_mingxi_2'].'』';
-        	$html = '<font color="#0066FF">'.$n.'</font>@ <font color="red"><b>'.$result[$i]['g_odds'].'</b></font>';
-        } else {
-        	$_xMoney = $result[$i]['g_mingxi_1_str'] * $result[$i]['g_jiner'];
-        	$SumNum['Money'] = '<font color="#009933">'.$result[$i]['g_mingxi_1_str'].'</font> x <font color="#0066FF">'.$result[$i]['g_jiner'].'</font><br />'.$_xMoney;
-        	$html = '<font color="#0066FF">'.$result[$i]['g_mingxi_1'].'</font>@ <font color="red"><b>'.$result[$i]['g_odds'].'</b></font><br />'.
-        				'<span style="line-height:23px">復式  『 '.$result[$i]['g_mingxi_1_str'].' 組 』</span><br/><span>'.$result[$i]['g_mingxi_2'].'</span>';
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="js/sc.js"></script>
+    <script>
+        function typechang($this) {
+            if ($this.value == 1) {
+                window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=1";
+            } else if ($this.value == 3) {
+                window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=3";
+            } else if ($this.value == 4) {
+                window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=4";
+            } else if ($this.value == 2) {
+                window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=2";
+            } else if ($this.value == 5) {
+                window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=5";
+            } else if ($this.value == 6) {
+                window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=6";
+            } else if ($this.value == 7) {
+                window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=7";
+            } else if ($this.value == 9) {
+                window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=9";
+            } else {
+                window.parent.frames.mainFrame.location.href = "/templates/Report.php?type=0";
+            }
         }
-        ?>
-        <tr class="t_td_text" align="center" onMouseOver="this.style.backgroundColor='#FFFFA2'" onMouseOut="this.style.backgroundColor=''">
-        	<td>
-        	<span style="letter-spacing:1px; font-size:104%;"><?php echo$result[$i]['g_id']?>#</span>
-        	<br />
-        	<span style="font-size:104%;">
-        	<?php 
-        	$a = explode('-', $result[$i]['g_date']);
-        	echo $a[1].'-'.$a[2].' '.$a[3].' '.GetWeekDay($result[$i]['g_date'], 0)
-        	?></span>
-        	</td>
-        	<td><?php echo$result[$i]['g_type']?><br /><font color="#009933"><?php echo$result[$i]['g_qishu']?>期</font></td>
-        	<td><?php echo$html?></td>
-        	<td><?php echo $SumNum['Money']?></td>
-        	<td><?php echo is_Number($SumNum['Win'], 1)?></td>
-        </tr>
-        <?php }}?>
-        <tr align="center" class="t_td_odd_2">
-        	<td></td>
-        	<td><b>閤計</b></td>
-            <td><b><?php echo$countBNum?>筆</b></td>
-            <td><b><?php echo number_format($countTNum, 1,".","")?></b></td>
-            <td><b><?php echo number_format($countSNum, 1,".","")?></b></td>
-        </tr>
-        <tr class="t_list_caption_1">
-        	<td colspan="5" align="right"><?php echo $page->fpage(array(0,1,2,3,4,5,6,7))?></td>
-        </tr>
-</table>
+    </script>
+    <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
+    <title></title>
+</head>
+<body class="skin_brown">
+<div style="display:none">
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "%68%6D%2E%62%61%69%64%75%2E%63%6F%6D/h.js%3F9898c9fdab97319b23cd83299998e52e' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+<div id="rightLoader" dom="right" style="">
+    <div class="page status status-module" id="status" tmp="status">
+        <div style="height:4px;visibility:hidden;font-size:0"></div>
+        <ul class="of-h status-contain hidden">
+            <li class="float-l status-on status-off" id="ssc-status">重庆时时彩</li>
+            <li class="float-l status-on" id="klc-status" current="1">广东快乐十分</li>
+            <li class="float-l status-on status-off" id="pk10-status" current="2">北京赛车</li>
+        </ul>
+        <div class="status-xg"></div>
+        <div class="fLeft">
+            <div class="elem_detailTabs" id="radio_se"><input type="radio" checked="&quot;checked&quot;" id="su"
+                                                              name="sl" value="1" \=""><label for="su" class="label">成功明细</label><input
+                    type="radio" id="lo" name="sl" value="1"><label for="lo" class="label">失败明细</label></div>
+        </div>
+        <!--  <div class="fRight"><div class="elem_pager" id="status_pager"><a href="javascript:void(0)" id="first" class="first" title="第一页">&#xf051;</a><a href="javascript:void(0)" id="previous" class="previous" title="上一页">&#xe001;</a><span class="other">第<input type="text" value="1" id="current_page" class="pageindex">页</span><span class="other">共<span id="total_page"></span>页</span><a href="javascript:void(0)" id="next" class="next" title="下一页">&#xe000;</a><a href="javascript:void(0)" id="last" class="last" title="末页">&#xf051;</a></div></div> -->
+        <div class="clear"></div>
+        <div class="dataArea">
+            <table class="t1 tc h1 status" id="result_tb" width="100%">
+                <thead>
+                <tr>
+                    <th>注单号</th>
+                    <th>时间</th>
+                    <th>类型</th>
+                    <th>玩法</th>
+                    <th>盘口</th>
+                    <th>下注金额</th>
+                    <th>退水(%)</th>
+                    <th>可赢金额</th>
+                    <th>状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="">
+                    <td colspan="9">暂无数据!</td>
+                </tr>
+                </tbody>
+                <tfoot class="bg_g1">
+                <!-- <tr id="s_total" class="total bold"><td></td><td></td><td></td><td></td><td name="title"><strong class="blue">小计</strong></td><td name="t1"></td><td></td><td name="t2"></td><td name="t3"></td></tr> -->
+                <tr id="s_alltotal" class="alltotal bold">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td name="title"><strong class="blue">总计</strong></td>
+                    <td name="t1">0</td>
+                    <td></td>
+                    <td name="t2">0</td>
+                    <td name="t3"></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <textarea id="play_detail" style="display:none">&lt;div &gt;&lt;div class="play-title"&gt;&lt;div class="L"&gt;{play}&lt;/div&gt;&lt;div
+            class="R"&gt;组合数:&lt;span class='comb'&gt;{combs}&lt;/span&gt;总金额:&lt;span class='money'&gt;{money}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div
+            class="dt"&gt;组合清单&lt;/div&gt;&lt;div class="play-detail"&gt;{detail}&lt;/div&gt;&lt;/div&gt;</textarea>
+    </div>
+</div>
 </body>
 </html>
