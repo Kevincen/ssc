@@ -62,7 +62,7 @@ $iscash = $user[0][0];
                                 <span><a href="repore.php" target="mainFrame" title="账户历史">账户历史</a></span> |                                
                                 <span><a href="result.php" target="mainFrame" title="开奖结果">开奖结果</a></span> | 
                                 <span><a href="topMenu.php" target="mainFrame" title="个人资讯">个人资讯</a></span> | 
-                                <span><a href="/templates_r/rule.html" target="mainFrame" title="游戏规则">游戏规则</a></span> | 
+                                <span><a href="/templates_r/rule.php" target="mainFrame" title="游戏规则" id="game_rule">游戏规则</a></span> |
                                 <span><a href="upPwd.php" target="mainFrame" title="修改密码">修改密码</a></span> |                                 
                                 <?php
                                 if($iscash)

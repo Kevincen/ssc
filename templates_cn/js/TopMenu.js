@@ -4,6 +4,8 @@ var CacheCI = new Array();
 
 function SelectType(LT) {
 	s_LT=LT;
+    //by wjl for gamerule changing
+    document.getElementById('game_rule').src="/templetes_r/rule.php?tid=" + s_LT;
 	if (LT==1){
 		document.getElementById("bST_1").className="bST_1 bST_1_s";
 		document.getElementById("bST_2").className="bST_1";
@@ -15,7 +17,7 @@ function SelectType(LT) {
 		document.getElementById("bST_9").className="bST_1";
 		//document.getElementById("body_backdrop").className="backdrop_1";
 		//document.getElementById("Type_List").innerHTML='<a href="sGame_sm.php?g=g9" target="mainFrame">两面盘</a>&nbsp;|&nbsp;<a href="sGame_sz.php?g=g9" target="mainFrame">数字盘</a>&nbsp;|&nbsp;<a href="sGame.php?g=g1"  target="mainFrame">第一球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g2"  target="mainFrame">第二球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g3"  target="mainFrame">第三球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g4"  target="mainFrame">第四球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g5"  target="mainFrame">第五球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g6"  target="mainFrame">第六球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g7"  target="mainFrame">第七球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g8"  target="mainFrame">第八球</a>&nbsp;|&nbsp;<a  href="sGame_l.php?g=k1"  target="mainFrame">总和、龙虎</a>&nbsp;|&nbsp;<a  href="sGame_k.php?g=k2"  target="mainFrame">连码</a>';
-        document.getElementById("Type_List").innerHTML='<a href="sGame_sm.php?g=g9" target="mainFrame" class="red">两面盘</a>&nbsp;|&nbsp;<a href="sGame_sz.php?g=g9" target="mainFrame">数字盘</a>&nbsp;|&nbsp;<a href="sGame.php?g=g1"  target="mainFrame">第一球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g2"  target="mainFrame">第二球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g3"  target="mainFrame">第三球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g4"  target="mainFrame">第四球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g5"  target="mainFrame">第五球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g6"  target="mainFrame">第六球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g7"  target="mainFrame">第七球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g8"  target="mainFrame">第八球</a>&nbsp;|&nbsp;<a  href="sGame_l.php?g=k1"  target="mainFrame">总和、龙虎</a>&nbsp;|&nbsp;<a  href="sGame_k.php?g=k2"  target="mainFrame">连码</a>';
+        document.getElementById("Type_List").innerHTML='<a href="sGame_sm.php?g=g9" target="mainFrame" class="red">两面盘</a>&nbsp;|&nbsp;<a href="sGame.php?g=g1"  target="mainFrame">第一球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g2"  target="mainFrame">第二球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g3"  target="mainFrame">第三球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g4"  target="mainFrame">第四球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g5"  target="mainFrame">第五球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g6"  target="mainFrame">第六球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g7"  target="mainFrame">第七球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g8"  target="mainFrame">第八球</a>&nbsp;|&nbsp;<a  href="sGame_l.php?g=k1"  target="mainFrame">正码</a>&nbsp;|&nbsp;<a  href="sGame_k.php?g=k2"  target="mainFrame">连码</a>';
 		parent.frames["mainFrame"].location="sGame_sm.php?g=g9";
 	} else if (LT==2){
 		document.getElementById("bST_1").className="bST_1";

@@ -1,4 +1,5 @@
-<?php 
+<?php
+//快乐十分前台
 define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 

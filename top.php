@@ -42,7 +42,7 @@ if ($text){
 			<td height="43">
 				<table width="716" cellspacing="0" cellpadding="0" border="0">
 				  <tbody><tr>
-					<td align="right"><a class="T_a" href="topMenu.php" target="mainFrame" title="信用資料">信用資料</a> | <a class="T_a"  href="upPwd.php" target="mainFrame" title="修改密碼">修改密碼</a> | <a class="T_a"  href="report.php" target="mainFrame" title="下注明細">下註明細</a> | <a class="T_a"  href="repore.php" target="mainFrame" title="結算報表">結算報表</a> | <a class="T_a"  href="result.php" target="mainFrame" title="歷史開獎">歷史開獎</a> | <a class="T_a"   href="/templates_r/rule.html" class="g" target="mainFrame" title="規則說明">規則</a> | <a style="color:#baff00"  href="quit.php" class="g" title="安全退出">退出</a></td>
+					<td align="right"><a class="T_a" href="topMenu.php" target="mainFrame" title="信用資料">信用資料</a> | <a class="T_a"  href="upPwd.php" target="mainFrame" title="修改密碼">修改密碼</a> | <a class="T_a"  href="report.php" target="mainFrame" title="下注明細">下註明細</a> | <a class="T_a"  href="repore.php" target="mainFrame" title="結算報表">結算報表</a> | <a class="T_a"  href="result.php" target="mainFrame" title="歷史開獎">歷史開獎</a> | <a class="T_a"   href="/templates_r/rule.php" class="g" target="mainFrame" title="規則說明">規則</a> | <a style="color:#baff00"  href="quit.php" class="g" title="安全退出">退出</a></td>
 				  </tr>
 				</tbody></table>
 			</td>

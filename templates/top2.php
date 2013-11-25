@@ -66,7 +66,7 @@ function gamechang($this){
             <div onmouseover="style.background='url(images/But_S.jpg)';style.backgroundPosition='454px 0px';"  onmouseout="style.background='url()';"><a href="report.php" target="mainFrame" title="下注明細"></a></div>
             <div onmouseover="style.background='url(images/But_S.jpg)';style.backgroundPosition='352px 0px';"  onmouseout="style.background='url()';"><a href="repore.php" target="mainFrame" title="結算報表"></a></div>
             <div onmouseover="style.background='url(images/But_S.jpg)';style.backgroundPosition='250px 0px';"  onmouseout="style.background='url()';"><a href="result.php" target="mainFrame" title="歷史開獎"></a></div>
-            <div class="j"   onmouseover="style.background='url(images/But_S.jpg)';style.backgroundPosition='148px 0px';"  onmouseout="style.background='url()';"><a href="/templates_r/rule.html" class="g" target="mainFrame" title="規則說明"></a></div>
+            <div class="j"   onmouseover="style.background='url(images/But_S.jpg)';style.backgroundPosition='148px 0px';"  onmouseout="style.background='url()';"><a href="/templates_r/rule.php" class="g" target="mainFrame" title="規則說明"></a></div>
             <div class="j" onmouseover="style.background='url(images/But_S.jpg)';style.backgroundPosition='78px 0px';"  onmouseout="style.background='url()';"><a href="quit.php" class="g" title="安全退出"></a></div>
         </dd>
         <dd class="xm">

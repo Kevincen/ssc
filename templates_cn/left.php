@@ -13,7 +13,7 @@ $result1 = $db->query($sql, 1);
 //获取游戏的开放情况
 $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_game_lock,g_nc_game_lock,g_lhc_game_lock,g_xj_game_lock,g_jsk3_game_lock");
 
-		 
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"<?php echo $oncontextmenu?>>
@@ -101,7 +101,7 @@ $(function(){
   </tr>
   <tr>
     <td class="t_td_caption_1">信用额度：</td>
-    <td class="t_td_text">功能未做</td>
+    <td class="t_td_text"><?php echo is_Number($user[0]['g_money'])?></td>
   </tr>
   <tr>
     <td class="t_td_caption_1">信用余额：</td>
