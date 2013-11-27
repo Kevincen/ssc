@@ -159,18 +159,37 @@ setAction[4] = function(lock) { //輸入框
 };
 
 setAction[5] = function(lock) { //單選框
-	var rid = $("#ts"), rArr = [];
-	if (lock){
+	//var rid = $("#ts"), rArr = [];
+	if (lock)
+	{
 		for (var i=1; i<=8; i++) {
 			if (i == 2 || i == 5 ){
-				rArr.push('<td height="20"></td>');
-			}else{
-				rArr.push('<td height="20"><input type="radio" onclick="cRadio(this)" name="gg" value="t'+i+'" /></td>');
+				//rArr.push('');
+				//rArr.push('<td height="20"></td>');
+			}
+			else
+			{
+				$("#tt"+i).show();
+				//rArr.push('<td height="20"><input type="radio" onclick="cRadio(this)" name="gg" value="t'+i+'" /></td>');
 			}
 		}
-		rid.html(rArr.join(''));
-	} else {
-		rid.html("");
+		//rid.html(rArr.join(''));
+	} 
+	else 
+	{
+		for (var i=1; i<=8; i++) {
+			if (i == 2 || i == 5 ){
+				//rArr.push('');
+				//rArr.push('<td height="20"></td>');
+			}
+			else
+			{
+				$("#tt"+i).hide();
+				//rArr.push('<td height="20"><input type="radio" onclick="cRadio(this)" name="gg" value="t'+i+'" /></td>');
+			}
+		}
+		
+		//rid.html("");
 	}
 };
 

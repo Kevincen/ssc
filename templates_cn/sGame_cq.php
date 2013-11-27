@@ -83,266 +83,344 @@ div#row1 { float: left;  }
 div#row2 { }
 </style>
 </head>
-<body>
-<div style="display:none">
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "%68%6D%2E%62%61%69%64%75%2E%63%6F%6D/h.js%3F9898c9fdab97319b23cd83299998e52e' type='text/javascript'%3E%3C/script%3E"));
-</script>
-</div>
+<body class="<?php echo $_COOKIE['g_skin']; ?>">
 <input type="hidden" id="hiden" value="<?php echo $g?>" /> 
 <table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px">
-    <tr>
-        <td class="bolds wanfa">重慶時時彩</td>
-        <td><span style="color:#0033FF; font-weight:bold" id="tys"><?=$types?></span></td>
-        <td align="left" class="bolds" style="color:#FF0000"><div  id="row1" style="position: relative; filter: blur(add=1, direction=45, strength=3); FONT-FAMILY: Arial; height: 15px; color: red; font-size: 10pt;"> <span>今天輸贏：</span></div>
-            <div id="row2"><span id="sy" style="font-size:14px;position:relative; top:-2px">0</span></div></td>
-        <td   class="bolds" align="right"><span id="number" style="font-size:14px;position:relative; top:1px"></span>期開獎 </td>
-        <td id="a" class="l">&nbsp;</td>
-		<td id="b" class="l">&nbsp;</td>
-		<td id="c" class="l">&nbsp;</td>
-		<td id="d" class="l">&nbsp;</td>
-		<td id="e" class="l"> </td>
+    <tr height="24">
+        <td class="bolds wanfa">重庆时时彩 <span style="color:#0033FF; font-weight:bold; margin-left:10px;" id="tys"><?=$types?></span></td>
+        <td align="left" class="bolds" style="color:#FF0000">
+        	<div id="row1" style="FONT-FAMILY: Arial; color: red;"> <span>今天输赢：</span></div>
+            <div id="row2"><span id="sy" style="font-size:14px;position:relative; top:-2px">0</span></div>
+        </td>
+        <td  class="bolds klsfhm" align="right" colspan="2" >
+            <span id="number" style="line-height:25px;"></span>期开奖<div id="a" class="nc1" style="margin:0px 1px;">&nbsp;</div><div id="b" style="margin:0px 1px;">&nbsp;</div><div id="c" style="margin:0px 1px;">&nbsp;</div><div id="d" style="margin:0px 1px;">&nbsp;</div><div id="e" style="margin:0px 1px;">&nbsp;</div>
+        </td>
+    </tr>
+    <tr height="25">
+        <td width="25%"><span id="o" style="color:#009900; font-weight:bold;top:1px"></span>期</td>
+        <td width="38%">距离封盘：<span style="font-size:104%" id="endTime">00:00</span></td>
+      	<td width="25%">距离开奖：<span style="color:red;font-size:104%" id="endTimes">00:00</span></td>
+        <td width="12%" align="right"><span id="endTimea"></span>秒</td>
     </tr>
 </table>
+<form id="dp" action="" method="post" target="leftFrame" onsubmit = "return submitforms()">
 <table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px">
     <tr>
-        <td ><span id="o" style=" color:#009900; font-weight:bold; font-size:14px;position:relative; top:1px"></span>期</td>
-        <td width="85">&nbsp;</td>
-        <td>距離封盤：<span style="font-size:104%" id="endTime">加載中...</span></td>
-        <td colspan="6">距離開獎：<span style="color:red;font-size:104%" id="endTimes">加載中...</span></td>
-        <td colspan="2" align="right"><span id="endTimea"></span>秒</td>
-    </tr>
-</table>   
- 
-<form id="dp" action="" method="post" target="leftFrame" onsubmit = "return submitforms()">
-<table class="ths" border="0" cellpadding="0" cellspacing="0"  style="margin-top:0px">
-    <tr>
-        <td >投注类型：</td>
-        <td width="100"><a href="#this" class="intype_normal" id="kuijie">快捷</a><a href="#this" class="intype_hover" id="yiban">一般</a></td>
-        <td align="center"><table border="0" width="500" >
-                <tr height="30">
-					<td id="td_input_money"><table><tr><td>金額</td><td><input type="text"  id="AllMoney"    onkeydown="return IsNumeric()"  class=myAllMoney  value=""  /></td></tr></table></td>
-                    <td align="right" style="padding-right:10px"><input type="submit" id="submits1" class="inputs ti" value="確定" /></td>
-                    <td align="left" style="padding-left:10px"><input type="button" onclick="MyReset()" class="inputs ti" value="重置" /></td>
-                    <td width="200" ></td>
+        <td width="65" class="tz_title" valign="top">投注类型：</td>
+        <td width="115"><a href="#this" class="intype_normal" id="kuijie">快捷</a><a href="#this" class="intype_hover" id="yiban">一般</a></td>
+        <td align="left">
+        	<table border="0" width="278" >
+                <tr height="26">
+					<td align="center">
+                    	<span id="td_input_money"><font class="tz_title">金额</font>&nbsp;<input type="text"  id="AllMoney"  onkeydown="return IsNumeric()"  class="myAllMoney"  value=""  /></span>
+                        <input type="submit" id="submits1" class="inputs ti" value="确定" />
+                        <input type="button" onclick="MyReset()" class="inputs ti" value="重置" />
+                    </td>                   
                 </tr>
-            </table></td>
+            </table>
+         </td>
     </tr>
 </table> 
 <input type="hidden" name="actions" value="fn3" />
 <input type="hidden" name="gtypes" value="1" />
 <input type="hidden" id="mix" value="<?php echo$ConfigModel['g_mix_money']?>" />
-<table class="wqs" border="0" cellpadding="0" cellspacing="0">
+<table class="wqs ssc_input" border="0" cellpadding="0" cellspacing="0">
+	<colgroup>
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+    </colgroup>
 	<tr class="t_list_caption">
-    	<td>號</td>
-    	<td>賠率</td>
-    	<td class="je" >金額</td>
-    	<td>號</td>
-    	<td>賠率</td>
-    	<td class="je" >金額</td>
-    	<td>號</td>
-    	<td>賠率</td>
-    	<td class="je" >金額</td>
-    	<td>號</td>
-    	<td>賠率</td>
-    	<td class="je" >金額</td>
-    	<td>號</td>
-    	<td>賠率</td>
-    	<td class="je" >金額</td>
+    	<td>号</td>
+    	<td>赔率</td>
+    	<td class="je">金额</td>
+    	<td>号</td>
+    	<td>赔率</td>
+    	<td class="je">金额</td>
+    	<td>号</td>
+    	<td>赔率</td>
+    	<td class="je">金额</td>
+    	<td>号</td>
+    	<td>赔率</td>
+    	<td class="je">金额</td>
+    	<td>号</td>
+    	<td>赔率</td>
+    	<td class="je">金额</td>
     </tr>
    <tr class="t_td_text">
-    	<td class="caption_1 No_cq0">&nbsp;</td>
-    	<td class="o" width="40" id="ah1">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq0">&nbsp;</span></td>
+    	<td class="o" id="ah1">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td class="caption_1 No_cq1">&nbsp;</td>
-    	<td class="o" width="40" id="ah2">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq1">&nbsp;</span></td>
+    	<td class="o" id="ah2">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td class="caption_1 No_cq2">&nbsp;</td>
-    	<td class="o" width="40" id="ah3">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq2">&nbsp;</span></td>
+    	<td class="o" id="ah3">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td class="caption_1 No_cq3">&nbsp;</td>
-    	<td class="o" width="40" id="ah4">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq3">&nbsp;</span></td>
+    	<td class="o" id="ah4">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td class="caption_1 No_cq4">&nbsp;</td>
-    	<td class="o" width="40" id="ah5">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq4">&nbsp;</span></td>
+    	<td class="o" id="ah5">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
     </tr>
     <tr class="t_td_text">
-    	<td class="caption_1 No_cq5">&nbsp;</td>
-    	<td class="o" width="40" id="ah6">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq5">&nbsp;</span></td>
+    	<td class="o" id="ah6">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td class="caption_1 No_cq6">&nbsp;</td>
-    	<td class="o" width="40" id="ah7">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq6">&nbsp;</span></td>
+    	<td class="o" id="ah7">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td class="caption_1 No_cq7">&nbsp;</td>
-    	<td class="o" width="40" id="ah8">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq7">&nbsp;</span></td>
+    	<td class="o" id="ah8">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td class="caption_1 No_cq8">&nbsp;</td>
-    	<td class="o" width="40" id="ah9">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq8">&nbsp;</span></td>
+    	<td class="o" id="ah9">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td class="caption_1 No_cq9">&nbsp;</td>
-    	<td class="o" width="40" id="ah10">&nbsp;</td>
+    	<td class="caption_1"><span class="No_cq9">&nbsp;</span></td>
+    	<td class="o" id="ah10">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
     </tr>
-</table>
-<table class="wqs" border="0" cellpadding="0" cellspacing="0">
     <tr class="t_td_text">
-    	<td  class="caption_1 ah11" width="49">大</td>
-    	<td class="o" width="40" id="ah11">&nbsp;</td>
+    	<td  class="caption_1 ah11">大</td>
+    	<td class="o" id="ah11">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td  class="caption_1 ah12" width="49">小</td>
-    	<td class="o" width="40" id="ah12">&nbsp;</td>
+    	<td  class="caption_1 ah12">小</td>
+    	<td class="o" id="ah12">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td  class="caption_1 ah13" width="49">單</td>
-    	<td class="o" width="40" id="ah13">&nbsp;</td>
+    	<td  class="caption_1 ah13">单</td>
+   	  	<td class="o" id="ah13">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
-    	<td  class="caption_1 ah14" width="49">雙</td>
-    	<td class="o" width="40" id="ah14">&nbsp;</td>
+    	<td  class="caption_1 ah14">双</td>
+   	  	<td class="o" id="ah14">&nbsp;</td>
     	<td class="loads">&nbsp;</td>
+        <td class="caption_1">&nbsp;</td>
+     	<td class="o">&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
 </table>
-<table class="wqs" border="0" cellpadding="0" cellspacing="0">
+<table class="wqs" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+	<colgroup>
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+        <col style="width:8.33%">
+    </colgroup>
+    <tr class="t_td_text">
+    	<td class="caption_1 bh1" width="80">总和大</td>
+   	 	<td class="o" id="bh1">&nbsp;</td>
+    	<td class="loads" width="80">&nbsp;</td>
+    	<td class="caption_1 bh2" width="80">总和小</td>
+   	  	<td class="o" id="bh2">&nbsp;</td>
+    	<td class="loads" width="80">&nbsp;</td>
+    	<td class="caption_1 bh3" width="80">总和单</td>
+   	  	<td class="o" id="bh3">&nbsp;</td>
+    	<td class="loads" width="80">&nbsp;</td>
+    	<td class="caption_1 bh4" width="80">总和双</td>
+   	  	<td class="o" id="bh4">&nbsp;</td>
+    	<td class="loads" width="80">&nbsp;</td>
+    </tr>
+    <tr class="t_td_text">
+    	<td class="caption_1 bh5">龙</td>
+   	  	<td class="o" id="bh5">&nbsp;</td>
+    	<td class="loads" width="80">&nbsp;</td>
+    	<td class="caption_1 bh6">虎</td>
+    	<td class="o" id="bh6">&nbsp;</td>
+    	<td class="loads" width="80">&nbsp;</td>
+    	<td class="caption_1 bh7">和</td>
+    	<td class="o" id="bh7">&nbsp;</td>
+    	<td class="loads" width="80">&nbsp;</td>
+    	<td class="caption_1">&nbsp;</td>
+     	<td class="o">&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+<table class="wqs ssc_input" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+	<colgroup>
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+    </colgroup>
 	<tr class="t_list_caption">
-	<td colspan="12">總和、龍虎和</td>
-	</tr>
-    <tr class="t_td_text">
-    	<td  class="caption_1 bh1" width="80">總和大</td>
-    	<td class="o" width="40" id="bh1">&nbsp;</td>
-    	<td class="loads" width="80">&nbsp;</td>
-    	<td  class="caption_1 bh2" width="80">總和小</td>
-    	<td class="o" width="40" id="bh2">&nbsp;</td>
-    	<td class="loads" width="80">&nbsp;</td>
-    	<td  class="caption_1 bh3" width="80">總和單</td>
-    	<td class="o" width="40" id="bh3">&nbsp;</td>
-    	<td class="loads" width="80">&nbsp;</td>
-    	<td  class="caption_1 bh4" width="80">總和雙</td>
-    	<td class="o" width="40" id="bh4">&nbsp;</td>
-    	<td class="loads" width="80">&nbsp;</td>
-    </tr>
-    <tr class="t_td_text">
-    	<td  class="caption_1 bh5">龍</td>
-    	<td class="o" width="40" id="bh5">&nbsp;</td>
-    	<td class="loads" width="80">&nbsp;</td>
-    	<td  class="caption_1 bh6">虎</td>
-    	<td class="o" width="40" id="bh6">&nbsp;</td>
-    	<td class="loads" width="80">&nbsp;</td>
-    	<td  class="caption_1 bh7">和</td>
-    	<td class="o" width="40" id="bh7">&nbsp;</td>
-    	<td class="loads" width="80">&nbsp;</td>
-    	<td colspan="3">&nbsp;</td>
-    </tr>
-</table>
-<table class="wqs" border="0" cellpadding="0" cellspacing="0">
-	<tr class="t_list_caption">
-	<td colspan="15">前三</td>
+        <td colspan="15">前三</td>
 	</tr>
     <tr class="t_td_text">
     	<td class="caption_1 ch1">豹子</td>
-    	<td class="o" width="40" id="ch1">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 ch2">順子</td>
-    	<td class="o" width="40" id="ch2">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 ch3">對子</td>
-    	<td class="o" width="40" id="ch3">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 ch4">半順</td>
-    	<td class="o" width="40" id="ch4">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 ch5">雜六</td>
-    	<td class="o" width="40" id="ch5">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
+    	<td class="o" id="ch1">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 ch2">顺子</td>
+   	  <td class="o" id="ch2">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 ch3">对子</td>
+   	  <td class="o" id="ch3">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 ch4">半顺</td>
+   	  <td class="o" id="ch4">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 ch5">杂六</td>
+   	  <td class="o" id="ch5">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
     </tr>
 </table>
-<table class="wqs" border="0" cellpadding="0" cellspacing="0">
+<table class="wqs ssc_input" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+	<colgroup>
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+    </colgroup>
 	<tr class="t_list_caption">
-	<td colspan="15">中三</td>
+        <td colspan="15">中三</td>
 	</tr>
     <tr class="t_td_text">
     	<td  class="caption_1 dh1">豹子</td>
-    	<td class="o" width="40" id="dh1">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 dh2">順子</td>
-    	<td class="o" width="40" id="dh2">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 dh3">對子</td>
-    	<td class="o" width="40" id="dh3">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 dh4">半順</td>
-    	<td class="o" width="40" id="dh4">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 dh5">雜六</td>
-    	<td class="o" width="40" id="dh5">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
+    	<td class="o" id="dh1">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 dh2">顺子</td>
+   	  <td class="o" id="dh2">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 dh3">对子</td>
+   	  <td class="o" id="dh3">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 dh4">半顺</td>
+   	  <td class="o" id="dh4">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 dh5">杂六</td>
+   	  <td class="o" id="dh5">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
     </tr>
 </table>
-<table class="wqs" border="0" cellpadding="0" cellspacing="0">
+<table class="wqs ssc_input" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+	<colgroup>
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+        <col style="width:6.66%">
+    </colgroup>
 	<tr class="t_list_caption">
-	<td colspan="15">后三</td>
+        <td colspan="15">后三</td>
 	</tr>
     <tr class="t_td_text">
     	<td  class="caption_1 eh1">豹子</td>
-    	<td class="o" width="40" id="eh1">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 eh2">順子</td>
-    	<td class="o" width="40" id="eh2">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 eh3">對子</td>
-    	<td class="o" width="40" id="eh3">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 eh4">半順</td>
-    	<td class="o" width="40" id="eh4">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
-    	<td  class="caption_1 eh5">雜六</td>
-    	<td class="o" width="40" id="eh5">&nbsp;</td>
-    	<td class="loads" width="60">&nbsp;</td>
+    	<td class="o" id="eh1">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 eh2">顺子</td>
+   	  <td class="o" id="eh2">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 eh3">对子</td>
+   	  <td class="o" id="eh3">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 eh4">半顺</td>
+   	  <td class="o" id="eh4">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
+    	<td  class="caption_1 eh5">杂六</td>
+   	  <td class="o" id="eh5">&nbsp;</td>
+    	<td class="loads">&nbsp;</td>
     </tr>
 </table>
-<table border="0" width="700">
-	<tr height="30">
-    	<td align="right" style="padding-right:10px"><input type="button" onclick="reset()" class="inputs ti" value="重填" /></td>
-        <td align="left" style="padding-left:10px"><input type="submit" id="submits" class="inputs ti" value="下註" /></td>
-        <td width="0" class="actiionn">&nbsp;</td>
+<table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+    <tr>
+        <td width="65" class="tz_title" valign="top">&nbsp;</td>
+        <td width="115">&nbsp;</td>
+        <td align="left">
+        	<table border="0" width="278" >
+                <tr height="26">
+					<td align="center">
+                    	<span id="td_input_money1"><font class="tz_title">金额</font>&nbsp;<input type="text"  id="AllMoney1"  onkeydown="return IsNumeric()"  class="myAllMoney"  value=""  /></span>
+                        <input type="submit" id="submits" class="inputs ti" value="确定" />
+                        <input type="button" onclick="MyReset()" class="inputs ti" value="重置" />
+                    </td>                   
+                </tr>
+            </table>
+         </td>
     </tr>
-</table>
+</table> 
 </form>
-<table class="wqs" border="0" cellpadding="0" cellspacing="0">
+<table class="wqs" border="0" cellpadding="0" cellspacing="0"  style="margin-top:10px;">
 	<tr class="t_list_caption" style="color:#0066FF">
-    	<th width="10%">0</th>
-    	<th width="10%">1</th>
-        <th width="10%">2</th>
-        <th width="10%">3</th>
-        <th width="10%">4</th>
-        <th width="10%">5</th>
-        <th width="10%">6</th>
-        <th width="10%">7</th>
-        <th width="10%">8</th>
-        <th>9</th>
+    	<td widtd="10%">0</td>
+    	<td widtd="10%">1</td>
+        <td widtd="10%">2</td>
+        <td widtd="10%">3</td>
+        <td widtd="10%">4</td>
+        <td widtd="10%">5</td>
+        <td widtd="10%">6</td>
+        <td widtd="10%">7</td>
+        <td widtd="10%">8</td>
+        <td>9</td>
     </tr>
     <tr class="t_td_text" id="su">
     	<td colspan="10">&nbsp;</td>
     </tr>
 </table>
-<br />
-<table class="wqs" border="0" cellpadding="0" cellspacing="0">
+<table class="wqs" border="0" cellpadding="0" cellspacing="0"  style="margin-top:10px;">
 	<tr class="t_list_caption">
         <td width="16%" class="nv_ab" ><?php echo$aHtml?></td>
         <td width="16%"><a class="nv" <?php echo $onclick?>>大小</a></td>
-        <td width="16%"><a class="nv" <?php echo $onclick?>>單雙</a></td>
-        <td width="17%"><a class="nv" <?php echo $onclick?>>總和大小</a></td>
-        <td width="17%"><a class="nv" <?php echo $onclick?>>總和單雙</a></td>
-        <td><a class="nv" <?php echo $onclick?>>龍虎和</a></td>
-    </tr>
-    <tr>
-    	<td colspan="6" class="t_td_text" align="center">
-        	<table class="hj" border="0" cellpadding="0" cellspacing="1">
-            	<tr class="t_td_text" id="z_cl"><td></td></tr>
-            </table>
-        </td>
+        <td width="16%"><a class="nv" <?php echo $onclick?>>单双</a></td>
+        <td width="17%"><a class="nv" <?php echo $onclick?>>总和大小</a></td>
+        <td width="17%"><a class="nv" <?php echo $onclick?>>总和单双</a></td>
+        <td><a class="nv" <?php echo $onclick?>>龙虎和</a></td>
     </tr>
 </table>
-
+<table class="wqs" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+   <tr class="t_td_text" id="z_cl"><td>&nbsp;</td></tr>
+</table>
+<div class="blank10">&nbsp;</div>
 <input type="hidden" id="mix" value="<?php echo$ConfigModel['g_mix_money']?>" />
 <div id="look" style="display:none"></div>
 <?php include_once 'inc/cl_file.php';?>

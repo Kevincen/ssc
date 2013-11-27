@@ -3,15 +3,16 @@
 *****************************/
 function kuijie(){
 	$('#td_input_money').show();
+	$('#td_input_money1').show();
 	if($('#kuijie').attr('class')!='intype_hover'){
 		$('#kuijie').attr('class','intype_hover');
 		$('#yiban').attr('class','intype_normal'); 
 		var i=0;
 		$('.tt').each(function(){
-			var w = $(this).width();
+			/*var w = $(this).width();
 			w+=$(this).prev().width();
 			$(this).prev().css('width',132 );
-			$(this).prev().attr('align','center')
+			$(this).prev().attr('align','center')*/
 			$(this).hide(); 
 			//$(this).css('display','none');  
 		})
@@ -21,6 +22,24 @@ function kuijie(){
 				$(this).attr('colspan',n);
 			}												
 		})
+		//处理表格
+		$('table.wqs,table.wq').each(function(){ 
+			if($(this).find("colgroup").size() > 0)
+			{
+				var td_num = $(this).find("tr").eq(1).find("td:visible").length;
+				
+				$(this).find("colgroup").html("");
+				//计算宽度
+				var td_width = 99/td_num;
+				var colgroup_str = '';
+				for (var i=0;i<td_num;i++)
+				{
+					colgroup_str += '<col style="width:'+td_width+'%">';
+				}
+				$(this).find("colgroup").html(colgroup_str);
+			}
+		})
+		
 		/*添加效果*/ 
 		$('.caption_1,.o').bind({'mouseenter':function(){
 			if( $(this).attr('title')!='选中' ){ //未选中
@@ -81,7 +100,7 @@ function yiban(){
 		$('#yiban').attr('class','intype_hover');
 		$('#kuijie').attr('class','intype_normal'); 
 		$('.o').each(function(){ 
-			$(this).width( 45 );
+			//$(this).width( 45 );
 			$(this).next().show(); 
 		})
 		$('.wqs').find('.t_list_caption').find('td').each(function(){
@@ -90,12 +109,29 @@ function yiban(){
 				$(this).attr('colspan',n);
 			}												
 		})
-		 
-	}	
+	}
+	//处理表格
+	$('table.wqs,table.wq').each(function(){ 
+		if($(this).find("colgroup").size() > 0)
+		{
+			var td_num = $(this).find("tr").eq(1).find("td:visible").length;
+			
+			$(this).find("colgroup").html("");
+			//计算宽度
+			var td_width = 99/td_num;
+			var colgroup_str = '';
+			for (var i=0;i<td_num;i++)
+			{
+				colgroup_str += '<col style="width:'+td_width+'%">';
+			}
+			$(this).find("colgroup").html(colgroup_str);
+		}
+	})
 	$('.caption_1,.o').unbind('mouseenter').unbind('mouseleave').unbind('click');
 	$('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
 	$('.o').css({'background-color':'#fff','cursor':''});
 	$('#td_input_money').hide();
+	$('#td_input_money1').hide();
 }
 function MyReset(){
 	$('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
@@ -302,7 +338,7 @@ function loadodds(oddslist, endtime, number){
 	var a = ["a","b","c","d","e","f","g","h","i","j","k"];
 	var odds, link, urls;
 	if (oddslist == null || oddslist == "" || endtime <1) {
-		$(".o").html("-");
+		$(".o").html("");
 		return false;
 	}
 	for (var n=0; n<oddslist.length; n++){
@@ -332,7 +368,7 @@ function loadinput(endtime){
 			if (endtime >1)
 				$(this).html("<input name=\""+tt+"_"+temp+"\" class=\"inp1\" onkeyup=\"digitOnly(this)\" onfocus=\"this.className='inp1m'\" onblur=\"this.className='inp1';\" type=\"text\" maxLength=\"9\"/>");
 			else
-				$(this).html("封盤");
+				$(this).html("");
 		}
 	});
 }

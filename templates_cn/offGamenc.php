@@ -14,8 +14,8 @@ $dateTime = date('Y-m-d H:i:s');
 $a = date('Y-m-d ').'01:55:01';
 global $stratGamenc, $endGamenc;
 
-if ( ($dateTime < $stratGamenc && $dateTime > $a) || $dateTime > $endGamenc)
+/*if ( ($dateTime < $stratGamenc && $dateTime > $a) || $dateTime > $endGamenc)
 {
 	header("Location: ./right.php"); exit;
-}
+}*/
 ?>

@@ -11,8 +11,8 @@ define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'function/global.php';
 $dateTime = date('Y-m-d H:i:s');
 global $stratGamegx, $endGamegx;
-if ( $dateTime < $stratGamegx || $dateTime > $endGamegx)
+/*if ( $dateTime < $stratGamegx || $dateTime > $endGamegx)
 {
 	header("Location: ./right.php"); exit;
-}
+}*/
 ?>

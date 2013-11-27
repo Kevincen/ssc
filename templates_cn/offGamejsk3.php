@@ -10,8 +10,8 @@ define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'function/global.php';
 $dateTime = date('Y-m-d H:i:s');  
-if ( $dateTime < $stratGamejsk3 || $dateTime > $endGamejsk3)
+/*if ( $dateTime < $stratGamejsk3 || $dateTime > $endGamejsk3)
 {
 	header("Location: ./right.php"); exit;
-}
+}*/
 ?>

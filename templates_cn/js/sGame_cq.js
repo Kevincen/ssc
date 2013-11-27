@@ -3,16 +3,32 @@
 *****************************/
 function kuijie(){
 	$('#td_input_money').show();
+	$('#td_input_money1').show();
 	if($('#kuijie').attr('class')!='intype_hover'){
 		$('#kuijie').attr('class','intype_hover');
 		$('#yiban').attr('class','intype_normal'); 
 		$('.je').hide();
-		$('.loads').each(function(){
-			var w = $(this).prev().width();
-			w+=$(this).width();
-			$(this).prev().css('width', w);   
-			$(this).prev().attr('align','center');
-			$(this).hide(); 
+		$('.o').each(function(){ 
+			//$(this).css('width', '50px' );
+			$(this).next().hide(); 
+		}) 
+		
+		//处理表格
+		$('table.wqs,table.wq').each(function(){ 
+			if($(this).find("colgroup").size() > 0)
+			{
+				var td_num = $(this).find("tr").eq(1).find("td:visible").length;
+				
+				$(this).find("colgroup").html("");
+				//计算宽度
+				var td_width = 99/td_num;
+				var colgroup_str = '';
+				for (var i=0;i<td_num;i++)
+				{
+					colgroup_str += '<col style="width:'+td_width+'%">';
+				}
+				$(this).find("colgroup").html(colgroup_str);
+			}
 		})
 		 
 		/*添加效果*/  
@@ -74,14 +90,34 @@ function yiban(){
 		$('#yiban').attr('class','intype_hover');
 		$('#kuijie').attr('class','intype_normal'); 
 		$('.o').each(function(){ 
-			$(this).css('width', '50px' );
+			//$(this).css('width', '50px' );
 			$(this).next().show(); 
 		}) 
+		
 	}	
+	//处理表格
+	$('table.wqs,table.wq').each(function(){ 
+		if($(this).find("colgroup").size() > 0)
+		{
+			var td_num = $(this).find("tr").eq(1).find("td:visible").length;
+			
+			$(this).find("colgroup").html("");
+			//计算宽度
+			var td_width = 99/td_num;
+			var colgroup_str = '';
+			for (var i=0;i<td_num;i++)
+			{
+				colgroup_str += '<col style="width:'+td_width+'%">';
+			}
+			$(this).find("colgroup").html(colgroup_str);
+		}
+	})
+	
 	$('.caption_1,.o').unbind('mouseenter').unbind('mouseleave').unbind('click');
 	$('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
 	$('.o').css({'background-color':'#fff','cursor':''});
 	$('#td_input_money').hide();
+	$('#td_input_money1').hide();
 	$('.je').show();
 }
 function MyReset(){
@@ -159,7 +195,7 @@ var setResultcq = new Array();
 	
 	function loadinput(endtime, id){
 		var loads = $(".loads");
-		var count=lock1=lock2=lock3=lock4=lock5=0, s, n="封盤";
+		var count=lock1=lock2=lock3=lock4=lock5=0, s, n="";
 		loads.each(function(){
 			if (endtime < 1){
 				$(this).html(n);
@@ -191,7 +227,7 @@ var setResultcq = new Array();
 		var a = ["a","b","c","d","e"];
 		var odds, link, urls;
 		if (oddslist == null || oddslist == "" || endtime <1) {
-			$(".o").html("-");
+			$(".o").html("");
 			return false;
 		}
 		for (var n=0; n<oddslist.length; n++){

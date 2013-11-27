@@ -262,7 +262,7 @@ function cRadio ($this)
 	box.attr("checked","");
 	box.attr("disabled","");
 	$(".v").css("background","#fff");
-	$(".qw").attr("disabled","").css("color","#006600");
+	$(".qw").attr("disabled","");//.css("color","#006600");
 }
 
 function getResult ($this)

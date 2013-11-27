@@ -3,23 +3,24 @@
 *****************************/
 function kuijie(){
 	$('#td_input_money').show();
+	$('#td_input_money1').show();
 	if($('#kuijie').attr('class')!='intype_hover'){
 		$('#kuijie').attr('class','intype_hover');
 		$('#yiban').attr('class','intype_normal'); 
 		$('.loads').each(function(){
-			var w = $(this).width();
+			/*var w = $(this).width();
 			w+=$(this).prev().width();
 			$(this).prev().css('width', w);
 			$(this).prev().attr('align','center');
-			$(this).prev().prev().css('white-space','nowrap');
+			$(this).prev().prev().css('white-space','nowrap');*/
 			$(this).hide(); 
 		})
-		$('#tr_header').find('td').each(function(){ 
+		/*$('#tr_header').find('td').each(function(){ 
 				var n = $(this).attr('colspan')-1;	
 				$(this).attr('colspan',n); 			
-		})
+		})*/
 		/*添加效果*/ 
-		$('.o').bind({'mouseenter':function(){
+		/*$('.o').bind({'mouseenter':function(){
 			if( $(this).attr('title')!='选中' ){ //未选中 
 				$(this).css({'background-color':'#ffd094','cursor':'pointer'});	  
 			} 
@@ -34,28 +35,94 @@ function kuijie(){
 			}else{												//选中
 				$(this).css({'background-color':'#ffc214','cursor':'pointer'});	   
 				$(this).attr('title','选中');
+			}			 
+		}})*/
+		/*添加效果*/ 
+		$('.caption_1,.o').bind({'mouseenter':function(){
+			if( $(this).attr('title')!='选中' ){ //未选中
+				if($(this).attr('class')=='o' && $(this).parent().prev().attr('class')=='caption_1'){
+					$(this).parent().css({'background-color':'#ffd094','cursor':'pointer'});	  
+					$(this).parent().prev().css({'background-color':'#ffd094','cursor':'pointer'});	 
+				}
+				if($(this).attr('class')=='caption_1' && $(this).next().find("span").eq(0).attr('class')=='o'){
+					$(this).next().css({'background-color':'#ffd094','cursor':'pointer'});	  
+					$(this).css({'background-color':'#ffd094','cursor':'pointer'});	 
+				}
 			}
 			 
+		},'mouseleave':function(){ 
+			if( $(this).attr('title')!='选中' ){ //未选中
+				if($(this).attr('class')=='o' && $(this).parent().prev().attr('class')=='caption_1'){
+					$(this).parent().css({'background-color':'#fff','cursor':'pointer'});	  
+					$(this).parent().prev().css({'background-color':'#FDF8F2','cursor':'pointer'});	 
+				}
+				if($(this).attr('class')=='caption_1' && $(this).next().find("span").eq(0).attr('class')=='o'){
+					$(this).next().css({'background-color':'#fff','cursor':'pointer'});	  
+					$(this).css({'background-color':'#FDF8F2','cursor':'pointer'});	 
+				}
+			}
+		},'click':function(){
+			if($(this).attr('class')=='o' && $(this).parent().prev().attr('class')=='caption_1'){
+				if( $(this).attr('title')=='选中' ){ //已选中 取消选中
+					$(this).parent().css({'background-color':'#fff','cursor':'pointer'});	  
+					$(this).parent().prev().css({'background-color':'#FDF8F2','cursor':'pointer'});	
+					$(this).attr('title','');
+					$(this).parent().prev().attr('title','');
+				}else{												//选中
+					$(this).parent().css({'background-color':'#ffc214','cursor':'pointer'});	  
+					$(this).parent().prev().css({'background-color':'#ffc214','cursor':'pointer'});	 
+					$(this).attr('title','选中');
+					$(this).parent().prev().attr('title','选中');
+				}
+			}
+			if($(this).attr('class')=='caption_1' && $(this).next().find("span").eq(0).attr('class')=='o'){
+				
+				if( $(this).attr('title')=='选中' ){ //已选中 取消选中
+					$(this).next().css({'background-color':'#fff','cursor':'pointer'});	  
+					$(this).css({'background-color':'#FDF8F2','cursor':'pointer'});	 
+					$(this).attr('title','');
+					$(this).next().find("span").eq(0).attr('title','');
+				}else{												//选中
+					$(this).next().css({'background-color':'#ffc214','cursor':'pointer'});	  
+					$(this).css({'background-color':'#ffc214','cursor':'pointer'});	
+					$(this).attr('title','选中');
+					$(this).next().find("span").eq(0).attr('title','选中');
+				}
+			}	
 		}})
+		
+		
 	}
 }
 function yiban(){
 	if($('#yiban').attr('class')!='intype_hover'){
 		$('#yiban').attr('class','intype_hover');
 		$('#kuijie').attr('class','intype_normal'); 
-		$('.o').each(function(){ 
-			$(this).width( 45 );
-			$(this).next().show(); 
+		$('.loads').each(function(){
+			/*var w = $(this).width();
+			w+=$(this).prev().width();
+			$(this).prev().css('width', w);
+			$(this).prev().attr('align','center');
+			$(this).prev().prev().css('white-space','nowrap');*/
+			$(this).show(); 
 		})
-		$('#tr_header').find('td').each(function(){ 
+		/*$('#tr_header').find('td').each(function(){ 
 			var n = $(this).attr('colspan')+1; 	
 			$(this).attr('colspan',n); 		
-		})
+		})*/
 		 
 	}	
-	$('.o').unbind('mouseenter').unbind('mouseleave').unbind('click'); 
-	$('.o').css({'background-color':'#fff','cursor':''});
+	//$('.o').unbind('mouseenter').unbind('mouseleave').unbind('click'); 
+	//$('.o').css({'background-color':'#fff','cursor':''});
+	
+	$('.caption_1,.o').unbind('mouseenter').unbind('mouseleave').unbind('click');
+	
+	$('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
+	$('.o').parent().css({'background-color':'#fff','cursor':''});
+	
+	
 	$('#td_input_money').hide();
+	$('#td_input_money1').hide();
 }
 function MyReset(){ 
 	$('.o').css({'background-color':'#fff','cursor':''});
@@ -63,12 +130,15 @@ function MyReset(){
 	$('.o').attr('title','');
 	$('.inp1').val('');
 	$('#AllMoney').val('');
+	$('#AllMoney1').val('');
 }
 
 function AllMoney(){ 
 	var sel=false;
 	$('.loads').each(function(){
-		if(  $(this).prev().attr('title')=='选中' ){ //已选中 
+		if( $(this).parent().find("span").eq(0).attr('title')=='选中')
+		{ 
+			//已选中 
 			$(this).find('input').val( $('#AllMoney').val() );
 			sel=true;
 		}
@@ -268,11 +338,10 @@ function refreshTimes(refreshtime){
  */
 function loadodds(oddslist, endtime, number){
 
-	
 	var a = ["a","b","c","d","e","f","g","h","i"];
 		var odds, link, urls;
 		if (oddslist == null || oddslist == "" || endtime <1) {
-			$(".o").html("-");
+			$(".o").html("");
 			return false;
 		}
 		for (var n=0; n<oddslist.length; n++){
