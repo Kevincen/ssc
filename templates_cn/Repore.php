@@ -16,11 +16,11 @@ function setHtml($week, $str, $user, $type = 0)
         $date2 = GetWeekDay($value, 1);
         $c = explode('-', $value);
         $f = date('H:i:s') <= '02:00' ? dayMorning(date("Y-m-d"), (60 * 60 * 24), true) : date("Y-m-d");
-        if ($f == $value) {
-            $html = '<td align="center" style="color:blue;font-weight:bold"><span style="font-size:104%">' . $c[1] . '-' . $c[2] . '</span>&nbsp;&nbsp;&nbsp;' . $date2 . '</td>';
-        } else {
-            $html = '<td align="center"><span style="font-size:104%">' . $c[1] . '-' . $c[2] . '</span>&nbsp;&nbsp;&nbsp;' . $date2 . '</td>';
-        }
+        //if ($f == $value) {
+        //    $html = '<td align="center" style="color:blue;font-weight:bold"><span style="font-size:104%">' . $f. '</span>&nbsp;&nbsp;&nbsp;' . $date2 . '</td>';
+        //} else {
+            $html = '<td align="center"><span style="font-size:104%">' . $f . '</span>&nbsp;' . $date2 . '</td>';
+        //}
         $date = GetWeekDay($value, 1);
         $result = GetForms($value . ' 02:00', dayMorning($value, (60 * 60 * 24)) . ' 02:00', $user[0]['g_name'], $type);
         //alert(count($result));
@@ -50,20 +50,21 @@ function setHtml($week, $str, $user, $type = 0)
         echo '<tr class="t_td_text" align="right">
 			            ' . $html . '
 			            <td align="center">' . $count_bishu . '</td>
-			            <td style="letter-spacing:1px; font-size:104%;">' . is_Number($count_jiner) . '&nbsp;</td>
-			            <td style="letter-spacing:1px; font-size:104%;">' . number_format($count_win, 1, ".", "") . '&nbsp;</td>
-			            <td style="letter-spacing:1px; font-size:104%;">' . number_format($count_tueishui, 1, ".", "") . '&nbsp;</td>
-			            <td style="letter-spacing:1px; font-size:104%; color:red">' . $count_win_n . '&nbsp;</td>
+			            <td >' . is_Number($count_jiner) . '&nbsp;</td>
+			            <td >' . $count_win_n . '&nbsp;</td>
+			            <td >' . number_format($count_win, 1, ".", "") . '&nbsp;</td>
         			  </tr>';
     }
-    echo '<tr class="t_td_caption_1">
+    echo '<tfoot class="bg_g1">
+        <tr class="alltotal">
         	<td><b>' . $str . '</b></td>
             <td>' . $a . '</td>
-            <td align="right" style="letter-spacing:1px; font-size:104%;">' . is_Number($b) . '&nbsp;</td>
-            <td align="right" style="letter-spacing:1px; font-size:104%;">' . number_format($ac, 1, ".", "") . '&nbsp;</td>
-            <td align="right" style="letter-spacing:1px; font-size:104%;">' . number_format($e, 1, ".", "") . '&nbsp;</td>
-            <td align="right" style="letter-spacing:1px; font-size:104%;"><b>' . number_format($g, 1, ".", "") . '</b>&nbsp;</td>
-        </tr>';
+            <td >' . is_Number($b) . '&nbsp;</td>
+            <td ><b>' . number_format($g, 1, ".", "") . '</b>&nbsp;</td>
+
+            <td >' . number_format($e, 1, ".", "") . '&nbsp;</td>
+        </tr>
+    </tfoot>   ';
 }
 
 ?>
@@ -126,59 +127,14 @@ function setHtml($week, $str, $user, $type = 0)
                     <th>佣金</th>
                     <th>盈亏</th>
                 </tr>
-                </thead>
-                <tbody>
-                <tr class="">
-                    <td>2013-11-18 星期一</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr class="">
-                    <td>2013-11-19 星期二</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr class="">
-                    <td>2013-11-20 星期三</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr class="">
-                    <td>2013-11-21 星期四</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr class="">
-                    <td>2013-11-22 星期五</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr class="">
-                    <td>2013-11-23 星期六</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr>
-                    <td>2013-11-24 星期日</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                </tbody>
-                <tfoot class="bg_g1">
+                <?php
+                if(!isset($_GET['type']))
+                    echo setHtml($week['weekstart'], '上周', $user);
+                else
+                    echo setHtml($week['weekstart'], '上周', $user,$_GET['type']);
+                ?>
+
+                <!--<tfoot class="bg_g1">
                 <tr id="lastweek_total" class="alltotal">
                     <td>上周</td>
                     <td>0</td>
@@ -186,7 +142,7 @@ function setHtml($week, $str, $user, $type = 0)
                     <td>0</td>
                     <td class="">0</td>
                 </tr>
-                </tfoot>
+                </tfoot>-->
             </table>
             <table id="thisweek_tb" class="struct_table_five t1 dataArea" style="margin-top:19px">
                 <colgroup>
@@ -204,58 +160,14 @@ function setHtml($week, $str, $user, $type = 0)
                     <th>盈亏</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>2013-11-25 星期一</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr>
-                    <td>2013-11-26 星期二</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr>
-                    <td>2013-11-27 星期三</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr>
-                    <td>2013-11-28 星期四</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr>
-                    <td>2013-11-29 星期五</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr class="">
-                    <td>2013-11-30 星期六</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                <tr>
-                    <td>2013-12-01 星期日</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="">0</td>
-                </tr>
-                </tbody>
-                <tfoot class="bg_g1">
+                <?php
+
+                if(!isset($_GET['type']))
+                    echo setHtml($week['weekend'], '本周', $user);
+                else
+                    echo setHtml($week['weekend'], '本周', $user,$_GET['type']);
+                ?>
+           <!--     <tfoot class="bg_g1">
                 <tr id="thisweek_total" class="alltotal">
                     <td>本周</td>
                     <td>0</td>
@@ -263,7 +175,7 @@ function setHtml($week, $str, $user, $type = 0)
                     <td>0</td>
                     <td class="">0</td>
                 </tr>
-                </tfoot>
+                </tfoot>-->
             </table>
         </div>
         <textarea id="play_detail" style="display:none">&lt;div &gt;&lt;div class="play-title"&gt;&lt;div class="L"&gt;{play}&lt;/div&gt;&lt;div

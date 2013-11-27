@@ -2,7 +2,7 @@
 define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'Manage/ExistUser.php';
-global $Users, $LoginId;
+global $user, $LoginId;
 
 $news = null;
 $db=new DB();
@@ -10,7 +10,7 @@ $text = $db->query("SELECT g_text FROM g_news WHERE g_rank_show = 1 ORDER BY g_i
 if ($text){
     $news = strip_tags($text[0][0]);
 }
-$name = isset($Users[0]['g_lock_1']) ? $Users[0]['g_s_name'] : $Users[0]['g_name'];
+$name = isset($user[0]['g_lock_1']) ? $user[0]['g_s_name'] : $user[0]['g_name'];
 //url地址
 //账号管理
 //TODO:原网站代理的信用余额是根据不同彩票不同的，咱们的没有
@@ -97,15 +97,15 @@ $password_url = "UpdatePwd.php";
             <span class="split gray">|</span>
         <?php
         //TODO:ONLINE COUNT
-        if ($LoginId == 89 && !isset($Users[0]['g_lock_1'])) {
+        if ($LoginId == 89 && !isset($user[0]['g_lock_1'])) {
         ?>
             <span class="blue bold">在线：<span class="yel2" id="online_num">1</span></span>
-        <?php } else if (isset($Users[0]['g_lock_1']) && $Users[0]['g_lock_1'] == 1) { ?>
+        <?php } else if (isset($user[0]['g_lock_1']) && $user[0]['g_lock_1'] == 1) { ?>
             <span class="blue bold">在线：<span class="yel2" id="online_num">1</span></span>
         <?php } ?>
-            <div class="right gray"><?php echo $Users[0]['g_Lnid'][0] . '：' . $name ?>
+            <div class="right gray"><?php echo $user[0]['g_Lnid'][0] . '：' . $name ?>
                 <span class="user_logo"></span>账号：<span id="member_id"><?php echo $name ?></span>,<span id="role">
-                    <?php echo $Users[0]['g_Lnid'][0] . '：' . $name ?>
+                    <?php echo $user[0]['g_Lnid'][0] . '：' . $name ?>
                 </span>
                 <a href="klc/logout" id="logout" class="logout-link">退出</a>
             </div>
