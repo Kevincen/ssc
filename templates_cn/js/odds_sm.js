@@ -210,6 +210,8 @@ function loadInfo(bool){
 	var win = $("#sy");
 	var number = $("#number"); //開獎期數
 	$.post(_url, {tid : 1}, function(data){
+        if(!data)
+            return;
 		_Number (data.number, data.ballArr); //開獎號碼
 		smlen(data);//雙面長龍
 		win.html(data.winMoney); //今天輸贏
@@ -254,6 +256,8 @@ function loadTime(){
 	 _openNumber = $("#o");
 	$.post(_url, {tid : 2}, function(data)
 	{
+        if (!data)
+            return;
 		_openNumber.html(data.Phases);
 		endtimes(data.endTime);
 		opentimes(data.openTime);
@@ -325,6 +329,9 @@ function refreshTimes(refreshtime){
 		if (_refreshtime <= 1) { //刷新時間結束
 			clearInterval(interval);
 			$.post(_url, {tid : 2}, function(data){
+                if (!data) {
+                    return
+                }
 				if (_lock == true){
 					endtimes(data.endTime);
 					opentimes(data.openTime);
@@ -421,6 +428,9 @@ function setOpnumberTirem(){
 		if (sum == 2) {
 			var interval = setInterval(function(){
 				$.post(_url, {tid : 3}, function(data){
+                    if (!data) {
+                        return ;
+                    }
 					if (_nownumber - parseInt(data) == 1){
 						clearInterval(interval);
 						loadInfo(true);

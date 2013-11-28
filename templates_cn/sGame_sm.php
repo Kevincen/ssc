@@ -217,12 +217,12 @@ div#row2 { }
                 </tr>  
                 <tr class="t_td_text">
                     <td class="caption_1">龙</td>
-                    <td class="o" id="">未做</td>
+                    <td class="o" id="ah36"></td>
                     <td class="loads"></td>
                 </tr>
                 <tr class="t_td_text">
                     <td class="caption_1">虎</td>
-                    <td class="o" id="">未做</td>
+                    <td class="o" id="ah37"></td>
                     <td class="loads"></td>
                 </tr>  
                                                                
@@ -287,12 +287,12 @@ div#row2 { }
                 </tr> 
                 <tr class="t_td_text">
                     <td class="caption_1">龙</td>
-                    <td class="o" id="">未做</td>
+                    <td class="o" id="bh36"></td>
                     <td class="loads"></td>
                 </tr>
                 <tr class="t_td_text">
                     <td class="caption_1">虎</td>
-                    <td class="o" id="">未做</td>
+                    <td class="o" id="bh37"></td>
                     <td class="loads"></td>
                 </tr>               
             </table>
@@ -354,12 +354,12 @@ div#row2 { }
                 </tr>   
                 <tr class="t_td_text">
                     <td class="caption_1">龙</td>
-                    <td class="o" id="">未做</td>
+                    <td class="o" id="ch36"></td>
                     <td class="loads"></td>
                 </tr>
                 <tr class="t_td_text">
                     <td class="caption_1">虎</td>
-                    <td class="o" id="">未做</td>
+                    <td class="o" id="ch37"></td>
                     <td class="loads"></td>
                 </tr>             
             </table>
@@ -416,12 +416,12 @@ div#row2 { }
                 </tr> 
                 <tr class="t_td_text">
                     <td class="caption_1">龙</td>
-                    <td class="o" id="">未做</td>
+                    <td class="o" id="dh36"></td>
                     <td class="loads"></td>
                 </tr>
                 <tr class="t_td_text">
                     <td class="caption_1">虎</td>
-                    <td class="o" id="">未做</td>
+                    <td class="o" id="dh37"></td>
                     <td class="loads"></td>
                 </tr>              
             </table>        
@@ -486,7 +486,17 @@ div#row2 { }
                     <td class="o" id="eh28"></td>
                     <td class="loads"></td>
                                                
-                </tr>               
+                </tr>
+                <tr class="t_td_text" style="display: hidden">
+                    <td class="caption_1">龙</td>
+                    <td class="o" id="eh36"></td>
+                    <td class="loads"></td>
+                </tr>
+                <tr class="t_td_text" style="display: hidden">
+                    <td class="caption_1">虎</td>
+                    <td class="o" id="eh37"></td>
+                    <td class="loads"></td>
+                </tr>
             </table>
         </td> 
         <td class="w25">
@@ -546,7 +556,17 @@ div#row2 { }
                     <td class="o" id="fh28"></td>
                     <td class="loads"></td>
                                                   
-                </tr>               
+                </tr>
+                <tr class="t_td_text" style="display:hidden">
+                    <td class="caption_1">龙</td>
+                    <td class="o" id="fh36"></td>
+                    <td class="loads"></td>
+                </tr>
+                <tr class="t_td_text" style="display: hidden">
+                    <td class="caption_1">虎</td>
+                    <td class="o" id="fh37"></td>
+                    <td class="loads"></td>
+                </tr>
             </table>
         </td> 
         <td class="w25">
@@ -607,7 +627,17 @@ div#row2 { }
                     <td class="o" id="gh28"></td>
                     <td class="loads"></td>
                                                       
-                </tr>               
+                </tr>
+                <tr class="t_td_text" style="display: hidden">
+                    <td class="caption_1">龙</td>
+                    <td class="o" id="gh36"></td>
+                    <td class="loads"></td>
+                </tr>
+                <tr class="t_td_text">
+                    <td class="caption_1">虎</td>
+                    <td class="o" id="gh37"></td>
+                    <td class="loads"></td>
+                </tr>
             </table>
         </td>  
         <td class="w25">
@@ -659,7 +689,17 @@ div#row2 { }
                     <td class="caption_1">合数双</td>
                     <td class="o" id="hh28"></td>
                     <td class="loads"></td>               
-                </tr>              
+                </tr>
+                <tr class="t_td_text" style="display: hidden">
+                    <td class="caption_1">龙</td>
+                    <td class="o" id="hh36"></td>
+                    <td class="loads"></td>
+                </tr>
+                <tr class="t_td_text" style="display: hidden">
+                    <td class="caption_1">虎</td>
+                    <td class="o" id="hh37"></td>
+                    <td class="loads"></td>
+                </tr>
             </table>        
         </td>        
     </tr>

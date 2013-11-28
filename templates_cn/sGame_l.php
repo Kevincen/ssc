@@ -3,8 +3,9 @@ define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'function/global.php';
 $ConfigModel = configModel("`g_kg_game_lock`, `g_game_9`");
-if ($ConfigModel['g_kg_game_lock'] !=1 || $ConfigModel['g_game_9'] !=1)exit(href('right.php'));
-$types = '总和、龙虎';
+
+//if ($ConfigModel['g_kg_game_lock'] !=1 || $ConfigModel['g_game_9'] !=1)exit(href('right.php'));
+$types = '正码';
 $onclick = 'onclick="getResult(this)" href="javascript:void(0)" ';
 $getResult = 'class="nv_a" '.$onclick;
 
@@ -19,8 +20,11 @@ $getResult = 'class="nv_a" '.$onclick;
  
  $gurl='sGame_l';
  $g = $_GET['g'];
+
 ?>
-<?php include_once 'inc/top.php';?>
+<?php include_once 'inc/top.php';
+?>
+
 <table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px">
     <tr height="24">
         <td class="bolds wanfa">广东快乐十分 <span style="color:#0033FF; font-weight:bold; margin-left:10px;" id="tys"><?=$types?></span></td>

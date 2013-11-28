@@ -69,6 +69,7 @@ else if ($tid == 2)
 	//獲取封盤時間、開獎時間、刷新時間
 	$db = new DB();
 	$result = $db->query("SELECT `g_qishu`, `g_feng_date`, `g_open_date` FROM g_kaipan WHERE `g_lock` = 2 LIMIT 1 ", 1);
+
 	if ($result && Copyright)
 	{
 		$endTime = strtotime($result[0]['g_feng_date']) - time();
@@ -86,7 +87,7 @@ else if ($tid == 2)
 		}
 		//取出1-8球和總和龍虎雙面賠率
 		$db=new DB();
-		$sql = "SELECT  `h21`, `h22`, `h23`, `h24`, `h25`, `h26`, `h27`, `h28` FROM `g_odds` WHERE `g_type` = 'Ball_1' OR `g_type` = 'Ball_2' OR `g_type` = 'Ball_3' OR `g_type` = 'Ball_4' OR `g_type` = 'Ball_5' OR `g_type` = 'Ball_6' OR `g_type` = 'Ball_7' OR `g_type` = 'Ball_8' ORDER BY g_id ASC ";
+		$sql = "SELECT  `h21`, `h22`, `h23`, `h24`, `h25`, `h26`, `h27`, `h28` ,`h36`,`h37` FROM `g_odds` WHERE `g_type` = 'Ball_1' OR `g_type` = 'Ball_2' OR `g_type` = 'Ball_3' OR `g_type` = 'Ball_4' OR `g_type` = 'Ball_5' OR `g_type` = 'Ball_6' OR `g_type` = 'Ball_7' OR `g_type` = 'Ball_8' ORDER BY g_id ASC ";
 		$sresult = $db->query($sql, 1);
 		$sql = "SELECT `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8` FROM `g_odds` WHERE g_type = 'Ball_9' ORDER BY g_id ASC ";
 		$eresult = $db->query($sql, 1);
