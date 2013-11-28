@@ -1549,11 +1549,11 @@ function InsertNumber ($day=1, $closeTime=2)
 		{
 			if ($i == 9 && $n == 0 && Copyright)continue;
 			$count ++;
-			$count = mb_strlen($count) <=1 ? '0'.$count :$count;
+			$count = mb_strlen($count) <=1 ? '0'.$count :$count; // 01-84
 			$stratDate = $insertDate.$i.':'.$n.'0:'.'00';
 			$a = strtotime($stratDate) - ($closeTime * 60); //封盤時間
 			$endDate = date('Y-m-d H:i:s',$a);
-			$dateArr['Number'][] = $date.$count;
+			$dateArr['Number'][] = $date.$count; // YYYYMMDD[01-84]
 			$dateArr['stratDate'][] = $stratDate;
 			$dateArr['endDate'][] = $endDate;
 			if ($i == 23)break;
@@ -1561,6 +1561,7 @@ function InsertNumber ($day=1, $closeTime=2)
 	}
 	$db = new DB();
 	$db->query("DELETE FROM `g_kaipan` WHERE `g_id` > 0 ", 2);
+	// 插入新的开盘期数，除了第一期g_lock=2代表下一期开盘，其他都用1表示未开盘
 	$sql = "INSERT INTO `g_kaipan` ( `g_qishu`, `g_feng_date`, `g_open_date`, `g_lock` ) VALUES ";
 	for ($i=0; $i<count($dateArr['Number']); $i++)
 	{
@@ -3590,6 +3591,7 @@ function subArr ($strArr, $count)
 			if ($count == 2)
 			{
 				$len++;
+				// 比如01,02这样
 				array_push($Number, $strArr[$a].','.$strArr[$b]);
 				continue;
 			}
