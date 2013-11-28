@@ -6,7 +6,8 @@ function kuijie(){
 	$('#td_input_money1').show();
 	if($('#kuijie').attr('class')!='intype_hover'){
 		$('#kuijie').attr('class','intype_hover');
-		$('#yiban').attr('class','intype_normal'); 
+		$('#yiban').attr('class','intype_normal');
+        $('#touzhu_type').attr('value', 'fast');//区分快捷投注和一般投注，用在submitform函数里面
 		var i=0;
 		
 		$('.loads').each(function(){
@@ -74,11 +75,13 @@ function kuijie(){
 					$(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});	
 					$(this).attr('title','');
 					$(this).prev().attr('title','');
+                    $(this).parent().attr('selected','false');//设置父节点也就是tr为选中状态
 				}else{												//选中
 					$(this).css({'background-color':'#ffc214','cursor':'pointer'});	  
 					$(this).prev().css({'background-color':'#ffc214','cursor':'pointer'});	 
 					$(this).attr('title','选中');
 					$(this).prev().attr('title','选中');
+                    $(this).parent().attr('selected','true');
 				}
 			}
 			if($(this).attr('class')=='caption_1' && $(this).next().attr('class')=='o'){
@@ -87,11 +90,13 @@ function kuijie(){
 					$(this).css({'background-color':'#FDF8F2','cursor':'pointer'});	 
 					$(this).attr('title','');
 					$(this).next().attr('title','');
+                    $(this).parent().attr('selected','false');//设置父节点也就是tr为选中状态
 				}else{												//选中
 					$(this).next().css({'background-color':'#ffc214','cursor':'pointer'});	  
 					$(this).css({'background-color':'#ffc214','cursor':'pointer'});	
 					$(this).attr('title','选中');
 					$(this).next().attr('title','选中');
+                    $(this).parent().attr('selected','true');//设置父节点也就是tr为选中状态
 				}
 			}	
 		}})
@@ -101,9 +106,11 @@ function kuijie(){
 function yiban(){
 	if($('#yiban').attr('class')!='intype_hover'){
 		$('#yiban').attr('class','intype_hover');
-		$('#kuijie').attr('class','intype_normal'); 
-		
-		$('.o').each(function(){ 
+		$('#kuijie').attr('class','intype_normal');
+        $('#touzhu_type').attr('value', 'ordinary');//区分快捷投注和一般投注，用在submitform函数里面
+
+
+        $('.o').each(function(){
 			//$(this).width( 45 );
 			$(this).next().show(); 
 		})
@@ -456,23 +463,34 @@ function submitforms(){
 	var upmoney = 0;
 	var names = new Array();
 	var sArray = "";
-	input.each(function(){
-		var value = $(this).val();
-		if (value != ""){
-			value = parseInt(value);
-			if (value < mixmoney) c=false;
-			count++;
-			countmoney += value;
-			s = nameformat($(this).attr("name").split("_"));
-			s[2] = $("#"+s[2]+" a").html();
-			if (s[0] == "總和、龍虎")
-				n = s[1]+" @ "+s[2]+" x ￥"+value;
-			else 
-				n = s[0]+"["+s[1]+"] @ "+s[2]+" x ￥"+value;
-			names.push(n+"\n");
-			sArray += s+","+value+"|";
-		}
-	});
+    //快速投注所需要的
+    if ($('#touzhu_type').attr('value') == 'fast') {
+        countmoney = $('#AllMoney').val();
+        $(".t_td_text[selected='true']").each(function(){
+            var typename;
+            count++;
+            //typename=$(this).attr('name');
+            //names.push(typename);
+        });
+    } else {
+        input.each(function(){
+            var value = $(this).val();
+            if (value != ""){
+                value = parseInt(value);
+                if (value < mixmoney) c=false;
+                count++;
+                countmoney += value;
+                s = nameformat($(this).attr("name").split("_"));//TODO:这里是咋整的，input死哪里去了？？？？
+                s[2] = $("#"+s[2]+" a").html();
+                if (s[0] == "總和、龍虎")
+                    n = s[1]+" @ "+s[2]+" x ￥"+value;
+                else
+                    n = s[0]+"["+s[1]+"] @ "+s[2]+" x ￥"+value;
+                names.push(n+"\n");
+                sArray += s+","+value+"|";
+            }
+        });
+    }
 	if (count == 0){alert("請填寫下註金額!!!");return false;}
 	if (c == false){ alert("最低下註金額："+mixmoney+"￥");return false;}
 	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";

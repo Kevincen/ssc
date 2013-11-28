@@ -106,7 +106,8 @@ div#row2 { }
             </table>
          </td>
     </tr>
-</table> 
+</table>
+<input type="hidden" name="type" value="ordinary" id="touzhu_type"/><!--判断是快捷投注还是一般投注-->
 <input type="hidden" name="actions" value="fn3" />
 <input type="hidden" name="gtypes" value="1" />
 <input type="hidden" id="mix" value="<?php echo$ConfigModel['g_mix_money']?>" />
@@ -128,7 +129,7 @@ div#row2 { }
 	<tr class="t_list_caption">
     	<td colspan="12">总和</td>
     </tr>
-    <tr class="t_td_text">
+    <tr class="t_td_text" selected="false">
         <td class="caption_1">总和大</td>
         <td class="o" id="h1"></td>
         <td class="loads"></td>
@@ -142,7 +143,7 @@ div#row2 { }
         <td class="o" id="h6"></td>
         <td class="loads"></td>
     </tr>
-    <tr class="t_td_text">
+    <tr class="t_td_text" selected="false">
     	<td class="caption_1">总和小</td>
    	  	<td class="o" id="h3"></td>
     	<td class="loads"></td>
@@ -170,57 +171,57 @@ div#row2 { }
                 <tr class="t_list_caption">
                     <td colspan="3">第一球</td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">大</td>
                     <td class="o" id="ah21"></td>
                     <td class="loads"></td>                                       
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">小</td>
                     <td class="o" id="ah22"></td>
                     <td class="loads"></td>                                     
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">单</td>
                     <td class="o" id="ah23"></td>
                     <td class="loads"></td>                                       
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">双</td>
                     <td class="o" id="ah24"></td>
                     <td class="loads"></td>
                                           
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾大</td>
                     <td class="o" id="ah25"></td>
                     <td class="loads"></td>
                     
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾小</td>
                     <td class="o" id="ah26"></td>
                     <td class="loads"></td>
                                                 
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数单</td>
                     <td class="o" id="ah27"></td>
                     <td class="loads"></td>
                                                  
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数双</td>
                     <td class="o" id="ah28"></td>
                     <td class="loads"></td>
                                                
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">龙</td>
                     <td class="o" id="ah36"></td>
                     <td class="loads"></td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">虎</td>
                     <td class="o" id="ah37"></td>
                     <td class="loads"></td>
@@ -239,58 +240,58 @@ div#row2 { }
                 <tr class="t_list_caption">
                     <td colspan="3">第二球</td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">大</td>
                     <td class="o" id="bh21"></td>
                     <td class="loads"></td>                                 
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">小</td>
                     <td class="o" id="bh22"></td>
                     <td class="loads"></td>                          
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">单</td>
                     <td class="o" id="bh23"></td>
                     <td class="loads"></td>                                
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">双</td>
 
                     <td class="o" id="bh24"></td>
                     <td class="loads"></td>
                                                
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾大</td>
                     <td class="o" id="bh25"></td>
                     <td class="loads"></td>
                                                                                   
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾小</td>
                     <td class="o" id="bh26"></td>
                     <td class="loads"></td>
                                                      
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数单</td>
                     <td class="o" id="bh27"></td>
                     <td class="loads"></td>
                                                     
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数双</td>
                     <td class="o" id="bh28"></td>
                     <td class="loads"></td>
                                                   
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">龙</td>
                     <td class="o" id="bh36"></td>
                     <td class="loads"></td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">虎</td>
                     <td class="o" id="bh37"></td>
                     <td class="loads"></td>
@@ -307,57 +308,57 @@ div#row2 { }
                 <tr class="t_list_caption">
                     <td colspan="3">第三球</td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">大</td>
                     <td class="o" id="ch21"></td>
                     <td class="loads"></td>                              
                 </tr>   
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">小</td>
                     <td class="o" id="ch22"></td>
                     <td class="loads"></td>                           
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">单</td>
                     <td class="o" id="ch23"></td>
                     <td class="loads"></td>                         
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">双</td>
                     <td class="o" id="ch24"></td>
                     <td class="loads"></td>
                                                                 
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾大</td>
                     <td class="o" id="ch25"></td>
                     <td class="loads"></td>
                                                 
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾小</td>
                     <td class="o" id="ch26"></td>
                     <td class="loads"></td>
                                                  
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数单</td>
                     <td class="o" id="ch27"></td>
                     <td class="loads"></td>
                                              
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数双</td>
                     <td class="o" id="ch28"></td>
                     <td class="loads"></td>
                                                       
                 </tr>   
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">龙</td>
                     <td class="o" id="ch36"></td>
                     <td class="loads"></td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">虎</td>
                     <td class="o" id="ch37"></td>
                     <td class="loads"></td>
@@ -374,52 +375,52 @@ div#row2 { }
                 <tr class="t_list_caption">
                     <td colspan="3">第四球</td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">大</td>
                     <td class="o" id="dh21"></td>
                     <td class="loads"></td>               
                 </tr>   
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">小</td>
                     <td class="o" id="dh22"></td>
                     <td class="loads"></td>             
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">单</td>
                     <td class="o" id="dh23"></td>
                     <td class="loads"></td>       
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">双</td>
                     <td class="o" id="dh24"></td>
                     <td class="loads"></td>               
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾大</td>
                     <td class="o" id="dh25"></td>
                     <td class="loads"></td>       
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾小</td>
                     <td class="o" id="dh26"></td>
                     <td class="loads"></td>              
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数单</td>
                     <td class="o" id="dh27"></td>
                     <td class="loads"></td>                   
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数双</td>
                     <td class="o" id="dh28"></td>
                     <td class="loads"></td>               
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">龙</td>
                     <td class="o" id="dh36"></td>
                     <td class="loads"></td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">虎</td>
                     <td class="o" id="dh37"></td>
                     <td class="loads"></td>
@@ -440,48 +441,48 @@ div#row2 { }
                 <tr class="t_list_caption">
                     <td colspan="3">第五球</td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">大</td>
                     <td class="o" id="eh21"></td>
                     <td class="loads"></td>
                                                    
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">小</td>
                     <td class="o" id="eh22"></td>
                     <td class="loads"></td>
                                              
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">单</td>
                     <td class="o" id="eh23"></td>
                     <td class="loads"></td>
                                                    
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">双</td>
                     <td class="o" id="eh24"></td>
                     <td class="loads"></td>                  
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾大</td>
                     <td class="o" id="eh25"></td>
                     <td class="loads"></td>
                     
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾小</td>
                     <td class="o" id="eh26"></td>
                     <td class="loads"></td>
                                                 
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数单</td>
                     <td class="o" id="eh27"></td>
                     <td class="loads"></td>
                                                  
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数双</td>
                     <td class="o" id="eh28"></td>
                     <td class="loads"></td>
@@ -509,49 +510,49 @@ div#row2 { }
                 <tr class="t_list_caption">
                     <td colspan="3">第六球</td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">大</td>
                     <td class="o" id="fh21"></td>
                     <td class="loads"></td>
                                                   
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">小</td>
                     <td class="o" id="fh22"></td>
                     <td class="loads"></td>
                                           
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">单</td>
                     <td class="o" id="fh23"></td>
                     <td class="loads"></td>
                                                
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">双</td>
                     <td class="o" id="fh24"></td>
                     <td class="loads"></td>
                     
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾大</td>
                     <td class="o" id="fh25"></td>
                     <td class="loads"></td>
                                                                                   
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾小</td>
                     <td class="o" id="fh26"></td>
                     <td class="loads"></td>
                                                      
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数单</td>
                     <td class="o" id="fh27"></td>
                     <td class="loads"></td>
                                                     
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数双</td>
                     <td class="o" id="fh28"></td>
                     <td class="loads"></td>
@@ -579,50 +580,50 @@ div#row2 { }
                 <tr class="t_list_caption">
                     <td colspan="3">第七球</td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">大</td>
                     <td class="o" id="gh21"></td>
                     <td class="loads"></td>
                                               
                 </tr>   
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">小</td>
                     <td class="o" id="gh22"></td>
                     <td class="loads"></td>
                                       
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">单</td>
                     <td class="o" id="gh23"></td>
                     <td class="loads"></td>
                                        
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">双</td>
                     <td class="o" id="gh24"></td>
                     <td class="loads"></td>
                     
                                                                 
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾大</td>
                     <td class="o" id="gh25"></td>
                     <td class="loads"></td>
                                                 
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾小</td>
                     <td class="o" id="gh26"></td>
                     <td class="loads"></td>
                                                  
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数单</td>
                     <td class="o" id="gh27"></td>
                     <td class="loads"></td>
                                              
                 </tr>  
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数双</td>
                     <td class="o" id="gh28"></td>
                     <td class="loads"></td>
@@ -633,7 +634,7 @@ div#row2 { }
                     <td class="o" id="gh36"></td>
                     <td class="loads"></td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">虎</td>
                     <td class="o" id="gh37"></td>
                     <td class="loads"></td>
@@ -650,42 +651,42 @@ div#row2 { }
                 <tr class="t_list_caption">
                     <td colspan="3">第八球</td>
                 </tr>
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">大</td>
                     <td class="o" id="hh21"></td>
                     <td class="loads"></td>             
                 </tr>   
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">小</td>
                     <td class="o" id="hh22"></td>
                     <td class="loads"></td>             
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">单</td>
                     <td class="o" id="hh23"></td>
                     <td class="loads"></td>          
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">双</td>
                     <td class="o" id="hh24"></td>
                     <td class="loads"></td>
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾大</td>
                     <td class="o" id="hh25"></td>
                     <td class="loads"></td>       
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">尾小</td>
                     <td class="o" id="hh26"></td>
                     <td class="loads"></td>              
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数单</td>
                     <td class="o" id="hh27"></td>
                     <td class="loads"></td>                   
                 </tr> 
-                <tr class="t_td_text">
+                <tr class="t_td_text" selected="false">
                     <td class="caption_1">合数双</td>
                     <td class="o" id="hh28"></td>
                     <td class="loads"></td>               
