@@ -30,7 +30,7 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www
 		if (s !== "left.php")
 		{
 			window.parent.frames.leftFrame.location.href = "/templates_cn/left.php";
-		)
+		}
 
 function soundset(sod){
 if(sod.value=="on"){

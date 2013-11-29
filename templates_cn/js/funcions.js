@@ -421,18 +421,36 @@ function postodds (data)
 	var tt = $("input.inp1");
 	var mix = $("#mix").val()
 	var cou = 0, m=[], tArr=[], sid=[], c=true;
-	tt.each(function () {
-		if ($(this).val() != "") {
-			//判斷下注最小金額
-			if (parseInt($(this).val()) < parseInt($("#mix").val())) {
-				c = false;
-			}
-			cou++;
-			tArr.push($(this).val());
-			sid.push($(this).attr("name"));
-			m.push(parseInt($(this).val()));
-		}
-	});
+    //快速投注所需要的
+    if ($('#touzhu_type').attr('value') != 'fast') {
+        tt.each(function () {
+            if ($(this).val() != "") {
+                //判斷下注最小金額
+                if (parseInt($(this).val()) < parseInt($("#mix").val())) {
+                    c = false;
+                }
+                cou++;
+                tArr.push($(this).val());
+                sid.push($(this).attr("name"));
+                m.push(parseInt($(this).val()));
+            }
+        });
+    } else {
+        $(".t_td_text[selected='true']").each(function () {
+            var val = $('#AllMoney').val();
+            var s = new Array();
+            cou++;
+            tArr.push(val);
+            s = nameformat($(this).find('input').attr("name").split("_"));
+            s[2] = $("#" + s[2] + " a").html();
+            if (s[0] == "總和、龍虎")
+                n = s[1] + " @ " + s[2] + " x ￥" + $('#AllMoney').val();
+            else
+                n = s[0] + "[" + s[1] + "] @ " + s[2] + " x ￥" + $('#AllMoney').val();
+            sid.push(n + "\n");
+            m.push(parseInt(val));
+        });
+    }
 	if (!c) {alert("最低下註金額："+mix+"￥");return false;}
 	if (cou <= 0) {
 		alert("請填寫下註金額!!!");

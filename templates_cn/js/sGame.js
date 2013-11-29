@@ -5,7 +5,8 @@ function kuijie(){
 	$('#td_input_money').show();
 	if($('#kuijie').attr('class')!='intype_hover'){
 		$('#kuijie').attr('class','intype_hover');
-		$('#yiban').attr('class','intype_normal'); 
+		$('#yiban').attr('class','intype_normal');
+        $('#touzhu_type').attr('value', 'fast');//区分快捷投注和一般投注，用在submitform函数里面
 		$('.je').hide();
 		$('.tt').each(function(){
 			var w = $(this).prev().width();
@@ -70,11 +71,13 @@ function kuijie(){
 					$(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});	
 					$(this).attr('title','');
 					$(this).prev().attr('title','');
+                    $(this).parent().attr('selected','false');//设置父节点也就是tr为选中状态
 				}else{												//选中
 					$(this).css({'background-color':'#ffc214','cursor':'pointer'});	  
 					$(this).prev().css({'background-color':'#ffc214','cursor':'pointer'});	 
 					$(this).attr('title','选中');
 					$(this).prev().attr('title','选中');
+                    $(this).parent().attr('selected','true');//设置父节点也就是tr为选中状态
 				}
 			}
 			if($(this).attr('class')=='caption_1' && $(this).next().attr('class')=='o'){
@@ -83,11 +86,13 @@ function kuijie(){
 					$(this).css({'background-color':'#FDF8F2','cursor':'pointer'});	 
 					$(this).attr('title','');
 					$(this).next().attr('title','');
+                    $(this).parent().attr('selected','false');//设置父节点也就是tr为选中状态
 				}else{												//选中
 					$(this).next().css({'background-color':'#ffc214','cursor':'pointer'});	  
 					$(this).css({'background-color':'#ffc214','cursor':'pointer'});	
 					$(this).attr('title','选中');
 					$(this).next().attr('title','选中');
+                    $(this).parent().attr('selected','true');//设置父节点也就是tr为选中状态
 				}
 			}	
 		}})
@@ -96,8 +101,9 @@ function kuijie(){
 function yiban(){
 	if($('#yiban').attr('class')!='intype_hover'){
 		$('#yiban').attr('class','intype_hover');
-		$('#kuijie').attr('class','intype_normal'); 
-		$('.o').each(function(){ 
+		$('#kuijie').attr('class','intype_normal');
+        $('#touzhu_type').attr('value', 'ordinary');//区分快捷投注和一般投注，用在submitform函数里面
+		$('.o').each(function(){
 			$(this).css('width', '75px' );
 			$(this).next().show(); 
 		})

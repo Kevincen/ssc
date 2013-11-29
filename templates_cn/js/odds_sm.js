@@ -119,7 +119,7 @@ function yiban(){
 		$('table.wqs').each(function(){ 
 			if($(this).find("colgroup").size() > 0)
 			{
-				var td_num = $(this).find("tr").eq(1).find("td:visible").length;
+				var td_num = $(this).find("tr").eq(2).find("td:visible").length;
 				
 				$(this).find("colgroup").html("");
 				//计算宽度
@@ -464,31 +464,40 @@ function submitforms(){
 	var names = new Array();
 	var sArray = "";
     //快速投注所需要的
-    if ($('#touzhu_type').attr('value') == 'fast') {
-        countmoney = $('#AllMoney').val();
-        $(".t_td_text[selected='true']").each(function(){
-            var typename;
-            count++;
-            //typename=$(this).attr('name');
-            //names.push(typename);
-        });
-    } else {
-        input.each(function(){
+    if ($('#touzhu_type').attr('value') != 'fast') {
+        input.each(function () {
             var value = $(this).val();
-            if (value != ""){
+            if (value != "") {
                 value = parseInt(value);
-                if (value < mixmoney) c=false;
+                if (value < mixmoney) c = false;
                 count++;
                 countmoney += value;
                 s = nameformat($(this).attr("name").split("_"));//TODO:这里是咋整的，input死哪里去了？？？？
-                s[2] = $("#"+s[2]+" a").html();
+                s[2] = $("#" + s[2] + " a").html();
                 if (s[0] == "總和、龍虎")
-                    n = s[1]+" @ "+s[2]+" x ￥"+value;
+                    n = s[1] + " @ " + s[2] + " x ￥" + value;
                 else
-                    n = s[0]+"["+s[1]+"] @ "+s[2]+" x ￥"+value;
-                names.push(n+"\n");
-                sArray += s+","+value+"|";
+                    n = s[0] + "[" + s[1] + "] @ " + s[2] + " x ￥" + value;
+                names.push(n + "\n");
+                sArray += s + "," + value + "|";
             }
+        });
+    } else {
+        $(".t_td_text[selected='true']").each(function () {
+            var typename;
+            count++;
+            countmoney += $('#AllMoney').val();
+            //typename=$(this).attr('name');
+            //names.push(typename);
+            //todo:项目名称
+            s = nameformat($(this).find('input').attr("name").split("_"));
+            s[2] = $("#" + s[2] + " a").html();
+            if (s[0] == "總和、龍虎")
+                n = s[1] + " @ " + s[2] + " x ￥" + $('#AllMoney').val();
+            else
+                n = s[0] + "[" + s[1] + "] @ " + s[2] + " x ￥" + $('#AllMoney').val();
+            names.push(n + "\n");
+            sArray += s + "," + $('#AllMoney').val() + "|";
         });
     }
 	if (count == 0){alert("請填寫下註金額!!!");return false;}
