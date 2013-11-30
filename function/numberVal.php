@@ -133,7 +133,9 @@ function upUserKyYongEr ($kMoney, $userName)
  */
 function isUserMoney ($money, $max,$totalmoney)
 {
-	 
+	// echo $totalmoney;
+    //echo '</br>';
+    //var_dump($max);
 	if (!is_numeric($money))
 		exit("MoneyrError");
 	if (!is_numeric($totalmoney))
@@ -166,7 +168,7 @@ function isNumber ($type=null, $ball=null, $number=null)
 	}
 	else if ($type != null)
 	{
-		if ($type == "第一球" || $type == "第二球" || $type == "第三球" || $type == "第四球" || $type == "第五球" || $type == "第六球" || $type == "第七球" || $type == "第八球" || $type == "總和、龍虎" || $type == "連碼")
+		if ($type == "第一球" || $type == "第二球" || $type == "第三球" || $type == "第四球" || $type == "第五球" || $type == "第六球" || $type == "第七球" || $type == "第八球" || $type == "總和、龍虎" || $type == "連碼" || $type == '正码')
 			$bool = true;
 	}
 	return $bool;

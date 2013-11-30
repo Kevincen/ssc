@@ -6,10 +6,10 @@ include_once ROOT_PATH.'class/AutoLet.php';
 global $user, $UserOut, $stratGame, $endGame;
 $ConfigModel= configModel("`g_mix_money`, `g_web_lock`,`g_kg_game_lock`, `g_odds_ratio_b1`,`g_odds_ratio_b2`,`g_odds_ratio_b3`,`g_odds_ratio_b4`,`g_odds_ratio_b5`,`g_odds_ratio_c1`,`g_odds_ratio_c2`,`g_odds_ratio_c3`,`g_odds_ratio_c4`,`g_odds_ratio_c5`");
 $dateTime = date('Y-m-d H:i:s');
-if ( $dateTime < $stratGame || $dateTime > $endGame)
+/*if ( $dateTime < $stratGame || $dateTime > $endGame)
 {
 	back('開盤時間為：'.$stratGame.'--'.$endGame);exit;
-}
+}*/
 
 if ($ConfigModel['g_kg_game_lock'] !=1 || $ConfigModel['g_web_lock'] !=1)
 	exit(alert_href('抱歉！盤口未開放。', '../left.php'));
@@ -110,14 +110,18 @@ if (isset($_SESSION['guid_code']))
 		if ($ListArr[0]['id'] == null) exit(alert_href("抱歉！{$ListArr[0]['g_mingxi_1']}『{$ListArr[0]['g_mingxi_2']}』下註失敗！", '../left.php'));
 		upUserKyYongEr ($ListArr[0]['KeYongEr'], $ListArr[0]['g_nid']);
 	}
-	else if ($action == 'fn1') //alert提交
+	else if ($action == 'fn1') //alert提交 正码提交，原龙虎
 	{
-		$s_number = $_POST['s_number'];
-		$s_type = $_POST['s_type'];
-		$s_ball_arr = $_POST['s_ball'];
-		$s_money_arr = $_POST['s_money'];
-		$s_hid_arr = $_POST['s_hid'];
+		$s_number = $_POST['s_number']; //????
+		$s_type = $_POST['s_type'];//本项目名称 如正码
+		$s_ball_arr = $_POST['s_ball'];//下注的具体小项目名称
+		$s_money_arr = $_POST['s_money'];//每一注的金钱
+		$s_hid_arr = $_POST['s_hid'];//具体的项目标号号如：h1 h2 h3 h4 h5等
 		$count_money = 0;
+       /* var_dump($s_ball_arr);
+        var_dump($s_money_arr);*/
+
+        $s = 0; //笔数
 		//循環判斷
 		for ($i=0; $i<count($s_money_arr); $i++)
 		{
@@ -221,7 +225,7 @@ if (isset($_SESSION['guid_code']))
 		$countZhuEr = $results[0] * $s_money; //總下注金額
 		$odds = GetOdds ('連碼', $hi); //賠率
 		$odds = setodds($hi, $odds, $ConfigModel, $user, 2);
-		
+
 		$result = GetUserXianEr ($stringList['type'], null, $user[0]['g_name']); 				//當前用戶退水列表
 		$max = GetUser_s ($result, $user,$stringList['type'],null);																	//當前用戶、單注限額、單號限額、單號已下、 單期限額、單期已下
 		isUserMoney ($countZhuEr, $max,$countZhuEr); 																	//驗證下注金額是否大於可用金額
@@ -353,7 +357,7 @@ if (isset($_SESSION['guid_code']))
 				$ListArr[$i]['KeYing'] = $ListArr[$i]['g_jiner'] * $ListArr[$i]['g_odds'] - $ListArr[$i]['g_jiner']; //可贏額
 			}
 			$ListArr[$i]['id'] = postForms ($ListArr[$i]);
-			if ($ListArr[$i]['id'] == null) 
+			if ($ListArr[$i]['id'] == null)
 				exit(alert_href("抱歉！{$ListArr[$i]['g_mingxi_1']}『{$ListArr[$i]['g_mingxi_2']}』下註失敗", '../left.php'));
 		}
 		upUserKyYongEr ($gMoney, $ListArr[0]['g_nid']);		

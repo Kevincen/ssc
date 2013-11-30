@@ -3010,7 +3010,7 @@ function GetIP()
 function _getString ($t, $ball=null)
 {
 
-	if ($t == "第一球" || $t == "第二球" || $t == "第三球" || $t == "第四球" || $t == "第五球" || $t == "第六球" || $t == "第七球" || $t == "第八球")
+	if ($t == "第一球" || $t == "第二球" || $t == "第三球" || $t == "第四球" || $t == "第五球" || $t == "第六球" || $t == "第七球" || $t == "第八球" || $t =="正码")
 	{
 		if (is_numeric($ball)&&(int)$ball <= 20 && Copyright)
 		{
@@ -3371,6 +3371,7 @@ function GetOdds ($s_type, $select)
 		case '第七球' : $where = "Ball_7"; break;
 		case '第八球' : $where = "Ball_8"; break;
 		case '總和、龍虎' : $where = "Ball_9"; break;
+        case '正码' : $where = "ZHENGMA";break;//by wjl 正码
 		case '連碼' : $where = "Ball_10"; break;
 		case '任選二' : $where = "Ball_10"; $select='h1'; break;
 		case '選二連組' : $where = "Ball_10"; $select='h3'; break;

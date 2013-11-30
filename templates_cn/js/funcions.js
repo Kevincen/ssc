@@ -456,7 +456,7 @@ function postodds (data)
 		alert("請填寫下註金額!!!");
 		return false;
 	} else {
-		var tys = $("#tys").html();
+		var tys = $("#tys").html();//项目名称如正码
 		var uArr=[], result="", s=0, s_number=[], h=[];
 		var odds = 0;
 		for (var i = 0; i < tArr.length; i++) {

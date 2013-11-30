@@ -24,7 +24,7 @@ function kuijie(){
 		$('table.wqs').each(function(){ 
 			if($(this).find("colgroup").size() > 0)
 			{
-				var td_num = $(this).find("tr").eq(1).find("td:visible").length;
+				var td_num = $(this).find("tr").eq(2).find("td:visible").length;
 				
 				$(this).find("colgroup").html("");
 				//计算宽度
