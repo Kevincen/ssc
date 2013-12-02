@@ -36,6 +36,7 @@ if (isset($_SESSION['guid_code']))
 	
 	if ($action == 'fn')
 	{
+
 		$types = base64_decode($_POST['types']); 										//下注遊戲玩法
 		$number_1 = $_POST['number_1']; 													//下注期數
 		$number_2 = base64_decode($_POST['number_2']); 						//下注號碼
@@ -119,10 +120,9 @@ if (isset($_SESSION['guid_code']))
 		$s_hid_arr = $_POST['s_hid'];//具体编号
         //var_dump($s_hid_arr);//h1
 		$count_money = 0;
-/*        var_dump($s_ball_arr);//123
-        var_dump($s_money_arr);*/
+        //var_dump($s_ball_arr);//123
+        //var_dump($s_money_arr);
         $s_hid_arr = $s_ball_arr;
-
         $s = 0; //笔数
 		//循環判斷
 		for ($i=0; $i<count($s_money_arr); $i++)

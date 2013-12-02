@@ -96,7 +96,10 @@ switch ($g) {
     <tr>
         <td><span style="float:left">投注类型：</span><a href="#this" class="intype_normal" id="kuijie">快捷</a><a href="#this" class="intype_hover" id="yiban">一般</a></td>
     </tr>
-</table> 
+</table>
+<div class="actiionn">
+
+</div>
 <input type="hidden" name="actions" value="fn1" />
 <input type="hidden" name="gtypes" value="1" />
 <table class="wqs" border="0" cellpadding="0" cellspacing="0" style="margin-top:5px;">
@@ -273,11 +276,11 @@ switch ($g) {
     </tr>
     <tr class="t_td_text">
     	<td class="caption_1">龙</td>
-        <td class="o" id="">无</td>
-        <td class="tt" id=""></td>
+        <td class="o" id="h36">无</td>
+        <td class="tt" id="t36"></td>
         <td class="caption_1">虎</td>
-     	<td class="o" id="">无</td>
-        <td class="tt" id=""></td>
+     	<td class="o" id="h37">无</td>
+        <td class="tt" id="t37"></td>
         <td class="caption_1">&nbsp;</td>
      	<td class="o">&nbsp;</td>
         <td class="tt">&nbsp;</td>
