@@ -66,7 +66,8 @@ if ($typeId == "action" && Copyright)
 		case 'g6': $p=35; $g_id = "Ball_6"; break;
 		case 'g7': $p=35; $g_id = "Ball_7"; break;
 		case 'g8': $p=35; $g_id = "Ball_8"; break;
-		case 'k1': $p=8; $g_id = "Ball_9"; break;
+		case 'k1': $p=8; $g_id = "Ball_9"; break;//龙虎
+        case 'zm': $p=35;$g_id = "ZHENGMA"; break;
 		case 'k2': $p=8; $g_id = "Ball_10"; break;
 	}
 	$oArr = selectOdds($p, $g_id); //賠率

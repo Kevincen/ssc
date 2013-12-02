@@ -112,14 +112,16 @@ if (isset($_SESSION['guid_code']))
 	}
 	else if ($action == 'fn1') //alert提交 正码提交，原龙虎
 	{
-		$s_number = $_POST['s_number']; //????
+		$s_number = $_POST['s_number']; //期数
 		$s_type = $_POST['s_type'];//本项目名称 如正码
-		$s_ball_arr = $_POST['s_ball'];//下注的具体小项目名称
+		$s_ball_arr = $_POST['s_ball'];//下注的具体小项目编号
 		$s_money_arr = $_POST['s_money'];//每一注的金钱
-		$s_hid_arr = $_POST['s_hid'];//具体的项目标号号如：h1 h2 h3 h4 h5等
+		$s_hid_arr = $_POST['s_hid'];//具体编号
+        //var_dump($s_hid_arr);//h1
 		$count_money = 0;
-       /* var_dump($s_ball_arr);
+/*        var_dump($s_ball_arr);//123
         var_dump($s_money_arr);*/
+        $s_hid_arr = $s_ball_arr;
 
         $s = 0; //笔数
 		//循環判斷
@@ -147,6 +149,7 @@ if (isset($_SESSION['guid_code']))
 				isUserMoney ($s_money_arr[$k], $max,$count_money); 																//驗證下注金額是否大於可用金額
 			}
 			$odds = GetOdds ($s_type, $s_hid_arr[$i]); 														//賠率
+            var_dump($odds);
 			if ($s_type=='總和、龍虎'){
 				$odds = setodds($s_hid_arr[$i], $odds, $ConfigModel, $user, 1);
 			} else {
@@ -276,14 +279,14 @@ if (isset($_SESSION['guid_code']))
 	}
 	else if ($action == 'fn3') //雙面提交
 	{
-		$number_1 = $_POST['s_number'];
-		$sm_arr = $_POST['sm_arr'];
+		$number_1 = $_POST['s_number'];//期数
+		$sm_arr = $_POST['sm_arr']; //第一球，8，100￥|第二球，8，20￥|
 		$sm_arr = explode('|', $sm_arr, -1);
 		//$number_arr = array();
 		for ($i=0; $i<count($sm_arr); $i++){
 			$sm_arr[$i] = explode(',', $sm_arr[$i]);
 		}
-		
+
 		for ($i=0; $i<count($sm_arr); $i++){
 			if (!Matchs::isNumber($sm_arr[$i][3]))
 				exit(alert_href('抱歉！您的下注金額錯誤。', '../left.php'));

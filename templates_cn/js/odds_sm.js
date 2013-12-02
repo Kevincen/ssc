@@ -1,7 +1,108 @@
 /*****************************
 * 新增快捷和正常投注
 *****************************/
-function kuijie(){
+/*by wjl 快速投注思路：
+*   1.在选中每个项目的时候将金额填写进入该项目的隐藏input当中。
+ *   2.在进行快捷投注和一般投注的切换的时候将所有input的type和值全部清空
+ *   3.在提交表单之前：如果是快速投注，则将所有已被选中的input的值置为#ALLMONEY的值,
+ *   4.在确定提交表单之前，将所有的input清空？
+* */
+/*
+* @describe 将所有已被选中的input充值，并清空val
+* @param input_selecter 输入框选择器
+* @param selected  输入框是否被选中的选择器名称*/
+function clean_inputs(input_selecter, selected) {
+    $(input_selecter + selected).each(function(){
+        $(this).removeClass(selected).val('');
+    });
+}
+function fill_inputs(input_selecter, money_src_selecter) {
+    $(input_selecter).each(function(){
+        $(this).val($(money_src_selecter).val());
+    })
+}
+
+var how_to_fill_input = new Array();
+how_to_fill_input['h1'] = 'k1_h1';
+how_to_fill_input['h2'] = 'k1_h2';
+how_to_fill_input['h3'] = 'k1_h5';
+how_to_fill_input['h4'] = 'k1_h6';
+how_to_fill_input['h5'] = 'k1_h3';
+how_to_fill_input['h6'] = 'k1_h4';
+how_to_fill_input['h7'] = 'k1_h7';
+how_to_fill_input['h8'] = 'k1_h8';
+/*以上为总和一套*/
+for (var i=1; i<=8;i++) {
+    how_to_fill_input['ah2'+i] = 't1_h2'+i;//第一球大~和数双
+}
+
+/*龙虎 h4 h8*/
+how_to_fill_input['ah36'] = 't1_h4';
+how_to_fill_input['ah37'] = 't1_h8';
+
+for (var i=1; i<=8;i++) {
+    how_to_fill_input['bh2'+i] = 't2_h2'+i;//第二球大~合数双
+}
+
+/*龙虎 h4 h8*/
+how_to_fill_input['bh36'] = 't2_h4';
+how_to_fill_input['bh37'] = 't2_h8';
+
+
+for (var i=1; i<=8;i++) {
+    how_to_fill_input['ch2'+i] = 't3_h2'+i;//第三球大~合数双
+}
+
+/*龙虎 h4 h8*/
+how_to_fill_input['ch36'] = 't3_h4';
+how_to_fill_input['ch37'] = 't3_h8';
+
+
+for (var i=1; i<=8;i++) {
+    how_to_fill_input['dh2'+i] = 't4_h2'+i;//第四球大~合数双
+}
+
+/*龙虎 h4 h8*/
+how_to_fill_input['dh36'] = 't4_h4';
+how_to_fill_input['dh37'] = 't4_h8';
+
+
+for (var i=1; i<=8;i++) {
+    how_to_fill_input['eh2'+i] = 't5_h2'+i;//第五球大~合数双
+}
+
+/*龙虎 h4 h8*/
+how_to_fill_input['eh36'] = 't5_h4';
+how_to_fill_input['eh37'] = 't5_h8';
+
+
+for (var i=1; i<=8;i++) {
+    how_to_fill_input['fh2'+i] = 't6_h2'+i;//第六球大~合数双
+}
+
+/*龙虎 h4 h8*/
+how_to_fill_input['fh36'] = 't6_h4';
+how_to_fill_input['fh37'] = 't6_h8';
+
+
+for (var i=1; i<=8;i++) {
+    how_to_fill_input['gh2'+i] = 't7_h2'+i;//第七球大~合数双
+}
+
+/*龙虎 h4 h8*/
+how_to_fill_input['gh36'] = 't7_h4';
+how_to_fill_input['gh37'] = 't7_h8';
+
+for (var i=1; i<=8;i++) {
+    how_to_fill_input['hh2'+i] = 't8_h2'+i;//第八球大~合数双
+}
+
+/*龙虎 h4 h8*/
+how_to_fill_input['hh36'] = 't8_h4';
+how_to_fill_input['hh37'] = 't8_h8';
+
+
+ function kuijie(){
 	$('#td_input_money').show();
 	$('#td_input_money1').show();
 	if($('#kuijie').attr('class')!='intype_hover'){
@@ -9,7 +110,9 @@ function kuijie(){
 		$('#yiban').attr('class','intype_normal');
         $('#touzhu_type').attr('value', 'fast');//区分快捷投注和一般投注，用在submitform函数里面
 		var i=0;
-		
+		/*by wjl 快速投注思路，第二部代码*/
+        clean_inputs('input.inp1','selected');
+
 		$('.loads').each(function(){
 			//var w = $(this).prev().width();
 			//w+=$(this).width()/2;
@@ -76,13 +179,16 @@ function kuijie(){
 					$(this).attr('title','');
 					$(this).prev().attr('title','');
                     $(this).parent().attr('selected','false');//设置父节点也就是tr为选中状态
-				}else{												//选中
+                    $(this).next().find('input.inp1').removeClass('selected').val('');//将input的被选中状态关闭并清除其内容
+
+                }else{												//选中
 					$(this).css({'background-color':'#ffc214','cursor':'pointer'});	  
 					$(this).prev().css({'background-color':'#ffc214','cursor':'pointer'});	 
 					$(this).attr('title','选中');
 					$(this).prev().attr('title','选中');
                     $(this).parent().attr('selected','true');
-				}
+                    $(this).next().find('input.inp1').addClass('selected').val('');
+                }
 			}
 			if($(this).attr('class')=='caption_1' && $(this).next().attr('class')=='o'){
 				if( $(this).attr('title')=='选中' ){ //已选中 取消选中
@@ -91,14 +197,18 @@ function kuijie(){
 					$(this).attr('title','');
 					$(this).next().attr('title','');
                     $(this).parent().attr('selected','false');//设置父节点也就是tr为选中状态
-				}else{												//选中
+                    $(this).next().next().find('input.inp1').removeClass('selected').val('');//将input的被选中状态关闭并清除其内容
+
+                }else{												//选中
 					$(this).next().css({'background-color':'#ffc214','cursor':'pointer'});	  
 					$(this).css({'background-color':'#ffc214','cursor':'pointer'});	
 					$(this).attr('title','选中');
 					$(this).next().attr('title','选中');
                     $(this).parent().attr('selected','true');//设置父节点也就是tr为选中状态
+                    $(this).next().next().find('input.inp1').addClass('selected').val('');
 				}
-			}	
+			}
+
 		}})
 	}
 	 
@@ -108,6 +218,10 @@ function yiban(){
 		$('#yiban').attr('class','intype_hover');
 		$('#kuijie').attr('class','intype_normal');
         $('#touzhu_type').attr('value', 'ordinary');//区分快捷投注和一般投注，用在submitform函数里面
+
+        /*by wjl 快速投注思路，第二部代码*/
+        clean_inputs('input.inp1','selected');
+
 
 
         $('.o').each(function(){
@@ -217,8 +331,11 @@ function loadInfo(bool){
 	var win = $("#sy");
 	var number = $("#number"); //開獎期數
 	$.post(_url, {tid : 1}, function(data){
-        if(!data)
+        if(!data) {
+            alert('loadInfo return data= NULL');
             return;
+        }
+        console.log(data);
 		_Number (data.number, data.ballArr); //開獎號碼
 		smlen(data);//雙面長龍
 		win.html(data.winMoney); //今天輸贏
@@ -385,7 +502,7 @@ function loadodds(oddslist, endtime, number){
  * 加載輸入框
  */
 function loadinput(endtime){
-	var loads = $(".loads");
+	/*var loads = $(".loads");
 	var count=0, lock1=lock2=lock3=lock4=1, lock5=5, s, n="封盤";
 	loads.each(function(){
 		count++;
@@ -406,7 +523,18 @@ function loadinput(endtime){
 		{	n = "<input name=\""+s+"\" class=\"inp1\" onkeyup=\"digitOnly(this)\" onfocus=\"this.className='inp1m'\" onblur=\"this.className='inp1';\" type=\"text\" maxLength=\"9\"/>"
 		}
 		$(this).html(n);
-	});
+	});*/
+
+    var input_html_str;
+
+    if (endtime <=1) {//若是即将封盘，则不加载
+        return;
+    }
+
+    for (var tmp in how_to_fill_input) {
+        input_html_str = "<input name=\""+how_to_fill_input[tmp]+"\" class=\"inp1\" onkeyup=\"digitOnly(this)\" onfocus=\"this.className='inp1m'\" onblur=\"this.className='inp1';\" type=\"text\" maxLength=\"9\"/>";
+        $('#'+tmp).next().html(input_html_str);
+    }
 }
 
 function settime(time){
@@ -464,7 +592,10 @@ function submitforms(){
 	var names = new Array();
 	var sArray = "";
     //快速投注所需要的
-    if ($('#touzhu_type').attr('value') != 'fast') {
+    //if ($('#touzhu_type').attr('value') != 'fast') {
+    if ($('#touzhu_type').attr('value') == 'fast') {
+        fill_inputs('input.inp1.selected','#AllMoney');
+    }
         input.each(function () {
             var value = $(this).val();
             if (value != "") {
@@ -479,10 +610,11 @@ function submitforms(){
                 else
                     n = s[0] + "[" + s[1] + "] @ " + s[2] + " x ￥" + value;
                 names.push(n + "\n");
+                console.log(s);
                 sArray += s + "," + value + "|";
             }
         });
-    } else {
+   /* } else {
         $(".t_td_text[selected='true']").each(function () {
             var typename;
             count++;
@@ -498,8 +630,7 @@ function submitforms(){
                 n = s[0] + "[" + s[1] + "] @ " + s[2] + " x ￥" + $('#AllMoney').val();
             names.push(n + "\n");
             sArray += s + "," + $('#AllMoney').val() + "|";
-        });
-    }
+        });*/
 	if (count == 0){alert("請填寫下註金額!!!");return false;}
 	if (c == false){ alert("最低下註金額："+mixmoney+"￥");return false;}
 	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
@@ -576,6 +707,16 @@ function stringByInt (str){
 
 
 
+/*wjl change*/
 
+/*快速投注设置金钱到所有的input上面*/
+function fast_money_set(input_selecter_str,money_selecter_str)
+{
+    var $input = $(input_selecter_str);
+    var $money_selecter = $(money_selecter_str);
+    $input.each(function(){
+        $(this).val($money_selecter.val());
+    });
+}
 
 

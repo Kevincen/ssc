@@ -30,7 +30,9 @@ $getResult = 'class="nv_a" '.$onclick;
     <meta charset="utf-8"/>
     <link href="css/sGame.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="js/sc.js"></script>
     <script type="text/javascript" src="/js/artDialog.js?skin=twitter"></script>
+    <script type="text/javascript" src="js/funcions.js"></script>
     <script type="text/javascript" src="/wjl_tmp/front.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -40,13 +42,14 @@ $getResult = 'class="nv_a" '.$onclick;
             $('#yiban').click(function(){
                 yiban();
             })
+            action();
         });
     </script>
 </head>
 <body>
 <table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px">
     <tr height="24">
-        <td class="bolds wanfa">广东快乐十分 正码赔率尚未添加入数据库<span style="color:#0033FF; font-weight:bold; margin-left:10px;" id="tys"><?=$types?></span></td>
+        <td class="bolds wanfa">广东快乐十分 <span style="color:#0033FF; font-weight:bold; margin-left:10px;" id="tys"><?=$types?></span></td>
         <td align="left" class="bolds" style="color:#FF0000">
         	<div id="row1" style="FONT-FAMILY: Arial; color: red;"> <span>今天输赢：</span></div>
             <div id="row2"><span id="sy" style="font-size:14px;position:relative; top:-2px">0</span></div>
@@ -167,16 +170,16 @@ $getResult = 'class="nv_a" '.$onclick;
     </tr>
     <tr class="t_td_text">
         <td class="caption_1"><span class="No_gd5"></td>
-        <td class="o" id="h3"></td>
+        <td class="o" id="h5" ball_name="5"></td>
         <td class="tt" id="t3"></td>
         <td class="caption_1"><span class="No_gd10"></td>
-        <td class="o" id="h4"></td>
+        <td class="o" id="h10" ball_name="10"></td>
         <td class="tt" id="t4"></td>
         <td class="caption_1"><span class="No_gd15"></td>
-        <td class="o" id="h7"></td>
+        <td class="o" id="h15" ball_name="15"></td>
         <td class="tt" id="t7"></td>
         <td class="caption_1"><span class="No_gd20"></td>
-        <td class="o" id="h7"></td>
+        <td class="o" id="h20" ball_name="20"></td>
         <td class="tt" id="t7"></td>
     </tr>
 </table>
@@ -210,24 +213,24 @@ $getResult = 'class="nv_a" '.$onclick;
         </tr>
         <tr class="t_td_text">
             <td class="caption_1">总和大</span></td>
-            <td class="o" id="h1"></td>
+            <td class="o" id="h21"></td>
             <td class="tt" id="t1"></td>
             <td class="caption_1">总和单</td>
-            <td class="o" id="h2"></td>
+            <td class="o" id="h23"></td>
             <td class="tt" id="t2"></td>
             <td class="caption_1">总和尾大</td>
-            <td class="o" id="h5"></td>
+            <td class="o" id="h25"></td>
             <td class="tt" id="t5"></td>
         </tr>
         <tr class="t_td_text">
             <td class="caption_1">总和小</td>
-            <td class="o" id="h3"></td>
+            <td class="o" id="h22"></td>
             <td class="tt" id="t3"></td>
             <td class="caption_1">总和双</td>
-            <td class="o" id="h4"></td>
+            <td class="o" id="h24"></td>
             <td class="tt" id="t4"></td>
             <td class="caption_1">总和尾小</td>
-            <td class="o" id="h7"></td>
+            <td class="o" id="h26"></td>
             <td class="tt" id="t7"></td>
         </tr>
     </table>

@@ -17,6 +17,7 @@ function action(){
             alert('无法获取开奖时间')
 			return;
 		}
+        console.log(data);
 		$("#o").html(data.Phases);
 		setTime[0] = data.endTime; //封盤時間
 		setTime[1] = data.openTime; //開獎時間

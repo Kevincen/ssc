@@ -3425,6 +3425,13 @@ function GetOdds ($s_type, $select)
 		case '總和尾小' : $select = 'h7'; break;
 		case '龍' : $select = 'h6'; break;
 		case '虎' : $select = 'h8'; break;
+        //添加正码赔率
+        case '总和大': $select ='h21';break;
+        case '总和小': $select ='h22';break;
+        case '总和单': $select ='h23';break;
+        case '总和双': $select ='h24';break;
+        case '总和尾大': $select ='h25';break;
+        case '总和尾小': $select ='h26';break;
 	}
 	$db = new DB();
 	$sql = "SELECT {$select} FROM `g_odds` WHERE `g_type` = '{$where}' LIMIT 1 ";

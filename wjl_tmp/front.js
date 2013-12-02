@@ -211,7 +211,7 @@ function my_alert(message) {
         }
     });
 }
-/*投注提交*/
+/*正码投注提交*/
 function submit_odds(type_name,ball_selecter)
 {
 /*  php 所需数据格式
@@ -269,4 +269,36 @@ function submit_odds(type_name,ball_selecter)
     $('#hidden_inputs').html(add_inputs);
     $.post("../ajax/Default.ajax.php", { typeid : "sessionId"}, function(){});
     return true;
+}
+/*两面盘提交*/
+function shuangmian_submit_odds(ball_selecter)
+{
+    var current_qishu;
+    var add_inputs;
+    var ball_str ='';///第一球，8，100￥|第二球，8，20￥|
+    if ($('#touzhu_type').val() != 'fast') {
+        submitforms();
+    } else {
+        var money = parseInt($('#AllMoney').val());
+        if (isNaN(money) == true) {
+            my_alert('您输入类型不正确或没有输入实际金额');
+            return false;
+        } else {
+            $(ball_selecter+"[title='选中']").each(function() {
+                var ballname;
+                var ballnum;
+                var typename;
+
+                ballname = $(this).attr('ball_name');
+                ballnum = $(this).attr('id');
+                typename = $(this).attr('typename');
+                ball_str += ballnum + "," + money + "|";
+            });
+            add_inputs = gen_input('sm_arr',ball_str);
+        }
+    }
+    $('#hidden_inputs').html(add_inputs);
+    $.post("../ajax/Default.ajax.php", { typeid : "sessionId"}, function(){});
+    return true;
+
 }

@@ -178,7 +178,7 @@ $(function () {
 		yiban();							   
 	})
 	
-	action();
+	action()
 	$("#dp").attr("action","./inc/DataProcessing.php?t="+encodeURI($("#tys").html()));
 	
 	//POST提交表單

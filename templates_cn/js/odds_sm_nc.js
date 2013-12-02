@@ -165,6 +165,7 @@ function loadInfo(bool){
 	var win = $("#sy");
 	var number = $("#number"); //開獎期數
 	$.post(_url, {tid : 1}, function(data){
+        console.log(data);
 		_Number (data.number, data.ballArr); //開獎號碼
 		smlen(data);//雙面長龍
 		win.html(data.winMoney); //今天輸贏
