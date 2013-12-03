@@ -342,7 +342,7 @@ function changes ($t, n) {
 				case "33": result = '中'; break;
 				case "34": result = '發'; break;
 				case "35": result = '白'; break;
-				case "36": result = '龙'; break;
+				case "36": result = '龍'; break;
 				case "37": result = '虎'; break;
 				default : result = $n;
 			}

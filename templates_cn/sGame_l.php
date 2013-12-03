@@ -213,24 +213,24 @@ $getResult = 'class="nv_a" '.$onclick;
         </tr>
         <tr class="t_td_text">
             <td class="caption_1">总和大</span></td>
-            <td class="o" id="h21"></td>
+            <td class="o" id="h21" ball_name="总和大"></td>
             <td class="tt" id="t1"></td>
             <td class="caption_1">总和单</td>
-            <td class="o" id="h23"></td>
+            <td class="o" id="h23" ball_name="总和单"></td>
             <td class="tt" id="t2"></td>
             <td class="caption_1">总和尾大</td>
-            <td class="o" id="h25"></td>
+            <td class="o" id="h25" ball_name="总和尾大"></td>
             <td class="tt" id="t5"></td>
         </tr>
         <tr class="t_td_text">
             <td class="caption_1">总和小</td>
-            <td class="o" id="h22"></td>
+            <td class="o" id="h22" ball_name="总和小"></td>
             <td class="tt" id="t3"></td>
             <td class="caption_1">总和双</td>
-            <td class="o" id="h24"></td>
+            <td class="o" id="h24" ball_name="总和双"></td>
             <td class="tt" id="t4"></td>
             <td class="caption_1">总和尾小</td>
-            <td class="o" id="h26"></td>
+            <td class="o" id="h26" ball_name="总和尾小"></td>
             <td class="tt" id="t7"></td>
         </tr>
     </table>

@@ -144,6 +144,8 @@ if (isset($_SESSION['guid_code']))
 		{
 			$result = GetUserXianEr ($s_type, $s_ball_arr[$i], $user[0]['g_name']); 				//當前用戶退水列表
 			$max = GetUser_s ($result, $user,$s_type,$s_ball_arr[$i]);																	//當前用戶、單注限額、單號限額、單號已下、 單期限額、單期已下
+/*            var_dump($max);
+            var_dump($result);*/
 			for ($k=0; $k<count($s_money_arr); $k++)
 			{
 				isUserMoney ($s_money_arr[$k], $max,$count_money); 																//驗證下注金額是否大於可用金額

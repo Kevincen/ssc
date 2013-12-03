@@ -2705,6 +2705,7 @@ function GetUserXianEr ($t, $ball=null, $name)
 	$type = _getString ($t, $ball);
 	$db = new DB();
 	$sql = "SELECT `g_id`, `g_nid`, `g_type`, `g_panlu_a`,`g_panlu_b`,`g_panlu_c`, `g_danzhu`, `g_danxiang` FROM `g_panbiao` WHERE `g_nid` = '{$name}' AND `g_type` = '{$type}' AND `g_game_id` =1 LIMIT 1  ";
+    echo $sql;
 	return $db->query($sql, 1);
 }
 function GetUserXianErgx ($t, $ball=null, $name)
@@ -3031,6 +3032,12 @@ function _getString ($t, $ball=null)
 				$type = '1-8方位';
 			else if ($ball == '中' || $ball == '發' || $ball == '白')
 				$type = '1-8中發白';
+            else if ($ball == '总和大' || $ball == '总和小')
+                $type = '總和大小';
+            else if ($ball == '总和单' || $ball == '总和双')
+                $type = '總和單雙';
+            else if ($ball == '总和尾数小' || $ball == '总和尾数大')
+                $type = '總和尾數大小';
 		}
 	}
 	else if ($t == "總和、龍虎")
@@ -3046,6 +3053,10 @@ function _getString ($t, $ball=null)
 	}
 	else if ($t == '任選二' || $t == '選二連直' || $t == '選二連組' || $t == '任選三' || $t == '選三前直' || $t == '選三前組' || $t == '任選四' || $t == '任選五')
 		$type = $t;
+    else if ($t == '正码')
+    {
+        $type = '正码';
+    }
 	return $type;
 }
 function _getStringgx ($t, $ball=null)

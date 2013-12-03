@@ -229,7 +229,23 @@ function submit_odds(type_name,ball_selecter)
     add_inputs = gen_input('s_type',typename); //生成隐藏输入值
 
     if ($('#touzhu_type').val() != 'fast') {
-        submitforms();
+        //submitforms();
+        $input_elems = $("input.inp1");
+        $input_elems.each(function(){
+           var money = $(this).val();
+           var $data_src = $(this).parent().prev();
+           if (money != '') {
+               ballname = $data_src.attr('ball_name');
+               ballnum = $data_src.attr('id');
+               add_inputs += gen_input('s_ball[]',ballname) ;
+               add_inputs += gen_input('s_money[]',money);
+               add_inputs += gen_input('s_hid[]',ballnum);
+               ball_array.push(ballname);
+               ball_id_array.push(ballnum);
+               money_array.push(money);
+
+           }
+        });
     } else {
         var money = parseInt($('#AllMoney').val());
         if (isNaN(money) == true) {
@@ -252,15 +268,13 @@ function submit_odds(type_name,ball_selecter)
                 money_array.push(money);
             });
             console.log(debug_counter);
-            if (ball_array.length == 0
-            || ball_id_array.length == 0
-            || money_array.length == 0) {
-                my_alert('您未选择号码');
-                return false;
-            }
-
         }
-
+    }
+    if (ball_array.length == 0
+        || ball_id_array.length == 0
+        || money_array.length == 0) {
+        my_alert('您未选择号码');
+        return false;
     }
 
     console.log(ball_array);

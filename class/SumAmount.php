@@ -122,7 +122,7 @@ class SumAmount {
 		// 还记得前面jieshui.php插入history中的开奖结果吗？这里重新取出，this->Number是期数
 		$sql = "SELECT `g_qishu`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8` 
 		FROM `g_history` WHERE `g_qishu` = '{$this->Number}' AND g_ball_1 is not null LIMIT 1";
-		$numberList = $this->db->query($sql, 1);
+		$numberList = $this->db->query($sql, 1); //开奖结果
 		if ($numberList && Copyright) {
 			/*
 			 * if ($this->param == false){ $sql = "SELECT * FROM `g_zhudan` WHERE `g_qishu` = '{$numberList[0]['g_qishu']}' {$this->where} "; }else { $sql = "SELECT * FROM `g_zhudan` WHERE `g_qishu` = '{$numberList[0]['g_qishu']}' AND g_id = '{$this->param}' {$this->where} "; }
@@ -131,8 +131,8 @@ class SumAmount {
 			// 取出这一期总共的下注的注单
 			$sql = "SELECT `g_id`, `g_s_nid`, `g_mumber_type`, `g_nid`, `g_date`, `g_type`, `g_qishu`, `g_mingxi_1`, `g_mingxi_1_str`, `g_mingxi_2`, `g_mingxi_2_str`, `g_odds`, `g_jiner`, `g_tueishui`, `g_tueishui_1`, `g_tueishui_2`, `g_tueishui_3`, `g_tueishui_4`, `g_distribution`, `g_distribution_1`, `g_distribution_2`, `g_distribution_3`, `g_win`, `g_t_id` ,`g_awin` ,`g_afail`
 			FROM `g_zhudan` WHERE `g_qishu` = '{$numberList[0]['g_qishu']}' {$param} {$this->where} ";
-			$resultList = $this->db->query($sql, 1);
-			$resultList = $this->ResultCorrespond($numberList, $resultList);
+			$resultList = $this->db->query($sql, 1);//所有当期注单
+			$resultList = $this->ResultCorrespond($numberList, $resultList);//填写所有项目的结果
 			// 迭代每个注单
 			for ($i = 0; $i < count($resultList); $i++) {
 				// 单码1-8
@@ -321,6 +321,13 @@ class SumAmount {
 							$resultList[$i]['g_result'] = $numberList[0]['g_ball_1'] + $numberList[0]['g_ball_2'] + $numberList[0]['g_ball_3'] + $numberList[0]['g_ball_4'] + $numberList[0]['g_ball_5'] + $numberList[0]['g_ball_6'] + $numberList[0]['g_ball_7'] + $numberList[0]['g_ball_8'];
 						}
 						break;
+                    case '正码' :
+                        for ($i=1;$i<=8;$i++) {
+                            if ($resultList[$i]['g_mingxi_2'] == $numberList[0]['g_ball_'.$i]) {
+                                $resultList[$i]['g_result'] = $numberList[0]['g_ball_'.$i];
+                            }
+                        }
+                        break;
 					// 连码
 					default :
 						$resultList[$i]['g_result'] = 'LM';
@@ -346,12 +353,15 @@ class SumAmount {
 			} else if ($resultList['g_mingxi_2'] == '中' || $resultList['g_mingxi_2'] == '發' || $resultList['g_mingxi_2'] == '白') {
 				$resultList = sum_ball_string($resultList['g_result'], 9);
 			} 			// 總分計算
-			else if ($resultList['g_mingxi_2'] == '總和大' || $resultList['g_mingxi_2'] == '總和小') {
+			else if ($resultList['g_mingxi_2'] == '總和大' || $resultList['g_mingxi_2'] == '總和小'
+                || $resultList['g_mingxi_2']=='总和小'||  $resultList['g_mingxi_2'] == '总和大' ) {
 				// 總分大小 84為 和
 				$resultList = sum_ball_str_a($resultList['g_result'], 3);
-			} else if ($resultList['g_mingxi_2'] == '總和單' || $resultList['g_mingxi_2'] == '總和雙') {
+			} else if ($resultList['g_mingxi_2'] == '總和單' || $resultList['g_mingxi_2'] == '總和雙'
+                || $resultList['g_mingxi_2'] == '总和双' || $resultList['g_mingxi_2'] == '总和单') {
 				$resultList = sum_ball_str_a($resultList['g_result'], 5);
-			} else if ($resultList['g_mingxi_2'] == '總和尾大' || $resultList['g_mingxi_2'] == '總和尾小') {
+			} else if ($resultList['g_mingxi_2'] == '總和尾大' || $resultList['g_mingxi_2'] == '總和尾小'
+                || $resultList['g_mingxi_2'] == '总和尾大' || $resultList['g_mingxi_2'] == '总和尾小') {
 				$resultList = sum_ball_str_a($resultList['g_result'], 7);
 			} 			// 龍虎計算
 			else if ($resultList['g_mingxi_2'] == '龍' || $resultList['g_mingxi_2'] == '虎') {

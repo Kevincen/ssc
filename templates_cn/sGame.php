@@ -18,7 +18,9 @@ $db=new DB();
 $sql = "SELECT g_panlu,g_panlus FROM g_user where g_name='$name' LIMIT 1";
 $result = $db->query($sql, 1);
 
-$pan = explode (',', $result[0]['g_panlus']); 
+$pan = explode (',', $result[0]['g_panlus']);
+$has_long_hu = true;
+
  
  
  //$abc = $_GET['abc'];
@@ -51,21 +53,25 @@ switch ($g) {
 		if ($ConfigModel['g_game_5'] !=1)exit(href('right.php'));
 		$types = '第五球';
 		$aHtml = '<a '.$getResult.'>第5球</a>';
-		break;
+        $has_long_hu = false;
+        break;
 	case 'g6':
 		if ($ConfigModel['g_game_6'] !=1)exit(href('right.php'));
 		$types = '第六球';
 		$aHtml = '<a '.$getResult.'>第6球</a>';
+        $has_long_hu = false;
 		break;
 	case 'g7':
 		if ($ConfigModel['g_game_7'] !=1)exit(href('right.php'));
 		$types = '第七球';
 		$aHtml = '<a '.$getResult.'>第7球</a>';
+        $has_long_hu = false;
 		break;
 	case 'g8':
 		if ($ConfigModel['g_game_8'] !=1)exit(href('right.php'));
 		$types = '第八球';
 		$aHtml = '<a '.$getResult.'>第8球</a>';
+        $has_long_hu = false;
 		break;
 	default:exit;
 }
@@ -270,14 +276,18 @@ switch ($g) {
         <td class="caption_1">白</td>
         <td class="o" id="h35"></td>
         <td class="tt" id="t35"></td>
-        <td class="caption_1">&nbsp;</td>
-     	<td class="o">&nbsp;</td>
-        <td class="tt">&nbsp;</td>
+        <?php if ($has_long_hu == true) { ?>
+            <td class="caption_1">龙</td>
+            <td class="o" id="h36">无</td>
+            <td class="tt" id="t36"></td>
+        <?php } else { ?>
+            <td class="caption_1">&nbsp;</td>
+            <td class="o">&nbsp;</td>
+            <td class="tt">&nbsp;</td>
+        <? } ?>
     </tr>
+    <?php if ($has_long_hu == true) {?>
     <tr class="t_td_text">
-    	<td class="caption_1">龙</td>
-        <td class="o" id="h36">无</td>
-        <td class="tt" id="t36"></td>
         <td class="caption_1">虎</td>
      	<td class="o" id="h37">无</td>
         <td class="tt" id="t37"></td>
@@ -287,7 +297,11 @@ switch ($g) {
         <td class="caption_1">&nbsp;</td>
      	<td class="o">&nbsp;</td>
         <td class="tt">&nbsp;</td>
+        <td class="caption_1">&nbsp;</td>
+        <td class="o">&nbsp;</td>
+        <td class="tt">&nbsp;</td>
     </tr>
+    <?php } ?>
 </table>
 <table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px;">
     <tr>
