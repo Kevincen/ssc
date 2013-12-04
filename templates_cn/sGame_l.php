@@ -78,6 +78,7 @@ $getResult = 'class="nv_a" '.$onclick;
     <input type="hidden" name="type" value="ordinary" id="touzhu_type"/><!--判断是快捷投注还是一般投注-->
 <input type="hidden" name="actions" value="fn1" />
 <input type="hidden" name="gtypes" value="1" />
+    <input type="hidden" name="s_number" value=""/>
 
 <table class="wqs" border="0" cellpadding="0" cellspacing="0" style="margin-top:5px;">
     <colgroup>

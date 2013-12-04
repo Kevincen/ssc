@@ -3022,6 +3022,8 @@ function _getString ($t, $ball=null)
 		{
 			if ($ball == '大' || $ball == '小')
 				$type = '1-8大小';
+            else if ($ball == '龍' || $ball == '虎')
+                $type = '龍虎';
 			else if ($ball == '單' || $ball == '雙')
 				$type = '1-8單雙';
 			else if ($ball == '尾大' || $ball == '尾小')

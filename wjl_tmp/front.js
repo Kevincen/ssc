@@ -1,6 +1,6 @@
 /**
  * Created by kevin on 13-11-30.
- * 前台通用js库
+ * 前台正码使用js
  * @alias jquery.js
  * @alias artdialog.js
  */
@@ -227,6 +227,8 @@ function submit_odds(type_name,ball_selecter)
 
     typename = type_name;
     add_inputs = gen_input('s_type',typename); //生成隐藏输入值
+    //将期数填入
+    $('input[name=s_number]').val($('#o').html());
 
     if ($('#touzhu_type').val() != 'fast') {
         //submitforms();

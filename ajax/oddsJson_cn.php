@@ -68,7 +68,9 @@ else if ($tid == 2)
 {
 	//獲取封盤時間、開獎時間、刷新時間
 	$db = new DB();
-	$result = $db->query("SELECT `g_qishu`, `g_feng_date`, `g_open_date` FROM g_kaipan WHERE `g_lock` = 2 LIMIT 1 ", 1);
+    $sql = "SELECT `g_qishu`, `g_feng_date`, `g_open_date` FROM g_kaipan WHERE `g_lock` = 2 LIMIT 1 ";
+    //$sql = "SELECT `g_qishu`, `g_feng_date`, `g_open_date` FROM g_kaipan LIMIT 1 ";
+	$result = $db->query($sql, 1);
 
 	if ($result && Copyright)
 	{
@@ -78,7 +80,6 @@ else if ($tid == 2)
 		$RefreshTime = 90; //刷新時間
 		if($openTime<=0){
 			auto_kaipan(1);
-			$sql = "SELECT  `g_qishu`, `g_feng_date`, `g_open_date`  FROM g_kaipan WHERE g_lock = 2  LIMIT 1";
 			$result = $db->query($sql, 1);
 			$endTime = strtotime($result[0]['g_feng_date']) - time();
 			$openTime =  strtotime($result[0]['g_open_date']) - time();

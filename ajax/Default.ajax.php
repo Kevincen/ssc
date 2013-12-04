@@ -58,14 +58,14 @@ if ($typeId == "action" && Copyright)
 	$p=1;
 	switch ($nid)
 	{
-		case 'g1': $p=35; $g_id = "Ball_1"; break;
-		case 'g2': $p=35; $g_id = "Ball_2"; break;
-		case 'g3': $p=35; $g_id = "Ball_3"; break;
-		case 'g4': $p=35; $g_id = "Ball_4"; break;
-		case 'g5': $p=35; $g_id = "Ball_5"; break;
-		case 'g6': $p=35; $g_id = "Ball_6"; break;
-		case 'g7': $p=35; $g_id = "Ball_7"; break;
-		case 'g8': $p=35; $g_id = "Ball_8"; break;
+		case 'g1': $p=37; $g_id = "Ball_1"; break;
+		case 'g2': $p=37; $g_id = "Ball_2"; break;
+		case 'g3': $p=37; $g_id = "Ball_3"; break;
+		case 'g4': $p=37; $g_id = "Ball_4"; break;
+		case 'g5': $p=37; $g_id = "Ball_5"; break;
+		case 'g6': $p=37; $g_id = "Ball_6"; break;
+		case 'g7': $p=37; $g_id = "Ball_7"; break;
+		case 'g8': $p=37; $g_id = "Ball_8"; break;
 		case 'k1': $p=8; $g_id = "Ball_9"; break;//龙虎
         case 'zm': $p=35;$g_id = "ZHENGMA"; break;
 		case 'k2': $p=8; $g_id = "Ball_10"; break;
@@ -91,10 +91,15 @@ if ($typeId == "action" && Copyright)
 	//獲取封盤時間、開獎時間、刷新時間
 	$db = new DB();
 	$result = $db->query("SELECT `g_qishu`, `g_feng_date`, `g_open_date` FROM `g_kaipan` WHERE `g_lock` = 2 LIMIT 1 ", 1);
+    //wjl for test
+	//$result = $db->query("SELECT `g_qishu`, `g_feng_date`, `g_open_date` FROM `g_kaipan` LIMIT 1 ", 1);
 	if ($result)
 	{
 		$endTime = strtotime($result[0]['g_feng_date']) - time();
 		$openTime =  strtotime($result[0]['g_open_date']) - time();
+        //wjl for test
+        //$endTime = 100;
+        //$openTime= 200;
 		$Phases = $result[0]['g_qishu'];
 		$odds = json_encode($oArr);
 		$RefreshTime = 90; //刷新時間
