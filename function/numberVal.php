@@ -224,6 +224,14 @@ function _isNumberIsNotNull ($db, $ball, $number)
 			case '選三前組' : $bool = true; break;
 			case '任選四' : $bool = true; break;
 			case '任選五' : $bool = true; break;
+            case '总和大' :
+            case '总和小' :
+            case '总和单' :
+            case '总和双' :
+            case '总和尾大' :
+            case '总和尾小' :
+                $bool = true;
+                break;
 		}
 	}
 	return $bool;

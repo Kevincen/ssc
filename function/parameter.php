@@ -2705,7 +2705,6 @@ function GetUserXianEr ($t, $ball=null, $name)
 	$type = _getString ($t, $ball);
 	$db = new DB();
 	$sql = "SELECT `g_id`, `g_nid`, `g_type`, `g_panlu_a`,`g_panlu_b`,`g_panlu_c`, `g_danzhu`, `g_danxiang` FROM `g_panbiao` WHERE `g_nid` = '{$name}' AND `g_type` = '{$type}' AND `g_game_id` =1 LIMIT 1  ";
-    echo $sql;
 	return $db->query($sql, 1);
 }
 function GetUserXianErgx ($t, $ball=null, $name)

@@ -457,14 +457,19 @@ function postodds (data)
             m.push(parseInt(val));
         });
     }
-	if (!c) {alert("最低下註金額："+mix+"￥");return false;}
+	if (!c) {my_alert("最低下注金额："+mix+"￥");return false;}
 	if (cou <= 0) {
-		alert("請填寫下註金額!!!");
+		my_alert("您输入类型不正确或没有输入实际金额");
 		return false;
 	} else {
 		var tys = $("#tys").html();//项目名称如正码
 		var uArr=[], result="", s=0, s_number=[], h=[];
 		var odds = 0;
+
+        var ball_array = new Array();
+        var odd_array = new Array();
+        var money_array = new Array();
+
 		for (var i = 0; i < tArr.length; i++) {
 			odds = $("#s"+sid[i].replace("t","")).html();
 			h = "h"+sid[i].replace("t","");
@@ -472,21 +477,26 @@ function postodds (data)
 			s += m[i];
 			if (tys == "總和、龍虎"){
 				uArr.push(result+" @ "+odds+" x ￥"+m[i]+"\n");
+                ball_array.push(result);
 			} else {
 				uArr.push("  "+tys+"["+result+"] @ "+odds+" x ￥"+m[i]+"\n");
+                ball_array.push(tys+ ' ' + result);
 			}
+            odd_array.push(odds);
+            money_array.push(m[i]);
 			s_number.push( '<input type="hidden" name="s_hid[]" value="'+h+'"><input type="hidden" name="s_ball[]" value="'+result+'"><input type="hidden" name="s_odds[]" value="'+odds+'"><input type="hidden" name="s_money[]" value="'+m[i]+'">');
 		}
-		var p = "共 ￥"+s+" / "+cou+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
+/*		var p = "共 ￥"+s+" / "+cou+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
 			   p+=uArr.join('');
-		if (confirm(p)) {
+		if (confirm(p)) {*/
 			var oid = $("#o").html();
 			var s_type = '<input type="hidden" name="s_type" value="'+tys+'"><input type="hidden" name="s_number" value="'+oid+'">';
 			s_number.push(s_type);
 			$(".actiionn").html(s_number.join(''));
 			$(".inp1").val("");
-			return setTimeout(function(){return true}, 3000);
-		}
+        submit_confirm(ball_array,odd_array,money_array);
+		//	return setTimeout(function(){return true}, 3000);
+		//}
 		return false;
 	}
 }
@@ -517,5 +527,64 @@ $(document).ready(function(){
 	var url = location.href.split('/'); 
 	
 })
+//by 2b 投注提示框体流程
+function submit_confirm(ball_array,odd_array,money_array)
+{
+    var html_code;
+    var total_money = 0;
+    for (var i=0;i<ball_array.length;i++) {
+        html_code += '<tr>';
+        html_code += '<td>'+ball_array[i]+'</td>';
+        html_code += '<td>'+ odd_array[i]+'</td>';
+        html_code += '<td>' +money_array[i] + '</td>';
+        html_code += '</tr>';
+        total_money += money_array[i];
+    }
+    $('#orderList').html(html_code);
+    $('#groupNum').html(ball_array.length);
+    $('#totalAmount').html(total_money);
+
+    var maindialog = art.dialog({
+        title:'下注明细（请确认注单）',
+        content:document.getElementById('popup_form'),
+        drag:true,
+        width:'410px',
+        ok:function(){
+            //提交表单
+            $.post("../ajax/Default.ajax.php", { typeid : "sessionId"}, function(){});
+            $('#dp').submit();
+            this.close();
+        },
+        cancel:function(){
+            var is_close = false;
+            art.dialog({
+                title:'用户提示',
+                content:'是否确定取消注单',
+                drag:true,
+                width:'410px',
+                ok:function(){
+                    maindialog.close();
+                    return true;
+                },
+                cancel:function() {
+                    return true;
+                }
+            });
+            //阻止表单提交
+            return is_close;
+        }
+    });
+}
+//一般提示信息窗体
+function my_alert(message,ok_func) {
+    art.dialog({
+        title:'用户提示',
+        content:message,
+        drag:true,
+        width:'410px',
+        ok:function(){
+        }
+    });
+}
 
 

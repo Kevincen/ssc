@@ -312,7 +312,7 @@ switch ($g) {
                 <tr height="26">
 					<td align="center">
                     	<span id="td_input_money"><font class="tz_title">金额</font>&nbsp;<input type="text"  id="AllMoney"  onkeydown="return IsNumeric()"  class="myAllMoney"  value=""  /></span>
-                        <input type="submit" id="submits" class="inputs ti" value="确定" />
+                        <input type="button" id="submits" class="inputs ti" value="确定" />
                         <input type="button" onclick="MyReset()" class="inputs ti" value="重置" />
                     </td>                   
                 </tr>
@@ -371,6 +371,7 @@ switch ($g) {
    <tr class="t_td_text" id="z_cl"><td>&nbsp;</td></tr>
 </table>
 <div class="blank10">&nbsp;</div>
+<?php include './popup.html'?>
 <?php include_once 'inc/cl_file.php';?>
 </body>
 </html>

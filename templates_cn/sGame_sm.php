@@ -41,8 +41,11 @@ else
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>广东快乐十分</title>
 <link href="css/sGame.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
 <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/artDialog.js?skin=twitter"></script>
 <script type="text/javascript" src="js/sc.js"></script>
+    <script type="text/javascript" src="js/funcions.js"></script>
 <script type="text/javascript" src="js/odds_sm.js"></script>
 <script type="text/javascript">
 var s = window.parent.frames.leftFrame.location.href.split('/');
@@ -89,7 +92,7 @@ div#row2 { }
     </tr>
 </table>
 
-<form id="dp" action="" method="post" target="leftFrame" onsubmit="return submitforms();">
+<form id="dp" action="" method="post" target="leftFrame" onsubmit="">
 <table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px">
     <tr>
         <td width="65" class="tz_title" valign="top">投注类型：</td>
@@ -99,7 +102,7 @@ div#row2 { }
                 <tr height="26">
 					<td align="center">
                     	<span id="td_input_money"><font class="tz_title">金额</font>&nbsp;<input type="text"  id="AllMoney"  onkeydown="return IsNumeric()"  class="myAllMoney"  value=""  /></span>
-                        <input type="submit" id="submits1" class="inputs ti" value="确定" />
+                        <input type="button" id="submits1" class="inputs ti" value="确定" onclick="return submitforms();"/>
                         <input type="button" onclick="MyReset()" class="inputs ti" value="重置" />
                     </td>                   
                 </tr>
@@ -111,6 +114,9 @@ div#row2 { }
 <input type="hidden" name="actions" value="fn3" />
 <input type="hidden" name="gtypes" value="1" />
 <input type="hidden" id="mix" value="<?php echo$ConfigModel['g_mix_money']?>" />
+<div class="actiionn">
+
+</div>
 <table class="wqs" border="0" cellpadding="0" cellspacing="0">
 	<colgroup>
         <col style="width:8.2%">
@@ -714,7 +720,7 @@ div#row2 { }
                 <tr height="26">
 					<td align="center">
                     	<span id="td_input_money1"><font class="tz_title">金额</font>&nbsp;<input type="text"  id="AllMoney1"  onkeydown="return IsNumeric()"  class="myAllMoney"  value=""  /></span>
-                        <input type="submit" id="submits" class="inputs ti" value="确定" />
+                        <input type="button" id="submits" class="inputs ti" value="确定" onclick="return submitforms();" />
                         <input type="button" onclick="MyReset()" class="inputs ti" value="重置" />
                     </td>                   
                 </tr>
@@ -736,6 +742,7 @@ div#row2 { }
 </table>
 <div class="blank10">&nbsp;</div>
 <div id="look" style="display:none"></div>
+<?php include './popup.html'?>
 <?php include_once 'inc/cl_file.php';?>
 </body>
 </html>

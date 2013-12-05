@@ -11,7 +11,7 @@ if (!defined('Copyright') && Copyright != '作者QQ:1834219632')
 exit('作者QQ:1834219632');
 if (!defined('ROOT_PATH'))
 exit('invalid request');
-// by wjl 尝试修复excute maxtime limit 错误
+// by 2b 尝试修复excute maxtime limit 错误
 //见网址http://bbs.csdn.net/topics/60317411
 set_time_limit(3600);
 //end by wjl

@@ -201,18 +201,26 @@ function gen_input(typename, val)
     return '<input type="hidden" name="'+ typename + '" value="'+ val +'"/>'
 }
 
-function my_alert(message) {
-    art.dialog({
-        title:'用户提示',
-        content:message,
-        drag:true,
-        width:'410px',
-        ok:function(){
+
+function add_prefix(ball_array)
+{
+    for (var i=0;i<ball_array.length;i++) {
+        if (ball_array[i] <=20 && ball_array[i] >0) {
+            if (ball_array[i] < 10) {
+                ball_array[i] = '0'+ball_array[i];
+            }
+            ball_array[i] = '正码 ' + ball_array[i];
+        } else {
+            ball_array[i] = '总和 ' + ball_array[i];
         }
-    });
+    }
+    return ball_array;
 }
-/*正码投注提交*/
-function submit_odds(type_name,ball_selecter)
+
+/*正码投注提交
+@param go_on:如果go_on为true 则不执行流程，直接提交
+* */
+function submit_odds(type_name,ball_selecter, go_on)
 {
 /*  php 所需数据格式
     $s_type = $_POST['s_type'];//本项目名称 如正码
@@ -223,8 +231,13 @@ function submit_odds(type_name,ball_selecter)
     var ball_array = new Array();//下注的具体小项目名称
     var money_array = new Array();//每一注的金钱
     var ball_id_array = new Array();//具体的项目标号号如：h1 h2 h3 h4 h5等
+    var odd_array = new Array();//小项目的赔率数组，仅仅用于显示
     var add_inputs;
 
+//
+    if (go_on === true) {
+        return true;
+    }
     typename = type_name;
     add_inputs = gen_input('s_type',typename); //生成隐藏输入值
     //将期数填入
@@ -235,15 +248,20 @@ function submit_odds(type_name,ball_selecter)
         $input_elems = $("input.inp1");
         $input_elems.each(function(){
            var money = $(this).val();
+           var odd;
+            var ballname;
+            var ballnum;
            var $data_src = $(this).parent().prev();
            if (money != '') {
                ballname = $data_src.attr('ball_name');
                ballnum = $data_src.attr('id');
+               odd = $data_src.find('a').html();
                add_inputs += gen_input('s_ball[]',ballname) ;
                add_inputs += gen_input('s_money[]',money);
                add_inputs += gen_input('s_hid[]',ballnum);
                ball_array.push(ballname);
                ball_id_array.push(ballnum);
+               odd_array.push(odd);
                money_array.push(money);
 
            }
@@ -258,16 +276,19 @@ function submit_odds(type_name,ball_selecter)
             $(ball_selecter+"[title='选中']").each(function(){
                 var ballname;
                 var ballnum;
+                var odd;
                 debug_counter++;
 
                 ballname = $(this).attr('ball_name');
                 ballnum = $(this).attr('id');
+                odd = $(this).find('a').html();
                 add_inputs += gen_input('s_ball[]',ballname) ;
                 add_inputs += gen_input('s_money[]',money);
                 add_inputs += gen_input('s_hid[]',ballnum);
                 ball_array.push(ballname);
                 ball_id_array.push(ballnum);
                 money_array.push(money);
+                odd_array.push(money);
             });
             console.log(debug_counter);
         }
@@ -283,8 +304,13 @@ function submit_odds(type_name,ball_selecter)
     console.log(ball_id_array);
     console.log(money_array);
     $('#hidden_inputs').html(add_inputs);
-    $.post("../ajax/Default.ajax.php", { typeid : "sessionId"}, function(){});
-    return true;
+
+    //显示弹窗菜单
+    ball_array = add_prefix(ball_array);
+    submit_confirm(ball_array,odd_array,money_array);
+    //清空
+    MyReset();
+    return false;
 }
 /*两面盘提交*/
 function shuangmian_submit_odds(ball_selecter)

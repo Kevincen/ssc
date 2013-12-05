@@ -591,6 +591,9 @@ function submitforms(){
 	var upmoney = 0;
 	var names = new Array();
 	var sArray = "";
+    var ball_array = new Array();
+    var odd_array = new Array();
+    var money_array = new Array();
     //快速投注所需要的
     //if ($('#touzhu_type').attr('value') != 'fast') {
     if ($('#touzhu_type').attr('value') == 'fast') {
@@ -605,10 +608,15 @@ function submitforms(){
                 countmoney += value;
                 s = nameformat($(this).attr("name").split("_"));//TODO:这里是咋整的，input死哪里去了？？？？
                 s[2] = $("#" + s[2] + " a").html();
-                if (s[0] == "總和、龍虎")
+                if (s[0] == "總和、龍虎") {
                     n = s[1] + " @ " + s[2] + " x ￥" + value;
-                else
+                    ball_array.push(s[1]);
+                } else {
                     n = s[0] + "[" + s[1] + "] @ " + s[2] + " x ￥" + value;
+                    ball_array.push(s[0]+ ' ' + s[1]);
+                }
+                odd_array.push(s[2]);
+                money_array.push(value);
                 names.push(n + "\n");
                 console.log(s);
                 sArray += s + "," + value + "|";
@@ -631,18 +639,19 @@ function submitforms(){
             names.push(n + "\n");
             sArray += s + "," + $('#AllMoney').val() + "|";
         });*/
-	if (count == 0){alert("請填寫下註金額!!!");return false;}
-	if (c == false){ alert("最低下註金額："+mixmoney+"￥");return false;}
-	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
+	if (count == 0){ my_alert("您输入类型不正确或没有输入实际金额");return false;}
+	if (c == false){ my_alert("最低下注金额："+mixmoney+"￥");return false;}
+/*	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
 	confrims +=names.join('');
 	if (confirm(confrims)){
-		input.val("");
+		input.val("");*/
 		MyReset();
 		var number = $("#o").html();
 		var s_type = '<input type="hidden" name="sm_arr" value="'+sArray+'"><input type="hidden" name="s_number" value="'+number+'">';
 		$(".actiionn").html(s_type);
-		return setTimeout(function(){return true}, 3000);
-	}
+/*		return setTimeout(function(){return true}, 3000);
+	}*/
+    submit_confirm(ball_array,odd_array,money_array);
 	return false;
 }
 

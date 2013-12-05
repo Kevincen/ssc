@@ -19,8 +19,10 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="css/sGame.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
 <script type="text/javascript" src="js/sc.js"></script>
 <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/artDialog.js?skin=twitter"></script>
 <script type="text/javascript" src="js/funcions.js"></script>
 <script type="text/javascript" src="js/sgame.js"></script>
 <title></title>
