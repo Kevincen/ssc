@@ -231,7 +231,7 @@ a {
     top: 0;
     right: 0;
     bottom: 0;
-    left: 230px;
+    left: 0;
     overflow: auto;
     _overflow: hidden;
     _height: 100%;
@@ -1742,7 +1742,7 @@ table.tc td, table.tc th, tr.tc td, tr.tc th, td.tc, th.tc {
 }
 
 .skin_brown .elem_type .btnnav {
-    background: url(/wjl_tmp/btn.png) no-repeat -38px -19px;
+    background: url(/templates_cn/images/btn.png) no-repeat -38px -19px;
 }
 
 .skin_brown .elem_type .on {

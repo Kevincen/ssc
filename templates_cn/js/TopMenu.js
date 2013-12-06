@@ -66,7 +66,7 @@ function SelectType(LT) {
 		document.getElementById("bST_9").className="bST_1";
 		//document.getElementById("body_backdrop").className="backdrop_1";
 		//document.getElementById("Type_List").innerHTML='<a href="sGame_sm_pk.php?g=g11" target="mainFrame">两面盘</a>&nbsp;|&nbsp;<a href="sGame_pk.php?g=g1"  target="mainFrame">冠、亚军 组合</a>&nbsp;|&nbsp;<a href="sGame_pk_3.php?g=g3"  target="mainFrame">三、四、五、六名</a>&nbsp;|&nbsp;<a  href="sGame_pk_7.php?g=g7"  target="mainFrame">七、八、九、十名</a>';
-        document.getElementById("Type_List").innerHTML='<a href="sGame_sm_pk.php?g=g11" target="mainFrame" class="red">两面盘</a>&nbsp;|&nbsp;<a href="sGame_pk_3.php?g=g3"  target="mainFrame">3 ~ 6</a>&nbsp;|&nbsp;<a  href="sGame_pk_7.php?g=g7" target="mainFrame">7 ~ 10</a>&nbsp;|&nbsp;<a href="sGame_pk.php?g=g1"  target="mainFrame">冠、亚军 组合</a>&nbsp;|&nbsp;';
+        document.getElementById("Type_List").innerHTML='<a href="sGame_sm_pk.php?g=g11" target="mainFrame" class="red">两面盘</a>&nbsp;|&nbsp;<a href="sGame_pk_3.php?g=g3"  target="mainFrame">1 ~ 5</a>&nbsp;|&nbsp;<a  href="sGame_pk_7.php?g=g7" target="mainFrame">6 ~ 10</a>&nbsp;|&nbsp;<a href="sGame_pk.php?g=g1"  target="mainFrame">冠、亚军 组合</a>&nbsp;|&nbsp;';
         parent.frames["mainFrame"].location="sGame_sm_pk.php?g=g11";
 	}else if(LT==7){
 		document.getElementById("bST_1").className="bST_1";

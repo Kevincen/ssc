@@ -3,7 +3,7 @@ define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'templates/offGamepk.php';
 $ConfigModel = configModel("`g_pk_game_lock`, `g_mix_money`");
-if ($ConfigModel['g_pk_game_lock'] !=1)exit(href('right.php'));
+//if ($ConfigModel['g_pk_game_lock'] !=1)exit(href('right.php'));
 $onclick = 'onclick="getResult(this)" href="javascript:void(0)" ';
 $_SESSION['cq'] = false;
 $_SESSION['nc'] = false;

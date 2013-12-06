@@ -13,6 +13,6 @@ $dateTime = date('Y-m-d H:i:s');
 global $stratGamepk, $endGamepk;
 if ( $dateTime < $stratGamepk || $dateTime > $endGamepk)
 {
-	header("Location: ./right.php"); exit;
+//	header("Location: ./right.php"); exit;
 }
 ?>
