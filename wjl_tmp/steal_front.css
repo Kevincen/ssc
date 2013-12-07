@@ -1629,20 +1629,20 @@ table.tc td, table.tc th, tr.tc td, tr.tc th, td.tc, th.tc {
 }
 
 .skin_brown .sidebar th {
-    background: url(../images/skin_brown/imgf/th_bg.png) repeat-x 0 -22px;
+    background: url(/templates_cn/images/skin_brown/th_bg.png) repeat-x 0 -22px;
     height: 33px;
     border-bottom: 1px solid #E9BA84;
 }
 
 .skin_brown .marquee {
-    background: url(../images/skin_brown/imgf/th_bg.png) repeat-x 0 -91px;
+    background: url(/templates_cn/images/skin_brown/th_bg.png) repeat-x 0 -91px;
     border-top: 1px solid #E6B77F;
     border-bottom: 1px solid #E6B77F;
     color: #5D5D5D;
 }
 
 .skin_brown .dataArea .kon {
-    background: url(../images/skin_brown/imgf/th_bg.png) repeat-x 0 -59px;
+    background: url(/templates_cn/images/skin_brown/th_bg.png) repeat-x 0 -59px;
     color: #c00;
 }
 

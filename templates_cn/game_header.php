@@ -35,3 +35,44 @@
     </tr>
     </tbody>
 </table>
+<table cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
+    <tr>
+        <td width="18%">
+            <div class="elem_type" id="elem_type_div"><strong class="t">投注类型：</strong><a
+                    href="javascript:void(0)" class="elem_btn btnnav" id="kuijie">快捷</a><a
+                    href="javascript:void(0)" class="elem_btn btnnav on" id="yiban" >一般</a></div>
+        </td>
+        <td width="28%" class="align-c">
+            <div class="elem_amount">
+                <div id="td_input_money">
+                    <strong class="t kuaijie">金额</strong>
+                                    <span class="kuaijie">
+                                        <input type="text" class="elem_amount_input elem_amount_input_quick"
+                                               id="AllMoney" name="" maxlength="9" id="" onkeydown="return IsNumeric()">
+                                    </span>
+                </div>
+                <a class="btn_m elem_btn" id="submit_top" onclick="submitforms()">确 定</a>
+                <a onclick="MyReset()" class="btn_m elem_btn" id="reset_top">重 置</a></div>
+        </td>
+        <td width="30%" class="align-r">
+            <div class="elem_multiple" style="visibility: hidden;"><input name="" id="beishu"
+                                                                          type="checkbox"><label
+                    class="label t" for="beishu">&nbsp;倍数</label><input disabled="disabled"
+                                                                        value="100" name="beishu"
+                                                                        id="beishu100"
+                                                                        checked="checked"
+                                                                        class="beisx"
+                                                                        type="radio"><label
+                    class="label" for="beishu100">百倍</label><input disabled="disabled" value="1000"
+                                                                   name="beishu" id="beishu1000"
+                                                                   class="beisx" type="radio"><label
+                    class="label" for="beishu1000">千倍</label><input disabled="disabled"
+                                                                    value="10000" name="beishu"
+                                                                    id="beishu10000" class="beisx"
+                                                                    type="radio"><label
+                    class="label" for="beishu10000">万倍</label></div>
+        </td>
+    </tr>
+    </tbody>
+</table>

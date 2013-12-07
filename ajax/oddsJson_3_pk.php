@@ -84,7 +84,8 @@ else if ($tid == 2)
 		}
 		//取出1-8球和總和龍虎雙面賠率
 		$db=new DB();
-		$sql = "SELECT   h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,`g_type`  FROM `g_odds6` WHERE `g_type` = 'Ball_3' OR `g_type` = 'Ball_4'  OR `g_type` = 'Ball_5'  OR `g_type` = 'Ball_6'  ORDER BY g_id ASC ";
+        //获取1~5赛车赔率
+		$sql = "SELECT   h1,h2,h3,h4,h5,h6,h7,h8,h9,h10,h11,h12,h13,h14,h15,h16,`g_type`  FROM `g_odds6` WHERE `g_type` = 'Ball_1' OR `g_type` = 'Ball_2' OR `g_type` = 'Ball_3' OR `g_type` = 'Ball_3' OR `g_type` = 'Ball_4'  OR `g_type` = 'Ball_5' ORDER BY g_id ASC ";
 		$sresult = $db->query($sql, 1);
 		$list = array_merge($sresult);
 		$oddsMax = 0;

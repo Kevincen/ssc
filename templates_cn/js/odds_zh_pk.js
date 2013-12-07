@@ -2,10 +2,11 @@
 * 新增快捷和正常投注
 *****************************/
 function kuijie(){
-	$('#td_input_money').show();
-	if($('#kuijie').attr('class')!='intype_hover'){
-		$('#kuijie').attr('class','intype_hover');
-		$('#yiban').attr('class','intype_normal'); 
+	$('#td_input_money').css('display','inline');
+	$('#td_input_money1').css('display','inline');
+	if(!$('#kuijie').hasClass('on')){
+		$('#kuijie').addClass('on');
+		$('#yiban').removeClass('on');
 		var i=0;
 		$('.tt').each(function(){
 			var w = $(this).width();
@@ -15,20 +16,18 @@ function kuijie(){
 			$(this).hide(); 
 			//$(this).css('display','none');  
 		})
-		$('.wq').find('.t_list_caption').find('td').each(function(){
-			if( $(this).attr('colspan')>=3 ){
-				var n = $(this).attr('colspan')-$(this).attr('colspan')/3	
-				$(this).attr('colspan',n);
-			}												
+		$('.wqs').each(function(){
+            $(this).find("colgroup").
+						html('<col class="col_single w9"><col class="w16"><col class="col_single w9"><col class="w16"><col class="col_single w9"><col class="w16"><col class="col_single w9"><col class="w16">');
 		})
 		/*添加效果*/ 
 		$('.caption_1,.o').bind({'mouseenter':function(){
 			if( $(this).attr('title')!='选中' ){ //未选中
-				if($(this).attr('class')=='o' && ($(this).prev().attr('class')=='caption_1' || $(this).prev().attr('class').indexOf('No_')>=0  )){
+				if($(this).hasClass('o') && $(this).prev().hasClass('caption_1')){
 					$(this).css({'background-color':'#ffd094','cursor':'pointer'});	  
 					$(this).prev().css({'background-color':'#ffd094','cursor':'pointer'});	 
 				}
-				if(($(this).attr('class')=='caption_1'||$(this).attr('class').indexOf('No_')>=0) && $(this).next().attr('class')=='o'){
+			if(($(this).hasClass('caption_1')||$(this).attr('class').indexOf('No_')>=0) && $(this).next().hasClass('o')){
 					$(this).next().css({'background-color':'#ffd094','cursor':'pointer'});	  
 					$(this).css({'background-color':'#ffd094','cursor':'pointer'});	 
 				}
@@ -36,17 +35,17 @@ function kuijie(){
 			 
 		},'mouseleave':function(){ 
 			if( $(this).attr('title')!='选中' ){ //未选中
-				if($(this).attr('class')=='o' && ($(this).prev().attr('class')=='caption_1' || $(this).prev().attr('class').indexOf('No_')>=0  )){
+				if($(this).hasClass('o') && $(this).prev().hasClass('caption_1')){
 					$(this).css({'background-color':'#fff','cursor':'pointer'});	  
 					$(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});	 
 				}
-				if(($(this).attr('class')=='caption_1'||$(this).attr('class').indexOf('No_')>=0) && $(this).next().attr('class')=='o'){
+				if($(this).hasClass('caption_1') && $(this).next().hasClass('o')){
 					$(this).next().css({'background-color':'#fff','cursor':'pointer'});	  
 					$(this).css({'background-color':'#FDF8F2','cursor':'pointer'});	 
 				}
 			}
 		},'click':function(){
-			if($(this).attr('class')=='o' && ($(this).prev().attr('class')=='caption_1' || $(this).prev().attr('class').indexOf('No_')>=0  )){ 
+			if($(this).hasClass('o') && $(this).prev().hasClass('caption_1')){
 				if( $(this).attr('title')=='选中' ){ //已选中 取消选中
 					$(this).css({'background-color':'#fff','cursor':'pointer'});	  
 					$(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});	
@@ -59,7 +58,7 @@ function kuijie(){
 					$(this).prev().attr('title','选中');
 				}
 			}
-			if(($(this).attr('class')=='caption_1'||$(this).attr('class').indexOf('No_')>=0) && $(this).next().attr('class')=='o'){
+			if($(this).hasClass('caption_1') && $(this).next().hasClass('o')){
 				if( $(this).attr('title')=='选中' ){ //已选中 取消选中
 					$(this).next().css({'background-color':'#fff','cursor':'pointer'});	  
 					$(this).css({'background-color':'#FDF8F2','cursor':'pointer'});	 
@@ -77,19 +76,16 @@ function kuijie(){
 	 
 }
 function yiban(){
-	if($('#yiban').attr('class')!='intype_hover'){
-		$('#yiban').attr('class','intype_hover');
-		$('#kuijie').attr('class','intype_normal'); 
+	if(!$('#yiban').hasClass('on')){
+		$('#yiban').addClass('on');
+		$('#kuijie').removeClass('on');
 		$('.o').each(function(){ 
 			$(this).width( 45 );
 			$(this).next().show(); 
 		})
-		$('.wq').find('.t_list_caption').find('td').each(function(){
-			if( $(this).attr('colspan')>=2 ){
-				var n = $(this).attr('colspan')+$(this).attr('colspan')/2	
-				$(this).attr('colspan',n);
-			}												
-		})
+        $('.wqs').each(function(){
+            $(this).find("colgroup") .html('<col class="col_single w4"><col class="w9"><col class="w9"><col class="col_single w4"><col class="w9"><col class="w9"><col class="col_single w4"><col class="w9"><col class="w9"><col class="col_single w4"><col class="w9"><col class="w9">');
+        })
 		 
 	}	
 	$('.caption_1,.o').unbind('mouseenter').unbind('mouseleave').unbind('click');
@@ -117,10 +113,10 @@ function AllMoney(){
 	return sel;
 }
 function iSubmit(){
-	if($('#kuijie').attr('class')=='intype_hover'){	
+	if($('#kuijie').hasClass('on')){
 		var sel = AllMoney();
 		if(sel==false){
-			alert('您未选择号码！');
+			my_alert('您未选择号码！');
 			return false;
 		}
 	}
@@ -391,6 +387,9 @@ function submitforms(){
 	var upmoney = 0;
 	var names = new Array();
 	var sArray = "";
+    var ball_array = new Array();
+    var odd_array = new Array();
+    var money_array = new Array();
 	input.each(function(){
 		var value = $(this).val();
 		if (value != ""){
@@ -400,27 +399,35 @@ function submitforms(){
 			countmoney += value;
 			s = nameformat($(this).attr("name").split("_"));
 			s[2] = $("#"+s[2]+" a").html();
-			if (s[0] == "總和、龍虎")
+			if (s[0] == "總和、龍虎"){
 				n = s[1]+" @ "+s[2]+" x ￥"+value;
-			else 
+				ball_array.push(s[1]);
+			}
+			else{ 
 				n = s[0]+"["+s[1]+"] @ "+s[2]+" x ￥"+value;
+                ball_array.push(s[0]+ ' ' + s[1]);
+				}
+            odd_array.push(s[2]);
+            money_array.push(value);
 			names.push(n+"\n");
 			sArray += s+","+value+"|";
 		}
 	});
-	if (count == 0){alert("請填寫下註金額!!!");return false;}
-	if (c == false){ alert("最低下註金額："+mixmoney+"￥");return false;}
-	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
+    if (count == 0){ my_alert("您输入类型不正确或没有输入实际金额");return false;}
+    if (c == false){ my_alert("最低下注金额："+mixmoney+"￥");return false;}
+/*	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
 	confrims +=names.join('');
-	if (confirm(confrims)){
+	if (confirm(confrims)){*/
 		input.val("");
 		MyReset();
 		var number = $("#o").html();
 		var s_type = '<input type="hidden" name="sm_arr" value="'+sArray+'"><input type="hidden" name="s_number" value="'+number+'">';
 		$(".actiionn").html(s_type);
-		return setTimeout(function(){return true}, 3000);
-	}
-	return false;
+		//return setTimeout(function(){return true}, 3000);
+	//}
+	//return false;
+    submit_confirm(ball_array,odd_array,money_array);
+    return false;
 }
 
 function nameformat(array){
