@@ -298,7 +298,7 @@ function loadodds(oddslist, endtime, number){
 	var a = ["a","b","l","k"];
 	var odds, link, urls;
 	if (oddslist == null || oddslist == "" || endtime <1) {
-		$(".o").html("-");
+		//$(".o").html("-");
 		return false;
 	}
 	for (var n=0; n<oddslist.length; n++){
@@ -330,8 +330,8 @@ function loadinput(endtime){
 			var temp=$(this).attr("id").split("_")[1];
 			if (endtime >1)
 				$(this).html("<input name=\""+tt+"_"+temp+"\" class=\"inp1\" onkeyup=\"digitOnly(this)\" onfocus=\"this.className='inp1m'\" onblur=\"this.className='inp1';\" type=\"text\" maxLength=\"9\"/>");
-			else
-				$(this).html("封盤");
+/*			else
+				$(this).html("封盤");*/
 		}
 	});
 }
@@ -493,9 +493,11 @@ function nameformat(array){
 }
 
 function getResult ($this){
-	$(".nv_a").addClass("nv").removeClass("nv_a");
+/*	$(".nv_a").addClass("nv").removeClass("nv_a");
 	$($this).removeClass("nv").addClass("nv_a");
-	$(".nv_ab").removeClass("nv_ab");
+	$(".nv_ab").removeClass("nv_ab");*/
+    $('.kon').removeClass('kon');
+    $($this).addClass('kon');
 	$($this).parent().addClass("nv_ab");
 	var rowHtml = new Array();
 	var data = stringByInt ($($this).html());
@@ -508,9 +510,9 @@ function getResult ($this){
 
 function stringByInt (str){
 	switch (str){
-		case "冠、亞軍和" : return setResults[0];
-		case "冠、亞軍和 大小" : return setResults[1];
-		case "冠、亞軍和 單雙" : return setResults[2];
+		case "冠、亚军和" : return setResults[0];
+		case "冠、亚军和 大小" : return setResults[1];
+		case "冠、亚军和 单双" : return setResults[2];
 	}
 }
 

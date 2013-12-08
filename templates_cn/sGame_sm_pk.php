@@ -697,7 +697,7 @@ $sub_type = "两面盘";
                         <table class="w100 t1 dataArea" id="firstball" cat="" play="bothSides_pk10">
                             <tbody>
                             <tr>
-                                <th class="kon bq-title" cat="15" <?php echo $onclick?>>显示未完善冠、亚军和</th>
+                                <th class="kon bq-title" cat="15" <?php echo $onclick?>>冠、亚军和</th>
                                 <th class="bq-title" cat="13" <?php echo $onclick?>>冠、亚军和 大小</th>
                                 <th class="bq-title" cat="14" <?php echo $onclick?>>冠、亚军和 单双</th>
                             </tr>
@@ -705,7 +705,7 @@ $sub_type = "两面盘";
                         </table>
                         <table class="w100 t1 t-td-w4 align-c">
                             <tbody>
-                            <tr class="ballqueue_result">
+                            <tr class="ballqueue_result" id="z_cl">
                                 <td class="line-gradient"></td>
                                 <td class=""></td>
                                 <td class="line-gradient"></td>
