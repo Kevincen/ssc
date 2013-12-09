@@ -1,3 +1,154 @@
+/*****************************
+ * 新增快捷和正常投注
+ *****************************/
+function kuijie(){
+    $('#td_input_money').css('display','inline');
+    $('#td_input_money1').css('display','inline');
+    if(!$('#kuijie').hasClass('on')){
+        $('#kuijie').addClass('on');
+        $('#yiban').removeClass('on');
+        var i=0;
+        $('.loads').each(function(){
+            $(this).prev().attr('align','center')
+            $(this).hide();
+            //$(this).css('display','none');
+        })
+        $('.wqs').each(function(){
+            switch ($(this).attr('id')) {
+                case 'sanjun':
+                    $(this).find("colgroup").html('<col class="col_single w10"><col class="w17"><col class="col_single w10"><col class="w17"><col class="col_single w10"><col class="w17"><col class="col_single w10"><col class="w17">');
+                    break;
+                case 'weishai':
+                    $(this).find("colgroup").html('<col class="col_single w14"><col class="w20"><col class="col_single w14"><col class="w20"><col class="col_single w14"><col class="w20">');
+                    break;
+                case 'dianshu':
+                    $(this).find("colgroup").html('<col class="col_single w10"><col class="w17"><col class="col_single w10"><col class="w17"><col class="col_single w10"><col class="w17"><col class="col_single w10"><col class="w17">');
+                    break;
+                case 'changpai':
+                case 'duanpai':
+                    $(this).find("colgroup").html('<col class="col_single w14"><col class="w20"><col class="col_single w14"><col class="w20"><col class="col_single w14"><col class="w20">');
+                    break;
+            }
+
+        })
+        /*添加效果*/
+        $('.caption_1,.o').bind({'mouseenter':function(){
+            if( $(this).attr('title')!='选中' ){ //未选中
+                if($(this).hasClass('o') && $(this).prev().hasClass('caption_1')){
+                    $(this).css({'background-color':'#ffd094','cursor':'pointer'});
+                    $(this).prev().css({'background-color':'#ffd094','cursor':'pointer'});
+                }
+                if(($(this).hasClass('caption_1')||$(this).attr('class').indexOf('No_')>=0) && $(this).next().hasClass('o')){
+                    $(this).next().css({'background-color':'#ffd094','cursor':'pointer'});
+                    $(this).css({'background-color':'#ffd094','cursor':'pointer'});
+                }
+            }
+
+        },'mouseleave':function(){
+            if( $(this).attr('title')!='选中' ){ //未选中
+                if($(this).hasClass('o') && $(this).prev().hasClass('caption_1')){
+                    $(this).css({'background-color':'#fff','cursor':'pointer'});
+                    $(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});
+                }
+                if($(this).hasClass('caption_1') && $(this).next().hasClass('o')){
+                    $(this).next().css({'background-color':'#fff','cursor':'pointer'});
+                    $(this).css({'background-color':'#FDF8F2','cursor':'pointer'});
+                }
+            }
+        },'click':function(){
+            if($(this).hasClass('o') && $(this).prev().hasClass('caption_1')){
+                if( $(this).attr('title')=='选中' ){ //已选中 取消选中
+                    $(this).css({'background-color':'#fff','cursor':'pointer'});
+                    $(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});
+                    $(this).attr('title','');
+                    $(this).prev().attr('title','');
+                }else{												//选中
+                    $(this).css({'background-color':'#ffc214','cursor':'pointer'});
+                    $(this).prev().css({'background-color':'#ffc214','cursor':'pointer'});
+                    $(this).attr('title','选中');
+                    $(this).prev().attr('title','选中');
+                }
+            }
+            if($(this).hasClass('caption_1') && $(this).next().hasClass('o')){
+                if( $(this).attr('title')=='选中' ){ //已选中 取消选中
+                    $(this).next().css({'background-color':'#fff','cursor':'pointer'});
+                    $(this).css({'background-color':'#FDF8F2','cursor':'pointer'});
+                    $(this).attr('title','');
+                    $(this).next().attr('title','');
+                }else{												//选中
+                    $(this).next().css({'background-color':'#ffc214','cursor':'pointer'});
+                    $(this).css({'background-color':'#ffc214','cursor':'pointer'});
+                    $(this).attr('title','选中');
+                    $(this).next().attr('title','选中');
+                }
+            }
+        }})
+    }
+
+}
+function yiban(){
+    if(!$('#yiban').hasClass('on')){
+        $('#yiban').addClass('on');
+        $('#kuijie').removeClass('on');
+        $('.o').each(function(){
+            $(this).width( 45 );
+            $(this).next().show();
+        })
+        $('.wqs').each(function(){
+            switch ($(this).attr('id')) {
+                case 'sanjun':
+                    $(this).find("colgroup").html(' <col class="col_single w5"> <col class="w8"> <col class="w9"> <col class="col_single w5"> <col class="w8"> <col class="w9"> <col class="col_single w5"> <col class="w8"> <col class="w9"> <col class="col_single w5"> <col class="w8"> <col class="w9"> ');
+                    break;
+                case 'weishai':
+                    $(this).find("colgroup").html(' <col class="col_single w13"> <col class="w8"> <col class="w125"> <col class="col_single w13"> <col class="w8"> <col class="w125"> <col class="col_single w13"> <col class="w8"> <col class="w125"> ');
+                    break;
+                case 'dianshu':
+                    $(this).find("colgroup").html(' <col class="col_single w8"> <col class="w8"> <col class="w8"> <col class="col_single w8"> <col class="w8"> <col class="w8"> <col class="col_single w8"> <col class="w8"> <col class="w8"> <col class="col_single w8"> <col class="w8"> <col class="w8"> ');
+                    break;
+                case 'changpai':
+                case 'duanpai':
+                    $(this).find("colgroup").html(' <col class="col_single w13"> <col class="w8"> <col class="w125"> <col class="col_single w13"> <col class="w8"> <col class="w125"> <col class="col_single w13"> <col class="w8"> <col class="w125"> ');
+                    break;
+            }
+        })
+
+    }
+    $('.caption_1,.o').unbind('mouseenter').unbind('mouseleave').unbind('click');
+    $('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
+    $('.o').css({'background-color':'#fff','cursor':''});
+    $('#td_input_money').hide();
+}
+function MyReset(){
+    $('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
+    $('.o').css({'background-color':'#fff','cursor':''});
+    $('.caption_1').attr('title','');
+    $('.o').attr('title','');
+    $('.inp1').val('');
+    $('#AllMoney').val('');
+}
+
+function AllMoney(){
+    var sel=false;
+    $('.loads').each(function(){
+        if(  $(this).prev().attr('title')=='选中' ){ //已选中
+            $(this).find('input').val( $('#AllMoney').val() );
+            sel=true;
+        }
+    })
+    return sel;
+}
+function iSubmit(){
+    if($('#kuijie').hasClass('on')){
+        var sel = AllMoney();
+        if(sel==false){
+            my_alert('您未选择号码！');
+            return false;
+        }
+    }
+    return true;
+}
+
+/**************************************/
 var setResultcq = new Array();
 var _hiden, _endtime, _opentime, _refreshtime, _openNumber, _lock=false;		
 (function(){ 
@@ -202,7 +353,7 @@ if(getCookie("soundbut")=="on" || getCookie("soundbut")==null || getCookie("soun
 			for (var key in row.row1){
 				rowHtml3.push(row.row1[key]);
 			}
-			var cHtml = '<tr class="t_list_caption"><th colspan="6">近期開獎結果</th></tr>';
+			var cHtml = '<tr class="t_list_caption"><th colspan="6">近期开奖结果这里显示有问题</th></tr>';
 			$("#cl").html(cHtml+rowHtml3.join(""));
 		}
 		if (bool == true) {
@@ -235,9 +386,13 @@ function digitOnly ($this) {
 }
 
 function submitforms(){
+    if(iSubmit()==false)return false;
 	var ss="", a = false, c= true, count = countmoney =0, names=[], value, s, z, o, n, m;
 	var input = $("input.inp1");
 	var mixmoney = parseInt($("#mix").val());
+    var ball_array = new Array();
+    var odd_array = new Array();
+    var money_array = new Array();
 	$.ajax({type : "POST",data : {typeid : "sessionId"},url : "../ajax/Default.ajax.php",dataType : "text",async : false,success:function(data){a = data == 1 ? true : false;}});
 	input.each(function(){
 		value = $(this).val();
@@ -254,30 +409,34 @@ function submitforms(){
 			 
 			o = $("#"+s[1]+" a").html(); 
 			n = z+"["+m+"] @ "+o+" x ￥"+value;
+            ball_array.push(z+ ' ' + m);
+            odd_array.push(o);
+            money_array.push(value);
 			names.push(n+"\n");
 		}
 	});
-	if (c == false){ alert("最低下註金額："+mixmoney+"￥");return false;}
-	if (count == 0){alert("請填寫下註金額!!!");return false;}
-	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
+    if (count == 0){ my_alert("您输入类型不正确或没有输入实际金额");return false;}
+    if (c == false){ my_alert("最低下注金额："+mixmoney+"￥");return false;}
+/*	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
 	confrims +=names.join('');
-	if (confirm(confrims)){
+	if (confirm(confrims)){*/
 		input.val(""); 
 		var number = $("#o").html(); 
 		var s_type = '<input type="hidden" name="s_cq" value="'+ss+'"><input type="hidden" name="s_number" value="'+number+'">';
 		$(".actiionn").html(s_type);
-		return a;
-	}
+//		return a;
+/*	}*/
+    submit_confirm(ball_array,odd_array,money_array);
 	return false;
 }
 
 function nameformatcq(str){
 	switch(str){ 
-		case "Ball_1" : return "三軍";
-		case "Ball_2" : return "圍骰、全骰";
-		case "Ball_3" : return "點數";
-		case "Ball_4" : return "長牌";
-		case "Ball_5" : return "短牌"; 
+		case "Ball_1" : return "三军";
+		case "Ball_2" : return "围骰、全骰";
+		case "Ball_3" : return "点数";
+		case "Ball_4" : return "长牌";
+		case "Ball_5" : return "短牌";
 	}
 }
 function nameformatcq1(str){

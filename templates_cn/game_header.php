@@ -13,6 +13,11 @@
         <td><strong class="red">今日输赢：<span id="sy" class="red">0</span></strong></td>
         <td colspan="3" id="resultnum" class="pk10" align="right"><strong class="c_blue"><b
                     id="number">398261</b>期开奖</strong>
+            <?php if ($number_type === "k3") { ?>
+            <span id="a" class="number num6" style="float: right"></span>
+            <span id="b" class="number num1" style="float: right"></span>
+            <span id="c" class="number num5" style="float: right"></span>
+            <?php } else { ?>
             <span id="a" class="number num6"></span>
             <span id="b" class="number num1"></span>
             <span id="c" class="number num5"></span>
@@ -23,6 +28,7 @@
             <span id="h" class="number num10"></span>
             <span id="j" class="number num4"></span>
             <span id="k" class="number num8"></span>
+            <?php } ?>
         </td>
     </tr>
     <tr height="29">

@@ -12,6 +12,6 @@ include_once ROOT_PATH.'function/global.php';
 $dateTime = date('Y-m-d H:i:s');  
 if ( $dateTime < $stratGamejsk3 || $dateTime > $endGamejsk3)
 {
-	header("Location: ./right.php"); exit;
+	//header("Location: ./right.php"); exit;
 }
 ?>

@@ -176,6 +176,8 @@ function update_MR($cid)
     global $_POST;
     $uModel = new UserModel();
     $name = $_POST['s_Name'];
+    var_dump($_POST);
+
     if ($cid == 5) {
         $usersModel = $uModel->GetMemberModel($name);
     } else {
@@ -183,6 +185,7 @@ function update_MR($cid)
     }
     if ($usersModel) {
         $Lname = mb_substr($usersModel[0]['g_nid'], 0, mb_strlen($usersModel[0]['g_nid']) - 32);
+        echo $Lname;
         $Lname = $uModel->GetUserName_Like($Lname); //返回查询出来的用户信息
         $db = new DB();
         if ($usersModel[0]['g_login_id'] == 56) { //如果被操作用户为分公司，则将类赋给$Lname，否则宣告权限不足
@@ -195,6 +198,7 @@ function update_MR($cid)
         $sList = array(0 => 0, 1 => 0, 2 => 0);
         $LdetList = $db->query("SELECT `g_id`, `g_name`, `g_type`, `g_a_limit`, g_b_limit, g_c_limit,  `g_d_limit`, `g_e_limit`, `g_game_id`
 		FROM `g_send_back` WHERE g_name = '{$Lname[0]['g_name']}' ORDER BY g_id DESC", 0); //获取退水表
+        exit;
         for ($i = 0; $i < count($LdetList); $i++) {
             if (!isset($_POST['a' . ($i)])) {
                 continue;

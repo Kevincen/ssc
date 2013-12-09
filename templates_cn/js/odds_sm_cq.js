@@ -433,8 +433,8 @@ function submitforms(){
 			
 		}
 	});
-	if (count == 0){alert("請填寫下註金額!!!");return false;}
-	if (c == false){ alert("最低下註金額："+mixmoney+"￥");return false;}
+    if (count == 0){ my_alert("您输入类型不正确或没有输入实际金额");return false;}
+    if (c == false){ my_alert("最低下注金额："+mixmoney+"￥");return false;}
 	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
 	confrims +=names.join('');
 	if (confirm(confrims)){
