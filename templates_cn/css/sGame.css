@@ -591,7 +591,7 @@ img#soundbut{
 }
 .quite{color:#FF3300; font-weight:bold; margin-left:5px; text-decoration:none}
 
-.nc {
+/*.nc {
 	width:40px;
 	height:40px;
 	line-height:88px;
@@ -601,7 +601,7 @@ img#soundbut{
 	float:left;
 	background:url(../images/null.jpg) no-repeat;
 	background-repeat:no-repeat;
-}
+}*/
 .nc1,.nc2,.nc3,.nc4,.nc5,.nc6,.nc7,.nc8,.nc9,.nc10,.nc11,.nc12,.nc13,.nc14,.nc15,.nc16,.nc17,.nc18,.nc19,.nc20{
 	/*background:url(../images/nc.png) no-repeat; */
 	width:32px; 

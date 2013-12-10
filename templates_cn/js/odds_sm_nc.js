@@ -1,133 +1,129 @@
 /*****************************
-* 新增快捷和正常投注
-*****************************/
+ * 新增快捷和正常投注
+ *****************************/
 function kuijie(){
-	$('#td_input_money').show();
-	if($('#kuijie').attr('class')!='intype_hover'){
-		$('#kuijie').attr('class','intype_hover');
-		$('#yiban').attr('class','intype_normal'); 
-		var i=0;
-		$('.loads').each(function(){
-			var w = $(this).width();
-			w+=$(this).prev().width();
-			$(this).prev().css('width', w );
-			$(this).prev().attr('align','center')
-			$(this).hide(); 
-			//$(this).css('display','none');  
-		})
-		$('.wqs').find('.t_list_caption').find('td').each(function(){
-			if( $(this).attr('colspan')>=3 ){
-				var n = $(this).attr('colspan')-$(this).attr('colspan')/3	
-				$(this).attr('colspan',n);
-			}												
-		})
-		/*添加效果*/ 
-		$('.caption_1,.o').bind({'mouseenter':function(){
-			if( $(this).attr('title')!='选中' ){ //未选中
-				if($(this).attr('class')=='o' && $(this).prev().attr('class')=='caption_1'){
-					$(this).css({'background-color':'#ffd094','cursor':'pointer'});	  
-					$(this).prev().css({'background-color':'#ffd094','cursor':'pointer'});	 
-				}
-				if($(this).attr('class')=='caption_1' && $(this).next().attr('class')=='o'){
-					$(this).next().css({'background-color':'#ffd094','cursor':'pointer'});	  
-					$(this).css({'background-color':'#ffd094','cursor':'pointer'});	 
-				}
-			}
-			 
-		},'mouseleave':function(){ 
-			if( $(this).attr('title')!='选中' ){ //未选中
-				if($(this).attr('class')=='o' && $(this).prev().attr('class')=='caption_1'){
-					$(this).css({'background-color':'#fff','cursor':'pointer'});	  
-					$(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});	 
-				}
-				if($(this).attr('class')=='caption_1' && $(this).next().attr('class')=='o'){
-					$(this).next().css({'background-color':'#fff','cursor':'pointer'});	  
-					$(this).css({'background-color':'#FDF8F2','cursor':'pointer'});	 
-				}
-			}
-		},'click':function(){
-			if($(this).attr('class')=='o' && $(this).prev().attr('class')=='caption_1'){ 
-				if( $(this).attr('title')=='选中' ){ //已选中 取消选中
-					$(this).css({'background-color':'#fff','cursor':'pointer'});	  
-					$(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});	
-					$(this).attr('title','');
-					$(this).prev().attr('title','');
-				}else{												//选中
-					$(this).css({'background-color':'#ffc214','cursor':'pointer'});	  
-					$(this).prev().css({'background-color':'#ffc214','cursor':'pointer'});	 
-					$(this).attr('title','选中');
-					$(this).prev().attr('title','选中');
-				}
-			}
-			if($(this).attr('class')=='caption_1' && $(this).next().attr('class')=='o'){
-				if( $(this).attr('title')=='选中' ){ //已选中 取消选中
-					$(this).next().css({'background-color':'#fff','cursor':'pointer'});	  
-					$(this).css({'background-color':'#FDF8F2','cursor':'pointer'});	 
-					$(this).attr('title','');
-					$(this).next().attr('title','');
-				}else{												//选中
-					$(this).next().css({'background-color':'#ffc214','cursor':'pointer'});	  
-					$(this).css({'background-color':'#ffc214','cursor':'pointer'});	
-					$(this).attr('title','选中');
-					$(this).next().attr('title','选中');
-				}
-			}	
-		}})
-	}
-	 
+    $('#td_input_money').css('display','inline');
+    $('#td_input_money1').css('display','inline');
+    if(!$('#kuijie').hasClass('on')){
+        $('#kuijie').addClass('on');
+        $('#yiban').removeClass('on');
+        var i=0;
+        $('.loads').each(function(){
+            $(this).prev().attr('align','center')
+            $(this).hide();
+            //$(this).css('display','none');
+        })
+        $('.wqs_top').each(function(){
+            $(this).find("colgroup").html('  <col class="col_single w125"> <col class="w125"> <col class="col_single w125"> <col class="w125"> <col class="col_single w125"> <col class="w125">');
+        })
+        $('.wqs').each(function(){
+            $(this).find("colgroup").html('<col class="col_single w50"> <col class="w50"> ');
+        })
+        /*添加效果*/
+        $('.caption_1,.o').bind({'mouseenter':function(){
+            if( $(this).attr('title')!='选中' ){ //未选中
+                if($(this).hasClass('o') && $(this).prev().hasClass('caption_1')){
+                    $(this).css({'background-color':'#ffd094','cursor':'pointer'});
+                    $(this).prev().css({'background-color':'#ffd094','cursor':'pointer'});
+                }
+                if(($(this).hasClass('caption_1')||$(this).attr('class').indexOf('No_')>=0) && $(this).next().hasClass('o')){
+                    $(this).next().css({'background-color':'#ffd094','cursor':'pointer'});
+                    $(this).css({'background-color':'#ffd094','cursor':'pointer'});
+                }
+            }
+
+        },'mouseleave':function(){
+            if( $(this).attr('title')!='选中' ){ //未选中
+                if($(this).hasClass('o') && $(this).prev().hasClass('caption_1')){
+                    $(this).css({'background-color':'#fff','cursor':'pointer'});
+                    $(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});
+                }
+                if($(this).hasClass('caption_1') && $(this).next().hasClass('o')){
+                    $(this).next().css({'background-color':'#fff','cursor':'pointer'});
+                    $(this).css({'background-color':'#FDF8F2','cursor':'pointer'});
+                }
+            }
+        },'click':function(){
+            if($(this).hasClass('o') && $(this).prev().hasClass('caption_1')){
+                if( $(this).attr('title')=='选中' ){ //已选中 取消选中
+                    $(this).css({'background-color':'#fff','cursor':'pointer'});
+                    $(this).prev().css({'background-color':'#FDF8F2','cursor':'pointer'});
+                    $(this).attr('title','');
+                    $(this).prev().attr('title','');
+                }else{												//选中
+                    $(this).css({'background-color':'#ffc214','cursor':'pointer'});
+                    $(this).prev().css({'background-color':'#ffc214','cursor':'pointer'});
+                    $(this).attr('title','选中');
+                    $(this).prev().attr('title','选中');
+                }
+            }
+            if($(this).hasClass('caption_1') && $(this).next().hasClass('o')){
+                if( $(this).attr('title')=='选中' ){ //已选中 取消选中
+                    $(this).next().css({'background-color':'#fff','cursor':'pointer'});
+                    $(this).css({'background-color':'#FDF8F2','cursor':'pointer'});
+                    $(this).attr('title','');
+                    $(this).next().attr('title','');
+                }else{												//选中
+                    $(this).next().css({'background-color':'#ffc214','cursor':'pointer'});
+                    $(this).css({'background-color':'#ffc214','cursor':'pointer'});
+                    $(this).attr('title','选中');
+                    $(this).next().attr('title','选中');
+                }
+            }
+        }})
+    }
+
 }
 function yiban(){
-	if($('#yiban').attr('class')!='intype_hover'){
-		$('#yiban').attr('class','intype_hover');
-		$('#kuijie').attr('class','intype_normal'); 
-		$('.o').each(function(){ 
-			$(this).width( 45 );
-			$(this).next().show(); 
-		})
-		$('.wqs').find('.t_list_caption').find('td').each(function(){
-			if( $(this).attr('colspan')>=2 ){
-				var n = $(this).attr('colspan')+$(this).attr('colspan')/2	
-				$(this).attr('colspan',n);
-			}												
-		})
-		 
-	}	
-	$('.caption_1,.o').unbind('mouseenter').unbind('mouseleave').unbind('click');
-	$('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
-	$('.o').css({'background-color':'#fff','cursor':''});
-	$('#td_input_money').hide();
+    if(!$('#yiban').hasClass('on')){
+        $('#yiban').addClass('on');
+        $('#kuijie').removeClass('on');
+        $('.loads').each(function(){
+            $(this).prev().width( 45 );
+            $(this).show();
+        })
+        $('.wqs_top').each(function(){
+            $(this).find("colgroup").html('<col class="col_single w8"> <col class="w8"> <col class="w8"> <col class="col_single w8"> <col class="w8"> <col class="w8"> <col class="col_single w8"> <col class="w8"> <col class="w8">');
+        })
+        $('.wqs').each(function(){
+            $(this).find("colgroup").html('<col class="col_single w33"> <col class="w33"> <col class="w33">');
+        })
+
+    }
+    $('.caption_1,.o').unbind('mouseenter').unbind('mouseleave').unbind('click');
+    $('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
+    $('.o').css({'background-color':'#fff','cursor':''});
+    $('#td_input_money').hide();
 }
 function MyReset(){
-	$('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
-	$('.o').css({'background-color':'#fff','cursor':''});
-	$('.caption_1').attr('title','');
-	$('.o').attr('title','');
-	$('.inp1').val('');
-	$('#AllMoney').val('');
+    $('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
+    $('.o').css({'background-color':'#fff','cursor':''});
+    $('.caption_1').attr('title','');
+    $('.o').attr('title','');
+    $('.inp1').val('');
+    $('#AllMoney').val('');
 }
 
-function AllMoney(){ 
-	var sel=false;
-	$('.loads').each(function(){
-		if(  $(this).prev().attr('title')=='选中' ){ //已选中 
-			$(this).find('input').val( $('#AllMoney').val() );
-			sel=true;
-		}
-	}) 
-	return sel;
+function AllMoney(){
+    var sel=false;
+    $('.loads').each(function(){
+        if(  $(this).prev().attr('title')=='选中' ){ //已选中
+            $(this).find('input').val( $('#AllMoney').val() );
+            sel=true;
+        }
+    })
+    return sel;
 }
 function iSubmit(){
-	if($('#kuijie').attr('class')=='intype_hover'){	
-		var sel = AllMoney();
-		if(sel==false){
-			alert('您未选择号码！');
-			return false;
-		}
-	}
-	return true;
+    if($('#kuijie').hasClass('on')){
+        var sel = AllMoney();
+        if(sel==false){
+            my_alert('您未选择号码！');
+            return false;
+        }
+    }
+    return true;
 }
-
-/**************************************/
 var _url = "../ajax/oddsJson_nc.php";
 var _endtime, _opentime, _refreshtime, _openNumber, _lock=false;
 var setResults = new Array();
@@ -330,20 +326,24 @@ function loadodds(oddslist, endtime, number){
 function loadinput(endtime){
 	var loads = $(".loads");
 	var count=0, lock1=lock2=lock3=lock4=1, lock5=5, s, n="封盤";
+    //by 2b 老子不用你加载了成不成
 	loads.each(function(){
 		count++;
-		if (count>=9 && count <= 40){
+		if (count>=7 && count < 47){
 			s = "t"+lock1+"_h2"+lock2;
-			lock1++;
-			if (lock1 == 5) {lock1 =1;lock2++;}
-		} else if (count >=41 && count <= 72){
+			lock2++;
+			if (lock2 == 11) {lock2 =1;lock1++;}
+		} else if (count >=47 && count < 79){
 				s = "t"+lock5+"_h2"+lock3;
-			lock5++;
-			if (lock5 == 9) {lock5 =5;lock3++;}
+			lock3++;
+			if (lock3 == 9) {lock3 =1;lock5++;}
 		} else {
-			s = "k1_h"+lock4;
+            if (lock4 == 4 || lock4 == 8) {//跳过家禽野兽 by 2b
+              lock4 += 1;
+            }
+            s = "k1_h"+lock4;
 			lock4++;
-		} 
+		}
 		if (endtime >1)
 			n = "<input name=\""+s+"\" class=\"inp1\" onkeyup=\"digitOnly(this)\" onfocus=\"this.className='inp1m'\" onblur=\"this.className='inp1';\" type=\"text\" maxLength=\"9\"/>"
 		$(this).html(n);
@@ -401,6 +401,9 @@ function submitforms(){
 	var upmoney = 0;
 	var names = new Array();
 	var sArray = "";
+    var ball_array = new Array();
+    var odd_array = new Array();
+    var money_array = new Array();
 	input.each(function(){
 		var value = $(this).val();
 		if (value != ""){
@@ -410,25 +413,32 @@ function submitforms(){
 			countmoney += value;
 			s = nameformat($(this).attr("name").split("_"));
 			s[2] = $("#"+s[2]+" a").html();
-			if (s[0] == "總和、龍虎")
-				n = s[1]+" @ "+s[2]+" x ￥"+value;
-			else 
-				n = s[0]+"["+s[1]+"] @ "+s[2]+" x ￥"+value;
+            if (s[0] == "總和、龍虎"){
+                n = s[1]+" @ "+s[2]+" x ￥"+value;
+                ball_array.push(s[1]);
+            }
+            else{
+                n = s[0]+"["+s[1]+"] @ "+s[2]+" x ￥"+value;
+                ball_array.push(s[0]+ ' ' + s[1]);
+            }
+            odd_array.push(s[2]);
+            money_array.push(value);
 			names.push(n+"\n");
 			sArray += s+","+value+"|";
 		}
 	});
-	if (count == 0){alert("請填寫下註金額!!!");return false;}
-	if (c == false){ alert("最低下註金額："+mixmoney+"￥");return false;}
-	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
+    if (count == 0){ my_alert("您输入类型不正确或没有输入实际金额");return false;}
+    if (c == false){ my_alert("最低下注金额："+mixmoney+"￥");return false;}
+/*	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
 	confrims +=names.join('');
-	if (confirm(confrims)){
+	if (confirm(confrims)){*/
 		MyReset();
 		var number = $("#o").html();
 		var s_type = '<input type="hidden" name="sm_arr" value="'+sArray+'"><input type="hidden" name="s_number" value="'+number+'">';
 		$(".actiionn").html(s_type);
-		return setTimeout(function(){return true}, 3000);
-	}
+	//	return setTimeout(function(){return true}, 3000);
+	//}
+    submit_confirm(ball_array,odd_array,money_array);
 	return false;
 }
 
@@ -462,13 +472,15 @@ function nameformat(array){
 		case "h26": arr[1] = '尾小'; arr[2]=h+array[1]; break;
 		case "h27": arr[1] = '合數單'; arr[2]=h+array[1]; break;
 		case "h28": arr[1] = '合數雙'; arr[2]=h+array[1]; break;
+        case "h29": arr[1] = '龙'; arr[2]=h+array[1]; break;
+        case "h210": arr[1] = '虎'; arr[2]=h+array[1]; break;
 	}
 	return arr;
 }
 
 function getResult ($this){
-	$(".nv_a").addClass("nv").removeClass("nv_a");
-	$($this).removeClass("nv").addClass("nv_a");
+	$(".kon").removeClass("kon");
+	$($this).addClass("kon");
 	var rowHtml = new Array();
 	var data = stringByInt ($($this).html());
 	for (var k in data){

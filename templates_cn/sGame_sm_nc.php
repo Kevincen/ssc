@@ -1,9 +1,9 @@
-<?php 
+<?php
 define('Copyright', '作者QQ:1834219632');
-define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
-include_once ROOT_PATH.'templates/offGamenc.php';
+define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
+include_once ROOT_PATH . 'templates/offGamenc.php';
 $ConfigModel = configModel("`g_nc_game_lock`, `g_mix_money`");
-if ($ConfigModel['g_nc_game_lock'] !=1)exit(href('right.php'));
+//if ($ConfigModel['g_nc_game_lock'] !=1)exit(href('right.php'));
 $onclick = 'onclick="getResult(this)" href="javascript:void(0)" ';
 $_SESSION['cq'] = false;
 $_SESSION['pk'] = false;
@@ -11,406 +11,816 @@ $_SESSION['jsk3'] = false;
 $_SESSION['gd'] = false;
 $_SESSION['nc'] = true;
 //获取当前盘口
-	$name = base64_decode($_COOKIE['g_user']);
-	$db=new DB();
-	$sql = "SELECT g_panlu,g_panlus FROM g_user where g_name='$name' LIMIT 1";
-	$result = $db->query($sql, 1);
+$name = base64_decode($_COOKIE['g_user']);
+$db = new DB();
+$sql = "SELECT g_panlu,g_panlus FROM g_user where g_name='$name' LIMIT 1";
+$result = $db->query($sql, 1);
 
- $pan = explode (',', $result[0]['g_panlus']); 
+$pan = explode(',', $result[0]['g_panlus']);
 
 
 $g = $_GET['g'];
 $abc = $_GET['abc'];
-if($abc==null) {$abc=$result[0]['g_panlu'];
-}else{
-$sql = "update g_user set g_panlu='$abc' where g_name='$name'";
-$result1 = $db->query($sql, 2);
+if ($abc == null) {
+    $abc = $result[0]['g_panlu'];
+} else {
+    $sql = "update g_user set g_panlu='$abc' where g_name='$name'";
+    $result1 = $db->query($sql, 2);
 }
 
+$gametype = "幸运农场";
+$sub_type = "两面盘";
+$number_type = "nc"
 
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="css/sGame.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="./js/sc.js"></script>
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="./js/odds_sm_nc.js"></script>
-<title></title>
-<script type="text/javascript">
-var s = window.parent.frames.leftFrame.location.href.split('/');
-		s = s[s.length-1];
-		if (s !== "left.php")
-			window.parent.frames.leftFrame.location.href = "/templates/left.php";
-			
-			
-function soundset(sod){
-if(sod.value=="on"){
-sod.src="images/soundoff.png";
-sod.value="off";
-}
-else{
-sod.src="images/soundon.png";
-sod.value="on";
-}
-SetCookie("soundbut",sod.value);
-}
-</script>
-<style type="text/css">
-div#row1 { float: left;  }
-div#row2 { }
-</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="css/sGame.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/artDialog.js?skin=twitter"></script>
+    <script type="text/javascript" src="./js/sc.js"></script>
+    <script type="text/javascript" src="./js/odds_sm_nc.js"></script>
+    <title></title>
+    <script type="text/javascript">
+        var s = window.parent.frames.leftFrame.location.href.split('/');
+        s = s[s.length - 1];
+        if (s !== "left.php")
+            window.parent.frames.leftFrame.location.href = "/templates/left.php";
+
+
+        function soundset(sod) {
+            if (sod.value == "on") {
+                sod.src = "images/soundoff.png";
+                sod.value = "off";
+            }
+            else {
+                sod.src = "images/soundon.png";
+                sod.value = "on";
+            }
+            SetCookie("soundbut", sod.value);
+        }
+    </script>
+    <style type="text/css">
+        div#row1 {
+            float: left;
+        }
+
+        div#row2 {
+        }
+    </style>
 </head>
-<body>
- 
-<table class="ths" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-        <td class="bolds wanfa1">幸运农场</td>
-        <td><span style="color:#0033FF; font-weight:bold" id="tys">兩面盤</span></td>
-        <td align="left" class="bolds" style="color:#FF0000"><div  id="row1" style="position: relative; filter: blur(add=1, direction=45, strength=3); FONT-FAMILY: Arial; height: 15px; color: red; font-size: 10pt;"> <span>今天輸贏：</span></div></td><td align="left" class="bolds" style="color:#FF0000">
-            <div id="row2"><span id="sy" style="font-size:14px;position:relative; top:-2px">0</span></div></td>
-        <td   class="bolds" align="right"><span id="number" style="font-size:14px;position:relative; top:1px"></span>期開獎 </td>
-        <td width="32"><div  id="a" class="nc1"></div></td>
-        <td width="32"><div  id="b"></div></td>
-        <td width="32"><div   id="c"></div></td>
-        <td width="32"><div  id="d"></div></td>
-        <td width="32"><div   id="e"></div></td>
-        <td width="32"><div  id="f"></div></td>
-        <td width="32"><div   id="g"></div></td>
-        <td width="32"><div   id="h"></div></td>
-    </tr>
-</table>
-<table class="ths" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-        <td ><span id="o" style=" color:#009900; font-weight:bold; font-size:14px;position:relative; top:1px"></span>期</td>
-        <td width="85"></td>
-        <td>距離封盤：<span style="font-size:104%" id="endTime">加載中...</span></td>
-        <td colspan="6">距離開獎：<span style="color:red;font-size:104%" id="endTimes">加載中...</span></td>
-        <td colspan="2" align="right"><span id="endTimea"></span>秒</td>
-    </tr>
-</table>
-<form id="dp" action="" method="post" target="leftFrame" onsubmit = "return submitforms()">
-<table class="ths" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-        <td >投注类型：</td>
-        <td width="100"><a href="#this" class="intype_normal" id="kuijie">快捷</a><a href="#this" class="intype_hover" id="yiban">一般</a></td>
-        <td align="center"><table border="0" width="500" >
-                <tr height="30">
-					<td id="td_input_money"><table><tr><td>金額</td><td><input type="text"  id="AllMoney"    onkeydown="return IsNumeric()"  class=myAllMoney  value=""  /></td></tr></table></td>
-                    <td align="right" style="padding-right:10px"><input type="submit" id="submits1" class="inputs ti" value="確定" /></td>
-                    <td align="left" style="padding-left:10px"><input type="button" onclick="MyReset()" class="inputs ti" value="重置" /></td>
-                    <td width="200"  ></td>
-                </tr>
-            </table></td>
-    </tr>
-</table> 
-    <input type="hidden" name="actions" value="fn3" />
-    <input type="hidden" name="gtypes" value="1" />
-    <input type="hidden" id="mix" value="<?php echo$ConfigModel['g_mix_money']?>" />
-    <table class="wqs" border="0" cellpadding="0" cellspacing="0">
-        <tr class="t_list_caption" style="color:#000">
-            <td colspan="12">總和、龍虎</td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1" >總和大</td>
-            <td class="o" width="45" id="h1"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">總和單</td>
-            <td class="o" width="45" id="h2"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">總和尾大</td>
-            <td class="o" width="45" id="h5"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">家禽</td>
-            <td class="o" width="45" id="h6"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">總和小</td>
-            <td class="o" width="45" id="h3"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">總和雙</td>
-            <td class="o" width="45" id="h4"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">總和尾小</td>
-            <td class="o" width="45" id="h7"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">野兽</td>
-            <td class="o" width="45" id="h8"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_list_caption" style="color:#000">
-            <td colspan="3">第一球</td>
-            <td colspan="3">第二球</td>
-            <td colspan="3">第三球</td>
-            <td colspan="3">第四球</td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">大</td>
-            <td class="o" width="45" id="ah21"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">大</td>
-            <td class="o" width="45" id="bh21"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">大</td>
-            <td class="o" width="45" id="ch21"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">大</td>
-            <td class="o" width="45" id="dh21"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">小</td>
-            <td class="o" width="45" id="ah22"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">小</td>
-            <td class="o" width="45" id="bh22"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">小</td>
-            <td class="o" width="45" id="ch22"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">小</td>
-            <td class="o" width="45" id="dh22"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">單</td>
-            <td class="o" width="45" id="ah23"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">單</td>
-            <td class="o" width="45" id="bh23"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">單</td>
-            <td class="o" width="45" id="ch23"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">單</td>
-            <td class="o" width="45" id="dh23"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">雙</td>
-            <td class="o" width="45" id="ah24"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">雙</td>
-            <td class="o" width="45" id="bh24"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">雙</td>
-            <td class="o" width="45" id="ch24"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">雙</td>
-            <td class="o" width="45" id="dh24"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">尾大</td>
-            <td class="o" width="45" id="ah25"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾大</td>
-            <td class="o" width="45" id="bh25"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾大</td>
-            <td class="o" width="45" id="ch25"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾大</td>
-            <td class="o" width="45" id="dh25"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">尾小</td>
-            <td class="o" width="45" id="ah26"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾小</td>
-            <td class="o" width="45" id="bh26"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾小</td>
-            <td class="o" width="45" id="ch26"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾小</td>
-            <td class="o" width="45" id="dh26"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">合數單</td>
-            <td class="o" width="45" id="ah27"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數單</td>
-            <td class="o" width="45" id="bh27"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數單</td>
-            <td class="o" width="45" id="ch27"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數單</td>
-            <td class="o" width="45" id="dh27"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">合數雙</td>
-            <td class="o" width="45" id="ah28"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數雙</td>
-            <td class="o" width="45" id="bh28"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數雙</td>
-            <td class="o" width="45" id="ch28"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數雙</td>
-            <td class="o" width="45" id="dh28"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_list_caption" style="color:#000">
-            <td colspan="3">第五球</td>
-            <td colspan="3">第六球</td>
-            <td colspan="3">第七球</td>
-            <td colspan="3">第八球</td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">大</td>
-            <td class="o" width="45" id="eh21"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">大</td>
-            <td class="o" width="45" id="fh21"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">大</td>
-            <td class="o" width="45" id="gh21"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">大</td>
-            <td class="o" width="45" id="hh21"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">小</td>
-            <td class="o" width="45" id="eh22"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">小</td>
-            <td class="o" width="45" id="fh22"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">小</td>
-            <td class="o" width="45" id="gh22"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">小</td>
-            <td class="o" width="45" id="hh22"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">單</td>
-            <td class="o" width="45" id="eh23"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">單</td>
-            <td class="o" width="45" id="fh23"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">單</td>
-            <td class="o" width="45" id="gh23"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">單</td>
-            <td class="o" width="45" id="hh23"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">雙</td>
-            <td class="o" width="45" id="eh24"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">雙</td>
-            <td class="o" width="45" id="fh24"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">雙</td>
-            <td class="o" width="45" id="gh24"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">雙</td>
-            <td class="o" width="45" id="hh24"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">尾大</td>
-            <td class="o" width="45" id="eh25"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾大</td>
-            <td class="o" width="45" id="fh25"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾大</td>
-            <td class="o" width="45" id="gh25"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾大</td>
-            <td class="o" width="45" id="hh25"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">尾小</td>
-            <td class="o" width="45" id="eh26"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾小</td>
-            <td class="o" width="45" id="fh26"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾小</td>
-            <td class="o" width="45" id="gh26"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">尾小</td>
-            <td class="o" width="45" id="hh26"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">合數單</td>
-            <td class="o" width="45" id="eh27"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數單</td>
-            <td class="o" width="45" id="fh27"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數單</td>
-            <td class="o" width="45" id="gh27"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數單</td>
-            <td class="o" width="45" id="hh27"></td>
-            <td class="loads"></td>
-        </tr>
-        <tr class="t_td_text">
-            <td width="57" class="caption_1">合數雙</td>
-            <td class="o" width="45" id="eh28"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數雙</td>
-            <td class="o" width="45" id="fh28"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數雙</td>
-            <td class="o" width="45" id="gh28"></td>
-            <td class="loads"></td>
-            <td width="57" class="caption_1">合數雙</td>
-            <td class="o" width="45" id="hh28"></td>
-            <td class="loads"></td>
-        </tr>
-    </table>
-    <table border="0" width="700">
-        <tr height="30">
-            <td align="right" style="padding-right:10px"><input type="submit" id="submits" class="inputs ti" value="確定" /></td>
-                    <td align="left" style="padding-left:10px"><input type="button" onclick="MyReset()" class="inputs ti" value="重置" /></td>
-            <td width="0" class="actiionn"></td>
-        </tr>
-    </table>
-</form>
-<br />
-<table class="wqs" border="0" cellpadding="0" cellspacing="0">
-    <tr class="t_list_caption">
-        <td><a class="nv" <?php echo $onclick?>>總和大小</a></td>
-        <td><a class="nv" <?php echo $onclick?>>總和單雙</a></td>
-        <td><a class="nv" <?php echo $onclick?>>總和尾數大小</a></td>
-        <td><a class="nv_a" <?php echo $onclick?>>家禽野兽</a></td>
-    </tr>
-    <tr>
-        <td colspan="4" class="t_td_text" align="center"><table class="hj" border="0" cellpadding="0" cellspacing="1">
-                <tr class="t_td_text" id="z_cl">
-                    <td></td>
-                </tr>
-            </table></td>
-    </tr>
-</table>
-<div id="look" style="display:none"></div>
-<?php include_once 'inc/cl_file.php';?>
-<?php 
-$name = base64_decode($_COOKIE['g_user']);
-$db = new DB();
-$text =$db->query("SELECT g_text FROM g_set_user_news WHERE g_name = '{$name}' LIMIT 1", 0);
-if ($text){
-	alert($text[0][0]);
-}
-?>
+<body class="<?php echo $_COOKIE['g_skin']; ?>">
+<div class="main-content bet-content" dom="layoutright" id="layoutright" style="display: block;">
+    <div class="mains_corll">
+    <div id="rightLoader" dom="right" style="">
+        <div id="bothSides_nc" class="bothSides">
+            <div class="betAreaBox">
+                <?php include_once './game_header.php' ?>
+                <div class="common" id="common_div" style="display: block;">
+                    <div class="klctouzhuArea">
+                        <table class="w100 touzhuArea t1 wqs_top">
+                            <colgroup>
+                                <col class="col_single w8">
+                                <col class="w8">
+                                <col class="w8">
+                                <col class="col_single w8">
+                                <col class="w8">
+                                <col class="w8">
+                                <col class="col_single w8">
+                                <col class="w8">
+                                <col class="w8">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th colspan="9">总和</th>
+                            </tr>
+                            </tbody>
+                            <tbody>
+                            <tr>
+                                <td class="fontBlue huiseBg caption_1">总和大</td>
+                                <td playtype="041" number="31" class="huiseBg o" id="h1"></td>
+                                <td class="amount huiseBg loads">
+                                    <input name="k1_h1" class="inp1" onkeyup="digitOnly(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" type="text" maxlength="9">
+                                </td>
+                                <td class="fontBlue huiseBg caption_1">总和单</td>
+                                <td playtype="041" number="31" class="huiseBg o" id="h2"></td>
+                                <td class="amount huiseBg loads">
+                                    <input name="k1_h2" class="inp1" onkeyup="digitOnly(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" type="text" maxlength="9">
+                                </td>
+                                <td class="fontBlue huiseBg caption_1">总和尾大</td>
+                                <td playtype="041" number="31" class="huiseBg o" id="h5"></td>
+                                <td class="amount huiseBg loads">
+                                    <input name="k1_h3" class="inp1" onkeyup="digitOnly(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" type="text" maxlength="9">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fontBlue huiseBg caption_1">总和小</td>
+                                <td playtype="041" number="31" class="huiseBg o" id="h3"></td>
+                                <td class="amount huiseBg loads">
+                                    <input name="k1_h5" class="inp1" onkeyup="digitOnly(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" type="text" maxlength="9">
+                                </td>
+                                <td class="fontBlue huiseBg caption_1">总和双</td>
+                                <td playtype="041" number="31" class="huiseBg o" id="h4"></td>
+                                <td class="amount huiseBg loads">
+                                    <input name="k1_h6" class="inp1" onkeyup="digitOnly(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" type="text" maxlength="9">
+                                </td>
+                                <td class="fontBlue huiseBg caption_1">总和尾小</td>
+                                <td playtype="041" number="31" class="huiseBg o" id="h7"></td>
+                                <td class="amount huiseBg loads">
+                                    <input name="k1_h7" class="inp1" onkeyup="digitOnly(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" type="text" maxlength="9">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="klctouzhuArea">
+                        <table class="w100">
+                            <tbody>
+                            <tr>
+                                <td class="w25">
+                                    <table class="t1 touzhuArea w99 wqs">
+                                        <colgroup>
+                                            <col class="col_single w33">
+                                            <col class="w33">
+                                            <col class="w33">
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <th colspan="3">第一球</th>
+                                        </tr>
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ah21"></td>
+                                            <td class="amount huiseBg loads">
+                                                <input name="t1_h21" class="inp1" onkeyup="digitOnly(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" type="text" maxlength="9">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ah22"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ah23"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ah24"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ah25"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ah26"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ah27"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ah28"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg">龙??</td>
+                                            <td playtype="059" number="42" class="huiseBg o"></td>
+                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                                                              maxlength="9" disabled="disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg">虎??</td>
+                                            <td playtype="059" number="43" class="huiseBg o"></td>
+                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                                                              maxlength="9" disabled="disabled"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="w25">
+                                    <table class="t1 touzhuArea w99 wqs">
+                                        <colgroup>
+                                            <col class="col_single w33">
+                                            <col class="w33">
+                                            <col class="w33">
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <th colspan="3">第二球</th>
+                                        </tr>
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="bh21"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="bh22"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="bh23"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="bh24"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="bh25"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="bh26"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="bh27"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="bh28"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg">龙??</td>
+                                            <td playtype="059" number="42" class="huiseBg o"></td>
+                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                                                              maxlength="9" disabled="disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg">虎??</td>
+                                            <td playtype="059" number="43" class="huiseBg o"></td>
+                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                                                              maxlength="9" disabled="disabled"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="w25">
+                                    <table class="t1 touzhuArea w99">
+                                        <colgroup>
+                                            <col class="col_single w33 wqs">
+                                            <col class="w33">
+                                            <col class="w33">
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <th colspan="3">第三球</th>
+                                        </tr>
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ch21"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ch22"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ch23"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ch24"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ch25"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ch26"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ch27"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="ch28"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg">龙??</td>
+                                            <td playtype="059" number="42" class="huiseBg o"></td>
+                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                                                              maxlength="9" disabled="disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg">虎??</td>
+                                            <td playtype="059" number="43" class="huiseBg o"></td>
+                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                                                              maxlength="9" disabled="disabled"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="w25">
+                                    <table class="t1 touzhuArea w99 wqs">
+                                        <colgroup>
+                                            <col class="col_single w33">
+                                            <col class="w33">
+                                            <col class="w33">
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <th colspan="3">第四球</th>
+                                        </tr>
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="dh21"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="dh22"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="dh23"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="dh24"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="dh25"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="dh26"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="dh27"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="dh28"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg">龙??</td>
+                                            <td playtype="059" number="42" class="huiseBg o"></td>
+                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                                                              maxlength="9" disabled="disabled"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg">虎??</td>
+                                            <td playtype="059" number="43" class="huiseBg o"></td>
+                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                                                              maxlength="9" disabled="disabled"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="klctouzhuArea">
+                        <table class="w100">
+                            <tbody>
+                            <tr>
+                                <td class="w25">
+                                    <table class="t1 touzhuArea w99 wqs">
+                                        <colgroup>
+                                            <col class="col_single w33">
+                                            <col class="w33">
+                                            <col class="w33">
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <th colspan="3">第五球</th>
+                                        </tr>
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="eh21"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="eh22"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="eh23"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="eh24"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="eh25"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="eh26"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="eh27"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="eh28"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="w25">
+                                    <table class="t1 touzhuArea w99 wqs">
+                                        <colgroup>
+                                            <col class="col_single w33">
+                                            <col class="w33">
+                                            <col class="w33">
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <th colspan="3">第六球</th>
+                                        </tr>
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="fh21"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="fh22"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="fh23"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="fh24"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="fh25"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="fh26"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="fh27"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="fh28"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="w25">
+                                    <table class="t1 touzhuArea w99 wqs">
+                                        <colgroup>
+                                            <col class="col_single w33">
+                                            <col class="w33">
+                                            <col class="w33">
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <th colspan="3">第七球</th>
+                                        </tr>
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="gh21"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="gh22"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="gh23"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="gh24"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="gh25"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="gh26"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="gh27"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="gh28"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="w25">
+                                    <table class="t1 touzhuArea w99 wqs">
+                                        <colgroup>
+                                            <col class="col_single w33">
+                                            <col class="w33">
+                                            <col class="w33">
+                                        </colgroup>
+                                        <tbody>
+                                        <tr>
+                                            <th colspan="3">第八球</th>
+                                        </tr>
+                                        </tbody>
+                                        <tbody>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="hh21"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="hh22"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="hh23"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="hh24"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾大</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="hh25"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">尾小</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="hh26"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数单</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="hh27"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fontBlue huiseBg caption_1">合数双</td>
+                                            <td playtype="041" number="31" class="huiseBg o" id="hh28"></td>
+                                            <td class="amount huiseBg loads"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <table cellpadding="0" cellspacing="0" width="100%" class="elem_type_box">
+                    <tbody>
+                    <tr>
+                        <td width="15%">
+                            <div class="elem_selected bulk-amount-times hide" style="display: none;">已经选中<span
+                                    id="selectedAmount" class="amount">5</span>注
+                            </div>
+                        </td>
+                        <td width="45%" class="align-c">
+                            <div class="elem_amount"><strong class="t kuaijie" style="display: none;">金额</strong><span
+                                    id="bulk-amount-input " class="kuaijie" style="display: none;"><input type="text"
+                                                                                                          class="elem_amount_input elem_amount_input_quick"
+                                                                                                          name=""
+                                                                                                          maxlength="9"
+                                                                                                          id=""
+                                                                                                          disabled="disabled"></span><a
+                                    href="javascript:void(0)" class="btn_m elem_btn" id="submit">确 定</a><a
+                                    href="javascript:void(0)" class="btn_m elem_btn" id="reset">重 置</a></div>
+                        </td>
+                        <td width="30%" class="align-r"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="ballqueue-module paihang">
+                    <table class="dataArea t1 w100" id="firstball" cat="" play="bothSides_nc">
+                        <tbody>
+                        <tr>
+                            <th class="bq-title kon" cat="13" <?php echo $onclick?>>总和大小</th>
+                            <th class="bq-title" cat="12" <?php echo $onclick?>>总和单双</th>
+                            <th class="bq-title" cat="14" <?php echo $onclick?>>总和尾数大小</th>
+                            <!-- <th class='bq-title' cat='17'>龙虎</th>     --></tr>
+                        </tbody>
+                    </table>
+                    <table class="t1 w100 t-td-w4 align-c">
+                        <tbody>
+                        <tr class="ballqueue_result" id="z_cl">
+                            <td class="line-gradient"></td>
+                            <td class=""></td>
+                            <td class="line-gradient"></td>
+                            <td class=""></td>
+                            <td class="line-gradient"></td>
+                            <td class=""></td>
+                            <td class="line-gradient"></td>
+                            <td class=""></td>
+                            <td class="line-gradient"></td>
+                            <td class=""></td>
+                            <td class="line-gradient"></td>
+                            <td class=""></td>
+                            <td class="line-gradient"></td>
+                            <td class=""></td>
+                            <td class="line-gradient"></td>
+                            <td class=""></td>
+                            <td class="line-gradient"></td>
+                            <td class=""><p>小</p></td>
+                            <td class="line-gradient"><p>大</p></td>
+                            <td class=""><p>小</p></td>
+                            <td class="line-gradient"><p>大</p>
+
+                                <p>大</p>
+
+                                <p>大</p></td>
+                            <td class=""><p>和</p></td>
+                            <td class="line-gradient"><p>小</p></td>
+                            <td class=""><p>大</p>
+
+                                <p>大</p></td>
+                            <td class="line-gradient"><p>小</p>
+
+                                <p>小</p>
+
+                                <p>小</p></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="changlongbox">
+                <table style="" class="bet-table changlong-table dataArea w100 t1" id="cl">
+                    <tbody>
+                    <tr>
+                        <th colspan="2">两面长龙排行</th>
+                    </tr>
+                    </tbody>
+                    <tbody id="changlong">
+                    <tr>
+                        <td class="cl_1 inner_text">第4球<span class="part">-</span>合数双</td>
+                        <td class="align-c red" style="width:33%;">6期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第3球<span class="part">-</span>合数单</td>
+                        <td class="align-c red" style="width:33%;">5期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第6球<span class="part">-</span>合数双</td>
+                        <td class="align-c red" style="width:33%;">5期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第1球<span class="part">-</span>单</td>
+                        <td class="align-c red" style="width:33%;">4期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第2球<span class="part">-</span>虎</td>
+                        <td class="align-c red" style="width:33%;">3期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">总和<span class="part">-</span>小</td>
+                        <td class="align-c red" style="width:33%;">3期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第2球<span class="part">-</span>尾小</td>
+                        <td class="align-c red" style="width:33%;">3期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第1球<span class="part">-</span>虎</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">总和<span class="part">-</span>双</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第1球<span class="part">-</span>小</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第1球<span class="part">-</span>尾大</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第1球<span class="part">-</span>合数单</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第2球<span class="part">-</span>合数双</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第5球<span class="part">-</span>合数单</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第6球<span class="part">-</span>小</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第6球<span class="part">-</span>双</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第6球<span class="part">-</span>尾小</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第7球<span class="part">-</span>单</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    <tr>
+                        <td class="cl_1 inner_text">第8球<span class="part">-</span>单</td>
+                        <td class="align-c red" style="width:33%;">2期</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <?php include './popup.html' ?>
+</div>
+</div>
 </body>
 </html>

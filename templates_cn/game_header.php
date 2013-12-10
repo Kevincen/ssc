@@ -17,6 +17,15 @@
             <span id="a" class="number num6" style="float: right"></span>
             <span id="b" class="number num1" style="float: right"></span>
             <span id="c" class="number num5" style="float: right"></span>
+            <?php } else if ($number_type == 'nc') { ?>
+                <span id="a" class="nc18"></span>
+                <span id="b" class="number num1"></span>
+                <span id="c" class="number num5"></span>
+                <span id="d" class="number num9"></span>
+                <span id="e" class="number num7"></span>
+                <span id="f" class="number num3"></span>
+                <span id="g" class="number num2"></span>
+                <span id="h" class="number num10"></span>
             <?php } else { ?>
             <span id="a" class="number num6"></span>
             <span id="b" class="number num1"></span>

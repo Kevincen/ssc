@@ -16,6 +16,6 @@ global $stratGamenc, $endGamenc;
 
 if ( ($dateTime < $stratGamenc && $dateTime > $a) || $dateTime > $endGamenc)
 {
-	header("Location: ./right.php"); exit;
+	//header("Location: ./right.php"); exit;
 }
 ?>
