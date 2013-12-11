@@ -337,12 +337,15 @@ $number_type = "nc"
             </div>
         </td>
         <td width="45%" class="align-c">
-            <div class="elem_amount"><strong class="t kuaijie">金额</strong><span
-                    id="bulk-amount-input" class="kuaijie"><input type="text"
-                                                                  class="elem_amount_input" name=""
-                                                                  maxlength="9" id=""></span><a
-                    href="javascript:void(0)" class="btn_m elem_btn" id="submit">确 定</a><a
-                    href="javascript:void(0)" class="btn_m elem_btn" id="reset">重 置</a></div>
+            <div id="td_input_money1" style="display: none;">
+                <strong class="t kuaijie">金额</strong>
+                                    <span class="kuaijie">
+                                        <input type="text" class="elem_amount_input elem_amount_input_quick"
+                                               id="AllMoney" name="" maxlength="9" id="" onkeydown="return IsNumeric()">
+                                    </span>
+            </div>
+            <a class="btn_m elem_btn" id="submit_bottom" onclick="submitforms()">确 定</a>
+            <a onclick="MyReset()" class="btn_m elem_btn" id="reset_top">重 置</a></div>
         </td>
         <td width="30%" class="align-r">
             <div class="elem_multiple" style="visibility: hidden;"><input name="" id="beishu"
@@ -414,7 +417,7 @@ $number_type = "nc"
         <th><span>19</span></th>
         <th><span>20</span></th>
     </tr>
-    <tr>
+    <tr id="su">
         <td><span class="orange">冷热</span></td>
         <td>1</td>
         <td>1</td>
@@ -437,7 +440,7 @@ $number_type = "nc"
         <td>0</td>
         <td>2</td>
     </tr>
-    <tr>
+    <tr id="se">
         <td><span class="orange">遗漏</span></td>
         <td>0</td>
         <td>2</td>
@@ -466,23 +469,23 @@ $number_type = "nc"
     <table class="w100 t1 dataArea">
         <tbody>
         <tr>
-            <th class="bq-title kon" id="firstball" cat="00" play="ball_nc_1">第一球</th>
-            <th class="bq-title" cat="09">大小</th>
-            <th class="bq-title" cat="08">单双</th>
-            <th class="bq-title" cat="10">尾数大小</th>
-            <th class="bq-title" cat="11">合数单双</th>
-            <th class="bq-title" cat="16">东南西北</th>
-            <th class="bq-title" cat="15">中发白</th>
-            <th class="bq-title" cat="13">总和大小</th>
-            <th class="bq-title" cat="12">总和单双</th>
-            <th class="bq-title" cat="14">总和尾数大小</th>
-            <th class="bq-title" cat="17" id="longhu_ball">龙虎</th>
+            <th class="bq-title kon" id="firstball" cat="00" play="ball_nc_1"><?php echo $aHtml?></th>
+            <th class="bq-title" <?php echo $onclick?> cat="09">大小</th>
+            <th class="bq-title" <?php echo $onclick?> cat="08">单双</th>
+            <th class="bq-title" <?php echo $onclick?> cat="10">尾数大小</th>
+            <th class="bq-title" <?php echo $onclick?> cat="11">合数单双</th>
+            <th class="bq-title" <?php echo $onclick?> cat="16">东南西北</th>
+            <th class="bq-title" <?php echo $onclick?> cat="15">中发白</th>
+            <th class="bq-title" <?php echo $onclick?> cat="13">总和大小</th>
+            <th class="bq-title" <?php echo $onclick?> cat="12">总和单双</th>
+            <th class="bq-title" <?php echo $onclick?> cat="14">总和尾数大小</th>
+            <th class="bq-title" <?php echo $onclick?> cat="17" id="longhu_ball">龙虎</th>
         </tr>
         </tbody>
     </table>
     <table class="w100 t1 t-td-w4 align-c">
         <tbody>
-        <tr class="ballqueue_result">
+        <tr class="ballqueue_result" id="z_cl">
             <td class="line-gradient"><p>13</p></td>
             <td class=""><p>18</p></td>
             <td class="line-gradient"><p>10</p></td>
@@ -516,7 +519,7 @@ $number_type = "nc"
 </div>
 </div>
 <div class="changlongbox">
-    <table style="" class="bet-table changlong-table dataArea w100 t1">
+    <table style="" class="bet-table changlong-table dataArea w100 t1" id="cl">
         <tbody>
         <tr>
             <th colspan="2">两面长龙排行</th>

@@ -88,6 +88,7 @@ function yiban(){
     $('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
     $('.o').css({'background-color':'#fff','cursor':''});
     $('#td_input_money').hide();
+    $('#td_input_money1').hide();
 }
 function MyReset(){
     $('.caption_1').css({'background-color':'#FDF8F2','cursor':''});
@@ -263,3 +264,4 @@ function getResult ($this)
 	$("#z_cl").html(rowHtml.join(''));
 	$(".z_cl:even").addClass("hhg");
 }
+

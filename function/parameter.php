@@ -470,6 +470,7 @@ function GetOddsnc ($s_type, $select)
 		case '幸运三' : $where = "Ball_10"; $select='h6'; break;
 		case '幸运四' : $where = "Ball_10"; $select='h7'; break;
 		case '幸运五' : $where = "Ball_10"; $select='h8'; break;
+        case '正码' : $where = "ZHENGMA";break;
 	}
 	switch ($select)
 	{
@@ -516,6 +517,14 @@ function GetOddsnc ($s_type, $select)
 		case '總和尾小' : $select = 'h7'; break;
 		case '家禽' : $select = 'h6'; break;
 		case '野兽' : $select = 'h8'; break;
+        //start of 正码 尾大尾小等
+        case '21': $select = 'h21';break;//总和大
+        case '22': $select = 'h22';break;//总和小
+        case '23': $select = 'h23';break;//总和单
+        case '24': $select = 'h24';break;//总和双
+        case '25': $select = 'h25';break;//总和尾大
+        case '26': $select = 'h26';break;//总和尾小
+        //end of 正码 尾大尾小等
 	}
 	$db = new DB();
 	$sql = "SELECT {$select} FROM `g_odds5` WHERE `g_type` = '{$where}' LIMIT 1 ";

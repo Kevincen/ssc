@@ -139,16 +139,7 @@ $(function () {
 	$("#dp").attr("action","./inc/DataProcessing.php?t="+encodeURI($("#tys").html()));
 	
 	//POST提交表單
-	$("#submits,#submits1").click(function () {
-		if(iSubmit()==false)return false;
-		var suc = true;
-		$.ajax ({type:"post",url:URL,dataType:"text",async:false,data:{typeid:"postodds"},success : function (data) {
-				suc = postodds (data);
-            }
-		});
-		return suc;
-	});
-	
+
 	$("#sub").click(function () {
 		var value = "", count = 0;
 		$("#lm").attr("action","fn1.php?v="+$("#o").html());
@@ -248,3 +239,13 @@ $(document).ready(function(){
 	var url = location.href.split('/'); 
 	
 })
+function submitforms()
+{
+    if(iSubmit()==false)return false;
+    var suc = true;
+    $.ajax ({type:"post",url:URL,dataType:"text",async:false,data:{typeid:"postodds"},success : function (data) {
+        suc = postodds (data);
+    }
+    });
+    return suc;
+}

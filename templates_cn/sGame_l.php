@@ -47,7 +47,7 @@ $g = $_GET['g'];
         });
     </script>
 </head>
-<body>
+<body class="<?php echo $_COOKIE['g_skin']; ?>">
 <table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px">
     <tr height="24">
         <td class="bolds wanfa">广东快乐十分 <span style="color:#0033FF; font-weight:bold; margin-left:10px;"

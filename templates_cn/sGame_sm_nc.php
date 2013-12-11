@@ -77,6 +77,11 @@ $number_type = "nc"
 <body class="<?php echo $_COOKIE['g_skin']; ?>">
 <div class="main-content bet-content" dom="layoutright" id="layoutright" style="display: block;">
     <div class="mains_corll">
+    <form id="dp" action="" method="post" target="leftFrame" >
+    <input type="hidden" name="actions" value="fn3" />
+    <input type="hidden" name="gtypes" value="1" />
+    <input type="hidden" id="mix" value="<?php echo$ConfigModel['g_mix_money']?>" />
+    <div class="actiionn"></div>
     <div id="rightLoader" dom="right" style="">
         <div id="bothSides_nc" class="bothSides">
             <div class="betAreaBox">
@@ -819,6 +824,7 @@ $number_type = "nc"
         </div>
     </div>
 
+    </form>
     <?php include './popup.html' ?>
 </div>
 </div>

@@ -178,8 +178,8 @@ setAction[6] = function () { //出球率與無出期數
 		var gid = _href.replace("g","");
 		$.post (URL, {typeid : "sumball", gid : gid}, function (data) {
 			//alert(data);return;
-			var th1 = '<th>出&nbsp;球&nbsp;率</th>';
-			var th2 = '<th>無出期數</th>';
+			var th1 = '<th>冷热</th>';
+			var th2 = '<th>遗漏</th>';
 			var row_1Html = new Array();
 			var row_2Html = new Array();
 			for (var i in data.row_1){
@@ -330,15 +330,15 @@ function stringByInt (str)
 		return setResult[0];
 	switch (str){
 		case "大小" : return setResult[1];
-		case "單雙" : return setResult[2];
-		case "尾數大小" : return setResult[3];
-		case "合數單雙" : return setResult[4];
-		case "梅兰菊竹" : return setResult[5];
-		case "中發白" : return setResult[6];
-		case "總和大小" : return setResult[7];
-		case "總和單雙" : return setResult[8];
-		case "總和尾數大小" : return setResult[9];
-		case "家禽野兽" : return setResult[10];
+		case "单双" : return setResult[2];
+		case "尾数大小" : return setResult[3];
+		case "合数单双" : return setResult[4];
+		case "东南西北" : return setResult[5];
+		case "中发白" : return setResult[6];
+		case "总和大小" : return setResult[7];
+		case "总和单双" : return setResult[8];
+		case "总和尾数" : return setResult[9];
+		case "龙虎" : return setResult[10];
 	}
 }
 
