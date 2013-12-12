@@ -56,7 +56,10 @@ $number_type = "nc"
             <input type="hidden" id="mix" value="<?php echo $ConfigModel['g_mix_money'] ?>">
             <input type="hidden" name="actions" value="fn1"/>
             <input type="hidden" name="gtypes" value="1" />
-                <div class="actiionn"></div>
+            <input type="hidden" name="s_number" value="0"/>
+            <input id="touzhu_type" type="hidden" name="touzhu" value="yiban"/>
+            <div class="actiionn"></div>
+            <div id="hidden_inputs"></div>
                 <div class="betAreaBox nc">
                 <?php include_once './game_header.php' ?>
                     <div class="common">
@@ -98,72 +101,72 @@ $number_type = "nc"
                                 <tbody>
                                 <tr>
                                     <td class="caption_1"><span class="number num1"></span></td>
-                                    <td class="o loads" id="h1" number="01" style="color: rgb(255, 0, 0);">2.45</td>
+                                    <td class="o loads" id="h1" ball_name="01" style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
                                     <td class="caption_1"><span class="number num6"></span></td>
-                                    <td class="o loads" id="h6" number="06" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h6" ball_name="06" style="color: rgb(255, 0, 0);" ></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                     <td class="caption_1"><span class="number num11"></span></td>
-                                    <td class="o loads" id="h11" number="11" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h11" ball_name="11" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                     <td class="caption_1"><span class="number num16"></span></td>
-                                    <td class="o loads" id="h16" number="16" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h16" ball_name="16" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                 </tr>
                                 <tr>
                                     <td class="caption_1"><span class="number num2"></span></td>
-                                    <td class="o loads" id="h2" number="02" style="color: rgb(255, 0, 0);">2.45</td>
+                                    <td class="o loads" id="h2" ball_name="02" style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
                                     <td class="caption_1"><span class="number num7"></span></td>
-                                    <td class="o loads" id="h7" number="07" style="color: rgb(255, 0, 0);">2.45</td>
+                                    <td class="o loads" id="h7" ball_name="07" style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
                                     <td class="caption_1"><span class="number num12"></span></td>
-                                    <td class="o loads" id="h12" number="12" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h12" ball_name="12" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                     <td class="caption_1"><span class="number num17"></span></td>
-                                    <td class="o loads" id="h17" number="17" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h17" ball_name="17" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                 </tr>
                                 <tr>
                                     <td class="caption_1"><span class="number num3"></span></td>
-                                    <td class="o loads" id="h3" number="03" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h3" ball_name="03" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                     <td class="caption_1"><span class="number num8"></span></td>
-                                    <td class="o loads" id="h8" number="08" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h8" ball_name="08" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                     <td class="caption_1"><span class="number num13"></span></td>
-                                    <td class="o loads" id="h13" number="13" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h13" ball_name="13" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                     <td class="caption_1"><span class="number num18"></span></td>
-                                    <td class="o loads" id="h18" number="18" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h18" ball_name="18" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                 </tr>
                                 <tr>
                                     <td class="caption_1"><span class="number num4"></span></td>
-                                    <td class="o loads" id="h4" number="04" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h4" ball_name="04" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                     <td class="caption_1"><span class="number num9"></span></td>
-                                    <td class="o loads" id="h9" number="09" style="color: rgb(255, 0, 0);">2.45</td>
+                                    <td class="o loads" id="h9" ball_name="09" style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
                                     <td class="caption_1"><span class="number num14"></span></td>
-                                    <td class="o loads" id="h14" number="14" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h14" ball_name="14" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                     <td class="caption_1"><span class="number num19"></span></td>
-                                    <td class="o loads" id="h19" number="19" style="color: rgb(255, 0, 0);">2.45</td>
-                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
+                                    <td class="o loads" id="h19" ball_name="19" style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input class="amount-input" maxlength="9" type="text" ></td>
                                 </tr>
                                 <tr>
                                     <td class="caption_1"><span class="number num5"></span></td>
-                                    <td class="o loads" id="h5" number="05" style="color: rgb(255, 0, 0);">2.45</td>
+                                    <td class="o loads" id="h5" ball_name="05" style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
                                     <td class="caption_1"><span class="number num10"></span></td>
-                                    <td class="o loads" id="h10" number="10" style="color: rgb(255, 0, 0);">2.45</td>
+                                    <td class="o loads" id="h10" ball_name="10" style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
                                     <td class="caption_1"><span class="number num15"></span></td>
-                                    <td class="o loads" id="h15" number="15" style="color: rgb(255, 0, 0);">2.45</td>
+                                    <td class="o loads" id="h15" ball_name="15" style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
                                     <td class="caption_1"><span class="number num20"></span></td>
-                                    <td class="o loads" id="h20" number="20" style="color: rgb(255, 0, 0);">2.45</td>
+                                    <td class="o loads" id="h20" ball_name="20" style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input class="amount-input" maxlength="9" type="text"></td>
                                 </tr>
                                 </tbody>
@@ -190,24 +193,24 @@ $number_type = "nc"
                                 <tbody>
                                 <tr>
                                     <td class="fontBlue caption_1">总和大</td>
-                                    <td class="o loads" id="h21" number="31" id="c04131" style="color: rgb(255, 0, 0);">1.987</td>
-                                    <td class="amount tt"><input type="text" class="amount-input" maxlength="9"></td>
+                                    <td class="o loads" id="h21"  ball_name='总和大' style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input type="text" class="amount-input" maxlength="9" ></td>
                                     <td class="fontBlue caption_1">总和单</td>
-                                    <td class="o loads" id="h23" number="29" id="c04029" style="color: rgb(255, 0, 0);"></td>
-                                    <td class="amount tt"><input type="text" class="amount-input" maxlength="9"></td>
+                                    <td class="o loads" id="h23"  ball_name='总和单' style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input type="text" class="amount-input" maxlength="9" ></td>
                                     <td class="fontBlue caption_1">总和尾大</td>
-                                    <td class="o loads" id="h25" number="33" id="c04233" style="color: rgb(255, 0, 0);">1.987</td>
+                                    <td class="o loads" id="h25"  ball_name='总和尾大' style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input type="text" class="amount-input" maxlength="9"></td>
                                 </tr>
                                 <tr>
                                     <td class="fontBlue caption_1">总和小</td>
-                                    <td class="o loads" id="h22" number="32" id="c04132" style="color: rgb(255, 0, 0);">1.987</td>
-                                    <td class="amount tt"><input type="text" class="amount-input" maxlength="9"></td>
+                                    <td class="o loads" id="h22" ball_name='总和小' style="color: rgb(255, 0, 0);"></td>
+                                    <td class="amount tt"><input type="text" class="amount-input" maxlength="9" ></td>
                                     <td class="fontBlue caption_1">总和双</td>
-                                    <td class="o loads" id="h24" number="30" id="c04030" style="color: rgb(255, 0, 0);">1.985</td>
+                                    <td class="o loads" id="h24" ball_name='总和双' style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input type="text" class="amount-input" maxlength="9"></td>
                                     <td class="fontBlue caption_1">总和尾小</td>
-                                    <td class="o loads" id="h26" number="34" id="c04234" style="color: rgb(255, 0, 0);">1.987</td>
+                                    <td class="o loads" id="h26" ball_name='总和尾小' style="color: rgb(255, 0, 0);"></td>
                                     <td class="amount tt"><input type="text" class="amount-input" maxlength="9"></td>
                                 </tr>
                                 </tbody>
@@ -414,6 +417,7 @@ $number_type = "nc"
                     </table>
                 </div>
             </form>
+            <?php include './popup.html'?>
             </div>
         </div>
     </div>

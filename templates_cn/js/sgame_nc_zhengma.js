@@ -8,6 +8,7 @@ function kuijie(){
     $('#td_input_money').css('display','inline');
     $('#td_input_money1').css('display','inline');
     if(!$('#kuijie').hasClass('on')){
+        $('#touzhu_type').val('fast');
         $('#kuijie').addClass('on');
         $('#yiban').removeClass('on');
         var i=0;
@@ -80,6 +81,8 @@ function kuijie(){
 }
 function yiban(){
     if(!$('#yiban').hasClass('on')){
+        //设置投注类型
+        $('#touzhu_type').val('normal');
         $('#yiban').addClass('on');
         $('#kuijie').removeClass('on');
         $('.tt').each(function(){
@@ -202,8 +205,9 @@ setAction[0] = function() { //封盤時間和開盤期數
         }
     }
     if (setTime[0] <1){
-        setAction[3](false, null);
-        display(false,false);
+        $("input.amount-input").each(function(){
+           $(this).disable();
+        });
         setHtml[0].html("00:00");
         return;
     } else {
@@ -383,8 +387,148 @@ function stringByInt (str){
         case "总和尾数大小" : return setResult[9];
     }
 }
+/****************提交投注**************/
+/*
+ @param typename 输入的变量名
+ @param val      输入的变量值
+ return html_code*/
+function gen_input(typename, val)
+{
+    return '<input type="hidden" name="'+ typename + '" value="'+ val +'"/>'
+}
 
+
+function add_prefix(ball_array)
+{
+    for (var i=0;i<ball_array.length;i++) {
+        if (ball_array[i] <=20 && ball_array[i] >0) {
+            if (ball_array[i] < 10) {
+                ball_array[i] = '0'+ball_array[i];
+            }
+            ball_array[i] = '正码 ' + ball_array[i];
+        } else {
+            switch (ball_array[i]) {
+                case "21":
+                    ball_array[i] = '总和大';
+                    break;
+                case "22":
+                    ball_array[i] = '总和小';
+                    break;
+                case "23":
+                    ball_array[i] = '总和单';
+                    break;
+                case "24":
+                    ball_array[i] = '总和双';
+                    break;
+                case "25":
+                    ball_array[i] = '总和尾大';
+                    break;
+                case "26":
+                    ball_array[i] = '总和尾小';
+                    break;
+
+            }
+            ball_array[i] = '总和 ' + ball_array[i];
+        }
+    }
+    return ball_array;
+}
 
 function submitforms(){
-    $.post("../ajax/Default.ajax.php", { typeid : "sessionId"}, function(){});
+    $.ajax ({type:"post",url:URL,dataType:"text",async:false,data:{typeid:"postodds"},success : function (data) {
+        $.post(URL, { typeid : "sessionId"}, function(){});
+        if (data) {
+            my_alert("抱歉！您的账号已被冻结，请与你的上级联系。");
+            return false;
+        }
+
+        /*  php 所需数据格式
+         $s_type = $_POST['s_type'];//本项目名称 如正码
+         $s_ball_arr = $_POST['s_ball'];//下注的具体小项目名称
+         $s_money_arr = $_POST['s_money'];//每一注的金钱
+         $s_hid_arr = $_POST['s_hid'];//具体的项目标号号如：h1 h2 h3 h4 h5等*/
+        var typename;//项目名称 如正码
+        var ball_array = new Array();//下注的具体小项目名称
+        var money_array = new Array();//每一注的金钱
+        var ball_id_array = new Array();//具体的项目标号号如：h1 h2 h3 h4 h5等
+        var odd_array = new Array();//小项目的赔率数组，仅仅用于显示
+        var add_inputs;
+        var ball_selecter = ".o";
+
+        typename = "正码";
+//
+        add_inputs = gen_input('s_type',typename); //生成隐藏输入值
+        //将期数填入
+        $('input[name=s_number]').val($('#o').html());
+
+        if ($('#touzhu_type').val() != 'fast') {
+            //submitforms();
+            $input_elems = $("input.amount-input");
+            $input_elems.each(function(){
+                var money = $(this).val();
+                var odd;
+                var ballname;
+                var ballnum;
+                var $data_src = $(this).parent().prev();
+                if (money != '') {
+                    ballname = $data_src.attr('ball_name');
+                    ballnum = $data_src.attr('id');
+                    odd = $data_src.html();
+                    add_inputs += gen_input('s_ball[]',ballname) ;
+                    add_inputs += gen_input('s_money[]',money);
+                    add_inputs += gen_input('s_hid[]',ballnum);
+                    ball_array.push(ballname);
+                    ball_id_array.push(ballnum);
+                    odd_array.push(odd);
+                    money_array.push(money);
+
+                }
+            });
+        } else {
+            var money = parseInt($('#AllMoney').val());
+            if (isNaN(money) == true) {
+                my_alert('您输入类型不正确或没有输入实际金额');
+                return false;
+            } else {
+                var debug_counter = 0;
+                $(ball_selecter+"[title='选中']").each(function(){
+                    var ballname;
+                    var ballnum;
+                    var odd;
+                    debug_counter++;
+
+                    ballname = $(this).attr('ball_name');
+                    ballnum = $(this).attr('id');
+                    odd = $(this).html();
+                    add_inputs += gen_input('s_ball[]',ballname) ;
+                    add_inputs += gen_input('s_money[]',money);
+                    add_inputs += gen_input('s_hid[]',ballnum);
+                    ball_array.push(ballname);
+                    ball_id_array.push(ballnum);
+                    money_array.push(money);
+                    odd_array.push(odd);
+                });
+                console.log(debug_counter);
+            }
+        }
+        if (ball_array.length == 0
+            || ball_id_array.length == 0
+            || money_array.length == 0) {
+            my_alert('您未选择号码');
+            return false;
+        }
+
+        console.log(ball_array);
+        console.log(ball_id_array);
+        console.log(money_array);
+        $('#hidden_inputs').html(add_inputs);
+
+        //显示弹窗菜单
+        ball_array = add_prefix(ball_array);
+        submit_confirm(ball_array,odd_array,money_array);
+        //清空
+        MyReset();
+        return false;
+    }
+    });
 }

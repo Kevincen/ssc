@@ -151,13 +151,13 @@ class SumAmountnc
 					$sqlauto = "SELECT `g_autowin` FROM `g_user` WHERE `g_name` = '$gname'";
 					$resultauto = $dba->query($sqlauto, 1);
 					if($resultauto[0]['g_autowin']==1||$resultList[$i]['g_awin']==1){
-					$reup=$resultList[$i]['g_result'];
-					$upid=$resultList[$i]['g_id'];
-					$sqlup = "update g_zhudan set g_mingxi_2='$reup' where g_id=$upid";
-					
-					$dba->query($sqlup, 2);
-					$resultList[$i]['g_result'] = '贏';
-					
+                        $reup=$resultList[$i]['g_result'];
+                        $upid=$resultList[$i]['g_id'];
+                        $sqlup = "update g_zhudan set g_mingxi_2='$reup' where g_id=$upid";
+
+                        $dba->query($sqlup, 2);
+                        $resultList[$i]['g_result'] = '贏';
+
 					}else{
 					$resultList[$i]['g_result'] = $resultList[$i]['g_result'] == $resultList[$i]['g_mingxi_2'] ? '贏' : '輸';
 					}
@@ -259,6 +259,18 @@ class SumAmountnc
 							$resultList[$i]['g_result'] = $numberList[0]['g_ball_1']+$numberList[0]['g_ball_2']+$numberList[0]['g_ball_3']+$numberList[0]['g_ball_4']+$numberList[0]['g_ball_5']+$numberList[0]['g_ball_6']+$numberList[0]['g_ball_7']+$numberList[0]['g_ball_8'];
 						}
 						break;
+                    case '正码' :
+                        if ($resultList[$i]['g_mingxi_2']== $numberList[0]['g_ball_1']
+                        || $resultList[$i]['g_mingxi_2'] == $numberList[0]['g_ball-2']
+                            || $resultList[$i]['g_mingxi_2'] == $numberList[0]['g_ball-3']
+                            || $resultList[$i]['g_mingxi_2'] == $numberList[0]['g_ball-4']
+                            || $resultList[$i]['g_mingxi_2'] == $numberList[0]['g_ball-5']
+                            || $resultList[$i]['g_mingxi_2'] == $numberList[0]['g_ball-6']
+                            || $resultList[$i]['g_mingxi_2'] == $numberList[0]['g_ball-7']
+                            || $resultList[$i]['g_mingxi_2'] == $numberList[0]['g_ball-8']
+                        ) {
+                            $resultList[$i]['g_result'] = $resultList[$i]['g_mingxi_2'];
+                        }
 					default: $resultList[$i]['g_result'] = 'LM';
 				}
 			}
@@ -293,16 +305,16 @@ class SumAmountnc
 				$resultList = sum_ball_string_nc($resultList['g_result'], 9);
 			}
 			//總分計算
-			else if ($resultList['g_mingxi_2'] == '總和大' || $resultList['g_mingxi_2'] == '總和小')
+			else if ($resultList['g_mingxi_2'] == '總和大' || $resultList['g_mingxi_2'] == '總和小'|| $resultList['g_mingxi_2'] == '总和大' || $resultList['g_mingxi_2']== '总和小' )
 			{
 				//總分大小 84為 和
 				$resultList = sum_ball_str_a_nc($resultList['g_result'], 3); 
 			}
-			else if ($resultList['g_mingxi_2'] == '總和單' || $resultList['g_mingxi_2'] == '總和雙')
+			else if ($resultList['g_mingxi_2'] == '總和單' || $resultList['g_mingxi_2'] == '總和雙' || $resultList['g_mingxi_2'] == '总和单' || $resultList['g_mingxi_2'] == '总和双')
 			{
 				$resultList = sum_ball_str_a_nc($resultList['g_result'], 5);
 			}
-			else if ($resultList['g_mingxi_2'] == '總和尾大' || $resultList['g_mingxi_2'] == '總和尾小')
+			else if ($resultList['g_mingxi_2'] == '總和尾大' || $resultList['g_mingxi_2'] == '總和尾小' ||$resultList['g_mingxi_2'] == '总和尾大' || $resultList['g_mingxi_2'] == '总和尾小')
 			{
 				$resultList = sum_ball_str_a_nc($resultList['g_result'], 7);
 			}

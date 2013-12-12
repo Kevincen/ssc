@@ -603,6 +603,26 @@ function _getStringnc ($t, $ball=null)
 	}
 	else if ($t == '蔬菜单选' || $t == '动物单选' || $t == '幸运二' || $t == '连连中' || $t == '背靠背' || $t == '幸运三' || $t == '幸运四' || $t == '幸运五')
 		$type = $t;
+    else if ($t == '正码') {
+        if ( is_numeric($ball) && (int)$ball <=20) {
+            $type = $t;
+        } else {
+            switch ($ball) {
+                case '总和大':
+                case '总和小':
+                    $type = '總和大小';
+                    break;
+                case '总和单':
+                case '总和双':
+                    $type = '總和單雙';
+                    break;
+                case '总和尾大':
+                case '总和尾小':
+                    $type = '總和尾數大小';
+                    break;
+            }
+        }
+    }
 	return $type;
 }
 

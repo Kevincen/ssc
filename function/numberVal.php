@@ -74,6 +74,15 @@ function _isNumberIsNotNullnc ($db, $ball, $number)
 			case '幸运三' : $bool = true; break;
 			case '幸运四' : $bool = true; break;
 			case '幸运五' : $bool = true; break;
+            /*正码 尾数大小等*/
+            case '总和大':
+            case '总和小':
+            case '总和单':
+            case '总和双':
+            case '总和尾大':
+            case '总和尾小':
+                $bool= true;
+                break;
 		}
 	}
 	return $bool;
@@ -133,9 +142,9 @@ function upUserKyYongEr ($kMoney, $userName)
  */
 function isUserMoney ($money, $max,$totalmoney)
 {
-	// echo $totalmoney;
-    //echo '</br>';
-    //var_dump($max);
+/*	 echo $totalmoney;
+    echo '</br>';
+    var_dump($max);*/
 	if (!is_numeric($money))
 		exit("MoneyrError");
 	if (!is_numeric($totalmoney))

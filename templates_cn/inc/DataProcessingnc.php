@@ -10,8 +10,8 @@ $dateTime = date('Y-m-d H:i:s');
 $a = date('Y-m-d ') . '01:55:01';
 global $stratGamenc, $endGamenc;
 if (($dateTime < $stratGamenc && $dateTime > $a) || $dateTime > $endGamenc) {
-    back('開盤時間為：' . $stratGamenc . '--' . $endGamenc);
-    exit;
+ //   back('開盤時間為：' . $stratGamenc . '--' . $endGamenc);
+  //  exit;
 }
 
 if ($ConfigModel['g_nc_game_lock'] != 1 || $ConfigModel['g_web_lock'] != 1)
@@ -112,6 +112,7 @@ if (isset($_SESSION['guid_code'])) {
         upUserKyYongEr($ListArr[0]['KeYongEr'], $ListArr[0]['g_nid']);
     } else if ($action == 'fn1') //alert提交
     {
+        var_dump($_POST);
         $s_number = $_POST['s_number'];
         $s_type = $_POST['s_type'];
         $s_ball_arr = $_POST['s_ball'];
@@ -354,9 +355,7 @@ if (isset($_SESSION['guid_code'])) {
                 exit(alert_href("抱歉！{$ListArr[$i]['g_mingxi_1']}『{$ListArr[$i]['g_mingxi_2']}』下註失敗", '../left.php'));
         }
         upUserKyYongEr($gMoney, $ListArr[0]['g_nid']);
-    } else if ($action == "ZHENGMA") {//正码 by 2b
-
-    } else {
+    }  else {
         exit("DataProceError");
     }
     new AutoLet($number_1, $ListArr, 5);
