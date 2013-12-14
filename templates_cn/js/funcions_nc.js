@@ -133,7 +133,7 @@ setAction[3] = function(lock, odds) { //賠率
 			var $thisId = encodeURI($(this).attr("id"));
 			var $odds = sodds($thisId, odds); //賠率對應
 			var clas = "s"+$thisId.replace("h","");
-			if (_href == "k2"){
+			if (_href == "LIANMA"){
 				//if ($thisId == "h2" || $thisId == "h5" )
 				//	$(this).html("<span id=\""+clas+"\" class=\"bgs\">-</span>");
 			//	else

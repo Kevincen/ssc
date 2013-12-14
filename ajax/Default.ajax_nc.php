@@ -69,6 +69,7 @@ if ($typeId == "action" && Copyright)
 		case 'k1': $p=8;  $g_id = "Ball_9"; break;
 		case 'k2': $p=8;  $g_id = "Ball_10"; break;
         case 'ZHENGMA': $p=35;  $g_id = "ZHENGMA"; break;
+        case 'LIANMA':$p = 7; $g_id = "LIANMA"; break;
 	}
 	$oArr = selectOddsnc($p, $g_id); //賠率
 	//判斷當前登錄帳號的盤口

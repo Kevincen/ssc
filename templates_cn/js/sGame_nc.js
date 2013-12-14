@@ -143,7 +143,7 @@ $(function () {
 		return suc;
 	});
 	
-	$("#sub").click(function () {
+	$("#sub").click(function () {//连码
 		var value = "", count = 0;
 		$("#lm").attr("action","fn9.php?v="+$("#o").html());
 		$(":radio").each(function () {
@@ -212,11 +212,10 @@ $(function () {
 	}
 });
 
-function cRadio ($this) 
+function cRadio ($this)
 {
 	//alert($this.value);
-	var box = $(":checkbox");
-	
+/*	var box = $(":checkbox");
 	box.css("display","inline");
 	box.attr("checked","");
 	box.attr("disabled","");
@@ -247,7 +246,7 @@ function cRadio ($this)
 		discheck2.attr("disabled","");
 	}
 	$(".v").css("background","#fff");
-	$(".qw").attr("disabled","").css("color","#006600");
+	$(".qw").attr("disabled","").css("color","#006600");*/
 }
 
 function getResult ($this)
