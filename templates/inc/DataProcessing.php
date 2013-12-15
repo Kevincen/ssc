@@ -8,7 +8,7 @@ $ConfigModel= configModel("`g_mix_money`, `g_web_lock`,`g_kg_game_lock`, `g_odds
 $dateTime = date('Y-m-d H:i:s');
 if ( $dateTime < $stratGame || $dateTime > $endGame)
 {
-	back('開盤時間為：'.$stratGame.'--'.$endGame);exit;
+//	back('開盤時間為：'.$stratGame.'--'.$endGame);exit;
 }
 
 if ($ConfigModel['g_kg_game_lock'] !=1 || $ConfigModel['g_web_lock'] !=1)

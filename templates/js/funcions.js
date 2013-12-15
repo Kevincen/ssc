@@ -13,7 +13,7 @@ function action(){
 	if (_href == "g9") return; 
 	$.post (URL, { typeid : "action", nid : _href },  function (data) { 
 		if (data == null){
-			location.href='./right.php';
+			//location.href='./right.php';
 			return;
 		}
 		$("#o").html(data.Phases);
@@ -100,7 +100,7 @@ setAction[2] = function () { //刷新時間
 	setHtml[2].html(setTime[2]);
 	if (setTime[2] < 1){
 		$.post (URL, {typeid : "action", nid : _href}, function (data) {
-			if (data == null){ location.href='./right.php';return; }
+			if (data == null){ /*location.href='./right.php';return; */}
 			setTime[0] = data.endTime;
 			setTime[1] = data.openTime;
 			setTime[2] = data.refreshTime;

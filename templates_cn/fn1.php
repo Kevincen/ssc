@@ -7,7 +7,7 @@ global $user, $UserOut, $stratGame, $endGame;
 $dateTime = date('Y-m-d H:i:s');
 if ( $dateTime < $stratGame || $dateTime > $endGame)
 {
-	back('開盤時間為：'.$stratGame);exit;
+	//back('開盤時間為：'.$stratGame);exit;
 }
 
 if ($user[0]['g_look'] == 2) exit(back($UserOut));

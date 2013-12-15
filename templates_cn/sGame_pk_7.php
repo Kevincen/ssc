@@ -85,6 +85,8 @@ $sub_type = "6 ~ 10";
 <div class="actiionn">
 
 </div>
+<div id="rightLoader" dom="right">
+<div id="ballNO60" area="ball1">
 <div class="betAreaBox">
 <?php include_once './game_header.php' ?>
 <div class="common pk10 ssctouzhuArea">
@@ -548,6 +550,11 @@ $sub_type = "6 ~ 10";
     </tr>
     </tbody>
 </table>
+</div>
+<div class="changlongbox">
+    <?php include_once("./inc/cl_file.php") ?>
+</div>
+</div>
 </div>
 </form>
 <?php include './popup.html' ?>

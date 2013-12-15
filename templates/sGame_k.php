@@ -3,8 +3,8 @@ define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'function/global.php';
 $ConfigModel = configModel("`g_kg_game_lock`, `g_game_10`");
-if ($ConfigModel['g_kg_game_lock'] !=1 || $ConfigModel['g_game_10'] !=1)
-	exit(href('right.php'));
+//if ($ConfigModel['g_kg_game_lock'] !=1 || $ConfigModel['g_game_10'] !=1)
+//	exit(href('right.php'));
 $types = '連碼';
 
 

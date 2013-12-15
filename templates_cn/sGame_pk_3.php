@@ -84,6 +84,8 @@ $sub_type = "1 ~ 5";
 <div class="actiionn">
 
 </div>
+<div id="rightLoader" dom="right">
+<div id="ballNO60" area="ball1">
 <div class="betAreaBox">
 <?php include_once './game_header.php' ?>
 <div class="common pk10 ssctouzhuArea">
@@ -585,18 +587,23 @@ $sub_type = "1 ~ 5";
         <td width="45%" class="align-c">
             <div id="td_input_money1">
                 <strong class="t kuaijie">金额</strong>
-                                    <span class="kuaijie">
-                                        <input type="text" class="elem_amount_input elem_amount_input_quick"
-                                               id="AllMoney" name="" maxlength="9" id="" onkeydown="return IsNumeric()">
-                                    </span>
+                               <span class="kuaijie">
+                               <input type="text" class="elem_amount_input elem_amount_input_quick"
+                                      id="AllMoney" name="" maxlength="9" id="" onkeydown="return IsNumeric()">
+                               </span>
             </div>
             <a class="btn_m elem_btn" id="submit_top" onclick="submitforms()">确 定</a>
             <a onclick="MyReset()" class="btn_m elem_btn" id="reset_top">重 置</a>
-</td>
-<td width="30%" class="align-r"></td>
-</tr>
-</tbody>
+        </td>
+        <td width="30%" class="align-r"></td>
+    </tr>
+    </tbody>
 </table>
+</div>
+<div class="changlongbox">
+    <?php include_once("./inc/cl_file.php") ?>
+</div>
+</div>
 </div>
 </form>
 <?php include './popup.html' ?>

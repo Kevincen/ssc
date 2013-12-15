@@ -40,7 +40,8 @@ $sub_type = '连码';
     <script type="text/javascript">
         $(document).ready(function(){
             action();//设置赔率，开奖
-            set_clickable('.ballno-t-t')
+            set_clickable('.lianma_f .ballno-t-t','#selectedlist','#selectedAmount');
+            set_clickable_nc();
             $('input[name=gg]').click(function(){
                 $('td.kon').removeClass('kon');
                 $(this).parent().addClass('kon');
@@ -50,15 +51,15 @@ $sub_type = '连码';
                  */
 
                 if($(this).val()=='t2'){
-                    //$('.lianma_f').hide();
-                    //$('.lianma_zh').show();
+                    $('.lianma_f').hide();
+                    $('.lianma_zh').show();
                     //这里显示前卫和后卫
-                    $('.lianma_q').css('display','table-cell');
+                    //$('.lianma_q').css('display','table-cell');
                     $('.lianma_h').show();
                 } else {
 
                     $('.lianma_f').show();
-                    $('.lianma_q').hide();
+                    //$('.lianma_q').hide();
 
                     //中位以及后位显示
                     $('.lianma_zh').hide();
@@ -165,7 +166,7 @@ $sub_type = '连码';
                             </colgroup>
                             <thead>
                             <tr>
-                                <th colspan="8" class="lianma_q" style="display: none;">前位</th>
+                                <th colspan="8" class="lianma_q" style="display: none;"></th>
                             </tr>
                             <tr>
                                 <th>号码</th>
@@ -181,53 +182,53 @@ $sub_type = '连码';
                             <tbody>
                             <tr>
                                 <td class="ballno-t-t "><span class="number num1"></span></td>
-                                <td><input type="checkbox" number="01"></td>
+                                <td><input type="checkbox" name="ball" value="01"></td>
                                 <td class="ballno-t-t"><span class="number num6"></span></td>
-                                <td><input type="checkbox" number="06"></td>
+                                <td><input type="checkbox" name="ball" value="06"></td>
                                 <td class="ballno-t-t"><span class="number num11"></span></td>
-                                <td><input type="checkbox" number="11"></td>
+                                <td><input type="checkbox" name="ball" value="11"></td>
                                 <td class="ballno-t-t"><span class="number num16"></span></td>
-                                <td class="td-last"><input type="checkbox" number="16"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="16"></td>
                             </tr>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num2"></span></td>
-                                <td><input type="checkbox" number="02"></td>
+                                <td><input type="checkbox" name="ball" value="02"></td>
                                 <td class="ballno-t-t"><span class="number num7"></span></td>
-                                <td><input type="checkbox" number="07"></td>
+                                <td><input type="checkbox" name="ball" value="07"></td>
                                 <td class="ballno-t-t"><span class="number num12"></span></td>
-                                <td><input type="checkbox" number="12"></td>
+                                <td><input type="checkbox" name="ball" value="12"></td>
                                 <td class="ballno-t-t"><span class="number num17"></span></td>
-                                <td class="td-last"><input type="checkbox" number="17"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="17"></td>
                             </tr>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num3"></span></td>
-                                <td><input type="checkbox" number="03"></td>
+                                <td><input type="checkbox" name="ball" value="03"></td>
                                 <td class="ballno-t-t"><span class="number num8"></span></td>
-                                <td><input type="checkbox" number="08"></td>
+                                <td><input type="checkbox" name="ball" value="08"></td>
                                 <td class="ballno-t-t"><span class="number num13"></span></td>
-                                <td><input type="checkbox" number="13"></td>
+                                <td><input type="checkbox" name="ball" value="13"></td>
                                 <td class="ballno-t-t"><span class="number num18"></span></td>
-                                <td class="td-last"><input type="checkbox" number="18"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="18"></td>
                             </tr>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num4"></span></td>
-                                <td><input type="checkbox" number="04"></td>
+                                <td><input type="checkbox" name="ball" value="04"></td>
                                 <td class="ballno-t-t"><span class="number num9"></span></td>
-                                <td><input type="checkbox" number="09"></td>
+                                <td><input type="checkbox" name="ball" value="09"></td>
                                 <td class="ballno-t-t"><span class="number num14"></span></td>
-                                <td><input type="checkbox" number="14"></td>
+                                <td><input type="checkbox" name="ball" value="14"></td>
                                 <td class="ballno-t-t"><span class="number num19"></span></td>
-                                <td class="td-last"><input type="checkbox" number="19" class="animal"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="19" class="animal"></td>
                             </tr>
                             <tr class="lasttr">
                                 <td class="ballno-t-t"><span class="number num5"></span></td>
-                                <td><input type="checkbox" number="05"></td>
+                                <td><input type="checkbox" name="ball" value="05"></td>
                                 <td class="ballno-t-t"><span class="number num10"></span></td>
-                                <td><input type="checkbox" number="10"></td>
+                                <td><input type="checkbox" name="ball" value="10"></td>
                                 <td class="ballno-t-t"><span class="number num15"></span></td>
-                                <td><input type="checkbox" number="15"></td>
+                                <td><input type="checkbox" name="ball" value="15"></td>
                                 <td class="ballno-t-t"><span class="number num20"></span></td>
-                                <td class="td-last"><input type="checkbox" number="20" class="animal"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="20" class="animal"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -245,7 +246,8 @@ $sub_type = '连码';
                             </colgroup>
                             <thead>
                             <tr>
-                                <th colspan="8" style="border:none;">中位</th>
+                                <th colspan="8" style="border:none;">前位
+                                </th>
                             </tr>
                             <tr>
                                 <th>号码</th>
@@ -261,53 +263,53 @@ $sub_type = '连码';
                             <tbody>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num1"></span></td>
-                                <td><input type="checkbox" number="01"></td>
+                                <td><input type="checkbox" name="ball" value="01"></td>
                                 <td class="ballno-t-t"><span class="number num6"></span></td>
-                                <td><input type="checkbox" number="06"></td>
+                                <td><input type="checkbox" name="ball" value="06"></td>
                                 <td class="ballno-t-t"><span class="number num11"></span></td>
-                                <td><input type="checkbox" number="11"></td>
+                                <td><input type="checkbox" name="ball" value="11"></td>
                                 <td class="ballno-t-t"><span class="number num16"></span></td>
-                                <td class="td-last"><input type="checkbox" number="16"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="16"></td>
                             </tr>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num2"></span></td>
-                                <td><input type="checkbox" number="02"></td>
+                                <td><input type="checkbox" name="ball" value="02"></td>
                                 <td class="ballno-t-t"><span class="number num7"></span></td>
-                                <td><input type="checkbox" number="07"></td>
+                                <td><input type="checkbox" name="ball" value="07"></td>
                                 <td class="ballno-t-t"><span class="number num12"></span></td>
-                                <td><input type="checkbox" number="12"></td>
+                                <td><input type="checkbox" name="ball" value="12"></td>
                                 <td class="ballno-t-t"><span class="number num17"></span></td>
-                                <td class="td-last"><input type="checkbox" number="17"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="17"></td>
                             </tr>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num3"></span></td>
-                                <td><input type="checkbox" number="03"></td>
+                                <td><input type="checkbox" name="ball" value="03"></td>
                                 <td class="ballno-t-t"><span class="number num8"></span></td>
-                                <td><input type="checkbox" number="08"></td>
+                                <td><input type="checkbox" name="ball" value="08"></td>
                                 <td class="ballno-t-t"><span class="number num13"></span></td>
-                                <td><input type="checkbox" number="13"></td>
+                                <td><input type="checkbox" name="ball" value="13"></td>
                                 <td class="ballno-t-t"><span class="number num18"></span></td>
-                                <td class="td-last"><input type="checkbox" number="18"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="18"></td>
                             </tr>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num4"></span></td>
-                                <td><input type="checkbox" number="04"></td>
+                                <td><input type="checkbox" name="ball" value="04"></td>
                                 <td class="ballno-t-t"><span class="number num9"></span></td>
-                                <td><input type="checkbox" number="09"></td>
+                                <td><input type="checkbox" name="ball" value="09"></td>
                                 <td class="ballno-t-t"><span class="number num14"></span></td>
-                                <td><input type="checkbox" number="14"></td>
+                                <td><input type="checkbox" name="ball" value="14"></td>
                                 <td class="ballno-t-t"><span class="number num19"></span></td>
-                                <td class="td-last"><input type="checkbox" number="19"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="19"></td>
                             </tr>
                             <tr class="lasttr">
                                 <td class="ballno-t-t"><span class="number num5"></span></td>
-                                <td><input type="checkbox" number="05"></td>
+                                <td><input type="checkbox" name="ball" value="05"></td>
                                 <td class="ballno-t-t"><span class="number num10"></span></td>
-                                <td><input type="checkbox" number="10"></td>
+                                <td><input type="checkbox" name="ball" value="10"></td>
                                 <td class="ballno-t-t"><span class="number num15"></span></td>
-                                <td><input type="checkbox" number="15"></td>
+                                <td><input type="checkbox" name="ball" value="15"></td>
                                 <td class="ballno-t-t"><span class="number num20"></span></td>
-                                <td class="td-last"><input type="checkbox" number="20"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="20"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -341,53 +343,53 @@ $sub_type = '连码';
                             <tbody>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num1"></span></td>
-                                <td><input type="checkbox" number="01"></td>
+                                <td><input type="checkbox" name="ball" value="01"></td>
                                 <td class="ballno-t-t"><span class="number num6"></span></td>
-                                <td><input type="checkbox" number="06"></td>
+                                <td><input type="checkbox" name="ball" value="06"></td>
                                 <td class="ballno-t-t"><span class="number num11"></span></td>
-                                <td><input type="checkbox" number="11"></td>
+                                <td><input type="checkbox" name="ball" value="11"></td>
                                 <td class="ballno-t-t"><span class="number num16"></span></td>
-                                <td class="td-last"><input type="checkbox" number="16"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="16"></td>
                             </tr>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num2"></span></td>
-                                <td><input type="checkbox" number="02"></td>
+                                <td><input type="checkbox" name="ball" value="02"></td>
                                 <td class="ballno-t-t"><span class="number num7"></span></td>
-                                <td><input type="checkbox" number="07"></td>
+                                <td><input type="checkbox" name="ball" value="07"></td>
                                 <td class="ballno-t-t"><span class="number num12"></span></td>
-                                <td><input type="checkbox" number="12"></td>
+                                <td><input type="checkbox" name="ball" value="12"></td>
                                 <td class="ballno-t-t"><span class="number num17"></span></td>
-                                <td class="td-last"><input type="checkbox" number="17"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="17"></td>
                             </tr>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num3"></span></td>
-                                <td><input type="checkbox" number="03"></td>
+                                <td><input type="checkbox" name="ball" value="03"></td>
                                 <td class="ballno-t-t"><span class="number num8"></span></td>
-                                <td><input type="checkbox" number="08"></td>
+                                <td><input type="checkbox" name="ball" value="08"></td>
                                 <td class="ballno-t-t"><span class="number num13"></span></td>
-                                <td><input type="checkbox" number="13"></td>
+                                <td><input type="checkbox" name="ball" value="13"></td>
                                 <td class="ballno-t-t"><span class="number num18"></span></td>
-                                <td class="td-last"><input type="checkbox" number="18"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="18"></td>
                             </tr>
                             <tr>
                                 <td class="ballno-t-t"><span class="number num4"></span></td>
-                                <td><input type="checkbox" number="04"></td>
+                                <td><input type="checkbox" name="ball" value="04"></td>
                                 <td class="ballno-t-t"><span class="number num9"></span></td>
-                                <td><input type="checkbox" number="09"></td>
+                                <td><input type="checkbox" name="ball" value="09"></td>
                                 <td class="ballno-t-t"><span class="number num14"></span></td>
-                                <td><input type="checkbox" number="14"></td>
+                                <td><input type="checkbox" name="ball" value="14"></td>
                                 <td class="ballno-t-t"><span class="number num19"></span></td>
-                                <td class="td-last"><input type="checkbox" number="19"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="19"></td>
                             </tr>
                             <tr class="lasttr">
                                 <td class="ballno-t-t"><span class="number num5"></span></td>
-                                <td><input type="checkbox" number="05"></td>
+                                <td><input type="checkbox" name="ball" value="05"></td>
                                 <td class="ballno-t-t"><span class="number num10"></span></td>
-                                <td><input type="checkbox" number="10"></td>
+                                <td><input type="checkbox" name="ball" value="10"></td>
                                 <td class="ballno-t-t"><span class="number num15"></span></td>
-                                <td><input type="checkbox" number="15"></td>
+                                <td><input type="checkbox" name="ball" value="15"></td>
                                 <td class="ballno-t-t"><span class="number num20"></span></td>
-                                <td class="td-last"><input type="checkbox" number="20"></td>
+                                <td class="td-last"><input type="checkbox" name="ball" value="20"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -401,7 +403,7 @@ $sub_type = '连码';
                                                                                     class="amount selectedAmount">5</span>注</span><span
                                     class="elem_selected bulk-amount-times elem_selected_1" style="display: none;"><b
                                         class="green">球号</b> 前位：<span id="selectedlist_m1"></span> 后位：<span
-                                        id="selectedlist_m2"></span>共<span id="selectedAmount"
+                                        id="selectedlist_m2"></span>共<span id="selectedAmount2"
                                                                            class="amount selectedAmount">5</span>注</span><span
                                     class="elem_selected bulk-amount-times elem_selected_2" style="display: none;"><b
                                         class="green">球号</b> 前位：<span id="selectedlist_n1"></span> 中位：<span
@@ -444,7 +446,7 @@ $sub_type = '连码';
                     <div class="empty-d"></div>
                 </div>
                 <div class="changlongbox">
-                    <table style="" class="bet-table changlong-table dataArea w100 t1">
+                    <table style="" class="bet-table changlong-table dataArea w100 t1" id="cl">
                         <tbody>
                         <tr>
                             <th colspan="2">两面长龙排行</th>

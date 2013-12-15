@@ -854,3 +854,25 @@ img#soundbut{
 	}
 .w20{
 	width:20%;}
+
+
+/*下注明细css */
+.orderListBox {
+    display: block;
+    max-height: 300px;
+    _height: 300px;
+    overflow: auto;
+    overflow-x: hidden;
+    _border-left: 1px solid #B5C6E2;
+    _border-right: 1px solid #B5C6E2;
+}
+
+.struct_general-table {
+    border-collapse: collapse;
+    width: 100%;
+    _border-left: none;
+    _border-right: none;
+}
+.orderComputing {
+    border: 1px solid #B5C6E2;
+}

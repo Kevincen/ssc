@@ -201,9 +201,9 @@ if (isset($_SESSION['guid_code'])) {
         upUserKyYongEr($gMoney, $ListArr[0]['g_nid']);
     } else if ($action == 'fn2') //連碼提交
     {
-        $s_type = base64_decode($_POST['s_type']);
-        $s_number = base64_decode($_POST['s_number']);
-        $s_ball = base64_decode($_POST['s_ball']);
+        $s_type = $_POST['s_type'];
+        $s_number = $_POST['s_number'];
+        $s_ball = $_POST['s_ball'];
         $s_ball_arr = explode('、', $s_ball);
         $s_money = $_POST['s_money'];
         if (!Matchs::isNumber($s_money) || $s_money < $ConfigModel['g_mix_money'])

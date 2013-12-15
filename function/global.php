@@ -14,7 +14,7 @@ exit('invalid request');
 // by 2b 尝试修复excute maxtime limit 错误
 //见网址http://bbs.csdn.net/topics/60317411
 set_time_limit(3600);
-//end by wjl
+//end by 2b
 if (!isset($_SESSION)) session_start();
 header("Content-type: text/html; charset=utf-8");
 date_default_timezone_set('PRC');

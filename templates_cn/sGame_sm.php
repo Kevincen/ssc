@@ -41,7 +41,6 @@ else
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>广东快乐十分</title>
 <link href="css/sGame.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
 <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/artDialog.js?skin=twitter"></script>
 <script type="text/javascript" src="js/sc.js"></script>
