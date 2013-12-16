@@ -471,6 +471,7 @@ function GetOddsnc ($s_type, $select)
 		case '幸运四' : $where = "Ball_10"; $select='h7'; break;
 		case '幸运五' : $where = "Ball_10"; $select='h8'; break;
         case '正码' : $where = "ZHENGMA";break;
+        case '连码' : $where = "LIANMA";break;
 	}
 	switch ($select)
 	{
@@ -622,6 +623,8 @@ function _getStringnc ($t, $ball=null)
                     break;
             }
         }
+    }else {
+        $type = $t;
     }
 	return $type;
 }
@@ -3624,6 +3627,7 @@ function selectOddsgx ($index=1, $Ball)
  */
 function subArr ($strArr, $count) 
 {
+    //var_dump($strArr);
 	$len = 0; //總組數
 	$Number = array();
 	for ($a=0; $a<count($strArr); $a++)
@@ -3849,7 +3853,40 @@ function GetGameTypenc ($string)
 	}
 	return $stringList;
 }
+//by 2b 新版连码
+function new_GetGameTypenc ($string)
+{
+    $stringList = array();
+    switch ($string)
+    {
+        case "t1" : $stringList['type'] = '任选二'; 		$stringList['count'] = 2; break;
+        case "t2" : $stringList['type'] = '选二连组'; 	$stringList['count'] = 2; break;
+        case "t3" : $stringList['type'] = '任选三'; 	$stringList['count'] = 3; break;
+        case "t4" : $stringList['type'] = '选三前组'; 		$stringList['count'] = 3; break;
+        case "t5" : $stringList['type'] = '任选四'; 	$stringList['count'] = 4; break;
+        case "t6" : $stringList['type'] = '任选五'; 	$stringList['count'] = 5; break;
+        case "t7" : $stringList['type'] = '选二连直'; 		$stringList['count'] = 2; break;
+        default:exit('is t1 to t7 Error');
+    }
+    return $stringList;
+}
 
+//by 2b 选二连直组合
+function subArray_xuanerlianzhi($front_array, $end_array)
+{
+    $len = 0; //總組數
+    $Number = array();
+    for ($i=0; $i<count($front_array);$i++) {
+        for ($j=0;$j<count($end_array);$j++) {
+            array_push($Number, $front_array[$i].','. $end_array[$j]);
+            $len++;
+        }
+    }
+
+    $result = array($len, $Number, count($front_array)+ count($end_array));
+    return $result;
+
+}
 
 function subArr_nc ($strArr, $count)
 {

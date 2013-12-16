@@ -18,6 +18,7 @@ if ($user[0]['g_out'] != 1) exit(back($UserOut));
 $s_type =  $_POST['gg'];
 $s_number = $_GET['v'];
 $s_ball_arr = $_POST['t'];
+$money = $_POST['money'];
 sort($s_ball_arr);
 $n = 'h'.trim(strtr($s_type, "t"," "));
 $odds = $odds = GetOdds ('連碼', $n); //獲取賠率
@@ -56,12 +57,17 @@ if (strpos($nor, '.'))
 <script type="text/javascript" src="./js/sc.js"></script>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="./js/sGet.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#dp").submit();
+        });
+    </script>
 <style type="text/css">
 body {background-color:#FFEFE2}
 </style>
 </head>
 <body>
-<form id="dp" action="" method="post">
+<form id="dp" action="" method="post" style="display: none">
 <input type="hidden" name="actions" value="fn2" />
 <input type="hidden" name="gtypes" value="1" />
 <input type="hidden" name="s_type" value="<?php echo base64_encode($s_type)?>" />
@@ -93,7 +99,8 @@ body {background-color:#FFEFE2}
                     </tr>
                     <tr>
                         <td class="t_td_caption_1" width="64">每註金額</td>
-                        <td class="t_td_text" width="137"><input type="text" class="inp1" name="s_money" id="money" onkeyup="onlys(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" maxlength="9" /></td>
+                        <td class="t_td_text" width="137">
+                            <input type="text" class="inp1" name="s_money" id="money" value="<?php echo $money?>" onkeyup="onlys(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" maxlength="9" /></td>
                     </tr>
                     <tr>
                         <td class="t_td_caption_1" width="64">下註總計</td>

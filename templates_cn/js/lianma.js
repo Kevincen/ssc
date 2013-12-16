@@ -14,6 +14,12 @@ Array.prototype.remove = function(val) {
     }
 };
 
+function set_action(url)
+{
+    var number = $("#o").html()
+    $("#lm").attr('action',url + "?v=" + number).submit();
+}
+
 
 
 function set_ball_list(ball_array, list_selecter, amount_selecter)

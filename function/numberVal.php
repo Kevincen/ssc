@@ -9,6 +9,10 @@
 
 function isNumbernc ($type=null, $ball=null, $number=null)
 {
+    echo "type=".$type;
+    echo "ball=".$ball;
+    echo "number=".$number;
+    echo '</br>';
 	$bool = false;
 	if ($number != null)
 	{
@@ -74,6 +78,14 @@ function _isNumberIsNotNullnc ($db, $ball, $number)
 			case '幸运三' : $bool = true; break;
 			case '幸运四' : $bool = true; break;
 			case '幸运五' : $bool = true; break;
+            //连码
+            case '任选二':
+            case '选二连直':
+            case '选二连组':
+            case '任选三':
+            case '选三前组':
+            case '任选四':
+            case '任选五':
             /*正码 尾数大小等*/
             case '总和大':
             case '总和小':

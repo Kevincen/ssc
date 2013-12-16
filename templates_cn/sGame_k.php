@@ -82,7 +82,7 @@ $sub_type = '连码';
                         </tr>
                         </tbody>
                     </table>
-                    <form id="lm" action="fn1.php?v=2013121601" method="post" target="leftFrame">
+                    <form id="lm" action="fn1.php?v=2013121601" method="post" target="leftFrame" >
                         <div class="ballqueue-module  ec-m lianma">
                             <table class="lianma-t w100 t1 align-c">
                                 <tbody>
@@ -151,33 +151,40 @@ $sub_type = '连码';
                                         <input type="checkbox" number="01" name="t[]" id="t1" value="1" style="display:none"></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num6"></span></td>
-                                    <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="06" name="t[]" id="t6" value="6"
+                                    <td class="huiseBg" style="cursor: default;">
+                                        <input type="checkbox" number="06" name="t[]" id="t6" value="6"
                                                                                         style="display:none"></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num11"></span></td>
-                                    <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="11" name="t[]" id="t11" value="11"
+                                    <td class="huiseBg" style="cursor: default;">
+                                        <input type="checkbox" number="11" name="t[]" id="t11" value="11"
                                                                                         style="display:none"></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num16"></span></td>
-                                    <td class="td-last huiseBg" style="cursor: default;"><input type="checkbox" number="16" name="t[]" id="t16" value="16"
+                                    <td class="td-last huiseBg" style="cursor: default;">
+                                        <input type="checkbox" number="16" name="t[]" id="t16" value="16"
                                                                                                 style="display:none"></td>
                                 </tr>
                                 <tr>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num2"></span></td>
-                                    <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="02" name="t[]" id="t2" value="2"
+                                    <td class="huiseBg" style="cursor: default;">
+                                        <input type="checkbox" number="02" name="t[]" id="t2" value="2"
                                                                                         style="display:none"></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num7"></span></td>
-                                    <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="07" name="t[]" id="t7" value="7"
+                                    <td class="huiseBg" style="cursor: default;">
+                                        <input type="checkbox" number="07" name="t[]" id="t7" value="7"
                                                                                         style="display:none"></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num12"></span></td>
-                                    <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="12" name="t[]" id="t12" value="12"
+                                    <td class="huiseBg" style="cursor: default;">
+                                        <input type="checkbox" number="12" name="t[]" id="t12" value="12"
                                                                                         style="display:none"></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num17"></span></td>
-                                    <td class="td-last huiseBg" style="cursor: default;"><input type="checkbox" number="17" name="t[]" id="t17" value="17"
+                                    <td class="td-last huiseBg" style="cursor: default;">
+                                        <input type="checkbox" number="17" name="t[]" id="t17" value="17"
                                                                                                 style="display:none"></td>
                                 </tr>
                                 <tr>
@@ -249,12 +256,11 @@ $sub_type = '连码';
                                 <td width="25%"></td>
                                 <td width="45%" class="align-c">
                                     <div class="elem_amount"><strong class="t kuaijie">金额</strong><span
-                                            id="bulk-amount-input" class="kuaijie"><input type="text"
-                                                                                          class="elem_amount_input" name=""
-                                                                                          maxlength="9" id=""
+                                            id="bulk-amount-input" class="kuaijie">
+                                            <input type="text" class="elem_amount_input" name="money" maxlength="9" id=""
                                                                                           style="background-color: rgb(238, 238, 238); background-position: initial initial; background-repeat: initial initial;"></span>
-                                        <input type="submit" class="btn_m elem_btn" id="submit" value="确 定"><a
-                                            href="javascript:void(0)" onclick="my_reset()" class="btn_m elem_btn" id="reset">重 置</a></div>
+                                        <a onclick="set_action('fn1.php')" class="btn_m elem_btn" id="submit" >确 定</a>
+                                        <a href="javascript:void(0)" onclick="my_reset()" class="btn_m elem_btn" id="reset">重 置</a></div>
                                 </td>
                                 <td width="30%" class="align-r">
                                     <div class="elem_multiple" style="visibility: hidden;"><input name="" id="beishu"
@@ -281,7 +287,7 @@ $sub_type = '连码';
                     <div class="empty-d"></div>
                 </div>
                 <div class="changlongbox">
-                    <table style="" class="bet-table changlong-table dataArea w100 t1">
+                    <table style="" class="bet-table changlong-table dataArea w100 t1" id="cl">
                         <tbody>
                         <tr>
                             <th colspan="2">两面长龙排行</th>

@@ -206,17 +206,44 @@ if (isset($_SESSION['guid_code'])) {
         $s_ball = $_POST['s_ball'];
         $s_ball_arr = explode('、', $s_ball);
         $s_money = $_POST['s_money'];
+        //选二连直 by 2b
+        $s_front = $_POST['s_front_ball'];
+        $s_end = $_POST['s_end_ball'];
+        //选二连直end  by 2b
+        //var_dump($s_ball_arr);
+       // var_dump($_POST);
+        //循環判斷
+        $hi = 'h' . trim(strtr($s_type, "t", " "));
+        $stringList = new_GetGameTypenc($s_type);
         if (!Matchs::isNumber($s_money) || $s_money < $ConfigModel['g_mix_money'])
             exit(alert_href('抱歉！您的下注金額錯誤。', '../left.php'));
-        //循環判斷
-        for ($i = 0; $i < count($s_ball_arr); $i++) {
-            $is_Number = isNumbernc($s_type, $s_ball_arr[$i], $s_number);
-            if ($is_Number === 2) exit(alert_href('抱歉！第 ' . $s_number . ' 期已經封盤', '../left.php'));
-            if (!$is_Number) exit("NumberError");
+        if (!$s_front|| !$s_end) {//其他情况
+            for ($i = 0; $i < count($s_ball_arr); $i++) {
+                $is_Number = isNumbernc($s_type, $s_ball_arr[$i], $s_number);
+                if ($is_Number === 2) exit(alert_href('抱歉！第 ' . $s_number . ' 期已經封盤', '../left.php'));
+                if (!$is_Number) exit("NumberError");
+            }
+            $results = subArr($s_ball_arr, $stringList['count']); //復式計算、返回值、【總組數】、【總個數】、【號碼個數】
+        } else {//选二连直
+            $s_front_array = explode('、', $s_front);
+            $s_end_array = explode('、', $s_end);
+            var_dump($s_front_array);
+            var_dump($s_end_array);
+            echo "选二连直";
+            for ($i = 0; $i < count($s_front_array); $i++) {
+                $is_Number = isNumbernc($s_type, $s_front_array[$i], $s_number);
+                if ($is_Number === 2) exit(alert_href('抱歉！第 ' . $s_number . ' 期已經封盤', '../left.php'));
+                if (!$is_Number) exit("NumberError");
+            }
+            for ($i = 0; $i < count($s_end_array); $i++) {
+                $is_Number = isNumbernc($s_type, $s_end_array[$i], $s_number);
+                if ($is_Number === 2) exit(alert_href('抱歉！第 ' . $s_number . ' 期已經封盤', '../left.php'));
+                if (!$is_Number) exit("NumberError");
+            }
+            $results = subArray_xuanerlianzhi($s_front_array,$s_end_array);
         }
-        $hi = 'h' . trim(strtr($s_type, "t", " "));
-        $stringList = GetGameTypenc($s_type);
-        $results = subArr_nc($s_ball_arr, $stringList['count']); //復式計算、返回值、【總組數】、【總個數】、【號碼個數】
+        //var_dump($stringList);
+        //var_dump($results);
         $number_1 = $s_number; //期數
         $countBiShu = 1; //總筆數
         $countZhuEr = $results[0] * $s_money; //總下注金額

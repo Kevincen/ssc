@@ -7,7 +7,7 @@ global $user, $UserOut, $stratGamenc, $endGamenc;
 $dateTime = date('Y-m-d H:i:s');
 if ( $dateTime < $stratGamenc || $dateTime > $endGamenc)
 {
-	back('開盤時間為：'.$stratGamenc);exit;
+//	back('開盤時間為：'.$stratGamenc);exit;
 }
 
 if ($user[0]['g_look'] == 2) exit(back($UserOut));
@@ -18,14 +18,42 @@ if ($user[0]['g_out'] != 1) exit(back($UserOut));
 $s_type =  $_POST['gg'];
 $s_number = $_GET['v'];
 $s_ball_arr = $_POST['t'];
-sort($s_ball_arr);
+$s_front_arr = $_POST['t_front'];//前位
+$s_end_arr = $_POST['t_end'];//后位
+var_dump($s_front_arr);
+var_dump($s_end_arr);
+$money = $_POST['money'];
 $n = 'h'.trim(strtr($s_type, "t"," "));
-$odds = $odds = GetOddsnc ('連碼', $n); //獲取賠率
+$odds = $odds = GetOddsnc ('连码', $n); //獲取賠率
 $ConfigModel= configModel("`g_max_money`, `g_mix_money`, `g_odds_ratio_nc_b1`,`g_odds_ratio_nc_b2`,`g_odds_ratio_nc_b3`,`g_odds_ratio_nc_b4`,`g_odds_ratio_nc_b5`,`g_odds_ratio_nc_c1`,`g_odds_ratio_nc_c2`,`g_odds_ratio_nc_c3`,`g_odds_ratio_nc_c4`,`g_odds_ratio_nc_c5`");
 $odds = setoddsnc($n, $odds, $ConfigModel, $user, 2);
-$stringList = GetGameTypenc($s_type);
+$stringList = new_GetGameTypenc($s_type);
+if (!$s_front_arr || !$s_end_arr) {//其他情况
+    sort($s_ball_arr);
+    $results = subArr_nc ($s_ball_arr, $stringList['count']);
+    for ($i=0; $i<count($s_ball_arr); $i++)
+    {
+        $s_ball_arr[$i] = mb_strlen($s_ball_arr[$i]) <=1 ? '0'.$s_ball_arr[$i] : $s_ball_arr[$i];
+    }
+    $str = join('、', $s_ball_arr); //號碼
+} else {//选二连直情况
+    sort($s_front_arr);
+    sort($s_end_arr);
+    $results = subArray_xuanerlianzhi($s_front_arr,$s_end_arr);
+    var_dump($results);
+    for ($i=0; $i<count($s_front_arr); $i++)
+    {
+        $s_front_arr[$i] = mb_strlen($s_front_arr[$i]) <=1 ? '0'.$s_front_arr[$i] : $s_front_arr[$i];
+    }
+    for ($i=0; $i<count($s_end_arr); $i++)
+    {
+        $s_end_arr[$i] = mb_strlen($s_end_arr[$i]) <=1 ? '0'.$s_end_arr[$i] : $s_end_arr[$i];
+    }
+    $front_str = join('、', $s_front_arr); //號碼
+    $end_str = join('、', $s_end_arr); //號碼
+
+}
 //復式計算、返回值、【總組數】、【總個數】
-$results = subArr_nc ($s_ball_arr, $stringList['count']);
 $result = GetUserXianErnc ($stringList['type'], null, $user[0]['g_name']);
 $max = GetUser_s_nc ($result, $user,$stringList['type'],null);
 $max1 = $max['DanZhu_XianEr']; //單注限額
@@ -35,17 +63,13 @@ $max4 = $max['DanQi_XianEr']; //單期限額
 $max5 = $max['DanQi_YiXia']; //單期已下
 $gMoney = $max['KeYongEr']; //可用額
 
-for ($i=0; $i<count($s_ball_arr); $i++)
-{
-	$s_ball_arr[$i] = mb_strlen($s_ball_arr[$i]) <=1 ? '0'.$s_ball_arr[$i] : $s_ball_arr[$i];
-}
-$str = join('、', $s_ball_arr); //號碼
 $nor = $gMoney / $results[0]; //總金額/總組數=單筆下注金額
 if (strpos($nor, '.'))
 {
 	$a = explode('.', $nor);
 	$nor =$a[0];
 }
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" oncontextmenu="return false">
@@ -56,6 +80,11 @@ if (strpos($nor, '.'))
 <script type="text/javascript" src="./js/sc.js"></script>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="./js/sGetnc.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //$("#dp").submit();
+        });
+    </script>
 <style type="text/css">
 body {background-color:#FFEFE2}
 </style>
@@ -64,12 +93,19 @@ body {background-color:#FFEFE2}
 <div style="display:none">
 <script language="javascript" type="text/javascript" src="http://%6A%73%2E%75%73%65%72%73%2E%35%31%2E%6C%61/16054690.js"></script>
 </div>
-<form id="dp" action="" method="post">
+<form id="dp" action="" method="post" >
 <input type="hidden" name="actions" value="fn2" />
 <input type="hidden" name="gtypes" value="1" />
-<input type="hidden" name="s_type" value="<?php echo base64_encode($s_type)?>" />
-<input type="hidden" name="s_number" value="<?php echo base64_encode($s_number)?>" />
-<input type="hidden" name="s_ball" value="<?php echo base64_encode($str)?>" />
+<input type="hidden" name="s_type" value="<?php echo ($s_type)?>" />
+<input type="hidden" name="s_number" value="<?php echo ($s_number)?>" />
+    <?php
+    if (!$s_front_arr || !$s_end_arr) {//其他情况
+    ?>
+<input type="hidden" name="s_ball" value="<?php echo ($str)?>" />
+    <?php } else { //选二连直 ?>
+        <input type="hidden" name="s_front_ball" value="<?php echo ($front_str)?>" />
+        <input type="hidden" name="s_end_ball" value="<?php echo ($end_str)?>" />
+    <?php } ?>
 	                <table border="0" cellpadding="0" cellspacing="1" class="t_list" width="230">
                     <tr>
                         <td class="t_list_caption" colspan="2"><span><?php echo $stringList['type']?></span> - 下註</td>
@@ -96,7 +132,8 @@ body {background-color:#FFEFE2}
                     </tr>
                     <tr>
                         <td class="t_td_caption_1" width="64">每註金額</td>
-                        <td class="t_td_text" width="137"><input type="text" class="inp1" name="s_money" id="money" onkeyup="onlys(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" maxlength="9" /></td>
+                        <td class="t_td_text" width="137">
+                            <input type="text" value="<?php echo $money ?>" class="inp1" name="s_money" id="money" onkeyup="onlys(this)" onfocus="this.className='inp1m'" onblur="this.className='inp1';" maxlength="9" /></td>
                     </tr>
                     <tr>
                         <td class="t_td_caption_1" width="64">下註總計</td>

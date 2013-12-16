@@ -458,7 +458,7 @@ class SumAmount {
 	 * @param int $count        	
 	 * @param bool $bool        	
 	 */
-	private function SumLM($numberList, $resultList, $count, $bool = true) {
+	function SumLM($numberList, $resultList, $count, $bool = true) {
 		$nArray = array ();
 		$result = array ();
 		$eArray = explode('、', $resultList['g_mingxi_2']);
@@ -497,7 +497,7 @@ class SumAmount {
 	 * @param array $index
 	 *        	7、2、2 = 二連組
 	 */
-	private function SumLM1($_numberList, $resultList, $index) {
+	function SumLM1($_numberList, $resultList, $index) {
 		$userNum = explode('、', $resultList['g_mingxi_2']);
 		$userNum = $this->subNumber($userNum, $index[3]);
 		$param = 0;
