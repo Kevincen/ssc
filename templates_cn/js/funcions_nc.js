@@ -9,12 +9,13 @@ var URL = "../ajax/Default.ajax_nc.php";
 var _href = location.href.split("?g=")[1];
 
 
-function action(){
-	if (_href == "g9") return; 
+function action(set_lm, unset_lm){
+	if (_href == "g9") return;
 	$.post (URL, { typeid : "action", nid : _href },  function (data) {
 		//alert(data);return;
 		if (data == null){
 			//location.href='./right.php';
+            unset_lm();
 			return;
 		}
 		$("#o").html(data.Phases);
@@ -27,7 +28,10 @@ function action(){
 		if (setTime[0] > 0){
 			setAction[3](true, data.odds); //賠率
 			display(true,true);
-		}
+            set_lm();
+        }else {
+            unset_lm();
+        }
 		setAction[8]();
 		setAction[0]();
 		setAction[1]();

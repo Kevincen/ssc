@@ -29,6 +29,22 @@ function set_ball_list(ball_array, list_selecter, amount_selecter)
     $(amount_selecter).html(ball_array.length);
 }
 
+/*取消可点击事件*/
+function unset_clickable(ball_selecter_str, list_selcter, amount_selcter)
+{
+
+    var $ball_selecter = $(ball_selecter_str);
+    var $checkbox_selecter = $(ball_selecter_str).next();
+    var select_sign = 'onBg';
+    var mouse_over_sign = 'bcd';
+
+
+    $ball_selecter.click(function(){
+    });
+    $checkbox_selecter.click(function(){
+    });
+}
+
 
 var ball_list = new Array();
 function set_clickable(ball_selecter_str, list_selecter, amount_selecter)
@@ -95,12 +111,12 @@ function set_clickable_nc()
         var ball_id;
         if ($(this).hasClass(select_sign)) {
             $(this).removeClass(select_sign);
-            ball_id = $(this).next().removeClass(select_sign).find('input').attr('checked',false).attr('number');
+            ball_id = $(this).next().removeClass(select_sign).find('input').attr('checked',false).attr('value');
             ball_list.remove(ball_id);
             total_length--;
         } else {
             $(this).addClass(select_sign);
-            ball_id = $(this).next().addClass(select_sign).find('input').attr('checked',true).attr('number');
+            ball_id = $(this).next().addClass(select_sign).find('input').attr('checked',true).attr('value');
             ball_list.push(ball_id);
             total_length++;
         }
@@ -118,12 +134,12 @@ function set_clickable_nc()
         var ball_id;
         if ($(this).hasClass(select_sign)) {
             $(this).prev().removeClass(select_sign);
-            ball_id = $(this).removeClass(select_sign).find('input').attr('checked',false).attr('number');
+            ball_id = $(this).removeClass(select_sign).find('input').attr('checked',false).attr('value');
             ball_list.remove(ball_id);
             total_length--;
         } else {
             $(this).prev().addClass(select_sign);
-            ball_id = $(this).addClass(select_sign).find('input').attr('checked',true).attr('number');
+            ball_id = $(this).addClass(select_sign).find('input').attr('checked',true).attr('value');
             ball_id = $(this).prev().attr('number');
             ball_list.push(ball_id);
             total_length++;
@@ -151,12 +167,12 @@ function set_clickable_nc()
         var ball_id;
         if ($(this).hasClass(select_sign)) {
             $(this).removeClass(select_sign);
-            ball_id = $(this).next().removeClass(select_sign).find('input').attr('checked',false).attr('number');
+            ball_id = $(this).next().removeClass(select_sign).find('input').attr('checked',false).attr('value');
             ball_list2.remove(ball_id);
             total_length--;
         } else {
             $(this).addClass(select_sign);
-            ball_id = $(this).next().addClass(select_sign).find('input').attr('checked',true).attr('number');
+            ball_id = $(this).next().addClass(select_sign).find('input').attr('checked',true).attr('value');
             ball_list2.push(ball_id);
             total_length++;
         }
@@ -174,12 +190,12 @@ function set_clickable_nc()
         var ball_id;
         if ($(this).hasClass(select_sign)) {
             $(this).prev().removeClass(select_sign);
-            ball_id = $(this).removeClass(select_sign).find('input').attr('checked',false).attr('number');
+            ball_id = $(this).removeClass(select_sign).find('input').attr('checked',false).attr('value');
             ball_list2.remove(ball_id);
             total_length--;
         } else {
             $(this).prev().addClass(select_sign);
-            ball_id = $(this).addClass(select_sign).find('input').attr('checked',true).attr('number');
+            ball_id = $(this).addClass(select_sign).find('input').attr('checked',true).attr('value');
             ball_id = $(this).prev().attr('number');
             ball_list2.push(ball_id);
             total_length++;

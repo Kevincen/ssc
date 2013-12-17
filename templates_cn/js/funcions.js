@@ -9,12 +9,13 @@ var URL = "../ajax/Default.ajax.php";
 var _href = location.href.split("?g=")[1];
 
 
-function action(){
+function action(set_lm, unset_lm){
 	if (_href == "g9") return; 
 	$.post (URL, { typeid : "action", nid : _href },  function (data) { 
 		if (data == null){
 			//location.href='./right.php';
             alert('无法获取开奖时间')
+            unset_lm();
 			return;
 		}
         console.log(data);
@@ -28,7 +29,10 @@ function action(){
 		if (setTime[0] > 0){
 			setAction[3](true, data.odds); //賠率
 			display(true,true);
-		}
+            set_lm();
+		}else {
+            unset_lm();
+        }
 		setAction[8]();
 		setAction[0]();
 		setAction[1]();

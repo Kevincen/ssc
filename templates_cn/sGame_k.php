@@ -34,18 +34,20 @@ $sub_type = '连码';
     <script type="text/javascript" src="./js/lianma.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            action();//设置赔率，开奖
+            var unset_lm = function() {
+                unset_clickable('.ballno-t-t', '#selectedlist', '#selectedAmount');
+            }
+            var set_lm = function() {
+                set_clickable('.ballno-t-t', '#selectedlist', '#selectedAmount');
+            }
             $('input[name=gg]').click(function () {
                 my_reset();
                 set_clickable('.ballno-t-t', '#selectedlist', '#selectedAmount');
                 $('td.kon').removeClass('kon');
                 $(this).parent().addClass('kon');
-                /*
-                 任选2连直显示前卫和中位
-                 其他显示前卫
-                 */
                 $("input[type=checkbox]").show();
             });
+            action(set_lm, unset_lm);//设置赔率，开奖
         });
     </script>
 </head>
