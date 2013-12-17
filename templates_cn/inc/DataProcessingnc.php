@@ -241,6 +241,7 @@ if (isset($_SESSION['guid_code'])) {
                 if (!$is_Number) exit("NumberError");
             }
             $results = subArray_xuanerlianzhi($s_front_array,$s_end_array);
+            $s_ball = $s_front.'|'.$s_end;
         }
         //var_dump($stringList);
         //var_dump($results);

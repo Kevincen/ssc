@@ -496,15 +496,18 @@ class SumAmount {
 	 * @param unknown_type $nArr        	
 	 * @param array $index
 	 *        	7、2、2 = 二連組
-	 */
-	function SumLM1($_numberList, $resultList, $index) {
+     * @param $get_array :为true则返回中奖的注号数组；默认为false则返回中了的注数
+     * 7222
+     */
+	function SumLM1($_numberList, $resultList, $index, $get_array=false) {
 		$userNum = explode('、', $resultList['g_mingxi_2']);
 		$userNum = $this->subNumber($userNum, $index[3]);
+        $ret_array = array();
 		$param = 0;
 		for ($i = 0; $i < count($_numberList); $i++) {
 			if ($i == $index[0] && Copyright)
 				break;
-			$stringArr[] = array_slice($_numberList, $i, $index[1]);
+			$stringArr[] = array_slice($_numberList, $i, $index[1]);//8个球的所有2截断
 		}
 		// print_r($stringArr);exit;
 		for ($i = 0; $i < count($stringArr); $i++) 		// 開獎號碼循環
@@ -516,12 +519,18 @@ class SumAmount {
 					$count += $this->MaxFor($stringArr[$i], $userNum[$n][$l]);
 					if ($count == 0 && Copyright)
 						break;
-					else if ($count == $index[2])
-						$param += 1;
+					else if ($count == $index[2]) {
+                        $param += 1;
+                        $ret_array[] = join('、',$userNum[$n]);
+                    }
 				}
 			}
 		}
-		return $param;
+        if ($get_array == true) {
+            return $ret_array;
+        } else {
+            return $param;
+        }
 	}
 	
 	/**

@@ -344,10 +344,7 @@ class SumAmountnc
                     $result = $sum_LM->SumLM($numberList, $resultList, 2);
                     $resultList[0] = $result[0]; // 中奖：01,02；不中奖：0
                     $resultList[1] = $result[1]; // 'LM'
-                } 			// else if ($resultList['g_mingxi_1'] == '選二連直')
-                // {
-                // //選二連直規則 任意兩個號碼相連、並且對應下注號碼的前後。視為中獎
-                // }
+                }
                 else if ($resultList['g_mingxi_1'] == '选二连组' && Copyright) {
                     // 選二連組規則 任意兩個號碼相連 視為中獎
                     $index = array (
@@ -368,7 +365,7 @@ class SumAmountnc
                  {
                      //todo:找2a一起来解决
                  //選二連直規則 任意三個號碼相連、並且對應下注號碼的前後。視為中獎
-                     $result = $this->xuanerlianzhi($numberList, $resultList );
+                     $result = $this->xuanerlianzhi_sum($numberList, $resultList );
                      $resultList[0] = $result[0];
                      $resultList[1] = $result[1];
                  }
@@ -399,11 +396,39 @@ class SumAmountnc
         }
         return $resultList;
     }
-    private function xuanerlianzhi($number_list, $result_list)
+    /*
+     * return:中了的球号数组
+     */
+    function xuanerlianzhi($number_list, $result_list)
     {
         //暂定格式：前码 | 后码
-        $ret = 0;
-        return $ret;
+        $front = 0;
+        $end = 1;
+        $ball_list = explode('|',$result_list);
+        $ball_list[$front] = explode('、',$ball_list[$front]);
+        $ball_list[$end] = explode('、',$ball_list[$end]);
+        $result_array =  subArray_xuanerlianzhi($ball_list[$front],$ball_list[$end]);
+        $ret_array = array();
+
+        for ($j = 0; $j < count($result_array); $j++) { //循环球号数组
+            $tmp = explode(',',$result_array[$j]);
+            for ($i = 0; $i < count($number_list)-1 ; $i++) {//循环开奖结果数组
+                if ($tmp[$front] == $number_list($i)
+                    && $tmp[$end] == $number_list($i+1)) { //对照是否有相同的，有则push进去
+                    $ret_array[] = $result_array[$j];
+                }
+            }
+        }
+
+        return $ret_array;
+    }
+    function xuanerlianzhi_sum($number_list,$result_list)
+    {
+        $result = array();
+        $result_array =  $this->xuanerlianzhi($number_list,$result_list);
+        $result[0] = count($result_array);
+        $result[1] = 'LM';
+        return $result;
     }
 
     /**
