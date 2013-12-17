@@ -370,6 +370,7 @@ $sub_type = '连码';
             </div>
         </div>
     </div>
+    <?php include './popup.html'?>
 
 </div>
 </body>

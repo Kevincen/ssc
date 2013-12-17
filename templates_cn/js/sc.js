@@ -95,6 +95,7 @@ function submit_confirm(ball_array,odd_array,money_array)
             //提交表单
             $.post("../ajax/Default.ajax.php", { typeid : "sessionId"}, function(){});
             $('#dp').submit();
+            $('#lm').submit();
             this.close();
         },
         cancel:function(){

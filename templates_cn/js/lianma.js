@@ -17,7 +17,8 @@ Array.prototype.remove = function(val) {
 function set_action(url)
 {
     var number = $("#o").html()
-    $("#lm").attr('action',url + "?v=" + number).submit();
+    $("#lm").attr('action',url + "?v=" + number);
+    submit_form();
 }
 
 
@@ -229,5 +230,52 @@ function my_reset()
 
 function submit_form()
 {
+    var game_name;
+    var game_selecter = 'td.bq-title.kon';
+    var ball_str = "";
+    var ball_array = new Array();
+    var odd_array = new Array();
+    var money_array = new Array();
 
+    money_array.push($('input[name=money]').value);
+    game_name = $(game_selecter).find('label').text();
+    odd_array.push($(game_selecter).find('span').text())
+
+    if (game_name == '选二连直') {
+        var ball_str_front = '';
+        $('input[name=t_front[]]').each(function(){
+            if ($(this).attr('checked') == true) {
+                ball_str_front += $(this).value + ' ';
+            }
+        });
+        if (ball_str_front == '') {
+            my_alert('请您选择前位');
+            return;
+        }
+
+        var ball_str_end = '';
+        $('input[name=t_end[]]').each(function(){
+            if ($(this).attr('checked') == true) {
+                ball_str_end += $(this).value + ' ';
+            }
+        });
+        if (ball_str_end == '') {
+            my_alert('请您选择后位');
+            return;
+        }
+
+        ball_str += '前位:' + ball_str_front + ' 后位:' + ball_str_end;
+    } else {
+        $('input[name=t[]]').each(function(){
+            if ($(this).attr('checked') == true) {
+                ball_str += $(this).value + ' ';
+            }
+        })
+         if (ball_str == '') {
+             my_alert('请您选择号码');
+         }
+    }
+    ball_array.push(ball_str);
+
+    submit_confirm(ball_array, odd_array,money_array);
 }

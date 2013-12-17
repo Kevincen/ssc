@@ -48,6 +48,7 @@ $sub_type = '连码';
             }
             action(set_lm, unset_lm);//设置赔率，开奖
             $('input[name=gg]').click(function(){
+                my_reset();
                 $('td.kon').removeClass('kon');
                 $(this).parent().addClass('kon');
                 /*
@@ -544,6 +545,7 @@ $sub_type = '连码';
             </div>
         </div>
     </div>
+    <?php include './popup.html'?>
 
 </div>
 
