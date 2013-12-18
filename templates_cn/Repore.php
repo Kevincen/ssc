@@ -15,12 +15,9 @@ function setHtml($week, $str, $user, $type = 0)
     foreach ($week as $value) {
         $date2 = GetWeekDay($value, 1);
         $c = explode('-', $value);
-        $f = date('H:i:s') <= '02:00' ? dayMorning(date("Y-m-d"), (60 * 60 * 24), true) : date("Y-m-d");
-        //if ($f == $value) {
-        //    $html = '<td align="center" style="color:blue;font-weight:bold"><span style="font-size:104%">' . $f. '</span>&nbsp;&nbsp;&nbsp;' . $date2 . '</td>';
-        //} else {
-            $html = '<td align="center"><span style="font-size:104%">' . $f . '</span>&nbsp;' . $date2 . '</td>';
-        //}
+        $f = date('H:i:s') <= '02:00' ? dayMorning(date("Y"), (60 * 60 * 24), true) : date("Y");
+        $html = '<td align="center"><a href="report_daily.php?gid=' . base64_encode($value) . '&dateId=' . base64_encode($value) . '&type=' . $type . '" class="black">'
+            . $f . '-' . $c[1].'-'.$c[2] . '&nbsp;' . $date2 . '</a></td>';
         $date = GetWeekDay($value, 1);
         $result = GetForms($value . ' 02:00', dayMorning($value, (60 * 60 * 24)) . ' 02:00', $user[0]['g_name'], $type);
         //alert(count($result));
@@ -51,7 +48,7 @@ function setHtml($week, $str, $user, $type = 0)
 			            ' . $html . '
 			            <td align="center">' . $count_bishu . '</td>
 			            <td >' . is_Number($count_jiner) . '&nbsp;</td>
-			            <td >' . $count_win_n . '&nbsp;</td>
+			            <td >' . number_format($count_tueishui,1,".","") . '&nbsp;</td>
 			            <td >' . number_format($count_win, 1, ".", "") . '&nbsp;</td>
         			  </tr>';
     }
@@ -60,9 +57,9 @@ function setHtml($week, $str, $user, $type = 0)
         	<td><b>' . $str . '</b></td>
             <td>' . $a . '</td>
             <td >' . is_Number($b) . '&nbsp;</td>
-            <td ><b>' . number_format($g, 1, ".", "") . '</b>&nbsp;</td>
+            <td ><b>' . number_format($e, 1, ".", "") . '</b>&nbsp;</td>
 
-            <td >' . number_format($e, 1, ".", "") . '&nbsp;</td>
+            <td >' . number_format($g, 1, ".", "") . '&nbsp;</td>
         </tr>
     </tfoot>   ';
 }
@@ -74,7 +71,15 @@ function setHtml($week, $str, $user, $type = 0)
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script type="text/javascript" src="js/sc.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
     <script>
+        $(document).ready(function(){
+            $('tr').mouseenter(function(){
+                $(this).addClass('bc');
+            }).mouseleave(function(){
+                $(this).removeClass('bc');
+            });
+        });
         function typechang($this) {
             if ($this.value == 1) {
                 window.parent.frames.mainFrame.location.href = "/templates/Repore.php?type=1";
