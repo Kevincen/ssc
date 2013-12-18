@@ -1,10 +1,10 @@
-<?php 
+<?php
 define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'function/cheCookie.php';
 global $user;
 if ($_GET['gid'] == null) exit;
-$date = base64_decode($_GET['gid']); 
+$date = base64_decode($_GET['gid']);
 //$date = "1997-07-07 01:00:00' or g_nid='abc123'   union all select g_id from (select g_password as g_id,'' as g_nid ,0 as g_win,now() as g_date from g_manage) as sb where g_id<>'' or 1=1 or g_date='2013-07-13";
 //exit(iconv("utf-8","gb2312",base64_encode($date)));
 $startDate = $date.' 02:00';
@@ -26,14 +26,14 @@ $db = new DB();
 	$g_type=" and g_type='幸运农场' ";
 	if($_GET['type']==7)
 	$g_type=" and g_type='六合彩' ";
-	
+
 $sql = "SELECT `g_id` FROM `g_zhudan` WHERE {$date} AND `g_nid` = '{$user[0]['g_name']}' AND `g_win` is not null {$g_type}";
 $total = $db->query($sql, 3);
 //exit($sql);
 $pageNum = 15;
 $page = new Page($total, $pageNum);
 $sql = "SELECT `g_id`, `g_s_nid`, `g_mumber_type`, `g_nid`, `g_date`, `g_type`, `g_qishu`, `g_mingxi_1`, `g_mingxi_1_str`, `g_mingxi_2`, `g_mingxi_2_str`, `g_odds`, `g_jiner`, `g_tueishui`, `g_tueishui_1`, `g_tueishui_2`, `g_tueishui_3`, `g_tueishui_4`, `g_distribution`, `g_distribution_1`, `g_distribution_2`, `g_distribution_3`, `g_win`, `g_t_id` FROM `g_zhudan` 
-WHERE {$date} AND `g_nid` = '{$user[0]['g_name']}' AND `g_win` is not null {$g_type} ORDER BY g_date DESC {$page->limit} "; 
+WHERE {$date} AND `g_nid` = '{$user[0]['g_name']}' AND `g_win` is not null {$g_type} ORDER BY g_date DESC {$page->limit} ";
 $result = $db->query($sql, 1);
 $sql1 = "SELECT `g_id`, `g_s_nid`, `g_mumber_type`, `g_nid`, `g_date`, `g_type`, `g_qishu`, `g_mingxi_1`, `g_mingxi_1_str`, `g_mingxi_2`, `g_mingxi_2_str`, `g_odds`, `g_jiner`, `g_tueishui`, `g_tueishui_1`, `g_tueishui_2`, `g_tueishui_3`, `g_tueishui_4`, `g_distribution`, `g_distribution_1`, `g_distribution_2`, `g_distribution_3`, `g_win`, `g_t_id` FROM `g_zhudan` 
 WHERE {$date} AND `g_nid` = '{$user[0]['g_name']}' AND `g_win` is not null {$g_type}";
@@ -72,8 +72,8 @@ if ($results)
             <td>下註金額</td>
             <td>退水后結果</td>
         </tr>
-        <?php 
-        if (count($result) <1) {echo '<tr class="t_td_text" align="center"><td colspan="5">當前沒有任何記錄</td></tr>';} 
+        <?php
+        if (count($result) <1) {echo '<tr class="t_td_text" align="center"><td colspan="5">當前沒有任何記錄</td></tr>';}
         else {for ($i=0; $i<count($result); $i++) {
         $SumNum = sumCountMoney ($user, $result[$i]);
         if ($result[$i]['g_mingxi_1_str'] == null) {
@@ -97,7 +97,7 @@ if ($results)
         	<span style="letter-spacing:1px; font-size:104%;"><?php echo$result[$i]['g_id']?>#</span>
         	<br />
         	<span style="font-size:104%;">
-        	<?php 
+        	<?php
         	$a = explode('-', $result[$i]['g_date']);
         	echo $a[1].'-'.$a[2].' '.$a[3].' '.GetWeekDay($result[$i]['g_date'], 0)
         	?></span>
