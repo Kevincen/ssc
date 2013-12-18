@@ -42,7 +42,6 @@ $sub_type = '连码';
             }
             $('input[name=gg]').click(function () {
                 my_reset();
-                set_clickable('.ballno-t-t', '#selectedlist', '#selectedAmount');
                 $('td.kon').removeClass('kon');
                 $(this).parent().addClass('kon');
                 $("input[type=checkbox]").show();
@@ -90,7 +89,7 @@ $sub_type = '连码';
                                 <tbody>
                                 <tr>
                                     <td class="kon bq-title lianmatab" name="2"><input type="radio" id="1" name="gg"
-                                                                                       value="t1"
+                                                                                       value="t1" checked="true"
                                                                                        ><label for="1"
                                                                                                                 class="label">任选二</label><span
                                             class="o" id="h1"></span></td>

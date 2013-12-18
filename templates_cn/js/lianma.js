@@ -44,6 +44,7 @@ function unset_clickable(ball_selecter_str, list_selcter, amount_selcter)
     });
     $checkbox_selecter.click(function(){
     });
+    $('input[type=checkbox]').attr('disabled',true);
 }
 
 
@@ -55,6 +56,7 @@ function set_clickable(ball_selecter_str, list_selecter, amount_selecter)
     var select_sign = 'onBg';
     var mouse_over_sign = 'bcd';
 
+    $('input[type=checkbox]').attr('disabled',false);
 
     $ball_selecter.click(function(){
         var ball_id;
@@ -107,6 +109,7 @@ function set_clickable_nc()
     var $ball_selecter = $('.lianma_zh .ballno-t-t');
     var $checkbox_selecter = $('.lianma_zh .ballno-t-t').next();
 
+    $('input[type=checkbox]').attr('disabled',false);
 
     $ball_selecter.click(function(){
         var ball_id;
@@ -237,15 +240,15 @@ function submit_form()
     var odd_array = new Array();
     var money_array = new Array();
 
-    money_array.push($('input[name=money]').value);
+    money_array.push($('input[name=money]').val());
     game_name = $(game_selecter).find('label').text();
-    odd_array.push($(game_selecter).find('span').text())
+    odd_array.push($(game_selecter).find('span').find('span').text());
 
     if (game_name == '选二连直') {
         var ball_str_front = '';
         $('input[name=t_front[]]').each(function(){
             if ($(this).attr('checked') == true) {
-                ball_str_front += $(this).value + ' ';
+                ball_str_front += $(this).val() + ' ';
             }
         });
         if (ball_str_front == '') {
@@ -256,7 +259,7 @@ function submit_form()
         var ball_str_end = '';
         $('input[name=t_end[]]').each(function(){
             if ($(this).attr('checked') == true) {
-                ball_str_end += $(this).value + ' ';
+                ball_str_end += $(this).val() + ' ';
             }
         });
         if (ball_str_end == '') {
@@ -268,14 +271,14 @@ function submit_form()
     } else {
         $('input[name=t[]]').each(function(){
             if ($(this).attr('checked') == true) {
-                ball_str += $(this).value + ' ';
+                ball_str += $(this).val() + ' ';
             }
         })
          if (ball_str == '') {
              my_alert('请您选择号码');
          }
     }
-    ball_array.push(ball_str);
+    ball_array.push(game_name + ball_str);
 
     submit_confirm(ball_array, odd_array,money_array);
 }

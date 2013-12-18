@@ -82,7 +82,7 @@ if (strpos($nor, '.'))
 <script type="text/javascript" src="./js/sGetnc.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            //$("#dp").submit();
+            $("#dp").submit();
         });
     </script>
 <style type="text/css">
