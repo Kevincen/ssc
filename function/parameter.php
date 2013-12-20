@@ -2469,7 +2469,7 @@ function GetGameType ($string)
 		case "t6" : $stringList['type'] = '選三前組'; 	$stringList['count'] = 3; break;
 		case "t7" : $stringList['type'] = '任選四'; 		$stringList['count'] = 4; break;
 		case "t8" : $stringList['type'] = '任選五'; 		$stringList['count'] = 5; break;
-		default:exit('is t1 or t8 Error');
+		default:return null;
 	}
 	return $stringList;
 }
@@ -3866,7 +3866,7 @@ function new_GetGameTypenc ($string)
         case "t5" : $stringList['type'] = '任选四'; 	$stringList['count'] = 4; break;
         case "t6" : $stringList['type'] = '任选五'; 	$stringList['count'] = 5; break;
         case "t7" : $stringList['type'] = '选二连直'; 		$stringList['count'] = 2; break;
-        default:exit('is t1 to t7 Error');
+        default:return null;
     }
     return $stringList;
 }

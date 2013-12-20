@@ -30,7 +30,7 @@ $odds = setoddsnc($n, $odds, $ConfigModel, $user, 2);
 $stringList = new_GetGameTypenc($s_type);
 if (!$s_front_arr || !$s_end_arr) {//其他情况
     sort($s_ball_arr);
-    $results = subArr_nc ($s_ball_arr, $stringList['count']);
+    $results = subArr ($s_ball_arr, $stringList['count']);
     for ($i=0; $i<count($s_ball_arr); $i++)
     {
         $s_ball_arr[$i] = mb_strlen($s_ball_arr[$i]) <=1 ? '0'.$s_ball_arr[$i] : $s_ball_arr[$i];

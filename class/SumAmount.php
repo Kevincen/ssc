@@ -469,19 +469,18 @@ class SumAmount {
 					$nArray[] = $val;
 			}
 		}
-		if ($bool == false && Copyright) {
-			$result = $nArray;
-		} else {
-			// $nArray != null有中奖号码，count($nArray) >= $count比如中了2个，那么二连就是$count=2，成立，中奖
-			if ($nArray != null && count($nArray) >= $count && Copyright) {
-				// 连码计算，几连都可以，最多到11连码，明显作者Ctrl+V按Hi了
-				$nArray = subArr($nArray, $count);
-				$result[0] = $nArray[0]; // 比如01,02
-			} else {
-				$result[0] = 0;
-			}
-			$result[1] = 'LM';
-		}
+        // $nArray != null有中奖号码，count($nArray) >= $count比如中了2个，那么二连就是$count=2，成立，中奖
+        if ($nArray != null && count($nArray) >= $count && Copyright) {
+            // 连码计算，几连都可以，最多到11连码，明显作者Ctrl+V按Hi了
+            $nArray = subArr($nArray, $count);
+            $result[0] = $nArray[0]; // 比如01,02
+        } else {
+            $result[0] = 0;
+        }
+        if ($bool == false) {
+            return $nArray[1];
+        }
+        $result[1] = 'LM';
 		return $result;
 	}
 	
