@@ -422,6 +422,9 @@ function numberList($gameType, $date, $id=false)
 				$numberList[$key][6] = SubBall(1, $ball_count);
 				$numberList[$key][7] = SubBall(2, mb_substr($ball_count, -1));
 				$numberList[$key][8] = SubBall(3, array($value['g_ball_1'],$value['g_ball_8']));
+                $numberList[$key][9] = SubBall(3, array($value['g_ball_2'],$value['g_ball_7']));
+                $numberList[$key][10] = SubBall(3, array($value['g_ball_3'],$value['g_ball_6']));
+                $numberList[$key][11] = SubBall(3, array($value['g_ball_4'],$value['g_ball_5']));
 			}
 		}
 	}
@@ -475,7 +478,7 @@ function numberList($gameType, $date, $id=false)
 		{
 		
 			foreach ($result as $key=>$value) {
-				$week = GetWeekDay($value['g_date'],0);
+				$week = '-';
 	            $ball_1 ='<span class="number num'.$value['g_ball_1'].'"></span>' ;
 				$ball_2 ='<span class="number num'.$value['g_ball_2'].'"></span>' ;
 				$ball_3 ='<span class="number num'.$value['g_ball_3'].'"></span>' ;
@@ -542,7 +545,10 @@ function numberList($gameType, $date, $id=false)
 				$numberList[$key][5] = SubBallnc(0, $ball_count);
 				$numberList[$key][6] = SubBallnc(1, $ball_count);
 				$numberList[$key][7] = SubBallnc(2, mb_substr($ball_count, -1));
-				$numberList[$key][8] = SubBallnc(3, array($value['g_ball_1'],$value['g_ball_8']));
+				$numberList[$key][8] = SubBall(3, array($value['g_ball_1'],$value['g_ball_8']));
+                $numberList[$key][9] = SubBall(3, array($value['g_ball_2'],$value['g_ball_7']));
+                $numberList[$key][10] = SubBall(3, array($value['g_ball_3'],$value['g_ball_6']));
+                $numberList[$key][11] = SubBall(3, array($value['g_ball_4'],$value['g_ball_5']));
 			}
 		}
 	
@@ -642,7 +648,7 @@ function numberList($gameType, $date, $id=false)
 		if ($result)
 		{
 			foreach ($result as $key=>$value) {
-				$week = GetWeekDay($value['g_date'],0);
+				$week = '-';
 	            $ball_1 ='<span class="number num'.$value['g_ball_1'].'"></span>' ;
 				$ball_2 ='<span class="number num'.$value['g_ball_2'].'"></span>' ;
 				$ball_3 ='<span class="number num'.$value['g_ball_3'].'"></span>' ;
@@ -669,7 +675,7 @@ function numberList($gameType, $date, $id=false)
 		if ($result)
 		{
 			foreach ($result as $key=>$value) {
-				$week = GetWeekDay($value['g_date'],0);
+				$week = '-';
 	            $ball_1 ='<span class="number num'.$value['g_ball_1'].'"></span>' ;
 				$ball_2 ='<span class="number num'.$value['g_ball_2'].'"></span>' ;
 				$ball_3 ='<span class="number num'.$value['g_ball_3'].'"></span>' ;
