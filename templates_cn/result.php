@@ -372,10 +372,20 @@ switch ($typeid) {
                         <div class="title">
                             开始日期
                             <input type="text" id="start_date_klc"
-                                   style="background-color: white; border: 1px solid rgb(187, 188, 192); background-position: initial initial; background-repeat: initial initial;">&nbsp;&nbsp;至&nbsp;
+                                   style="background-color: white; border: 1px solid rgb(187, 188, 192);
+                                   background-position: initial initial;
+                                    background-repeat: initial initial;"
+                                   onfocus="WdatePicker({
+                                       el:'start_date_klc'
+                                       });"
+                                >&nbsp;&nbsp;至&nbsp;
                             结束日期
                             <input type="text" id="end_date_klc"
-                                   style="background-color: white; border: 1px solid rgb(187, 188, 192); background-position: initial initial; background-repeat: initial initial;">&nbsp;&nbsp;
+                                   style="background-color: white; border: 1px solid rgb(187, 188, 192); background-position: initial initial; background-repeat: initial initial;"
+                                   onfocus="WdatePicker({
+                                       el:'end_date_klc'
+                                       });"
+                                >&nbsp;&nbsp;
                             <a href="javascript:void(0)" class="btn_m elem_btn" id="s_ball_klc">查询</a>
                         </div>
                         <ul class="ball-title">
