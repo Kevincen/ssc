@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $db = new DB();
     $select_str = '';
     $table_name = '';
+    $ball_selecter = '';
     $count = 0;
 
     if (!isset($_POST['count'])) {
@@ -18,19 +19,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $count = $_POST['count'];
     }
 
-/*    switch ($type) {
+    switch ($type) {
         case 1;
-            $table_name = 'g_history';
+        case 5;
+            $ball_selecter = ' `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8` ';
             break;
         case 2;
+            $ball_selecter = ' `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`';
             break;
         case 6;
-            break;
-        case 5;
+            $ball_selecter = ' `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`
+            , `g_ball_8`, `g_ball_9`,`g_ball_10` ';
             break;
         case 9;
+            $ball_selecter = ' `g_ball_1`, `g_ball_2`, `g_ball_3`';
             break;
-    }*/
+    }
     if ($type == 1) {
         $table_name = 'g_history';
     } else {
@@ -38,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if ($type !=1 && $type != 5 ) {
-        $select_str = 'g_date,';
+        $select_str = '`g_date`,';
     }
 
     $start_date = $start_date . ' 02:00';
@@ -49,20 +53,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         `g_id`,
         {$select_str}
         `g_qishu`,
-        `g_ball_1`,
-        `g_ball_2`,
-        `g_ball_3`,
-        `g_ball_4`,
-        `g_ball_5`,
-        `g_ball_6`,
-        `g_ball_7`,
-         `g_ball_8`
+        {$ball_selecter}
         from {$table_name} where {$date} order by g_id desc LIMIT {$count},".($count+30);
     $results = $db->query($sql_str,1);
 
     if ($type == 1) {
-        $ret = klc_transfer($results);
+        $ret = klc_transfer($results,$type);
+    } elseif ($type == 5) {
+        $ret = klc_transfer($results,$type);
+    } else {
+        $ret = ssc_transfer($results);
     }
+    $ret['ret_array'] = $ret;
+    $ret['type'] = $type;
 
 
     echo json_encode($ret);
@@ -100,20 +103,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $lang = new utf8_lang();
 }
 
-function klc_transfer($db_result)
+//广东快乐十分与幸运农场
+function klc_transfer($db_result,$type)
 {
     $ret_array = array();
     for ($i=0;$i<count($db_result);$i++) {
-        $ret_array[] = klc_transfer_each($db_result[$i]);
+        $ret_array[] = klc_transfer_each($db_result[$i], $type);
     }
     return $ret_array;
 }
 
-function klc_transfer_each($number_array)
+function ssc_transfer($db_result)
+{
+    $ret_array = array();
+    for ($i=0;$i<count($db_result);$i++) {
+        $ret_array[] = ssc_transfer_each($db_result[$i]);
+    }
+    return $ret_array;
+}
+function ssc_transfer_each($number_array)
+{
+    $g_id = $number_array['g_id'];
+    $qishu = $number_array['g_qishu'];
+    $date = $number_array['g_date'];
+    $balls_array = array();
+    $number_array = array_slice($number_array,3);
+    foreach ($number_array as $value) {
+        $balls_array[] = $value;
+    }
+
+    return array('qishu'=>$qishu,'date'=>$date, 'balls'=>join(',', $balls_array));
+}
+
+function klc_transfer_each($number_array,$type)
 {
     $balls_array = array();
     $result_array = array();
     $db = new DB();
+    $table_name = $type==1? 'g_history':'g_history5';
 
     $g_id = $number_array['g_id'];
     $qishu = $number_array['g_qishu'];
@@ -127,7 +154,7 @@ function klc_transfer_each($number_array)
         if (!in_array($i,$balls_array)) {
             $sql_str =
                 "select
-                `g_id` from `g_history` where
+                `g_id` from $table_name  where
                 (`g_ball_1`=$i or
                 `g_ball_2`=$i or
                 `g_ball_3`=$i or
@@ -388,6 +415,7 @@ switch ($typeid) {
                                 >&nbsp;&nbsp;
                             <a href="javascript:void(0)" class="btn_m elem_btn" id="s_ball_klc">查询</a>
                         </div>
+                        <div id="pk_toggle"><span class="pk-ball ball-on" id="min">1~5</span><span class="pk-ball" id="max">6~10</span></div>
                         <ul class="ball-title">
 
                         </ul>
