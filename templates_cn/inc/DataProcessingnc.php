@@ -406,71 +406,7 @@ if (isset($_SESSION['guid_code'])) {
         }
     </style>
 </head>
-<body>
-<form id="dp" action="" method="post">
-    <table border="0" cellpadding="0" cellspacing="1" class="t_list" width="230">
-        <tr>
-            <td class="t_list_caption" colspan="2">下註結果反饋</td>
-        </tr>
-        <tr>
-            <td class="t_td_caption_1" width="64">會員帳戶</td>
-            <td class="t_td_text" width="137"><?php echo $user[0]['g_name'] ?>（<?php echo $user[0]['g_panlu'] ?>盤）</td>
-        </tr>
-        <tr>
-            <td class="t_td_caption_1">可用金額</td>
-            <td class="t_td_text"><?php echo is_Number($gMoney) ?></td>
-        </tr>
-        <tr>
-            <td class="t_td_but" colspan="2" align="center">
-                <input type="button" value="打印" onclick="window.print()" class="inputq"/>
-                <input type="button" value="返回" onclick="location.href='../left.php'" class="inputq"/>
-            </td>
-        </tr>
-        <tr>
-            <td class="t_td_text" colspan="2">
-                <span class="captions"><?php echo $number_1 ?>期</span>
-                <?php
-                if ($action == 'fn' || $action == 'fn1' || $action == 'fn3') //單筆循環投注單
-                {
-                    echo '<table border="0" cellpadding="0" cellspacing="1" width="100%" bgcolor="#FFFFF7">';
-                    for ($i = 0; $i < count($ListArr); $i++) {
-                        $nn = $ListArr[$i]['g_mingxi_1'] == '總和、龍虎' ? $ListArr[$i]['g_mingxi_2'] : $ListArr[$i]['g_mingxi_1'] . '『' . $ListArr[$i]['g_mingxi_2'] . '』';
-                        echo '<tr><td>&nbsp;註單號：' . $ListArr[$i]['id'] . '#</td></tr>
-		                        			  <tr><td align="center"><font color="blue">' . $nn . '</font>@ <span style="font-weight:bold; color:red">' . $ListArr[$i]['g_odds'] . '</span></td></tr>
-		                        			  <tr><td>&nbsp;下註額：' . $ListArr[$i]['g_jiner'] . '</td></tr>
-		                        			  <tr><td class="f_bt">&nbsp;可贏額：' . $ListArr[$i]['KeYing'] . '</td></tr>';
-                    }
-                    echo '</table>';
-                } else if ($action == 'fn2') //複式組合注單
-                {
-                    echo '<div><table border="0" cellpadding="0" cellspacing="1" bgcolor="#FFFFEE" width="100%">';
-                    echo '<tr><td>&nbsp;註單號：' . $ListArr[0]['id'] . '#</td></tr>';
-                    echo '<tr><td align="center"><font color="blue">' . $stringList['type'] . '</font>@ <span style="font-weight:bold; color:red">' . $odds . '</span></td></tr>';
-                    echo '<tr><td align="center">復式『 ' . $results[0] . '組 』</td></tr>';
-                    echo '<tr><td align="center">' . $s_ball . '</td></tr>';
-                    echo '<tr><td>&nbsp;分&nbsp;&nbsp;&nbsp;&nbsp;組：' . $results[0] . '</td></tr>';
-                    echo '<tr><td>&nbsp;下註額：' . $countZhuEr . '</td></tr>';
-                    echo '<tr><td>&nbsp;可贏額：' . $ListArr[0]['KeYing'] . '</td></tr><tr><td align="center">';
-                    echo '<table border="0" cellpadding="0" cellspacing="1" bgcolor="#B5D6E6" width="99%">';
-                    echo '<tr class="t_td_odd_3"><td>ID</td><td>號碼組合</td><td>下註額</td></tr>';
-                    for ($i = 0; $i < count($results[1]); $i++) {
-                        $s = $i + 1;
-                        echo '<tr class="t_td_odd_4"><td>' . $s . '</td><td>' . $results[1][$i] . '</td><td>￥' . $s_money . '</td></tr>';
-                    }
-                    echo '</table></td></tr></table></div>';
-                }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td class="t_td_caption_1" width="64">下註筆數</td>
-            <td class="t_td_text" width="137" id="max4">&nbsp;<?php echo $countBiShu ?>筆</td>
-        </tr>
-        <tr>
-            <td class="t_td_caption_1" width="64">總計註額</td>
-            <td class="t_td_text" width="137" id="max5">&nbsp;￥<?php echo $countZhuEr ?></td>
-        </tr>
-    </table>
-</form>
+<body class="bd <?php echo $_COOKIE['g_skin']; ?>">
+<?php include ROOT_PATH. 'templates_cn/show_user.php' ?>
 </body>
 </html>

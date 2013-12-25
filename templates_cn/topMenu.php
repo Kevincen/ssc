@@ -10,6 +10,7 @@ if (!isset($_GET['type'])) {
     $type = $_GET['type'];
 }
 //test
+var_dump($user);
 
 $panlu = $user[0]['g_panlu'];
 $send_back = $user[0]['g_distribution'];

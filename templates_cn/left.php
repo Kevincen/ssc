@@ -2,13 +2,30 @@
 define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'function/cheCookie.php';
+global $user;
 
 $name = base64_decode($_COOKIE['g_user']);
 
-//获取最新投注的10条记录
-$db=new DB();
-$sql = "SELECT * FROM g_zhudan where g_nid='$name' ORDER BY g_id DESC LIMIT 10";
-$result1 = $db->query($sql, 1);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //获取最新投注的10条记录
+    //$type= $user['type'];
+    $db=new DB();
+    //$sql = "SELECT * FROM g_zhudan where g_nid='$name' and g_win=null and g_type='$type' ORDER BY g_id DESC LIMIT 10";
+    $sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_win is null ORDER BY g_id DESC LIMIT 10";
+    $result1 = $db->query($sql, 1);
+    for ($i=0;$i<count($result1);$i++) {
+        $type = $result1[$i]['g_mingxi_1'];
+        if ($type== '选二连直') {
+            $ball_array = explode('|',$result1[$i]['g_mingxi_2']);
+
+            $ball_array[0] = '前位 ' .$ball_array[0];
+            $ball_array[1] = '后位' . $ball_array[1];
+            $result1[$i]['g_mingxi_2'] = $ball_array[0] ." ". $ball_array[1];
+        }
+    }
+    echo json_encode($result1);
+    exit;
+}
 
 //获取游戏的开放情况
 $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_game_lock,g_nc_game_lock,g_lhc_game_lock,g_xj_game_lock,g_jsk3_game_lock");
@@ -82,7 +99,20 @@ $(function(){
 
 	//左侧注单刷新
 	$("#rushBtn").click(function(){
-		alert("功能未开发");
+        $.post("/templates_cn/left.php",{},function(data){
+            var orderhtml = '';
+            console.log(data);
+            for (var i=0;i<data.length;i++) {
+                var date = data[i]['g_date'].split(' ');
+                orderhtml +='<tr> \
+                    <td>'+ data[i]['g_mingxi_2']+ '</td> \
+                    <td>&nbsp;'+ data[i]['g_odds']+ '&nbsp;</td> \
+                    <td>&nbsp;'+data[i]['g_jiner']+ '&nbsp;</td> \
+                    <td>&nbsp;'+date[1] + '&nbsp;</td> \
+                </tr>'
+            }
+            $('#new_orders').html(orderhtml);
+        },'json');
 	});
 
 
@@ -188,13 +218,7 @@ $(function(){
                 
             </tr>                  
         </thead>
-        <tbody>
-            <tr>
-                <td>10</td>
-                <td>1.985</td>
-                <td>1000</td>
-                <td>13:33:33</td>
-            </tr>
+        <tbody id="new_orders">
             <tr>
                 <td>10</td>
                 <td>1.985</td>
