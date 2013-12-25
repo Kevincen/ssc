@@ -17,6 +17,7 @@ function SelectType(LT) {
 		//document.getElementById("Type_List").innerHTML='<a href="sGame_sm.php?g=g9" target="mainFrame">两面盘</a>&nbsp;|&nbsp;<a href="sGame_sz.php?g=g9" target="mainFrame">数字盘</a>&nbsp;|&nbsp;<a href="sGame.php?g=g1"  target="mainFrame">第一球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g2"  target="mainFrame">第二球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g3"  target="mainFrame">第三球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g4"  target="mainFrame">第四球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g5"  target="mainFrame">第五球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g6"  target="mainFrame">第六球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g7"  target="mainFrame">第七球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g8"  target="mainFrame">第八球</a>&nbsp;|&nbsp;<a  href="sGame_l.php?g=k1"  target="mainFrame">总和、龙虎</a>&nbsp;|&nbsp;<a  href="sGame_k.php?g=k2"  target="mainFrame">连码</a>';
         document.getElementById("Type_List").innerHTML='<a href="sGame_sm.php?g=g9" target="mainFrame" class="red">两面盘</a>&nbsp;|&nbsp;<a href="sGame.php?g=g1"  target="mainFrame">第一球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g2"  target="mainFrame">第二球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g3"  target="mainFrame">第三球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g4"  target="mainFrame">第四球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g5"  target="mainFrame">第五球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g6"  target="mainFrame">第六球</a>&nbsp;|&nbsp;<a  href="sGame.php?g=g7"  target="mainFrame">第七球</a>&nbsp;|&nbsp;<a href="sGame.php?g=g8"  target="mainFrame">第八球</a>&nbsp;|&nbsp;<a  href="sGame_l.php?g=zm"  target="mainFrame">正码</a>&nbsp;|&nbsp;<a  href="sGame_k.php?g=k2"  target="mainFrame">连码</a>';
 		parent.frames["mainFrame"].location="sGame_sm.php?g=g9";
+
 	} else if (LT==2){
 		document.getElementById("bST_1").className="bST_1";
 		document.getElementById("bST_5").className="bST_1";
@@ -106,6 +107,9 @@ function SelectType(LT) {
         document.getElementById("Type_List").innerHTML='<a class="red" href="sGame_jstb.php"  target="mainFrame">大小骰宝</a>';
         parent.frames["mainFrame"].location="sGame_jstb.php?g=g10";
 	}
+    $("a[title='开奖结果']").attr('href', 'result.php?id='+LT);
+    $("a[title='个人资讯']").attr('href', 'topMenu.php?type='+LT);
+    $("a[title='游戏规则']").attr('href', '/templates_r/rule.php?tid='+LT);
 	$("#Type_List a").click(function(){
 		$('#Type_List a').removeClass('red');
 		$(this).addClass('red');

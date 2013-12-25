@@ -1,7 +1,23 @@
 <?php
 $tid = 1;
 if (!isset($_GET['tid'])) {
-    $tid = 1;
+    if ((isset($_SESSION['cq']) && $_SESSION['cq'] == true))
+        $tid= 2;
+    else if ((isset($_SESSION['gx']) && $_SESSION['gx'] == true))
+        $tid= 3;
+    else if ((isset($_SESSION['nc']) && $_SESSION['nc'] == true))
+        $tid= 5;
+    else if ((isset($_SESSION['pk']) && $_SESSION['pk'] == true))
+        $tid= 6;
+    else if ((isset($_SESSION['lhc']) && $_SESSION['lhc'] == true))
+        $tid= 7;
+    else if ((isset($_SESSION['xj']) && $_SESSION['xj'] == true))
+        $tid= 8;
+    else if ((isset($_SESSION['jsk3']) && $_SESSION['jsk3'] == true))
+        $tid= 9;
+    else {
+
+    }
 } else {
     $tid = $_GET['tid'];
 }

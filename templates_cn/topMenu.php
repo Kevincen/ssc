@@ -5,12 +5,27 @@ include_once ROOT_PATH . 'function/cheCookie.php';
 global $user;
 
 if (!isset($_GET['type'])) {
-    $type = 1;
+    if ((isset($_SESSION['cq']) && $_SESSION['cq'] == true))
+        $type= 2;
+    else if ((isset($_SESSION['gx']) && $_SESSION['gx'] == true))
+        $type= 3;
+    else if ((isset($_SESSION['nc']) && $_SESSION['nc'] == true))
+        $type= 5;
+    else if ((isset($_SESSION['pk']) && $_SESSION['pk'] == true))
+        $type= 6;
+    else if ((isset($_SESSION['lhc']) && $_SESSION['lhc'] == true))
+        $type= 7;
+    else if ((isset($_SESSION['xj']) && $_SESSION['xj'] == true))
+        $type= 8;
+    else if ((isset($_SESSION['jsk3']) && $_SESSION['jsk3'] == true))
+        $type= 9;
+    else
+        $type= 1;
 } else {
     $type = $_GET['type'];
 }
 //test
-var_dump($user);
+//var_dump($user);
 
 $panlu = $user[0]['g_panlu'];
 $send_back = $user[0]['g_distribution'];
