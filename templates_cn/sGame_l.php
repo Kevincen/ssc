@@ -43,6 +43,7 @@ $g = $_GET['g'];
             $('#yiban').click(function () {
                 yiban();
             })
+            kuijie();
             action();
         });
     </script>

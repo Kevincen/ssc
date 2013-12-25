@@ -127,7 +127,8 @@ $(function () {
 	$('#yiban').bind('click',function(){
 		yiban();							   
 	})
-	
+    kuijie();
+
 	action();
 	$("#dp").attr("action","./inc/DataProcessingnc.php?t="+encodeURI($("#tys").html()));
 	

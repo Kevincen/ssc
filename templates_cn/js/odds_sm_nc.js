@@ -150,7 +150,8 @@ $(function (){
 	$('#yiban').bind('click',function(){
 		yiban();							   
 	})
-	 
+    kuijie();
+
 	
 });
 

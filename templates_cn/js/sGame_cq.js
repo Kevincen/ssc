@@ -169,7 +169,8 @@ var setResultcq = new Array();
 		$('#yiban').bind('click',function(){
 			yiban();							   
 		})
-		
+
+        kuijie();
 	});
 	
 	function loadGameInfo(bool){

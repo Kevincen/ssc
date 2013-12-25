@@ -253,7 +253,7 @@ switch ($typeid) {
                 <th>开奖时间</th>
                 <th colspan="8">开奖号码</th>
                 <th colspan="4">总和</th>
-                <th colspan="4">1~4龙虎????</th>
+                <th colspan="4">1~4龙虎</th>
             </tr>';
             $noresult_html = '<td colspan="18">暂无数据!</td>';
             break;

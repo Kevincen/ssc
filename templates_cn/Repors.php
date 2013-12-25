@@ -258,16 +258,8 @@ function set_mingxi($result_list)
                         <a href="report_daily.php?gid=<?php echo $_GET['gid'] ?>" class="btn_m elem_btn "
                            id="reback" bdata="reback,click,reback"
                            status="1">返回</a></div>
-                    <div class="elem_pager pager" id="history_pager" ajax_json="get_all" platform="klc" pager="true"><a
-                            title="第一页" class="first" id="first" href="javascript:void(0)">:::分页尚未完成</a><a title="上一页"
-                                                                                                   class="previous"
-                                                                                                   id="previous"
-                                                                                                   href="javascript:void(0)"></a><span
-                            class="other">第<input type="text" class="pageindex" id="current_page"
-                                                  value="1">页</span><span class="other">共<span id="total_page">1</span>页</span><a
-                            title="下一页" class="next" id="next" href="javascript:void(0)"></a><a title="末页" class="last"
-                                                                                                 id="last"
-                                                                                                 href="javascript:void(0)"></a>
+                    <div class="elem_pager pager" id="history_pager" ajax_json="get_all" platform="klc" pager="true">
+                        <?php echo $page->reporepage(array(0,1,2,3,4))?>
                     </div>
                     <div style="clear:both;"></div>
                     <!--账户历史总明细 result--><!--按天数查看期数明细 number-->

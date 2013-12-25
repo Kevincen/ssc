@@ -43,6 +43,7 @@ $number_type = "nc"
             $('#yiban').click(function () {
                 yiban();
             })
+            kuijie();
             set_infos();
         });
     </script>

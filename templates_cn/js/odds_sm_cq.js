@@ -151,6 +151,7 @@ if(getCookie("soundbut")=="on" || getCookie("soundbut")==null || getCookie("soun
 	$('#yiban').bind('click',function(){
 		yiban();							   
 	})
+    kuijie();
 });
 
 /**

@@ -64,6 +64,12 @@ exit('invalid request');
 
 			return $html;
 		}
+        private function rep_first() {
+                @$html.=
+                    '<a title="第一页" class="first" id="first" href="'.$this->uri.'&page=1"></a>';
+
+            return $html;
+        }
 
 		private function prev(){
 			if($this->page==1)
@@ -73,6 +79,12 @@ exit('invalid request');
 
 			return $html;
 		}
+        private function rep_prev() {
+
+                @$html.='<a title="上一页" class="previous" id="previous" href="'.$this->uri.'&page='.($this->page-1).'"></a>';
+
+            return $html;
+        }
 
 		private function pageList(){
 			$linkPage="";
@@ -102,6 +114,14 @@ exit('invalid request');
 
 			return $linkPage;
 		}
+        private function rep_pageList(){
+            $linkPage='<span class="other">第<input type="text" class="pageindex" id="current_page"
+                                                  value="'.$this->page.'">页</span>
+                                                  <span class="other">共<span id="total_page">'.$this->total.'</span>页</span>';
+
+
+            return $linkPage;
+        }
 
 		private function next(){
 			if($this->page==$this->pageNum)
@@ -111,6 +131,12 @@ exit('invalid request');
 
 			return $html;
 		}
+        private function rep_next() {
+
+                @$html.='<a title="下一页" class="next" id="next" href="'.$this->uri.'&page='.($this->page+1).'"></a>';
+
+            return $html;
+        }
 
 		private function last(){
 			if($this->page==$this->pageNum)
@@ -120,6 +146,11 @@ exit('invalid request');
 
 			return $html;
 		}
+        private function rep_last(){
+                @$html.='<a title="末页" class="last" id="last" href="'.$this->uri.'&page='.($this->pageNum).'"></a>';
+
+            return $html;
+        }
 
 		private function goPage(){
 			return '&nbsp;&nbsp;<input type="text" onkeydown="javascript:if(event.keyCode==13){var page=(this.value>'.$this->pageNum.')?'.$this->pageNum.':this.value;location=\''.$this->uri.'&page=\'+page+\'\'}" value="'.$this->page.'" style="width:25px"><input type="button" value="GO" onclick="javascript:var page=(this.previousSibling.value>'.$this->pageNum.')?'.$this->pageNum.':this.previousSibling.value;location=\''.$this->uri.'&page=\'+page+\'\'">&nbsp;&nbsp;';
@@ -143,6 +174,21 @@ exit('invalid request');
 			return $fpage;
 
 		}
+        function reporepage($display=array(0,1,2,3,4))
+        {
+            $html[0]=$this->rep_first();
+            $html[1]=$this->rep_prev();
+            $html[2]=$this->rep_pageList();
+            $html[3]=$this->rep_next();
+            $html[4]=$this->rep_last();
+
+            $fpage='';
+            foreach($display as $index){
+                $fpage.=$html[$index];
+            }
+
+            return $fpage;
+        }
 
 	
 	}

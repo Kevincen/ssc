@@ -3202,20 +3202,20 @@ function SubBall ($num, $ball, $p=0)
 			else if ($ball <= 83)
 				return $p==0 ? '<font color="black">小</font>' : '小';
 			else
-				return $p==0 ? '<font color="red">大</font>' : '大';
+				return $p==0 ? '<font color="blue">大</font>' : '大';
 		case 1 : //總和單雙
 			if ($ball % 2 == 0)
-				return $p==0 ? '<font color="red">雙</font>' : '雙';
+				return $p==0 ? '<font color="blue">雙</font>' : '雙';
 			else 
 				return $p==0 ? '<font color="black">單</font>' : '單';
 		case 2 : //總和尾數大小
 			if ($ball >=5)
-				return $p==0 ? '<font color="red">尾大</font>' : '尾大';
+				return $p==0 ? '<font color="blue">尾大</font>' : '尾大';
 			else
 				return $p==0 ? '<font color="black">尾小</font>' : '尾小';
 		case 3 : //龍虎
 			if ($ball[0] > $ball[1])
-				return $p==0 ? '<font color="red">龍</font>' : '龍';
+				return $p==0 ? '<font color="blue">龍</font>' : '龍';
 			else
 				return $p==0 ? '<font color="black">虎</font>' : '虎';
 	}
@@ -4316,20 +4316,20 @@ function SubBallnc ($num, $ball, $p=0)
 			else if ($ball <= 83)
 				return $p==0 ? '<font color="black">小</font>' : '小';
 			else
-				return $p==0 ? '<font color="red">大</font>' : '大';
+				return $p==0 ? '<font color="blue">大</font>' : '大';
 		case 1 : //總和單雙
 			if ($ball % 2 == 0)
-				return $p==0 ? '<font color="red">雙</font>' : '雙';
+				return $p==0 ? '<font color="blue">雙</font>' : '雙';
 			else
 				return $p==0 ? '<font color="black">單</font>' : '單';
 		case 2 : //總和尾數大小
 			if ($ball >=5)
-				return $p==0 ? '<font color="red">尾大</font>' : '尾大';
+				return $p==0 ? '<font color="blue">尾大</font>' : '尾大';
 			else
 				return $p==0 ? '<font color="black">尾小</font>' : '尾小';
 		case 3 : //龍虎
 			if ($ball[0] > $ball[1])
-				return $p==0 ? '<font color="red">家禽</font>' : '家禽';
+				return $p==0 ? '<font color="blue">家禽</font>' : '家禽';
 			else
 				return $p==0 ? '<font color="black">野兽</font>' : '野兽';
 	}
@@ -4785,20 +4785,20 @@ function SubBall_gx ($num, $ball, $p=0)
 			else if ($ball <= 56)
 				return $p==0 ? '<font color="black">小</font>' : '小';
 			else
-				return $p==0 ? '<font color="red">大</font>' : '大';
+				return $p==0 ? '<font color="blue">大</font>' : '大';
 		case 1 : //總和單雙
 			if ($ball % 2 == 0)
-				return $p==0 ? '<font color="red">雙</font>' : '雙';
+				return $p==0 ? '<font color="blue">雙</font>' : '雙';
 			else 
 				return $p==0 ? '<font color="black">單</font>' : '單';
 		case 2 : //總和尾數大小
 			if ($ball >=5)
-				return $p==0 ? '<font color="red">尾大</font>' : '尾大';
+				return $p==0 ? '<font color="blue">尾大</font>' : '尾大';
 			else
 				return $p==0 ? '<font color="black">尾小</font>' : '尾小';
 		case 3 : //龍虎
 			if ($ball[0] > $ball[1])
-				return $p==0 ? '<font color="red">龍</font>' : '龍';
+				return $p==0 ? '<font color="blue">龍</font>' : '龍';
 			else
 				return $p==0 ? '<font color="black">虎</font>' : '虎';
 	}
@@ -4813,7 +4813,7 @@ function SubBall_Tema ($num, $ball, $p=0)
 							return '<font color="seagreen"><b>和<b/></font>';
 					}else{
 					if ($ball%2 == 0) 
-							return '<font color="red">雙</font>';
+							return '<font color="blue">雙</font>';
 					else 
 							return '<font color="black">單</font>';
 					}break;
@@ -4824,7 +4824,7 @@ function SubBall_Tema ($num, $ball, $p=0)
 				if ($ball<=10) 
 						return '<font color="black">小</font>';
 				else 
-						return '<font color="red">大</font>';
+						return '<font color="blue">大</font>';
 				}break;
 		case 2 :
 				if($ball==21){
@@ -4833,7 +4833,7 @@ function SubBall_Tema ($num, $ball, $p=0)
 				if ($ball == 1 || $ball == 3 || $ball == 5 || $ball == 7 || $ball == 9 || $ball == 10 || $ball == 12 || $ball == 14 || $ball == 16 || $ball == 18)
 						return  '<font color="black">合數單</font>';
 				else
-						return  '<font color="red">合數雙</font>';
+						return  '<font color="blue">合數雙</font>';
 				}	break;
 		case 3 :
 				if($ball==21){
@@ -4843,7 +4843,7 @@ function SubBall_Tema ($num, $ball, $p=0)
 				if ($i > 1)
 						$ball=substr($ball, -1);
 				if ($ball >=5)
-						return '<font color="red">尾大</font>';
+						return '<font color="blue">尾大</font>';
 				else
 						return '<font color="black">尾小</font>';
 				}	break;
@@ -4852,7 +4852,7 @@ function SubBall_Tema ($num, $ball, $p=0)
 						return '<font color="seagreen"><b>和<b/></font>';
 				}else{
 				if ($ball == 1 || $ball == 2 || $ball == 3 || $ball == 4 || $ball == 5)
-						return '<font color="red">神</font>';
+						return '<font color="blue">神</font>';
 				else if ($ball == 6 || $ball == 7 || $ball == 8 || $ball == 9 || $ball == 10)
 						return '<font color="#0000ff">奇</font>';
 				else if ($ball == 11 || $ball == 12 || $ball == 13 || $ball == 14 || $ball == 15)
@@ -4862,7 +4862,7 @@ function SubBall_Tema ($num, $ball, $p=0)
 				}	break;
 		case 5 : //色波
 			if ($ball == 1 || $ball == 4 || $ball == 7 || $ball == 10 || $ball == 13 || $ball == 16 || $ball == 19)
-			return '<font color="red">红</font>';
+			return '<font color="blue">红</font>';
 		else if ($ball == 2 || $ball == 5 || $ball == 8 || $ball == 11 || $ball == 14 || $ball == 17 || $ball == 20)
 			return '<font color="#0000ff">蓝</font>';
 		else
@@ -4878,15 +4878,15 @@ function SubBallpk ($num, $ball, $p=0)
 			if ($ball <= 11)
 				return $p==0 ? '<font color="black">小</font>' : '小';
 			else
-				return $p==0 ? '<font color="red">大</font>' : '大';
+				return $p==0 ? '<font color="blue">大</font>' : '大';
 		case 1 : //冠亚军和單雙
 			if ($ball % 2 == 0)
-				return $p==0 ? '<font color="red">雙</font>' : '雙';
+				return $p==0 ? '<font color="blue">雙</font>' : '雙';
 			else 
 				return $p==0 ? '<font color="black">單</font>' : '單';
 		case 2 : //龍虎
 			if ($ball[0] > $ball[1])
-				return $p==0 ? '<font color="red">龍</font>' : '龍';
+				return $p==0 ? '<font color="blue">龍</font>' : '龍';
 			else
 				return $p==0 ? '<font color="black">虎</font>' : '虎';
 	}

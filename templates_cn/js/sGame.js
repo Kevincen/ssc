@@ -177,7 +177,8 @@ $(function () {
 	$('#yiban').bind('click',function(){
 		yiban();							   
 	})
-	
+    kuijie();
+
 	action()
 	$("#dp").attr("action","./inc/DataProcessing.php?t="+encodeURI($("#tys").html()));
 	
