@@ -380,6 +380,8 @@ else
 	exit;
 }
 
+//获取游戏的开放情况
+$configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_game_lock,g_nc_game_lock,g_lhc_game_lock,g_xj_game_lock,g_jsk3_game_lock");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" oncontextmenu="return false">
@@ -391,7 +393,88 @@ else
 body {background-color:#FFEFE2}
 </style>
 </head>
-<body>
+<body class="bd <?php echo $_COOKIE['g_skin']; ?>">
+<table border="0" cellpadding="0" cellspacing="0" class="t_list">
+    <tr>
+        <td class="t_list_caption redbg" colspan="2">账户信息</td>
+    </tr>
+    <tr>
+        <td class="t_td_caption_1" width="71">账号：</td>
+        <td class="t_td_text" width="137"><?php echo $user[0]['g_name']?>(<label id="pls" ><?php echo strtoupper($user[0]['g_panlu'])?></label>盘)</td>
+    </tr>
+    <tr>
+        <td class="t_td_caption_1">信用额度：</td>
+        <td class="t_td_text"><?php echo is_Number($user[0]['g_money'])?></td>
+    </tr>
+    <tr>
+        <td class="t_td_caption_1">信用余额：</td>
+        <td id="jine" class="t_td_text" style="font-weight:bold;"><?php echo is_Number($user[0]['g_money_yes'])?></td>
+    </tr>
+    <tr>
+        <td class="t_td_caption_1">已下金额：</td>
+        <td class="t_td_text">功能未做</td>
+    </tr>
+
+
+    <!--新旧版跳转临时按钮-->
+    <tr>
+        <td class="t_list_caption left_version" colspan="2"><a href="/index.php?version=hk" target="_parent">新版</a></td>
+    </tr>
+    <!--临时按钮end-->
+    <?php if ($configModel['g_kg_game_lock']==1){?>
+        <tr>
+            <td class="t_list_caption font_st" colspan="2"><a href="http://baidu.lehecai.com/lottery/draw/view/544?agentId=5555" target="_blank">"广东快乐十分"开奖网</a></td>
+        </tr>
+    <?php
+    }
+    ?>
+    <?php if ($configModel['g_cq_game_lock']==1){?>
+        <tr>
+            <td class="t_list_caption font_st" colspan="2"><a href="http://video.shishicai.cn/cqssc/" target="_blank">"重庆时时彩"开奖网</a></td>
+        </tr>
+    <?php
+    }
+    ?>
+    <?php if ($configModel['g_pk_game_lock']==1){?>
+        <tr>
+        <tr>
+            <td class="t_list_caption font_st" colspan="2"><a href="http://www.bwlc.net/buy/trax/" target="_blank">"北京赛车(PK10)"官网</a></td>
+        </tr>
+    <?php
+    }
+    ?>
+    <?php if ($configModel['g_nc_game_lock']==1){?>
+        <tr>
+            <td class="t_list_caption font_st" colspan="2"><a href="http://www.16cp.com/gamedraw/lucky/open.shtml" target="_blank">"幸运农场"官网</a></td>
+        </tr>
+    <?php
+    }
+    ?>
+    <?php if ($configModel['g_gx_game_lock']==1){?>
+        <tr>
+            <td class="t_list_caption font_st" colspan="2"><a href="http://video.shishicai.cn/haoma/gxkl10/list/50.aspx" target="_blank">"广西快乐十分"开奖网</a></td>
+        </tr>
+    <?php
+    }
+    ?>
+
+    <?php if ($configModel['g_xj_game_lock']==1){?>
+        <tr>
+        <tr>
+            <td class="t_list_caption font_st" colspan="2"><a href="http://www.xjflcp.com/ssc/" target="_blank">"新疆时时彩"开奖网</a></td>
+        </tr>
+    <?php
+    }
+    ?>
+    <?php if ($configModel['g_jsk3_game_lock']==1){?>
+        <tr>
+        <tr>
+            <td class="t_list_caption font_st" colspan="2"><a href="http://www.cailele.com/lottery/k3/" target="_blank">"江苏骰宝（快3）"开奖网</a></td>
+        </tr>
+    <?php
+    }
+    ?>
+</table>
 <form id="dp" action="" method="post">
 	                <table border="0" cellpadding="0" cellspacing="1" class="t_list" width="230">
                     <tr>
