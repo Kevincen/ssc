@@ -184,16 +184,16 @@ td{
 .hhg {
 	background:#FFF4EB;
 }
-.pop {
+.pop .popsz {
 	position:absolute;
 	top:10px;
 	left:720px;
 }
-.popsz {
+/*.popsz {
 	position:absolute;
 	top:10px;
 	left:880px;
-}
+}*/
 
 .stt {
 	color:red; 

@@ -212,6 +212,10 @@ function _Number (number, ballArr) {
 	}
 }
 function openNumberCount(row, bool){
+    //for debug
+    if (typeof(Simplized) == undefined ) {
+        alert('Simplized undefined');
+    }
 		var rowHtml1 = new Array();
 		var rowHtml2 = new Array();
 		var rowHtml3 = new Array();
@@ -227,9 +231,9 @@ function openNumberCount(row, bool){
 		if (row.row8 != ""){
 			for (var key in row.row8){
 				
-				rowHtml3.push("<tr bgcolor=\"#fff\" height=\"22\"><td style=\"padding-left:5px; background:#fff4eb; color:#511e02\">"+key+"</td><td style=\"background:#ffffff; width:35px; color:red; text-align:center\">"+row.row8[key]+" 期</td></tr>");
+				rowHtml3.push("<tr bgcolor=\"#fff\" height=\"22\"><td style=\"padding-left:5px; background:#fff4eb; color:#511e02\">"+Simplized(key)+"</td><td style=\"background:#ffffff; width:35px; color:red; text-align:center\">"+row.row8[key]+" 期</td></tr>");
 			}
-			var cHtml = '<tr class="t_list_caption"><th colspan="2">兩面長龍排行</th></tr>';
+			var cHtml = '<tr class="t_list_caption"><th colspan="2">两面长龙排行</th></tr>';
 			$("#cl").html(cHtml+rowHtml3.join(""));
 		}
 		setResultcq[0] = row.row1;

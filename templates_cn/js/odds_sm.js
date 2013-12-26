@@ -357,10 +357,14 @@ function _Number (number, ballArr) {
 	}
 }
 function smlen(data) { //兩面長龍
+    //for debug
+    if (typeof(Simplized) == undefined ) {
+        alert('Simplized undefined');
+    }
 	if (data.num_arr != ""){
 		var row_1Html = new Array();
 		for (var key in data.num_arr){
-			row_1Html.push("<tr height=\"20\"><td class=\"caption_1\">"+key+"</td><td class=\"red\">"+data.num_arr[key]+"期</td></tr>");
+			row_1Html.push("<tr height=\"20\"><td class=\"caption_1\">"+Simplized(key)+"</td><td class=\"red\">"+data.num_arr[key]+"期</td></tr>");
 		}
 		var cHtml = '<tr class="t_list_caption"><th colspan="2">两面长龙排行</th></tr>';
 		$("#cl").html(cHtml+row_1Html.join(""));

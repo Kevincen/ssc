@@ -185,12 +185,16 @@ function _Number (number, ballArr) {
 	}
 }
 function smlen(data) { //兩面長龍
+    //for debug
+    if (typeof(Simplized) == undefined ) {
+        alert('Simplized undefined');
+    }
 	if (data.num_arr != ""){
 		var row_1Html = new Array();
 		for (var key in data.num_arr){
-			row_1Html.push("<tr bgcolor=\"#fff\" height=\"22\"><td style=\"padding-left:5px; background:#fff4eb; color:#511e02\">"+key+"</td><td style=\"background:#ffffff; width:35px; color:red; text-align:center\">"+data.num_arr[key]+" 期</td></tr>");
+			row_1Html.push("<tr bgcolor=\"#fff\" height=\"22\"><td style=\"padding-left:5px; background:#fff4eb; color:#511e02\">"+Simplized(key)+"</td><td style=\"background:#ffffff; width:35px; color:red; text-align:center\">"+data.num_arr[key]+" 期</td></tr>");
 		}
-		var cHtml = '<tr class="t_list_caption"><th colspan="2">兩面長龍排行</th></tr>';
+        var cHtml = '<tr class="t_list_caption"><th colspan="2">两面长龙排行</th></tr>';
 		$("#cl").html(cHtml+row_1Html.join(""));
 	}
 	setResults[0] = data.row_1; //總和大小

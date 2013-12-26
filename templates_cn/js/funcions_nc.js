@@ -203,6 +203,10 @@ setAction[6] = function () { //出球率與無出期數
 
 setAction[7] = function () { //兩面長龍
 	//if (_href.indexOf("k2") > -1) return;
+    //for debug
+    if (typeof(Simplized) == undefined ) {
+        alert('Simplized undefined');
+    }
 	$.post (URL, {typeid : "sumball_s", href : _href}, function (data) {
 		//alert(data);return;
 		var row_1Html = new Array();
@@ -221,9 +225,9 @@ setAction[7] = function () { //兩面長龍
 		setResult[10] = data.row_12; //龍虎
 		if (data.row_1 != ""){
 			for (var key in data.row_1){
-				row_1Html.push("<tr bgcolor=\"#fff\" height=\"22\"><td style=\"padding-left:5px; background:#fff4eb; color:#511e02\">"+key+"</td><td style=\"background:#ffffff; width:35px; color:red; text-align:center\">"+data.row_1[key]+" 期</td></tr>");
+				row_1Html.push("<tr bgcolor=\"#fff\" height=\"22\"><td style=\"padding-left:5px; background:#fff4eb; color:#511e02\">"+Simplized(key)+"</td><td style=\"background:#ffffff; width:35px; color:red; text-align:center\">"+data.row_1[key]+" 期</td></tr>");
 			}
-			var cHtml = '<tr class="t_list_caption"><th colspan="2">兩面長龍排行</th></tr>';
+			var cHtml = '<tr class="t_list_caption"><th colspan="2">两面长龙排行</th></tr>';
 			$("#cl").html(cHtml+row_1Html.join(""));
 		}
 		for (var k in data.row_2){

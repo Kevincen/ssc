@@ -16,6 +16,7 @@ include_once ROOT_PATH.'config/Odds.php';
 
 global $user;
 $tid = $_POST['tid'];
+$lang = new utf8_lang();
 
 if ($tid == 1)
 {
