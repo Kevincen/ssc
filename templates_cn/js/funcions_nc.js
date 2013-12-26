@@ -28,9 +28,14 @@ function action(set_lm, unset_lm){
 		if (setTime[0] > 0){
 			setAction[3](true, data.odds); //賠率
 			display(true,true);
-            set_lm();
+            if (set_lm != undefined) {
+                set_lm();
+            }
         }else {
-            unset_lm();
+            if (unset_lm != undefined) {
+
+                unset_lm();
+            }
         }
 		setAction[8]();
 		setAction[0]();

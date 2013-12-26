@@ -5,6 +5,7 @@ include_once ROOT_PATH.'function/cheCookie.php';
 global $user;
 
 $name = base64_decode($_COOKIE['g_user']);
+$lang = new utf8_lang();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //获取最新投注的10条记录
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $ball_array[0] = '前位 ' .$ball_array[0];
             $ball_array[1] = '后位' . $ball_array[1];
-            $result1[$i]['g_mingxi_2'] = $ball_array[0] ." ". $ball_array[1];
+            $result1[$i]['g_mingxi_2'] = $lang->hk_cn($ball_array[0] ." ". $ball_array[1]);
         }
     }
     echo json_encode($result1);

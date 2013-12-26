@@ -206,7 +206,7 @@ setAction[0] = function() { //封盤時間和開盤期數
     }
     if (setTime[0] <1){
         $("input.amount-input").each(function(){
-           $(this).disable();
+           $(this).attr('disabled',true);
         });
         setHtml[0].html("00:00");
         return;
