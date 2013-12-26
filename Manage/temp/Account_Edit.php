@@ -110,6 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
             $g_nid = $userModel->GetUserModel(null, $_POST['s']);
             if (!$g_nid) exit(back('上級帳號不存在！'));
             if (!Matchs::isNumber($_POST['s_money'])) exit(back('信用額錯誤！'));
+            //老版有一个“占余数下线任占的
             if ($_POST['zy'] == 1) {
                 $s_Size = (int)$_POST['s_size_ky']; //上級占成
                 $s_next_ky = $g_nid[0]['g_distribution'] - $s_Size; //下級占成
@@ -155,8 +156,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op'] 
             }
             $userList = $userModel->AddUser($userList);
 
-        } else if ($cid == 4 ) {
-
         } else {
             exit(href('quit.php'));
         }
@@ -171,6 +170,9 @@ if ($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET['cid']) || !isset($_GET[
 $aid = $_GET['aid'];
 $cid = $_GET['cid']; //根據cid判斷當前用戶需要新增什麽級別的帳號
 $top_name = $_GET['top_name'];
+$top_model = $userModel->GetUserModel(null,$top_name);
+//var_dump($top_model);
+//exit;
 
 if ($aid == 'add') //新增面板顯示
 {
@@ -382,25 +384,11 @@ $top_rank_name = $userModel->Get_rank_from_name($top_name);
         <td>
             <div class="share_up_div">
                 <select name="s_size_ky" type="text" maxlength="3" vname="share_up" value="0">
-                    <option value="0">0</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="25">25</option>
-                    <option value="30">30</option>
-                    <option value="35">35</option>
-                    <option value="40">40</option>
-                    <option value="45">45</option>
-                    <option value="50">50</option>
-                    <option value="55">55</option>
-                    <option value="60">60</option>
-                    <option value="65">65</option>
-                    <option value="70">70</option>
-                    <option value="75">75</option>
-                    <option value="80">80</option>
-                    <option value="85">85</option>
-                    <option value="90">90</option>
+                    <?php
+                    for ($i=0;$i<=$top_model['g_distribution_limit'];$i+=5) {
+                        ?>
+                        <option value="0"><?php echo $i ?></option>
+                    <?php } ?>
                 </select>
             </div>
         </td>

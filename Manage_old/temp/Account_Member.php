@@ -3,6 +3,7 @@ define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'Manage/ExistUser.php';
 include_once ROOT_PATH.'Manage/config/config.php';
+//新增会员
 global $Users, $LoginId, $ConfigModel;
 if ($Users[0]['g_login_id'] != 89) if ($Users[0]['g_lock'] == 2)
 exit(back($UserOut)); //帳號已被凍結
@@ -34,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op']=
 	//zerc20120805
 	if (!isset($_POST['s']) || !Matchs::isString($_POST['s'])) exit(back('請選擇上級！'));
 	$sid = $_GET['sid'];
-	$s = $_POST['s'];
+	$s = $_POST['s']; //父账号的名称
 	$s_Name = $_POST['s_Name'];
 	$s_F_Name = $_POST['s_F_Name'];
 	$s_Pwd = $_POST['s_Pwd'];
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op']=
 	$s_select = $_POST['select'];
 	
 	$p_result = $userModel->GetUserModel(null, $s);
-	if ($sid == 2) 
+	if ($sid == 2) //直属会员
 	{
 		if ($ConfigModel['g_son_member_lock'] != 1) 
 			exit(back('權限不足，無法新增直屬會員！'));

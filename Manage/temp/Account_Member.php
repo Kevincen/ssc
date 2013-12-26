@@ -101,8 +101,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['op']) && $_POST['op']=
 	$userList['g_panlus'] = strtoupper($s_panlus);
 	$userList['g_panlu'] = strtoupper($s_panl);
 	
-	
+    //单号限额
 	//$userList['g_xianer'] = $_POST['user_lock'];
+    $userList['g_xianer'] = 1000000;
 	$userList['g_out'] = 0;
 	$userList['g_look'] = 1;
 	$userList['g_ip'] = UserModel::GetIP();
@@ -198,7 +199,6 @@ function update_MR($cid)
         $sList = array(0 => 0, 1 => 0, 2 => 0);
         $LdetList = $db->query("SELECT `g_id`, `g_name`, `g_type`, `g_a_limit`, g_b_limit, g_c_limit,  `g_d_limit`, `g_e_limit`, `g_game_id`
 		FROM `g_send_back` WHERE g_name = '{$Lname[0]['g_name']}' ORDER BY g_id DESC", 0); //获取退水表
-        exit;
         for ($i = 0; $i < count($LdetList); $i++) {
             if (!isset($_POST['a' . ($i)])) {
                 continue;
@@ -247,161 +247,3 @@ function update_MR($cid)
     }
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php echo $oncontextmenu?>>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="/Manage/temp/css/common.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="/js/actiontop.js"></script>
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/Manage/temp/js/common.js"></script>
-<script type="text/javascript" src="/Manage/temp/js/Pwd_Safety.js"></script>
-<title></title>
-<script type="text/javascript">
-<!--
-	function Gos ($this){
-		$.post("/Manage/temp/ajax/json.php", {typeid : "2", id : $this.value}, function (data){
-			//alert(data);
-			var pc = $("#pc");
-			var p1 = '<select name="s" id="s" onchange="FirstRankMoney()">';
-			var p2 = '</select>&nbsp;&nbsp;<span id="FirstRankMoney"></span>';
-			var user = new Array();
-			for (var i=0; i<data.user.length; i++){
-				user.push('<option value="'+data.user[i]+'">'+data.user[i] + '</option>');
-			}
-			pc.html(p1 + user.join('') + p2);
-			$("#bj").html("上級"+data.name);
-			$("#zj").html(data.name+"佔成");
-			FirstRankMoney($("#s"));
-		}, "json");
-	}
-	function ChkSName(p_name){
-		var p = [];
-		p.push({name:"op",value:"chksname"});
-		p.push({name:"pname",value:p_name});
-		$.post("/Manage/temp/Account_Member.php", p, function (data){
-			data = $.trim(data);
-			if(data=="1"){
-				$("#chksfresult").html("選擇帳號已存在");
-				$("#chksfresult").css("color","#FF0000");
-			}else{
-				$("#chksfresult").html("選擇帳號可用！！！");
-				$("#chksfresult").css("color","#444444");
-			}
-		});
-	}
--->
-</script>
-</head>
-<body>
-<form method="post" action="?actions=add&cid=<?php echo$cid?>&sid=<?php echo$sid?>" onsubmit="return isPost()" >
-	<table width="100%" height="100%" border="0" cellspacing="0" class="a">
-    	<tr>
-        	<td width="6" height="99%" bgcolor="#1873aa"></td>
-            <td class="c">
-            	<table border="0" cellspacing="0" class="main">
-                	<tr>
-                    	<td width="12"><img src="/Manage/temp/images/tab_03.gif" alt="" /></td>
-                        <td background="/Manage/temp/images/tab_05.gif">
-                        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                  <tr>
-                                    <td width="17"><img src="/Manage/temp/images/tb.gif" width="16" height="16" /></td>
-                                    <td width="99%">&nbsp;<?php echo $Munber?></td>
-                                  </tr>
-                            </table>
-                        </td>
-                        <td width="16"><img src="/Manage/temp/images/tab_07.gif" alt="" /></td>
-                    </tr>
-                    <tr>
-                    	<td class="t"></td>
-                        <td class="c">
-                        <!-- strat -->
-                             <table border="0" cellspacing="0" class="conter">
-                            	<tr class="tr_top">
-                            		<th colspan="2"><?php echo $Munber?></th>
-                            	</tr>
-                            	<?php echo $select?>
-                                <tr style="height:28px">
-                                	<td class="bj">會員帳號</td>
-                                	<td class="left_p5"><input name="s_Name" id="s_Name"  maxlength="20" type="text" class="text" onblur="ChkSName(this.value);" /><span id="chksfresult" style=""></span></td>
-                                </tr>
-                                <tr style="height:28px">
-                                	<td class="bj">會員名稱</td>
-                                    <td class="left_p5"><input class="text" name="s_F_Name"  maxlength="20" /></td>
-                                </tr>
-                                <tr style="height:28px">
-                                	<td class="bj">登陸密碼</td>
-                                    <td class="left_p5"><input class="text" type="password" name="s_Pwd" id="s_Pwd"  maxlength="20" /></td>
-                                </tr>
-                                <tr style="height:28px">
-                                	<td class="bj">信用額度</td>
-                                    <td class="left_p5"><input class="text" name="s_money" id="s_money"  maxlength="7" value="0" /></td>
-                                </tr>
-                                <tr style="height:28px">
-                                	<td class="bj" id="zj"><?php echo$Rank[0]?>占成</td>
-                                    <td class="left_p5"><input class="texta" name="Size_KY"  maxlength="3" value="0" />%&nbsp; <font id="Size_KY"></font> </td>
-                                </tr>
-                                <tr style="height:28px">
-                                	<td class="bj">帳號限額</td>
-                                    <td class="left_p5"><input class="texta" name="user_lock"  maxlength="9" value="1000000" />&nbsp;<span class="odds">限制會員帳號當天總下注額！</span></td>
-                                </tr>
-                                <tr style="height:28px">
-                                	<td class="bj">開放盤口</td>
-									<script type="text/javascript"> 
-										function check(spanl){
-   											var flag=0;
-   										for(var i=0;i<document.getElementsByName("s_pan[]").length;i++){
-       										if(document.getElementsByName("s_pan[]")[i].checked==true){
-       											flag++;
-    										}
-   										}
-  											 if(flag==0){
-   												alert("最少必须分配一个盘口");
-   												spanl.checked='checked';
-   													return false;
-   											}
-   												return true;
-									}
-									</script> 
-                                    <td class="left_p5">
-                                    <input type="radio" value="a" name="s_pan[]"  checked="checked" onclick="check(this)" />A盤&nbsp;
-                                    <input type="radio" value="b" name="s_pan[]"  onclick="check(this)" />B盤&nbsp;
-                                    <input type="radio" value="c" name="s_pan[]"  onclick="check(this)" />C盤&nbsp;
-                                    </td>
-                                </tr>
-                                <tr style="height:28px">
-                                	<td class="bj">設定退水</td>
-                                    <td class="left_p5">
-                                    	<select name="select" id="s_TS">
-											<option selected="selected" value="0">水全退到底</option>
-											<option value="0.3">賺取0.3退水</option>
-											<option value="0.5">賺取0.5退水</option>
-											<option value="1">賺取1.0退水</option>
-											<option value="2">賺取2.0退水</option>
-											<option value="100">賺取所有退水</option>
-										</select>
-                                    </td>
-                                </tr>
-                            </table>
-                        <!-- end -->
-                        </td>
-                        <td class="r"></td>
-                    </tr>
-                    <tr>
-                    	<td width="12"><img src="/Manage/temp/images/tab_18.gif" alt="" /></td>
-                        <td class="f" align="center"><input type="submit" class="inputs" value="確定新增" /></td>
-                        <td width="16"><img src="/Manage/temp/images/tab_20.gif" alt="" /></td>
-                    </tr>
-                </table>
-            </td>
-            <td width="6" bgcolor="#1873aa"></td>
-        </tr>
-        <tr>
-        	<td height="6" bgcolor="#1873aa"><img src="/Manage/images/main_59.gif" alt="" /></td>
-            <td bgcolor="#1873aa"></td>
-            <td height="6" bgcolor="#1873aa"><img src="/Manage/images/main_62.gif" alt="" /></td>
-        </tr>
-    </table>
- </form>
-</body>
-</html>
