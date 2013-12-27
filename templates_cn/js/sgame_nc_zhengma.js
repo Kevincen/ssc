@@ -300,7 +300,7 @@ function _Number (number, ballArr) {
     var idArr = ["#a","#b","#c","#d","#e","#f","#g","#h"];
     $("#number").html(number);
     for (var i = 0; i<ballArr.length; i++) {
-        Clss = "nc"+ballArr[i];
+        Clss = "number num"+ballArr[i];
         $(idArr[i]).removeClass().addClass(Clss);
     }
 }

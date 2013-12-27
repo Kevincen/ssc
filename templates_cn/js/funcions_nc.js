@@ -268,9 +268,9 @@ setAction[8] = function () { //开奖
 function _Number (number, ballArr) {
 	var Clss = null;
 	var idArr = ["#a","#b","#c","#d","#e","#f","#g","#h"];
-	$("#n").html(number);
+	$("#number").html(number);
 	for (var i = 0; i<ballArr.length; i++) {
-		Clss = "nc"+ballArr[i];
+		Clss = "number num"+ballArr[i];
 		$(idArr[i]).removeClass().addClass(Clss);
 	}
 }

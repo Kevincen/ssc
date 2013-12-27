@@ -2087,7 +2087,7 @@ table.tc td, table.tc th, tr.tc td, tr.tc th, td.tc, th.tc {
     line-height: 20px;
     display: inline-block;
     background: url(/wjl_tmp/ball-nc20130106.png) no-repeat;
-    margin: -5px 3px -4px 0;
+    margin: -5px 0 -4px 0;
     *margin: 0 3px 0 0;
     padding: 0;
 }

@@ -84,7 +84,7 @@ $number_type = "nc"
     <div class="actiionn"></div>
     <div id="rightLoader" dom="right" style="">
         <div id="bothSides_nc" class="bothSides">
-            <div class="betAreaBox">
+            <div class="betAreaBox nc">
                 <?php include_once './game_header.php' ?>
                 <div class="common" id="common_div" style="display: block;">
                     <div class="klctouzhuArea">
