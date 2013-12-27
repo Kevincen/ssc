@@ -202,15 +202,35 @@ class SumAmountnc
                 switch ($resultList[$i]['g_mingxi_1']) {
                     case '第一球' :
                         $resultList[$i]['g_result'] = $numberList[0]['g_ball_1'];
+                        if ($resultList[$i]['g_mingxi_2'] == '龙' || $resultList[$i]['g_mingxi_2'] == '虎')
+                        {
+                            $resultList[$i]['g_result'] = $numberList[0]['g_ball_1'].','.$numberList[0]['g_ball_8'];
+
+                        }
                         break;
                     case '第二球' :
                         $resultList[$i]['g_result'] = $numberList[0]['g_ball_2'];
+                        if ($resultList[$i]['g_mingxi_2'] == '龙' || $resultList[$i]['g_mingxi_2'] == '虎')
+                        {
+                            $resultList[$i]['g_result'] = $numberList[0]['g_ball_2'].','.$numberList[0]['g_ball_7'];
+
+                        }
                         break;
                     case '第三球' :
                         $resultList[$i]['g_result'] = $numberList[0]['g_ball_3'];
+                        if ($resultList[$i]['g_mingxi_2'] == '龙' || $resultList[$i]['g_mingxi_2'] == '虎')
+                        {
+                            $resultList[$i]['g_result'] = $numberList[0]['g_ball_3'].','.$numberList[0]['g_ball_6'];
+
+                        }
                         break;
                     case '第四球' :
                         $resultList[$i]['g_result'] = $numberList[0]['g_ball_4'];
+                        if ($resultList[$i]['g_mingxi_2'] == '龙' || $resultList[$i]['g_mingxi_2'] == '虎')
+                        {
+                            $resultList[$i]['g_result'] = $numberList[0]['g_ball_4'].','.$numberList[0]['g_ball_5'];
+
+                        }
                         break;
                     case '第五球' :
                         $resultList[$i]['g_result'] = $numberList[0]['g_ball_5'];
@@ -293,6 +313,10 @@ class SumAmountnc
             } else if ($resultList['g_mingxi_2'] == '總和尾大' || $resultList['g_mingxi_2'] == '總和尾小' || $resultList['g_mingxi_2'] == '总和尾大' || $resultList['g_mingxi_2'] == '总和尾小') {
                 $resultList = sum_ball_str_a_nc($resultList['g_result'], 7);
             } //龍虎計算
+            else if ($resultList['g_mingxi_2'] == '龙' || $resultList['g_mingxi_2'] == '虎') {
+                $ballArr = explode(',', $resultList['g_result']);
+                $resultList = sum_ball_str_a($ballArr, 1);
+            }
             else if ($resultList['g_mingxi_2'] == '家禽' || $resultList['g_mingxi_2'] == '野兽') {
                 $ballArr = explode(',', $resultList['g_result']);
                 $resultList = sum_ball_str_a_nc($ballArr, 1);
