@@ -86,8 +86,12 @@ else if ($tid == 2)
 		}
 		//取出1-8球和總和龍虎雙面賠率
 		$db=new DB();
-		$sql = "SELECT  `h21`, `h22`, `h23`, `h24`, `h25`, `h26`, `h27`, `h28` FROM `g_odds5` WHERE `g_type` = 'Ball_1' OR `g_type` = 'Ball_2' OR `g_type` = 'Ball_3' OR `g_type` = 'Ball_4' OR `g_type` = 'Ball_5' OR `g_type` = 'Ball_6' OR `g_type` = 'Ball_7' OR `g_type` = 'Ball_8' ORDER BY g_id ASC ";
+        $sql = "SELECT  `h21`, `h22`, `h23`, `h24`, `h25`, `h26`, `h27`, `h28`,`h29`,`h30` FROM `g_odds5` WHERE `g_type` = 'Ball_1' OR `g_type` = 'Ball_2' OR `g_type` = 'Ball_3' OR `g_type` = 'Ball_4'  ORDER BY g_id ASC ";
+        $mresult = $db->query($sql, 1);
+		$sql = "SELECT  `h21`, `h22`, `h23`, `h24`, `h25`, `h26`, `h27`, `h28` FROM `g_odds5` WHERE `g_type` = 'Ball_5' OR `g_type` = 'Ball_6' OR `g_type` = 'Ball_7' OR `g_type` = 'Ball_8' ORDER BY g_id ASC ";
 		$sresult = $db->query($sql, 1);
+        $sresult = array_merge($mresult,$sresult);
+
 		$sql = "SELECT `h1`, `h2`, `h3`, `h4`, `h5`, `h6`, `h7`, `h8` FROM `g_odds5` WHERE g_type = 'Ball_9' ORDER BY g_id ASC ";
 		$eresult = $db->query($sql, 1);
 		$list = array_merge($sresult, $eresult);

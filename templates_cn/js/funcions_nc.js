@@ -33,7 +33,6 @@ function action(set_lm, unset_lm){
             }
         }else {
             if (unset_lm != undefined) {
-
                 unset_lm();
             }
         }
@@ -149,7 +148,7 @@ setAction[3] = function(lock, odds) { //賠率
 					$(this).html("<span id=\""+clas+"\" class=\"bgs\">"+$odds+"</span>");
 			}
 			else 
-				$(this).html("<a id=\""+clas+"\" href=\"fn8.php?v="+nunId+"&n="+$thisId+"&t="+tysId+"\" target=\"leftFrame\" class=\"bgh\">"+$odds+"</a>");
+				$(this).html("<span class=\"bgh\">"+$odds+"</span>");
 		});
 	}
 };

@@ -29,9 +29,13 @@ function action(set_lm, unset_lm){
 		if (setTime[0] > 0){
 			setAction[3](true, data.odds); //賠率
 			display(true,true);
-            set_lm();
+            if (set_lm != undefined) {
+                set_lm();
+            }
 		}else {
-            unset_lm();
+            if (unset_lm != undefined) {
+                unset_lm();
+            }
         }
 		setAction[8]();
 		setAction[0]();
@@ -147,7 +151,7 @@ setAction[3] = function(lock, odds) { //賠率
 			{
 				if($odds != null)
 				{
-					$(this).html("<a id=\""+clas+"\" href=\"fn.php?v="+nunId+"&n="+$thisId+"&t="+tysId+"\" target=\"leftFrame\" class=\"bgh\">"+$odds+"</a>");
+					$(this).html("<span class=\"bgh\">"+$odds+"</span>");
 				}
 			}
 				

@@ -354,7 +354,7 @@ function loadodds(oddslist, endtime, number){
 			}else{
 			urls = "fnpk3.php?v="+number+"&n="+i+"&t=t"+(n+1);
 			}
-			link = "<a href=\""+urls+"\"  target=\"leftFrame\" class=\"bgh\">"+odds+"</a>";
+			link = "<span class=\"bgh\">"+odds+"</span>";
 			$("#"+a[n]+i).html(link);
 			$("#"+i).html(link);
 		}
@@ -440,7 +440,7 @@ function submitforms(){
 			count++;
 			countmoney += value;
 			s = nameformat($(this).attr("name").split("_"));
-			s[2] = $("#"+s[2]+" a").html();
+            s[2] = $("#"+s[2]+"").text();
 			if (s[0] == "總和、龍虎"){
 				n = s[1]+" @ "+s[2]+" x ￥"+value;
                 ball_array.push(s[1]);

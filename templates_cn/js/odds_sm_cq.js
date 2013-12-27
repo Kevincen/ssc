@@ -323,7 +323,7 @@ function loadodds(oddslist, endtime, number){
 			for (var i in oddslist[n]){
 				odds = oddslist[n][i];
 				urls = "fn3.php?tid="+bc(a[n])+"&numberid="+number+"&hid="+a[n]+i;
-				link = "<a href=\""+urls+"\"  target=\"leftFrame\" class=\"bgh\">"+odds+"</a>";
+				link = "<span class=\"bgh\">"+odds+"</span>";
 				//alert(a[n]+i);
 				//$("#"+a[n]+i).html(link);
 				$("#"+a[n]+i).html(link);
@@ -428,7 +428,7 @@ function submitforms(){
 			sArray += ss2+","+value+"|";
 			s = nameformat(ss);
 
-			s[2] = $("#"+s[2]+" a").html();
+            s[2] = $("#"+s[2]+"").text();
 
 			if (s[0] == "總和、龍虎")
 				n = s[1]+" @ "+s[2]+" x ￥"+value;

@@ -203,14 +203,14 @@ $number_type = "nc"
                                             <td class="amount huiseBg loads"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fontBlue huiseBg">龙??</td>
-                                            <td playtype="059" number="42" class="huiseBg o"></td>
+                                            <td class="fontBlue huiseBg caption_1">龙</td>
+                                            <td playtype="059" number="42" class="huiseBg o" id="ah29"></td>
                                             <td class="amount huiseBg loads"><input type="text" class="amount-input"
                                                                               maxlength="9" disabled="disabled"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fontBlue huiseBg">虎??</td>
-                                            <td playtype="059" number="43" class="huiseBg o"></td>
+                                            <td class="fontBlue huiseBg caption_1">虎</td>
+                                            <td playtype="059" number="43" class="huiseBg o" id="ah30"></td>
                                             <td class="amount huiseBg loads"><input type="text" class="amount-input"
                                                                               maxlength="9" disabled="disabled"></td>
                                         </tr>
@@ -271,14 +271,14 @@ $number_type = "nc"
                                             <td class="amount huiseBg loads"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fontBlue huiseBg">龙??</td>
-                                            <td playtype="059" number="42" class="huiseBg o"></td>
+                                            <td class="fontBlue huiseBg caption_1">龙</td>
+                                            <td playtype="059" number="42" class="huiseBg o" id="bh29"></td>
                                             <td class="amount huiseBg loads"><input type="text" class="amount-input"
                                                                               maxlength="9" disabled="disabled"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fontBlue huiseBg">虎??</td>
-                                            <td playtype="059" number="43" class="huiseBg o"></td>
+                                            <td class="fontBlue huiseBg caption_1">虎</td>
+                                            <td playtype="059" number="43" class="huiseBg o" id="bh30"></td>
                                             <td class="amount huiseBg loads"><input type="text" class="amount-input"
                                                                               maxlength="9" disabled="disabled"></td>
                                         </tr>
@@ -339,15 +339,15 @@ $number_type = "nc"
                                             <td class="amount huiseBg loads"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fontBlue huiseBg">龙??</td>
-                                            <td playtype="059" number="42" class="huiseBg o"></td>
-                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                            <td class="fontBlue huiseBg caption_1">龙</td>
+                                            <td playtype="059" number="42" class="huiseBg o" id="ch29"></td>
+                                            <td class="amount huiseBg loads" id="ch29"><input type="text" class="amount-input"
                                                                               maxlength="9" disabled="disabled"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fontBlue huiseBg">虎??</td>
-                                            <td playtype="059" number="43" class="huiseBg o"></td>
-                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
+                                            <td class="fontBlue huiseBg caption_1">虎</td>
+                                            <td playtype="059" number="43" class="huiseBg o" id="ch30"></td>
+                                            <td class="amount huiseBg loads" id="ch30"><input type="text" class="amount-input"
                                                                               maxlength="9" disabled="disabled"></td>
                                         </tr>
                                         </tbody>
@@ -407,16 +407,14 @@ $number_type = "nc"
                                             <td class="amount huiseBg loads"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fontBlue huiseBg">龙??</td>
-                                            <td playtype="059" number="42" class="huiseBg o"></td>
-                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
-                                                                              maxlength="9" disabled="disabled"></td>
+                                            <td class="fontBlue huiseBg caption_1">龙</td>
+                                            <td playtype="059" number="42" class="huiseBg o" id="dh29"></td>
+                                            <td class="amount huiseBg loads"></td>
                                         </tr>
                                         <tr>
-                                            <td class="fontBlue huiseBg">虎??</td>
-                                            <td playtype="059" number="43" class="huiseBg o"></td>
-                                            <td class="amount huiseBg loads"><input type="text" class="amount-input"
-                                                                              maxlength="9" disabled="disabled"></td>
+                                            <td class="fontBlue huiseBg caption_1">虎</td>
+                                            <td playtype="059" number="43" class="huiseBg o" id="dh30"></td>
+                                            <td class="amount huiseBg loads"></td>
                                         </tr>
                                         </tbody>
                                     </table>

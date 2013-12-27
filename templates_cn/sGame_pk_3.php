@@ -264,12 +264,12 @@ $sub_type = "1 ~ 5";
         <tr>
             <td class="fontBlue caption_1"><span class="number num7"></span></td>
             <td class="o" id="bh7"></td>
-            <td class="amount tt" id="t6"></td>
+            <td class="amount tt" id="t7"></td>
         </tr>
         <tr>
             <td class="fontBlue caption_1"><span class="number num8"></span></td>
             <td class="o" id="bh8"></td>
-            <td class="amount tt" id="t7"></td>
+            <td class="amount tt" id="t8"></td>
         </tr>
         <tr>
             <td class="fontBlue caption_1"><span class="number num9"></span></td>
@@ -360,12 +360,12 @@ $sub_type = "1 ~ 5";
         <tr>
             <td class="fontBlue caption_1"><span class="number num7"></span></td>
             <td class="o" id="ch7"></td>
-            <td class="amount tt" id="t6"></td>
+            <td class="amount tt" id="t7"></td>
         </tr>
         <tr>
             <td class="fontBlue caption_1"><span class="number num8"></span></td>
             <td class="o" id="ch8"></td>
-            <td class="amount tt" id="t7"></td>
+            <td class="amount tt" id="t8"></td>
         </tr>
         <tr>
             <td class="fontBlue caption_1"><span class="number num9"></span></td>
@@ -456,12 +456,12 @@ $sub_type = "1 ~ 5";
         <tr>
             <td class="fontBlue caption_1"><span class="number num7"></span></td>
             <td class="o" id="dh7"></td>
-            <td class="amount tt" id="t6"></td>
+            <td class="amount tt" id="t7"></td>
         </tr>
         <tr>
             <td class="fontBlue caption_1"><span class="number num8"></span></td>
             <td class="o" id="dh8"></td>
-            <td class="amount tt" id="t7"></td>
+            <td class="amount tt" id="t8"></td>
         </tr>
         <tr>
             <td class="fontBlue caption_1"><span class="number num9"></span></td>
@@ -552,12 +552,12 @@ $sub_type = "1 ~ 5";
         <tr>
             <td class="fontBlue caption_1"><span class="number num7"></span></td>
             <td class="o" id="eh7"></td>
-            <td class="amount tt" id="t6"></td>
+            <td class="amount tt" id="t7"></td>
         </tr>
         <tr>
             <td class="fontBlue caption_1"><span class="number num8"></span></td>
             <td class="o" id="eh8"></td>
-            <td class="amount tt" id="t7"></td>
+            <td class="amount tt" id="t8"></td>
         </tr>
         <tr>
             <td class="fontBlue caption_1"><span class="number num9"></span></td>

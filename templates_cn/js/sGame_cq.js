@@ -235,7 +235,7 @@ var setResultcq = new Array();
 			for (var i in oddslist[n]){
 				odds = oddslist[n][i];
 				urls = "fn2.php?tid="+bc(a[n])+"&numberid="+number+"&hid="+a[n]+i;
-				link = "<a href=\""+urls+"\"  target=\"leftFrame\" class=\"bgh\">"+odds+"</a>";
+				link = "<span class=\"bgh\">"+odds+"</span>";
 				$("#"+a[n]+i).html(link);
 			}
 		}
