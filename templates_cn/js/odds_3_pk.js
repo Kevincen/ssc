@@ -184,6 +184,7 @@ function smlen(data) { //兩面長龍
 	if (data.num_arr != ""){
 		var row_1Html = new Array();
 		for (var key in data.num_arr){
+            key = number_to_cn(key);
 		row_1Html.push("<tr bgcolor=\"#fff\" height=\"22\"><td style=\"padding-left:5px; background:#fff4eb; color:#511e02\">"+Simplized(key)+"</td><td style=\"background:#ffffff; width:35px; color:red; text-align:center\">"+data.num_arr[key]+" 期</td></tr>");
 		}
 		var cHtml = '<tr class="t_list_caption"><th colspan="2">两面长龙排行</th></tr>';
