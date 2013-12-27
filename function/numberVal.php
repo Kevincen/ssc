@@ -93,6 +93,8 @@ function _isNumberIsNotNullnc ($db, $ball, $number)
             case '总和双':
             case '总和尾大':
             case '总和尾小':
+            case '龙':
+            case '虎':
                 $bool= true;
                 break;
 		}

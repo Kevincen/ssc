@@ -526,6 +526,8 @@ function GetOddsnc ($s_type, $select)
         case '25': $select = 'h25';break;//总和尾大
         case '26': $select = 'h26';break;//总和尾小
         //end of 正码 尾大尾小等
+        case '龙': $select = 'h29';break;
+        case '虎': $select = 'h30';break;
 	}
 	$db = new DB();
 	$sql = "SELECT {$select} FROM `g_odds5` WHERE `g_type` = '{$where}' LIMIT 1 ";
@@ -589,6 +591,8 @@ function _getStringnc ($t, $ball=null)
 				$type = '1-8梅兰菊竹';
 			else if ($ball == '中' || $ball == '發' || $ball == '白')
 				$type = '1-8中發白';
+            else if ($ball == '龙' || $ball == '虎')
+                $type = '龙虎';
 		}
 	}
 	else if ($t == "總和、家禽野兽" || $t == "家禽野兽" ||$t == "總和" )

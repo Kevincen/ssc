@@ -335,11 +335,19 @@ function loadinput(endtime){
 	loads.each(function(){
 		count++;
 		if (count>=7 && count < 47){
-			s = "t"+lock1+"_h2"+lock2;
+            if (lock2 == 10) {
+                s = "t" + lock1 + "_h30";
+            } else {
+                s = "t"+lock1+"_h2"+lock2;
+            }
 			lock2++;
 			if (lock2 == 11) {lock2 =1;lock1++;}
 		} else if (count >=47 && count < 79){
-				s = "t"+lock5+"_h2"+lock3;
+            if (lock3 == 10) {
+                s = "t" + lock5 + "_h30";
+            } else {
+                s = "t"+lock5+"_h2"+lock3;
+            }
 			lock3++;
 			if (lock3 == 9) {lock3 =1;lock5++;}
 		} else {
@@ -478,7 +486,7 @@ function nameformat(array){
 		case "h27": arr[1] = '合數單'; arr[2]=h+array[1]; break;
 		case "h28": arr[1] = '合數雙'; arr[2]=h+array[1]; break;
         case "h29": arr[1] = '龙'; arr[2]=h+array[1]; break;
-        case "h210": arr[1] = '虎'; arr[2]=h+array[1]; break;
+        case "h30": arr[1] = '虎'; arr[2]=h+array[1]; break;
 	}
 	return arr;
 }
