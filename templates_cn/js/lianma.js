@@ -244,6 +244,7 @@ function submit_form()
     game_name = $(game_selecter).find('label').text();
     odd_array.push($(game_selecter).find('span').find('span').text());
 
+
     if (game_name == '选二连直') {
         var ball_str_front = '';
         $('input[name=t_front[]]').each(function(){
@@ -269,13 +270,32 @@ function submit_form()
 
         ball_str += '前位:' + ball_str_front + ' 后位:' + ball_str_end;
     } else {
+        var ball_count = 0;
+        var ball_min = 0;
         $('input[name=t[]]').each(function(){
             if ($(this).attr('checked') == true) {
                 ball_str += $(this).val() + ' ';
+                ball_count++;
             }
         })
+        if (game_name.indexOf('二') != -1) {
+            ball_min = 2;
+        } else if (game_name.indexOf('三') != -1) {
+            ball_min = 3;
+        } else if (game_name.indexOf('四') != -1) {
+            ball_min = 4;
+        } else if (game_name.indexOf('五') != -1) {
+            ball_min = 5;
+        }
+
+        if (ball_count < ball_min) {
+            my_alert('请您至少选择'+ball_min+"个号码");
+            return ;
+        }
+
          if (ball_str == '') {
              my_alert('请您选择号码');
+             return ;
          }
     }
     ball_array.push(game_name + ball_str);

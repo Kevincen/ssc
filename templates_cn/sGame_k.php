@@ -95,29 +95,29 @@ $sub_type = '连码';
                                             class="o" id="h1"></span></td>
                                     <td class="b-top-none">&nbsp;</td>
                                     <td class="bq-title lianmatab" name="2"><input type="radio" id="3" name="gg"
-                                                                                   value="t2"><label for="3"
+                                                                                   value="t3"><label for="3"
                                                                                                          class="label">选二连组</label><span
-                                            class="o" id="h2"></span></td>
+                                            class="o" id="h3"></span></td>
                                     <td class="b-top-none">&nbsp;</td>
                                     <td class="bq-title lianmatab" name="3"><input type="radio" id="4" name="gg"
                                                                                    value="t4"><label for="4"
                                                                                                          class="label">任选三</label><span
-                                            class="o" id="h3">></span></td>
+                                            class="o" id="h4"></span></td>
                                     <td class="b-top-none">&nbsp;</td>
                                     <td class="bq-title lianmatab" name="3"><input type="radio" id="6" name="gg"
                                                                                    value="t6"><label for="6"
                                                                                                          class="label">选三前组</label><span
-                                            class="o" id="h4">></span></td>
+                                            class="o" id="h6"></span></td>
                                     <td class="b-top-none">&nbsp;</td>
                                     <td class="bq-title lianmatab" name="4"><input type="radio" id="7" name="gg"
                                                                                    value="t7"><label for="7"
                                                                                                          class="label">任选四</label><span
-                                            class="o" id="h5">></span></td>
+                                            class="o" id="h7"></span></td>
                                     <td class="b-top-none">&nbsp;</td>
                                     <td class="bq-title lianmatab" name="5"><input type="radio" id="8" name="gg"
                                                                                    value="t8"><label for="8"
                                                                                                          class="label">任选五</label><span
-                                            class="o" id="h6">></span></td>
+                                            class="o" id="h8"></span></td>
                                 </tr>
                                 </tbody>
                             </table>
