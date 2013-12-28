@@ -408,7 +408,7 @@ function numberList($gameType, $date, $id=false)
                 $Ball[8] = $value['g_ball_8'];*/
 //                end by wjl
 				$ball_count = $value['g_ball_1'] + $value['g_ball_2'] + $value['g_ball_3'] + $value['g_ball_4'] + $value['g_ball_5'] +
-				$value['g_ball_6'] + $value['g_ball_7'] + $value['g_ball_8'];
+                    $value['g_ball_6'] + $value['g_ball_7'] + $value['g_ball_8'];
 				$Ball = $ball_1.$ball_2.$ball_3.$ball_4.$ball_5.$ball_6.$ball_7.$ball_8;
 				$numberList[$key][0] = $value['g_id'];
 				$numberList[$key][1] = $value['g_qishu'];

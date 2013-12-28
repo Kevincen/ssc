@@ -285,6 +285,7 @@ switch ($typeid) {
         echo $noresult_html;
     } else if ($typeid == 1) {
         for ($i = 0; $i < count($numberList) - 1; $i++) {
+            $ball_array = explode(',',$numberList[$i][3]);
             ?>
             <tr>
                 <td><?php echo $numberList[$i][1] ?></td>
@@ -295,7 +296,8 @@ switch ($typeid) {
                             class="number num20"></span><span class="number num11"></span><span
                             class="number num12"></span></td>-->
                 <td colspan="8" id="<?php echo $numberList[$i][1] ?>"><?php echo $numberList[$i][3] ?></td>
-                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][4]) ?></td>
+    <!--                <td class="bold"><?php /*echo array_sum($ball_array) */?></td>-->
+                <td class="bold"><?php echo $numberList[$i][4]?></td>
                 <td class="bold"><?php echo $lang->hk_cn($numberList[$i][5]) ?></td>
                 <td class="bold"><span class="reder "><?php echo $lang->hk_cn($numberList[$i][6]) ?></span></td>
                 <td class="bold"><span class="reder "><?php echo $lang->hk_cn($numberList[$i][7]) ?> </span></td>
