@@ -151,7 +151,7 @@ $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_ga
                     }
                     ?>
                     <tr>
-                        <td colspan="3"><p>注单号：<span class="greener"><?php $ListArr[0]['id']?></span></p>
+                        <td colspan="3"><p>注单号：<span class="greener"><?php  echo $ListArr[0]['id']?></span></p>
 
                             <p class="text-i-em3"><span class="bluer"><?php echo $stringList['type']?></span>&nbsp; @ &nbsp;<b class="red"><?php echo $odds ?></b></p>
 
@@ -186,7 +186,7 @@ $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_ga
                         $nn = $ListArr[$i]['g_mingxi_1'] == '總和、龍虎' ? $ListArr[$i]['g_mingxi_2'] : $ListArr[$i]['g_mingxi_1'].''.$ListArr[$i]['g_mingxi_2'].'';
                         ?>
                         <tr>
-                            <td colspan="3"><p>注单号：<span class="greener"><?php $ListArr[$i]['id']?></span></p>
+                            <td colspan="3"><p>注单号：<span class="greener"><?php echo  $ListArr[$i]['id']?></span></p>
 
                                 <p class="text-i-em3"><span class="bluer"><?php echo $lang->hk_cn($nn)?></span>&nbsp; @ &nbsp;<b
                                         class="red"><?php echo $ListArr[$i]['g_odds'] ?></b></p>

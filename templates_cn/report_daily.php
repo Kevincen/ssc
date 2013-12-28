@@ -104,6 +104,7 @@ $result = $db->query($sql, 1);
                         $Lang = new utf8_lang();
                         for ($i=0; $i<count($result);$i++) {
                             ?>
+                        <tr>
                             <td><?php echo base64_decode($_GET['gid']) . ' ' . GetWeekDay(base64_decode($_GET['gid']), 1) ?></td>
                             <td><?php echo $Lang->hk_cn($result[$i]['g_type']) ?></td>
                             <td><?php echo $result[$i]['t_zhushu']?></td>
@@ -118,7 +119,7 @@ $result = $db->query($sql, 1);
                                    class="black" bdata="daycallBack,click,daycallBack">当天明细</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
                                     href="report_term.php?gid=<?php echo $_GET['gid']?>&dateId=<?php echo $_GET['gid']?>&type=<?php echo $result[$i]['g_type']?>"
                                     class="black" bdata="CountcallBack,click,CountcallBack">按期数查看</a></td>
-
+                        </tr>
                         <?php
                             $sum_zhushu += $result[$i]['t_zhushu'];
                             $sum_jine += $result[$i]['t_jine'];
@@ -127,8 +128,6 @@ $result = $db->query($sql, 1);
                         }
 
                         ?>
-                        <tr>
-                        </tr>
                         </tbody>
                         <tfoot class="bg_g1">
                         <tr id="play_total" class="alltotal">

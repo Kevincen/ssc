@@ -858,6 +858,14 @@ function fen_pei_klc_set_data(data)
                 }
                 body_html += '</li>';
             } else {
+                //球号分配表 广东快乐十分19，20球需要标红色
+                var ball_array = ball.split(',');
+                for (var x=0;x<ball_array.length; i++) {
+                    if (ball_array[x] >= 19) {
+                        ball_array[x] = '<span class="red">' + ball_array[x] + '</span>';
+                    }
+                }
+                ball = ball_array.join(',');
                 body_html += '<li class="ball-2">' + ball + "</li>";
             }
 

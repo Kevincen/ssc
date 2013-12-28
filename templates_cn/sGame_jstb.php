@@ -70,6 +70,7 @@ $number_type = "k3"
             $('#yiban').bind('click', function () {
                 yiban();
             })
+            kuijie();
         });
     </script>
     <style type="text/css">
