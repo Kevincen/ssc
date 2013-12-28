@@ -148,6 +148,11 @@ $(function (){
 		yiban();							   
 	})
     kuijie();
+    if (typeof  set_enter_key != undefined) {
+        set_enter_key(function() {
+            submitforms();
+        });
+    }
 });
 
 /**

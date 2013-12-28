@@ -176,3 +176,18 @@ function number_to_cn(str)
 
     return ret_str;
 }
+
+function set_enter_key(recall_function)
+{
+    if (typeof recall_function == undefined) {
+        console.log("recall_function undefined");
+    }
+    document.onkeydown = function (e) {
+        var theEvent = window.event || e;
+        var code = theEvent.keyCode || theEvent.which;
+        if (code == 13) {
+            recall_function();
+        }
+    }
+
+}

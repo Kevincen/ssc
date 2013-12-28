@@ -45,6 +45,11 @@ $g = $_GET['g'];
             })
             kuijie();
             action();
+            if (typeof  set_enter_key != undefined) {
+                set_enter_key(function() {
+                    submit_odds();
+                });
+            }
         });
     </script>
 </head>

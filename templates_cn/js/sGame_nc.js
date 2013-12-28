@@ -131,7 +131,12 @@ $(function () {
 
 	action();
 	$("#dp").attr("action","./inc/DataProcessingnc.php?t="+encodeURI($("#tys").html()));
-	
+
+    if (typeof  set_enter_key != undefined) {
+        set_enter_key(function() {
+            $("#submit_top,#submit_bottom").click();
+        });
+    }
 	//POST提交表單
 	$("#submit_top,#submit_bottom").click(function () {
 		if(iSubmit()==false)return false;

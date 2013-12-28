@@ -45,6 +45,12 @@ $number_type = "nc"
             })
             kuijie();
             set_infos();
+
+            if (typeof  set_enter_key != undefined) {
+                set_enter_key(function() {
+                    submitforms();
+                });
+            }
         });
     </script>
 </head>

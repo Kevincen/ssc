@@ -181,7 +181,12 @@ $(function () {
 
 	action()
 	$("#dp").attr("action","./inc/DataProcessing.php?t="+encodeURI($("#tys").html()));
-	
+    if (typeof  set_enter_key != undefined) {
+        set_enter_key(function() {
+            $("#submits,#submits1").click();
+        });
+    }
+
 	//POST提交表單
 	$("#submits,#submits1").click(function () {
 		if(iSubmit()==false)return false;

@@ -71,6 +71,11 @@ $number_type = "k3"
                 yiban();
             })
             kuijie();
+            if (typeof  set_enter_key != undefined) {
+                set_enter_key(function() {
+                    submitforms();
+                });
+            }
         });
     </script>
     <style type="text/css">
