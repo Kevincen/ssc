@@ -288,7 +288,7 @@ function submit_odds(type_name,ball_selecter, go_on)
                 ball_array.push(ballname);
                 ball_id_array.push(ballnum);
                 money_array.push(money);
-                odd_array.push(money);
+                odd_array.push(odd);
             });
             console.log(debug_counter);
         }

@@ -112,7 +112,7 @@ if (isset($_SESSION['guid_code'])) {
         upUserKyYongEr($ListArr[0]['KeYongEr'], $ListArr[0]['g_nid']);
     } else if ($action == 'fn1') //alert提交
     {
-        var_dump($_POST);
+        //var_dump($_POST);
         $s_number = $_POST['s_number'];
         $s_type = $_POST['s_type'];
         $s_ball_arr = $_POST['s_ball'];

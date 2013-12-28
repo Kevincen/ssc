@@ -101,7 +101,7 @@ function MyReset(){
 
 function AllMoney(){
     var sel=false;
-    $('.loads').each(function(){
+    $('.tt').each(function(){
         if(  $(this).prev().attr('title')=='选中' ){ //已选中
             $(this).find('input').val( $('#AllMoney').val() );
             sel=true;
@@ -133,11 +133,12 @@ $(function () {
 	$("#dp").attr("action","./inc/DataProcessingnc.php?t="+encodeURI($("#tys").html()));
 	
 	//POST提交表單
-	$("#submits,#submits1").click(function () {
+	$("#submit_top,#submit_bottom").click(function () {
 		if(iSubmit()==false)return false;
 		var suc = true;
 		$.ajax ({type:"post",url:URL,dataType:"text",async:false,data:{typeid:"postodds"},success : function (data) {
 				suc = postodds (data);
+                MyReset();
             }
 		});
 		 

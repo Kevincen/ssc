@@ -1,3 +1,4 @@
+//投注post_odds
 var _lock = false;
 var setAction = new Array();
 var setTime = new Array(); 
@@ -398,7 +399,7 @@ function sodds (id, odds)
 	return r;
 }
 
-function postodds (data) 
+function postodds (data)  //投注 by 2b
 {
 	$.post(URL, { typeid : "sessionId"}, function(){});
 	if (data) {
@@ -428,31 +429,39 @@ function postodds (data)
 		var tys = $("#tys").html();
 		var uArr=[], result="", s=0, s_number=[], h=[];
 		var odds = 0;
+        var ball_array = new Array();
+        var odd_array = new Array();
+        var money_array = new Array();
 		for (var i = 0; i < tArr.length; i++) {
-			odds = $("#s"+sid[i].replace("t","")).html();
+			odds = $("#h"+sid[i].replace("t","")).text();
 			h = "h"+sid[i].replace("t","");
 			result = changes(tys,sid[i]);
 			s += m[i];
 			if (tys == "總和、家禽野兽" || tys == "家禽野兽"  || tys=="總和"){
 				uArr.push(result+" @ "+odds+" x ￥"+m[i]+"\n");
+                ball_array.push(result);
 			} else {
 				uArr.push("  "+tys+"["+result+"] @ "+odds+" x ￥"+m[i]+"\n");
+                ball_array.push(tys+ ' ' + result);
 			}
-			
+            odd_array.push(odds);
+            money_array.push(m[i]);
 			s_number.push( '<input type="hidden" name="s_hid[]" value="'+h+'"><input type="hidden" name="s_ball[]" value="'+result+'"><input type="hidden" name="s_odds[]" value="'+odds+'"><input type="hidden" name="s_money[]" value="'+m[i]+'">');
 		}
-		var p = "共 ￥"+s+" / "+cou+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
+/*		var p = "共 ￥"+s+" / "+cou+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
 			   p+=uArr.join('');
-		if (confirm(p)) {
+		if (confirm(p)) {*/
 			var oid = $("#o").html(); 
 			var s_type = '<input type="hidden" name="s_type" value="'+tys+'"><input type="hidden" name="s_number" value="'+oid+'">';
 			s_number.push(s_type);
 			$(".actiionn").html(s_number.join(''));
 			 
 			$(".inp1").val("");
-			return true;
+            submit_confirm(ball_array,odd_array,money_array);
+            my_reset();
+/*			return true;
 		}
-		return false;
+		return false;*/
 	}
 }
 
