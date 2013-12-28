@@ -293,7 +293,7 @@ setAction[8] = function () { //开奖
 function _Number (number, ballArr) {
 	var Clss = null;
 	var idArr = ["#a","#b","#c","#d","#e","#f","#g","#h"];
-	$("#n").html(number);
+	$("#number").html(number);
 	for (var i = 0; i<ballArr.length; i++) {
 		Clss = "No_gd"+ballArr[i];
 		$(idArr[i]).removeClass().addClass(Clss);
@@ -483,7 +483,7 @@ function postodds (data)
         var money_array = new Array();
 
 		for (var i = 0; i < tArr.length; i++) {
-			odds = $("#s"+sid[i].replace("t","")).html();
+			odds = $("#h"+sid[i].replace("t","")).text();
 			h = "h"+sid[i].replace("t","");
 			result = changes(tys,sid[i]);
 			s += m[i];

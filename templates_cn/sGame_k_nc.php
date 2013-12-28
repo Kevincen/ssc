@@ -99,9 +99,9 @@ $sub_type = '连码';
                         </td>
                     </tr>
                     <tr height="29">
-                        <td width="25%" height="29"><strong class="green" id="o"></strong><span
+                        <td width="18%" height="29"><strong class="green" id="o"></strong><span
                                 >期</span></td>
-                        <td width="28%"> 距离封盘：<span style="color:#511E02" id="endTime" nc="0">00:00</span></td>
+                        <td width="25%"> 距离封盘：<span style="color:#511E02" id="endTime" nc="0">00:00</span></td>
                         <td class="pk10_nav_td"> 距离开奖：<span class="red" id="endTimes" nc="0">00:00</span></td>
                         <td align="right" style="color:#511E02"><span id="endTimea" class="endTimea">6</span>秒
                             <span id="resultwheel" class="hide"></span></td>

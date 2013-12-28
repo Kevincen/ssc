@@ -162,12 +162,17 @@ function number_to_cn(str)
 
 
     for (var i=0;i<str.length;i++) {
-        if (str.charAt(i).match(preg)) {
-            ret_str += num_array[str.charAt(i)];
+        if (str.charAt(i).match(preg) != "") {
+            if (str.charAt(i+1).match(preg) != "") {
+                ret_str += num_array[str.charAt(i) + str.charAt(i+1)];
+                i++;
+            } else {
+                ret_str += num_array[str.charAt(i)];
+            }
         } else {
             ret_str += str.charAt(i);
         }
     }
 
-    return str();
+    return ret_str;
 }

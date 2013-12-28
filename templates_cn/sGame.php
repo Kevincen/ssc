@@ -85,7 +85,7 @@ switch ($g) {
             <div id="row2"><span id="sy" style="font-size:14px;position:relative; top:-2px">0</span></div>
         </td>
         <td  class="bolds klsfhm" align="right" colspan="2">
-            <span id="n" style="line-height:25px;"></span>期开奖<div id="a" class="nc1">&nbsp;</div><div id="b">&nbsp;</div><div id="c">&nbsp;</div><div id="d">&nbsp;</div><div id="e">&nbsp;</div><div id="f">&nbsp;</div><div id="g">&nbsp;</div><div id="h">&nbsp;</div>
+            <span id="number" style="line-height:25px;"></span>期开奖<div id="a" class="nc1">&nbsp;</div><div id="b">&nbsp;</div><div id="c">&nbsp;</div><div id="d">&nbsp;</div><div id="e">&nbsp;</div><div id="f">&nbsp;</div><div id="g">&nbsp;</div><div id="h">&nbsp;</div>
         </td>
     </tr>
     <tr height="25">
