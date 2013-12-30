@@ -309,7 +309,7 @@ $number_type = "nc"
                 <td class="amount tt" id="t35"><input type="text" class="amount-input" maxlength="9"></td>
                 <td class=""></td>
                 <td class=""></td>
-                <td class=""></td>
+                <td class="tt"></td>
             </tr>
             <tr id="1-4longhu" style="">
                 <td class="fontBlue  ballno-t-t caption_1">龙</td>
@@ -320,10 +320,10 @@ $number_type = "nc"
                 <td class="amount tt" id="t37"><input type="text" class="amount-input" maxlength="9"></td>
                 <td class=""></td>
                 <td class=""></td>
+                <td class="tt"></td>
                 <td class=""></td>
                 <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
+                <td class="tt"></td>
             </tr>
             </tbody>
         </table>
