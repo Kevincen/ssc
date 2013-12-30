@@ -284,7 +284,7 @@ switch ($typeid) {
     if (!$numberList) {
         echo $noresult_html;
     } else if ($typeid == 1) {
-        for ($i = 0; $i < count($numberList) - 1; $i++) {
+        for ($i = 0; $i < count($numberList); $i++) {
             $ball_array = explode(',',$numberList[$i][3]);
             ?>
             <tr>
@@ -309,7 +309,7 @@ switch ($typeid) {
         <?php
         } //for end
     } else if ($typeid == 2) {
-        for ($i = 0; $i < count($numberList) - 1; $i++) {
+        for ($i = 0; $i < count($numberList); $i++) {
             ?>
             <tr class="">
                 <td><?php echo $numberList[$i][1] ?></td>
@@ -317,7 +317,7 @@ switch ($typeid) {
                 <td colspan="5" id="<?php echo $numberList[$i][1] ?>">
                     <?php echo $numberList[$i][3] ?>
                 </td>
-                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][4]) ?></td>
+                <td class="bold"><?php echo $numberList[$i][4] ?></td>
                 <td class="bold"><?php echo $lang->hk_cn($numberList[$i][5]) ?></td>
                 <td class="bold"><?php echo $lang->hk_cn($numberList[$i][6]) ?></td>
                 <td class="bold"><?php echo $lang->hk_cn($numberList[$i][7]) ?></td>
@@ -328,7 +328,7 @@ switch ($typeid) {
         <?php
         }
     } else if ($typeid == 6) {
-        for ($i = 0; $i < count($numberList) - 1; $i++) {
+        for ($i = 0; $i < count($numberList); $i++) {
             ?>
             <tr class="">
                 <!--                类似395481这样的期数需要特殊处理啊,在用期数取数据库的时候-->
@@ -337,7 +337,7 @@ switch ($typeid) {
                 <td colspan="10" id="<?php echo $numberList[$i][1] ?>">
                     <?php echo $numberList[$i][3] ?>
                 </td>
-                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][4]) ?></td>
+                <td class="bold"><?php echo $numberList[$i][4] ?></td>
                 <td class="bold"><?php echo $lang->hk_cn($numberList[$i][5]) ?></td>
                 <td class="bold"><?php echo $lang->hk_cn($numberList[$i][6]) ?></td>
                 <td class="bold"><?php echo $lang->hk_cn($numberList[$i][7]) ?></td>
@@ -349,7 +349,7 @@ switch ($typeid) {
         <?php
         }
     } else if ($typeid == 5) {
-        for ($i = 0; $i < count($numberList) - 1; $i++) {
+        for ($i = 0; $i < count($numberList); $i++) {
             ?>
             <tr class="">
                 <td><?php echo $numberList[$i][1] ?></td>
@@ -369,7 +369,7 @@ switch ($typeid) {
         <?php
         }
     } else if ($typeid == 9) {
-        for ($i = 0; $i < count($numberList) - 1; $i++) {
+        for ($i = 0; $i < count($numberList); $i++) {
             ?>
             <tr class="">
                 <td><?php echo $numberList[$i][1] ?></td>
@@ -590,9 +590,6 @@ $(document).ready(function(){
 function fen_pei_get_data(start_date, end_date, type, count, call_back)
 {
     var url = "/templates_cn/result.php";
-    if (type == 1) {
-
-    }
     $.post(url,{start_date:start_date, end_date:end_date,type:type,count:count}
         ,call_back,'json');
 }

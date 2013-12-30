@@ -381,7 +381,7 @@ function numberList($gameType, $date, $id=false)
 		$total = $db->query("SELECT `g_id` FROM `g_history` WHERE g_game_id = 1 ", 3);
         //此处不需要进行分页
 		//$page = new Page($total, $pageNum);
-		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8` FROM `g_history`  {$from} ORDER BY g_qishu DESC {$page->limit} ";
+		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8` FROM `g_history`  {$from} ORDER BY g_qishu DESC  ";
 		$result = $db->query($sqls, 1);
         $Ball = array();
 		if ($result)
@@ -431,7 +431,7 @@ function numberList($gameType, $date, $id=false)
 	else  if($gameType == 3){
 	$total = $db->query("SELECT `g_id` FROM `g_history3` WHERE g_game_id = 3 ", 3);
 		$page = new Page($total, $pageNum);
-		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5` FROM `g_history3`  {$from} ORDER BY g_qishu DESC {$page->limit} ";
+		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5` FROM `g_history3`  {$from} ORDER BY g_qishu DESC ";
 		$result = $db->query($sqls, 1);
 		if ($result)
 		{
@@ -472,7 +472,7 @@ function numberList($gameType, $date, $id=false)
 	}else  if($gameType == 6){ 
 		$total = $db->query("SELECT `g_id` FROM `g_history6` WHERE g_game_id = 6 ", 3);
 		$page = new Page($total, $pageNum);
-		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8`, `g_ball_9`, `g_ball_10` FROM `g_history6`  {$from} ORDER BY g_qishu DESC {$page->limit} ";
+		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8`, `g_ball_9`, `g_ball_10` FROM `g_history6`  {$from} ORDER BY g_qishu DESC ";
 		$result = $db->query($sqls, 1);
 		if ($result)
 		{
@@ -515,7 +515,7 @@ function numberList($gameType, $date, $id=false)
 	
 	$total = $db->query("SELECT `g_id` FROM `g_history5` WHERE g_game_id = 5 ", 3);
 		$page = new Page($total, $pageNum);
-		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8` FROM `g_history5`  {$from} ORDER BY g_qishu DESC {$page->limit} ";
+		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8` FROM `g_history5`  {$from} ORDER BY g_qishu DESC  ";
 		$result = $db->query($sqls, 1);
 		if ($result)
 		{
@@ -558,7 +558,7 @@ function numberList($gameType, $date, $id=false)
 		global $CONFIG;
 		$total = $db->query("SELECT `g_id` FROM `g_history_lhc` WHERE g_game_id = 7 ", 3);
 		$page = new Page($total, $pageNum);
-		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`  FROM `g_history_lhc`  {$from} ORDER BY g_qishu DESC {$page->limit} ";
+		$sqls="SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`  FROM `g_history_lhc`  {$from} ORDER BY g_qishu DESC ";
 		$result = $db->query($sqls, 1);
 		if ($result)
 		{ 
@@ -611,7 +611,7 @@ function numberList($gameType, $date, $id=false)
 	{
 		$total = $db->query("SELECT `g_id` FROM `g_history8` WHERE g_game_id = 8 ", 3);
 		$page = new Page($total, $pageNum);
-		$result = $db->query("SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5` FROM `g_history8` {$from}  ORDER BY g_qishu DESC {$page->limit} ", 1);
+		$result = $db->query("SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5` FROM `g_history8` {$from}  ORDER BY g_qishu DESC  ", 1);
 		if ($result)
 		{
 			foreach ($result as $key=>$value) {
@@ -644,7 +644,7 @@ function numberList($gameType, $date, $id=false)
 	{
 		$total = $db->query("SELECT `g_id` FROM `g_history9` WHERE g_game_id = 9 ", 3);
 		$page = new Page($total, $pageNum);
-		$result = $db->query("SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3` FROM `g_history9` {$from}  ORDER BY g_qishu DESC {$page->limit} ", 1);
+		$result = $db->query("SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3` FROM `g_history9` {$from}  ORDER BY g_qishu DESC ", 1);
 		if ($result)
 		{
 			foreach ($result as $key=>$value) {
@@ -671,7 +671,7 @@ function numberList($gameType, $date, $id=false)
 	{
 		$total = $db->query("SELECT `g_id` FROM `g_history2` WHERE g_game_id = 2 ", 3);
 		$page = new Page($total, $pageNum);
-		$result = $db->query("SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5` FROM `g_history2` {$from}  ORDER BY g_qishu DESC {$page->limit} ", 1);
+		$result = $db->query("SELECT `g_id`, `g_qishu`, `g_date`, `g_game_id`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5` FROM `g_history2` {$from}  ORDER BY g_qishu DESC  ", 1);
 		if ($result)
 		{
 			foreach ($result as $key=>$value) {

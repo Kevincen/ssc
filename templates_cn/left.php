@@ -7,7 +7,6 @@ global $user;
 $name = base64_decode($_COOKIE['g_user']);
 $lang = new utf8_lang();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //获取最新投注的10条记录
     //$type= $user['type'];
     $db=new DB();
@@ -24,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result1[$i]['g_mingxi_2'] = $lang->hk_cn($ball_array[0] ." ". $ball_array[1]);
         }
     }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo json_encode($result1);
     exit;
 }
@@ -220,18 +220,16 @@ $(function(){
             </tr>                  
         </thead>
         <tbody id="new_orders">
+        <?php for ($i =0; $i <count($result1); $i++) {
+                $date = explode(' ', $result1[$i]['g_date']);
+            ?>
             <tr>
-                <td>10</td>
-                <td>1.985</td>
-                <td>1000</td>
-                <td>13:33:33</td>
-            </tr> 
-            <tr>
-                <td>功</td>
-                <td>能</td>
-                <td>未</td>
-                <td>做</td>
-            </tr> 
+                <td><?php echo $lang->hk_cn($result1[$i]['g_mingxi_2']) ?></td>
+                <td><?php echo $lang->hk_cn( $result1[$i]['g_odds']) ?></td>
+                <td><?php echo $lang->hk_cn($result1[$i]['g_jiner']) ?></td>
+                <td><?php echo $lang->hk_cn($date[1]) ?></td>
+            </tr>
+        <?php } ?>
         </tbody>
         </table>
     </div>

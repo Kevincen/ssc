@@ -180,24 +180,48 @@ $number_type = "k3"
         </tbody>
         <tbody>
         <tr>
-            <td class="fontBlue huiseBg caption_1"><span class="number num1"></span></td>
+            <td class="fontBlue huiseBg caption_1">
+                <span class="number num1"></span>
+                <span class="number num1"></span>
+                <span class="number num1"></span>
+            </td>
             <td playtype="002" number="02" class="huiseBg o" id="bh1"></td>
             <td class="amount huiseBg loads" id="Ball_2Nbh1"></td>
-            <td class="fontBlue huiseBg caption_1"><span class="number num2"></span></td>
+            <td class="fontBlue huiseBg caption_1">
+                <span class="number num2"></span>
+                <span class="number num2"></span>
+                <span class="number num2"></span>
+            </td>
             <td playtype="002" number="02" class="huiseBg o" id="bh2"></td>
             <td class="amount huiseBg loads" id="Ball_2Nbh2"></td>
-            <td class="fontBlue huiseBg caption_1"><span class="number num3"></span></td>
+            <td class="fontBlue huiseBg caption_1">
+                <span class="number num3"></span>
+                <span class="number num3"></span>
+                <span class="number num3"></span>
+            </td>
             <td playtype="002" number="02" class="huiseBg o" id="bh3"></td>
             <td class="amount huiseBg loads" id="Ball_2Nbh3"></td>
         </tr>
         <tr>
-            <td class="fontBlue huiseBg caption_1"><span class="number num4"></span></td>
+            <td class="fontBlue huiseBg caption_1">
+                <span class="number num4"></span>
+                <span class="number num4"></span>
+                <span class="number num4"></span>
+            </td>
             <td playtype="002" number="02" class="huiseBg o" id="bh4"></td>
             <td class="amount huiseBg loads" id="Ball_2Nbh4"></td>
-            <td class="fontBlue huiseBg caption_1"><span class="number num5"></span></td>
+            <td class="fontBlue huiseBg caption_1">
+                <span class="number num5"></span>
+                <span class="number num5"></span>
+                <span class="number num5"></span>
+            </td>
             <td playtype="002" number="02" class="huiseBg o" id="bh5"></td>
             <td class="amount huiseBg loads" id="Ball_2Nbh5"></td>
-            <td class="fontBlue huiseBg caption_1"><span class="number num6"></span></td>
+            <td class="fontBlue huiseBg caption_1">
+                <span class="number num6"></span>
+                <span class="number num6"></span>
+                <span class="number num6"></span>
+            </td>
             <td playtype="002" number="02" class="huiseBg o" id="bh6"></td>
             <td class="amount huiseBg loads" id="Ball_2Nbh6"></td>
         </tr>

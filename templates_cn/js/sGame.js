@@ -195,6 +195,7 @@ $(function () {
 				suc = postodds (data);
             }
 		});
+        MyReset();
 		return suc;
 	});
 	

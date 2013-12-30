@@ -28,9 +28,9 @@ how_to_fill_input['h2'] = 'k1_h2';
 how_to_fill_input['h3'] = 'k1_h5';
 how_to_fill_input['h4'] = 'k1_h6';
 how_to_fill_input['h5'] = 'k1_h3';
-how_to_fill_input['h6'] = 'k1_h4';
+/*how_to_fill_input['h6'] = 'k1_h4';*/
 how_to_fill_input['h7'] = 'k1_h7';
-how_to_fill_input['h8'] = 'k1_h8';
+/*how_to_fill_input['h8'] = 'k1_h8';*/
 /*以上为总和一套*/
 for (var i=1; i<=8;i++) {
     how_to_fill_input['ah2'+i] = 't1_h2'+i;//第一球大~和数双
@@ -662,6 +662,7 @@ function submitforms(){
 /*		return setTimeout(function(){return true}, 3000);
 	}*/
     submit_confirm(ball_array,odd_array,money_array);
+    my_reset();
 	return false;
 }
 

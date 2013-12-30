@@ -276,18 +276,15 @@ switch ($g) {
         <td class="caption_1">白</td>
         <td class="o" id="h35"></td>
         <td class="tt" id="t35"></td>
-        <?php if ($has_long_hu == true) { ?>
-            <td class="caption_1">龙</td>
-            <td class="o" id="h36">无</td>
-            <td class="tt" id="t36"></td>
-        <?php } else { ?>
-            <td class="caption_1">&nbsp;</td>
-            <td class="o">&nbsp;</td>
-            <td class="tt">&nbsp;</td>
-        <? } ?>
+        <td class="caption_1">&nbsp;</td>
+        <td class="o">&nbsp;</td>
+        <td class="tt">&nbsp;</td>
     </tr>
     <?php if ($has_long_hu == true) {?>
     <tr class="t_td_text">
+        <td class="caption_1">龙</td>
+        <td class="o" id="h36">无</td>
+        <td class="tt" id="t36"></td>
         <td class="caption_1">虎</td>
      	<td class="o" id="h37">无</td>
         <td class="tt" id="t37"></td>
@@ -296,9 +293,6 @@ switch ($g) {
         <td class="tt">&nbsp;</td>
         <td class="caption_1">&nbsp;</td>
      	<td class="o">&nbsp;</td>
-        <td class="tt">&nbsp;</td>
-        <td class="caption_1">&nbsp;</td>
-        <td class="o">&nbsp;</td>
         <td class="tt">&nbsp;</td>
     </tr>
     <?php } ?>

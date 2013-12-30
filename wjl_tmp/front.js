@@ -255,7 +255,7 @@ function submit_odds(type_name,ball_selecter, go_on)
            if (money != '') {
                ballname = $data_src.attr('ball_name');
                ballnum = $data_src.attr('id');
-               odd = $data_src.find('a').html();
+               odd = $data_src.text();
                add_inputs += gen_input('s_ball[]',ballname) ;
                add_inputs += gen_input('s_money[]',money);
                add_inputs += gen_input('s_hid[]',ballnum);
@@ -281,7 +281,7 @@ function submit_odds(type_name,ball_selecter, go_on)
 
                 ballname = $(this).attr('ball_name');
                 ballnum = $(this).attr('id');
-                odd = $(this).find('a').html();
+                odd = $(this).text();
                 add_inputs += gen_input('s_ball[]',ballname) ;
                 add_inputs += gen_input('s_money[]',money);
                 add_inputs += gen_input('s_hid[]',ballnum);

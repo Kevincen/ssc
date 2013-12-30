@@ -118,18 +118,18 @@ div#row2 { }
 </div>
 <table class="wqs" border="0" cellpadding="0" cellspacing="0">
 	<colgroup>
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
-        <col style="width:8.2%">
+        <col style="width:12.5%">
+        <col style="width:12.5%">
+        <col style="width:12.5%">
+        <col style="width:12.5%">
+        <col style="width:12.5%">
+        <col style="width:12.5%">
+        <col style="width:12.5%">
+        <col style="width:12.5%">
+        <col style="width:12.5%">
+<!--        <col style="width:12.5%">
+        <col style="width:12.5%">
+        <col style="width:12.5%">-->
     </colgroup>
 	<tr class="t_list_caption">
     	<td colspan="12">总和</td>
@@ -144,9 +144,9 @@ div#row2 { }
         <td class="caption_1">总和尾大</td>
         <td class="o" id="h5"></td>
         <td class="loads"></td>
-        <td class="caption_1">龙</td>
-        <td class="o" id="h6"></td>
-        <td class="loads"></td>
+<!--        <td class="caption_1" style="display: none">龙</td>
+        <td class="o" id="h6" style="display: none"></td>
+        <td class="loads" style="display: none"></td>-->
     </tr>
     <tr class="t_td_text" selected="false">
     	<td class="caption_1">总和小</td>
@@ -158,9 +158,9 @@ div#row2 { }
     	<td class="caption_1">总和尾小</td>
    	  	<td class="o" id="h7"></td>
     	<td class="loads"></td>
-    	<td class="caption_1">虎</td>
-    	<td class="o" id="h8"></td>
-    	<td class="loads"></td>
+<!--    	<td class="caption_1" style="display: none">虎</td>
+    	<td class="o" id="h8" style="display: none"></td>
+    	<td class="loads" style="display: none"></td>-->
     </tr>
 </table>
 

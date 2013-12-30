@@ -154,98 +154,98 @@ $sub_type = '连码';
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num1"></span></td>
                                     <td class="huiseBg" style="cursor: default;">
-                                        <input type="checkbox" number="01" name="t[]" id="t1" value="1" style="display:none"></td>
+                                        <input type="checkbox" number="01" name="t[]" id="t1" value="1" ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num6"></span></td>
                                     <td class="huiseBg" style="cursor: default;">
                                         <input type="checkbox" number="06" name="t[]" id="t6" value="6"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num11"></span></td>
                                     <td class="huiseBg" style="cursor: default;">
                                         <input type="checkbox" number="11" name="t[]" id="t11" value="11"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num16"></span></td>
                                     <td class="td-last huiseBg" style="cursor: default;">
                                         <input type="checkbox" number="16" name="t[]" id="t16" value="16"
-                                                                                                style="display:none"></td>
+                                                                                                ></td>
                                 </tr>
                                 <tr>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num2"></span></td>
                                     <td class="huiseBg" style="cursor: default;">
                                         <input type="checkbox" number="02" name="t[]" id="t2" value="2"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num7"></span></td>
                                     <td class="huiseBg" style="cursor: default;">
                                         <input type="checkbox" number="07" name="t[]" id="t7" value="7"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num12"></span></td>
                                     <td class="huiseBg" style="cursor: default;">
                                         <input type="checkbox" number="12" name="t[]" id="t12" value="12"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num17"></span></td>
                                     <td class="td-last huiseBg" style="cursor: default;">
                                         <input type="checkbox" number="17" name="t[]" id="t17" value="17"
-                                                                                                style="display:none"></td>
+                                                                                                ></td>
                                 </tr>
                                 <tr>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num3"></span></td>
                                     <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="03" name="t[]" id="t3" value="3"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num8"></span></td>
                                     <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="08" name="t[]" id="t8" value="8"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num13"></span></td>
                                     <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="13" name="t[]" id="t13" value="13"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num18"></span></td>
                                     <td class="td-last huiseBg" style="cursor: default;"><input type="checkbox" number="18" name="t[]" id="t18" value="18"
-                                                                                                style="display:none"></td>
+                                                                                                ></td>
                                 </tr>
                                 <tr>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num4"></span></td>
                                     <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="04" name="t[]" id="t4" value="4"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num9"></span></td>
                                     <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="09" name="t[]" id="t9" value="9"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num14"></span></td>
                                     <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="14" name="t[]" id="t14" value="14"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num19"></span></td>
                                     <td class="td-last huiseBg" style="cursor: default;"><input type="checkbox" number="19" name="t[]" id="t19" value="19"
-                                                                                                style="display:none"></td>
+                                                                                                ></td>
                                 </tr>
                                 <tr class="lasttr">
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num5"></span></td>
                                     <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="05" name="t[]" id="t5" value="5"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num10"></span></td>
                                     <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="10" name="t[]" id="t10" value="10"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num15"></span></td>
                                     <td class="huiseBg" style="cursor: default;"><input type="checkbox" number="15" name="t[]" id="t15" value="15"
-                                                                                        style="display:none"></td>
+                                                                                        ></td>
                                     <td class="ballno-t-t huiseBg" style="cursor: default;"><span
                                             class="number num20"></span></td>
                                     <td class="td-last huiseBg" style="cursor: default;"><input type="checkbox" number="20" name="t[]" id="t20" value="20"
-                                                                                                style="display:none"></td>
+                                                                                                ></td>
                                 </tr>
                                 </tbody>
                             </table>
