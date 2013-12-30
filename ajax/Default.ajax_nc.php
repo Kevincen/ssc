@@ -58,10 +58,10 @@ if ($typeId == "action" && Copyright)
 	$p=1;
 	switch ($nid)
 	{
-		case 'g1': $p=35; $g_id = "Ball_1"; break;
-		case 'g2': $p=35; $g_id = "Ball_2"; break;
-		case 'g3': $p=35; $g_id = "Ball_3"; break;
-		case 'g4': $p=35; $g_id = "Ball_4"; break;
+		case 'g1': $p=37; $g_id = "Ball_1"; break;
+		case 'g2': $p=37; $g_id = "Ball_2"; break;
+		case 'g3': $p=37; $g_id = "Ball_3"; break;
+		case 'g4': $p=37; $g_id = "Ball_4"; break;
 		case 'g5': $p=35; $g_id = "Ball_5"; break;
 		case 'g6': $p=35; $g_id = "Ball_6"; break;
 		case 'g7': $p=35; $g_id = "Ball_7"; break;

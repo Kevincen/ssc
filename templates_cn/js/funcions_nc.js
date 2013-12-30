@@ -336,6 +336,8 @@ function changes ($t, n) {
 				case "33": result = '中'; break;
 				case "34": result = '發'; break;
 				case "35": result = '白'; break;
+                case "36": result = '龙'; break;
+                case "37": result = '虎'; break;
 				default : result = $n;
 			}
 		}
@@ -401,6 +403,8 @@ function sodds (id, odds)
 		case "h33" : r = odds[0].h33; break;
 		case "h34" : r = odds[0].h34; break;
 		case "h35" : r = odds[0].h35; break;
+        case "h36" : r = odds[0].h36; break;
+        case "h37" : r = odds[0].h37; break;
 	}
 	return r;
 }

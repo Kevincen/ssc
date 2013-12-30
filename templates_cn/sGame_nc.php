@@ -307,23 +307,23 @@ $number_type = "nc"
                 <td class="fontBlue  ballno-t-t caption_1">白</td>
                 <td class="o" id="h35">3</td>
                 <td class="amount tt" id="t35"><input type="text" class="amount-input" maxlength="9"></td>
-                <td class="">&nbsp;</td>
-                <td class="">&nbsp;</td>
-                <td class="">&nbsp;</td>
+                <td class=""></td>
+                <td class=""></td>
+                <td class=""></td>
             </tr>
             <tr id="1-4longhu" style="">
                 <td class="fontBlue  ballno-t-t caption_1">龙</td>
-                <td playtype="059" number="42" class="o" id="h1">1.986</td>
-                <td class="amount tt" id="t1"><input type="text" class="amount-input" maxlength="9"></td>
+                <td playtype="059" number="42" class="o" id="h36">1.986</td>
+                <td class="amount tt" id="t36"><input type="text" class="amount-input" maxlength="9"></td>
                 <td class="fontBlue  ballno-t-t caption_1">虎</td>
-                <td playtype="059" number="43" class="o" id="h1">1.987</td>
-                <td class="amount tt" id="t1"><input type="text" class="amount-input" maxlength="9"></td>
-                <td class="">&nbsp;</td>
-                <td class="">&nbsp;</td>
-                <td class="">&nbsp;</td>
-                <td class="">&nbsp;</td>
-                <td class="">&nbsp;</td>
-                <td class="">&nbsp;</td>
+                <td playtype="059" number="43" class="o" id="h37">1.987</td>
+                <td class="amount tt" id="t37"><input type="text" class="amount-input" maxlength="9"></td>
+                <td class=""></td>
+                <td class=""></td>
+                <td class=""></td>
+                <td class=""></td>
+                <td class=""></td>
+                <td class=""></td>
             </tr>
             </tbody>
         </table>

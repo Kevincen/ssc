@@ -285,7 +285,9 @@ function setoddsnc($key, $val, $ConfigModel, $user, $param=0,$Ball=0)
 						$result=configModelPannc('c');
 						$odds = $val-$result['h33'];
 			}
-		}
+        } else if ($key == 'h36'||$key == 'h37'){ //todo:这里，农场1-4球的龙虎赔率，b-c盘没有完成
+           $odds = $val;
+        }
 	}
 	else if ($param == 1)
 	{
