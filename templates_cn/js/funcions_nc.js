@@ -183,6 +183,12 @@ setAction[5] = function(lock) { //單選框
 };
 
 setAction[6] = function () { //出球率與無出期數
+    function set_red(number) {
+        if (number >= 4) {
+            number = '<span class="red fontweight">'+ number +'</span>';
+        }
+        return number;
+    }
 	if (_href.indexOf("g") > -1){
 		var gid = _href.replace("g","");
 		$.post (URL, {typeid : "sumball", gid : gid}, function (data) {
@@ -191,9 +197,9 @@ setAction[6] = function () { //出球率與無出期數
 			var th2 = '<th>遗漏</th>';
 			var row_1Html = new Array();
 			var row_2Html = new Array();
-			for (var i in data.row_1){
-				row_1Html.push("<td>"+data.row_1[i]+"</td>");
-				row_2Html.push("<td>"+data.row_2[i]+"</td>");
+			for (var i in data.row_1) {
+				row_1Html.push("<td>"+set_red(data.row_1[i])+"</td>");
+				row_2Html.push("<td>"+set_red(data.row_2[i])+"</td>");
 			}
 			$("#su").html(th1+row_1Html.join(''));
 			$("#se").html(th2+row_2Html.join(''));

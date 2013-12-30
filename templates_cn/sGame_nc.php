@@ -126,7 +126,7 @@ $number_type = "nc"
 <input type="hidden" name="actions" value="fn1"/>
 <input type="hidden" name="gtypes" value="1" />
 <div class="actiionn"></div>
-<div id="tys" style="display: hidden"><?php echo $types ?></div>
+<div id="tys" style="display: none"><?php echo $types ?></div>
 <div id="rightLoader" dom="right" style="">
 <div id="ballNO_nc" area="ball1">
 <div class="betAreaBox nc">
