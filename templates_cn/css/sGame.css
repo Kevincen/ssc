@@ -124,7 +124,7 @@ td{
 	font-weight: bold; 
 }
 .t_td_text {
-	height: 26px;
+	height: 29px;
 	line-height: 17px;
 	text-align:center;
 	background-color: #FFFFFF;
@@ -703,7 +703,7 @@ img#soundbut{
 	line-height:17px;
 	text-align:center;
 	text-decoration:none;
-	margin-left:5px;
+	margin-left:0;
 }
 .intype_normal{
 	background:url(../images/btn.png) no-repeat -38px -19px;
@@ -715,17 +715,19 @@ img#soundbut{
 	color:#666666;
 	text-align:center;
 	text-decoration:none;
-	margin-left:5px;
+	margin-left:2px;
 }
 #td_input_money{ display:none}
 .myAllMoney{ width:67px; border:1px solid #B0B0B0; height:14px; line-height:14px; padding:1px;}
 
 .tz_title{
-	font-weight:bold;}
+	font-weight:bold;
+    padding-top: 3px;
+}
 .Full_table{
 	width:754px;
 	float:left;
-	margin-top:10px;}	
+	margin-top:0;}
 .w25{
 	width:25%;}
 .pops .caption_1{

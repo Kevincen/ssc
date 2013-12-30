@@ -4935,7 +4935,7 @@ function sum_str_s_pk ($result, $index, $int=25, $bool=FALSE, $num=NULL, $count=
 			if($count==6) $ball = $v;
 			else{
 			$ball = sum_ball_str_a_smpk($v, $count, $p);
-			$ball = str_replace("冠亞和","",$ball);
+			$ball = str_replace("冠亞-","",$ball);
 			}	
 		}
 		if ($k != $ball){

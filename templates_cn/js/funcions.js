@@ -15,7 +15,9 @@ function action(set_lm, unset_lm){
 		if (data == null){
 			//location.href='./right.php';
             alert('无法获取开奖时间')
-            unset_lm();
+            if (unset_lm != undefined) {
+                unset_lm();
+            }
 			return;
 		}
         console.log(data);
@@ -120,6 +122,7 @@ setAction[2] = function () { //刷新時間
 			setAction[3](true, data.odds);
 			if (_lock == true) {
 				$("#o").html(data.Phases);
+                action();
 				setAction[0]();
 				setAction[1]();
 				_lock=false;
@@ -266,6 +269,8 @@ var NumberCache = null;
 setAction[8] = function () { //开奖
 	var winResult = $("#sy");
 		$.post (URL, { typeid : "openNumber"}, function (data) {
+            console.log('setAction[8]');
+            console.log(data);
 			//alert(data);return;
 			if (NumberCache == null){
 				NumberCache = data.number;

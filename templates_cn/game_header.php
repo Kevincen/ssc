@@ -27,6 +27,14 @@
                 <span id="g" class="number "></span>
                 <span id="h" class="number "></span>
                 <span></span><span></span>
+            <?php } else if ($number_type == 'cq') { ?>
+                <span id="a" class="number num6"></span>
+                <span id="b" class="number num1"></span>
+                <span id="c" class="number num5"></span>
+                <span id="d" class="number num9"></span>
+                <span id="e" class="number num7"></span>
+                <span></span><span></span>
+                <span></span><span></span>
             <?php } else { ?>
                 <span id="a" class="number num6"></span>
                 <span id="b" class="number num1"></span>
@@ -72,7 +80,7 @@
         </td>
         <td width="28%" class="align-c">
             <div class="elem_amount">
-                <div id="td_input_money">
+                <div id="td_input_money" style="display: inline">
                     <strong class="t kuaijie">金额</strong>
                                     <span class="kuaijie">
                                         <input type="text" class="elem_amount_input elem_amount_input_quick"

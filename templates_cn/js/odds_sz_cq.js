@@ -2,8 +2,8 @@
 * 新增快捷和正常投注
 *****************************/
 function kuijie(){
-	$('#td_input_money').show();
-	$('#td_input_money1').show();
+	$('#td_input_money').css("display","inline");
+	$('#td_input_money1').css("display","inline");
 	if($('#kuijie').attr('class')!='intype_hover'){
 		$('#kuijie').attr('class','intype_hover');
 		$('#yiban').attr('class','intype_normal'); 
@@ -125,9 +125,8 @@ function yiban(){
 	$('#td_input_money1').hide();
 }
 function MyReset(){ 
-	$('.o').css({'background-color':'#fff','cursor':''});
-	 
-	$('.o').attr('title','');
+	$('.o').attr('title','').parent().css({'background-color':'#fff','cursor':''});
+    $('.caption_1').attr('title','').css({'background-color':'#fff','cursor':''});
 	$('.inp1').val('');
 	$('#AllMoney').val('');
 	$('#AllMoney1').val('');
@@ -183,6 +182,11 @@ $(function (){
 		yiban();							   
 	})
     kuijie();
+    if (typeof  set_enter_key != undefined) {
+        set_enter_key(function() {
+            submitforms();
+        });
+    }
 });
 
 /**
@@ -214,7 +218,7 @@ function _Number (number, ballArr) {
 function openNumberCount(row, bool){
     //for debug
     if (typeof(Simplized) == undefined ) {
-        alert('Simplized undefined');
+        my_alert('Simplized undefined');
     }
 		var rowHtml1 = new Array();
 		var rowHtml2 = new Array();
@@ -354,7 +358,7 @@ function loadodds(oddslist, endtime, number){
 				odds = oddslist[n][i];
 				urls = "fnszcq.php?tid="+bc(a[n])+"&numberid="+number+"&hid="+a[n]+i;
 				link = "<span class=\"bgh\">"+odds+"</span>";
-				//alert(a[n]+i);
+				//my_alert(a[n]+i);
 				//$("#"+a[n]+i).html(link);
 				$("#"+a[n]+i).html(link);
 				$("#"+i).html(link);
@@ -439,6 +443,10 @@ function submitforms(){
 	var upmoney = 0;
 	var names = new Array();
 	var sArray = "";
+    var ball_array = new Array();
+    var odd_array = new Array();
+    var money_array = new Array();
+
 	input.each(function(){
 		var value = $(this).val();
 		if (value != ""){
@@ -455,27 +463,33 @@ function submitforms(){
 
             s[2] = $("#"+s[2]+"").text();
 
-			if (s[0] == "總和、龍虎")
-				n = s[1]+" @ "+s[2]+" x ￥"+value;
-			else 
-				n = s[0]+"["+s[1]+"] @ "+s[2]+" x ￥"+value;
+            if (s[0] == "總和、龍虎") {
+                n = s[1]+" @ "+s[2]+" x ￥"+value;
+                ball_array.push(s[1]);
+            } else  {
+                n = s[0]+"["+s[1]+"] @ "+s[2]+" x ￥"+value;
+                ball_array.push(s[0]+ ' ' + s[1]);
+            }
+            odd_array.push(s[2]);
+            money_array.push(value);
 			names.push(n+"\n");
 			
 		}
 	});
-	if (count == 0){alert("請填寫下註金額!!!");return false;}
-	if (c == false){ alert("最低下註金額："+mixmoney+"￥");return false;}
-	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
+	if (count == 0){my_alert("请您填写下注金额");return false;}
+	if (c == false){ my_alert("最低下注金额为："+mixmoney+"￥");return false;}
+/*	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
 	confrims +=names.join('');
-	if (confirm(confrims)){
+	if (confirm(confrims)){*/
 		input.val("");
 		MyReset(); 
 		var number = $("#o").html();
 		var s_type = '<input type="hidden" name="s_cq" value="'+sArray+'"><input type="hidden" name="s_number" value="'+number+'">';
 		$(".actiionn").html(s_type);
-		return setTimeout(function(){return true}, 3000);
+/*		return setTimeout(function(){return true}, 3000);
 	}
-	return false;
+	return false;*/
+    submit_confirm(ball_array,odd_array,money_array);
 }
 
 function nameformat(array){
@@ -487,14 +501,14 @@ function nameformat(array){
 		case "Ball_4" : h="d"; arr[0] = "第四球"; break;
 		case "Ball_5" : h="e"; arr[0] = "第五球"; break;
 		case "Ball_6" : 
-			arr[0] = "總和、龍虎"; 
+			arr[0] = "总和-龙虎和";
 			 
 			switch (array[1].substr(1)) {
-				case 'h1':arr[1] = '總和大'; arr[2]=array[1]; break;
-				case 'h2':arr[1] = '總和小'; arr[2]=array[1]; break;
-				case 'h3':arr[1] = '總和單'; arr[2]=array[1]; break;
-				case 'h4':arr[1] = '總和雙'; arr[2]=array[1]; break;
-				case 'h5':arr[1] = '龍'; arr[2]=array[1]; break;
+				case 'h1':arr[1] = '总和大'; arr[2]=array[1]; break;
+				case 'h2':arr[1] = '总和小'; arr[2]=array[1]; break;
+				case 'h3':arr[1] = '综合单'; arr[2]=array[1]; break;
+				case 'h4':arr[1] = '总和双'; arr[2]=array[1]; break;
+				case 'h5':arr[1] = '龙'; arr[2]=array[1]; break;
 				case 'h6':arr[1] = '虎'; arr[2]=array[1]; break;
 				case 'h7':arr[1] = '和'; arr[2]=array[1]; break;
 			}
@@ -503,31 +517,31 @@ function nameformat(array){
 			arr[0] = "前三";  
 			switch (array[1].substr(1)) {
 				case 'h1':arr[1] = '豹子'; arr[2]=array[1]; break;
-				case 'h2':arr[1] = '順子'; arr[2]=array[1]; break;
-				case 'h3':arr[1] = '對子'; arr[2]=array[1]; break;
-				case 'h4':arr[1] = '半順'; arr[2]=array[1]; break;
-				case 'h5':arr[1] = '雜六'; arr[2]=array[1]; break; 
-			} 
+				case 'h2':arr[1] = '顺子'; arr[2]=array[1]; break;
+				case 'h3':arr[1] = '对子'; arr[2]=array[1]; break;
+				case 'h4':arr[1] = '半顺'; arr[2]=array[1]; break;
+				case 'h5':arr[1] = '杂六'; arr[2]=array[1]; break;
+			}
 			break;
 		case "Ball_8" : 
 			arr[0] = "中三"; 
 			switch (array[1].substr(1)) {
-				case 'h1':arr[1] = '豹子'; arr[2]=array[1]; break;
-				case 'h2':arr[1] = '順子'; arr[2]=array[1]; break;
-				case 'h3':arr[1] = '對子'; arr[2]=array[1]; break;
-				case 'h4':arr[1] = '半順'; arr[2]=array[1]; break;
-				case 'h5':arr[1] = '雜六'; arr[2]=array[1]; break; 
-			}  
+                case 'h1':arr[1] = '豹子'; arr[2]=array[1]; break;
+                case 'h2':arr[1] = '顺子'; arr[2]=array[1]; break;
+                case 'h3':arr[1] = '对子'; arr[2]=array[1]; break;
+                case 'h4':arr[1] = '半顺'; arr[2]=array[1]; break;
+                case 'h5':arr[1] = '杂六'; arr[2]=array[1]; break;
+            }
 			break;
 		case "Ball_9" : 
 			arr[0] = "后三"; 
 			switch (array[1].substr(1)) {
-				case 'h1':arr[1] = '豹子'; arr[2]=array[1]; break;
-				case 'h2':arr[1] = '順子'; arr[2]=array[1]; break;
-				case 'h3':arr[1] = '對子'; arr[2]=array[1]; break;
-				case 'h4':arr[1] = '半順'; arr[2]=array[1]; break;
-				case 'h5':arr[1] = '雜六'; arr[2]=array[1]; break; 
-			}  
+                case 'h1':arr[1] = '豹子'; arr[2]=array[1]; break;
+                case 'h2':arr[1] = '顺子'; arr[2]=array[1]; break;
+                case 'h3':arr[1] = '对子'; arr[2]=array[1]; break;
+                case 'h4':arr[1] = '半顺'; arr[2]=array[1]; break;
+                case 'h5':arr[1] = '杂六'; arr[2]=array[1]; break;
+            }
 			break;
 	}
 	if(h!=''){
@@ -545,8 +559,8 @@ function nameformat(array){
 			
 			case "h11": arr[1] = '大'; arr[2]=h+"h11"; break;
 			case "h12": arr[1] = '小'; arr[2]=h+"h12"; break;
-			case "h13": arr[1] = '單'; arr[2]=h+"h13"; break;
-			case "h14": arr[1] = '雙'; arr[2]=h+"h14"; break;
+			case "h13": arr[1] = '单'; arr[2]=h+"h13"; break;
+			case "h14": arr[1] = '双'; arr[2]=h+"h14"; break;
 		}
 	} 
 	return arr;

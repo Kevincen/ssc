@@ -58,13 +58,14 @@ switch ($g) {
 <link href="css/sGame.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="./js/sc.js"></script>
 <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/artDialog.js?skin=twitter"></script>
 <script type="text/javascript" src="./js/sGame_cq.js"></script>
 <title></title>
 <script type="text/javascript">
 var s = window.parent.frames.leftFrame.location.href.split('/');
 		s = s[s.length-1];
 		if (s !== "left.php")
-			window.parent.frames.leftFrame.location.href = "/templates/left.php";
+			window.parent.frames.leftFrame.location.href = "/templates_cn/left.php";
 			
 			function soundset(sod){
 if(sod.value=="on"){
@@ -90,7 +91,7 @@ div#row2 { }
         <td class="bolds wanfa">重庆时时彩 <span style="color:#0033FF; font-weight:bold; margin-left:10px;" id="tys"><?=$types?></span></td>
         <td align="left" class="bolds" style="color:#FF0000">
         	<div id="row1" style="FONT-FAMILY: Arial; color: red;"> <span>今天输赢：</span></div>
-            <div id="row2"><span id="sy" style="font-size:14px;position:relative; top:-2px">0</span></div>
+            <div id="row2"><span id="sy" style="position:relative; top:-1px">0</span></div>
         </td>
         <td  class="bolds klsfhm" align="right" colspan="2" >
             <span id="number" style="line-height:25px;"></span>期开奖<div id="a" class="nc1" style="margin:0px 1px;">&nbsp;</div><div id="b" style="margin:0px 1px;">&nbsp;</div><div id="c" style="margin:0px 1px;">&nbsp;</div><div id="d" style="margin:0px 1px;">&nbsp;</div><div id="e" style="margin:0px 1px;">&nbsp;</div>
@@ -103,17 +104,17 @@ div#row2 { }
         <td width="12%" align="right"><span id="endTimea"></span>秒</td>
     </tr>
 </table>
-<form id="dp" action="" method="post" target="leftFrame" onsubmit = "return submitforms()">
+<form id="dp" action="" method="post" target="leftFrame" >
 <table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px">
     <tr>
-        <td width="65" class="tz_title" valign="top">投注类型：</td>
+        <td width="60" class="tz_title" valign="top">投注类型：</td>
         <td width="115"><a href="#this" class="intype_normal" id="kuijie">快捷</a><a href="#this" class="intype_hover" id="yiban">一般</a></td>
         <td align="left">
         	<table border="0" width="278" >
                 <tr height="26">
 					<td align="center">
                     	<span id="td_input_money"><font class="tz_title">金额</font>&nbsp;<input type="text"  id="AllMoney"  onkeydown="return IsNumeric()"  class="myAllMoney"  value=""  /></span>
-                        <input type="submit" id="submits1" class="inputs ti" value="确定" />
+                        <input type="button" onclick="submitforms()" id="submits1" class="inputs ti" value="确定" />
                         <input type="button" onclick="MyReset()" class="inputs ti" value="重置" />
                     </td>                   
                 </tr>
@@ -124,6 +125,7 @@ div#row2 { }
 <input type="hidden" name="actions" value="fn3" />
 <input type="hidden" name="gtypes" value="1" />
 <input type="hidden" id="mix" value="<?php echo$ConfigModel['g_mix_money']?>" />
+<div class="actiionn"></div>
 <table class="wqs ssc_input" border="0" cellpadding="0" cellspacing="0">
 	<colgroup>
         <col style="width:6.66%">
@@ -381,7 +383,7 @@ div#row2 { }
                 <tr height="26">
 					<td align="center">
                     	<span id="td_input_money1"><font class="tz_title">金额</font>&nbsp;<input type="text"  id="AllMoney1"  onkeydown="return IsNumeric()"  class="myAllMoney"  value=""  /></span>
-                        <input type="submit" id="submits" class="inputs ti" value="确定" />
+                        <input type="button" onclick="submitforms()" id="submits" class="inputs ti" value="确定" />
                         <input type="button" onclick="MyReset()" class="inputs ti" value="重置" />
                     </td>                   
                 </tr>
@@ -423,6 +425,7 @@ div#row2 { }
 <div class="blank10">&nbsp;</div>
 <input type="hidden" id="mix" value="<?php echo$ConfigModel['g_mix_money']?>" />
 <div id="look" style="display:none"></div>
+<?php include './popup.html'?>
 <?php include_once 'inc/cl_file.php';?>
 <?php 
 $name = base64_decode($_COOKIE['g_user']);

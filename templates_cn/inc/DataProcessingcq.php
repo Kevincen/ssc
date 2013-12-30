@@ -8,7 +8,7 @@ $dateTime = date('Y-m-d H:i:s');
 $a = date('Y-m-d ').'01:55:00';
 if ( ($dateTime < $stratGamecq && $dateTime > $a) || $dateTime > $endGamecq)
 {
-	back('開盤時間為：'.$stratGamecq.'--'.$endGamecq);exit;
+	//back('開盤時間為：'.$stratGamecq.'--'.$endGamecq);exit;
 }
 
 $ConfigModel =configModel("`g_web_lock`, `g_cq_game_lock`,`g_odds_ratio_cq_b1`,`g_odds_ratio_cq_b2`,`g_odds_ratio_cq_b3`,`g_odds_ratio_cq_c1`,`g_odds_ratio_cq_c2`,`g_odds_ratio_cq_c3`");

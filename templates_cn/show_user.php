@@ -183,7 +183,7 @@ $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_ga
                 <?php
                 } else if ($action == 'fn' || $action == 'fn1' || $action == 'fn3') { //單筆循環投注單
                     for ($i=0; $i<count($ListArr); $i++) {
-                        $nn = $ListArr[$i]['g_mingxi_1'] == '總和、龍虎' ? $ListArr[$i]['g_mingxi_2'] : $ListArr[$i]['g_mingxi_1'].''.$ListArr[$i]['g_mingxi_2'].'';
+                        $nn = $ListArr[$i]['g_mingxi_1'] == '總和、龍虎' ? $ListArr[$i]['g_mingxi_2'] : $ListArr[$i]['g_mingxi_1'].' '.$ListArr[$i]['g_mingxi_2'].'';
                         ?>
                         <tr>
                             <td colspan="3"><p>注单号：<span class="greener"><?php echo  $ListArr[$i]['id']?></span></p>

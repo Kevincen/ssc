@@ -14,6 +14,6 @@ $a = date('Y-m-d ').'01:55:01';
 global $stratGamecq, $endGamecq;
 if ( ($dateTime < $stratGamecq && $dateTime > $a) || $dateTime > $endGamecq)
 {
-	header("Location: ./right.php"); exit;
+	//header("Location: ./right.php"); exit;
 }
 ?>

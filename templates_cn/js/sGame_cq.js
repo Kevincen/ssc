@@ -171,6 +171,11 @@ var setResultcq = new Array();
 		})
 
         kuijie();
+        if (typeof  set_enter_key != undefined) {
+            set_enter_key(function() {
+                submitforms();
+            });
+        }
 	});
 	
 	function loadGameInfo(bool){
@@ -449,6 +454,9 @@ function submitforms(){
 	var input = $("input.inp1");
 	var mixmoney = parseInt($("#mix").val());
 	$.ajax({type : "POST",data : {typeid : "sessionId"},url : "../ajax/Default.ajax.php",dataType : "text",async : false,success:function(data){a = data == 1 ? true : false;}});
+    var ball_array = new Array();
+    var odd_array = new Array();
+    var money_array = new Array();
 	input.each(function(){
 		value = $(this).val();
 		if (value != ""){
@@ -465,27 +473,33 @@ function submitforms(){
 			}else{
 			m= $("."+s[1]).html();
 			}
-			o = $("#"+s[1]+" a").html();
-			if (z == "總和、龍虎和")
+			o = $("#"+s[1]).text();
+			if (z == "總和、龍虎和") {
 				n = m+" @ "+o+" x ￥"+value;
-			else 
+                ball_array.push(m);
+            } else  {
 				n = z+"["+m+"] @ "+o+" x ￥"+value;
+                ball_array.push(z+ ' ' + m);
+            }
+            odd_array.push(o);
+            money_array.push(value);
 			names.push(n+"\n");
 		}
 	});
-	if (c == false){ alert("最低下註金額："+mixmoney+"￥");return false;}
-	if (count == 0){alert("請填寫下註金額!!!");return false;}
-	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
+	if (c == false){ my_alert("最低下注金额为："+mixmoney+"￥");return false;}
+	if (count == 0){my_alert("请您填写下注金额");return false;}
+/*	var confrims = "共 ￥"+countmoney+" / "+count+"筆，確定下註嗎？\n\n下註明細如下：\n\n";
 	confrims +=names.join('');
-	if (confirm(confrims)){
+	if (confirm(confrims)){*/
 		input.val("");
 		MyReset();
 		var number = $("#o").html();
 		var s_type = '<input type="hidden" name="s_cq" value="'+ss+'"><input type="hidden" name="s_number" value="'+number+'">';
 		$(".actiionn").html(s_type);
-		return a;
+/*		return a;
 	}
-	return false;
+	return false;*/
+    submit_confirm(ball_array,odd_array,money_array);
 }
 
 function nameformatcq(str){

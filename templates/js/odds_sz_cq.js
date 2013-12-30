@@ -383,7 +383,7 @@ function submitforms(){
 
 			if (s[0] == "總和、龍虎")
 				n = s[1]+" @ "+s[2]+" x ￥"+value;
-			else 
+			else
 				n = s[0]+"["+s[1]+"] @ "+s[2]+" x ￥"+value;
 			names.push(n+"\n");
 			
@@ -395,7 +395,7 @@ function submitforms(){
 	confrims +=names.join('');
 	if (confirm(confrims)){
 		input.val("");
-		MyReset(); 
+		MyReset();
 		var number = $("#o").html();
 		var s_type = '<input type="hidden" name="s_cq" value="'+sArray+'"><input type="hidden" name="s_number" value="'+number+'">';
 		$(".actiionn").html(s_type);
