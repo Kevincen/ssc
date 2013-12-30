@@ -683,7 +683,7 @@ $sub_type = "两面盘";
                                         <strong class="t kuaijie">金额</strong>
                                         <span id="bulk-amount-input" class="kuaijie">
                                             <input type="text" class="elem_amount_input elem_amount_input_quick"
-                                                   name="" maxlength="9" id="AllMoney">
+                                                   name="" maxlength="9" id="AllMoney1">
                                         </span>
                                     </div>
                                     <a class="btn_m elem_btn" id="submit_top" onclick="submitforms()">确 定</a>

@@ -1,7 +1,7 @@
 /*****************************
 * 新增快捷和正常投注
 *****************************/
-/*by wjl 快速投注思路：
+/*by 2b 快速投注思路：
 *   1.在选中每个项目的时候将金额填写进入该项目的隐藏input当中。
  *   2.在进行快捷投注和一般投注的切换的时候将所有input的type和值全部清空
  *   3.在提交表单之前：如果是快速投注，则将所有已被选中的input的值置为#ALLMONEY的值,
@@ -271,13 +271,15 @@ function MyReset(){
 	$('.o').attr('title','');
 	$('.inp1').val('');
 	$('#AllMoney').val('');
+    $('#AllMoney1').val('');
 }
 
 function AllMoney(){ 
 	var sel=false;
+    var money = $('#AllMoney').val() != ''? $('#AllMoney').val():$('#AllMoney1').val();
 	$('.loads').each(function(){
 		if(  $(this).prev().attr('title')=='选中' ){ //已选中 
-			$(this).find('input').val( $('#AllMoney').val() );
+            $(this).find('input').val(money);
 			sel=true;
 		}
 	}) 
@@ -288,7 +290,7 @@ function iSubmit(){
 	if($('#kuijie').attr('class')=='intype_hover'){	
 		var sel = AllMoney();
 		if(sel==false){
-			alert('您未选择号码！');
+			my_alert('您未选择号码！');
 			return false;
 		}
 	}
@@ -606,9 +608,6 @@ function submitforms(){
     var money_array = new Array();
     //快速投注所需要的
     //if ($('#touzhu_type').attr('value') != 'fast') {
-    if ($('#touzhu_type').attr('value') == 'fast') {
-        fill_inputs('input.inp1.selected','#AllMoney');
-    }
         input.each(function () {
             var value = $(this).val();
             if (value != "") {
@@ -662,7 +661,6 @@ function submitforms(){
 /*		return setTimeout(function(){return true}, 3000);
 	}*/
     submit_confirm(ball_array,odd_array,money_array);
-    my_reset();
 	return false;
 }
 

@@ -665,15 +665,16 @@ $number_type = "nc"
                             </div>
                         </td>
                         <td width="45%" class="align-c">
-                            <div class="elem_amount"><strong class="t kuaijie" style="display: none;">金额</strong><span
-                                    id="bulk-amount-input " class="kuaijie" style="display: none;"><input type="text"
-                                                                                                          class="elem_amount_input elem_amount_input_quick"
-                                                                                                          name=""
-                                                                                                          maxlength="9"
-                                                                                                          id=""
-                                                                                                          disabled="disabled"></span><a
-                                    href="javascript:void(0)" class="btn_m elem_btn" id="submit">确 定</a><a
-                                    href="javascript:void(0)" class="btn_m elem_btn" id="reset">重 置</a></div>
+                            <div class="elem_amount">
+                                <div id="td_input_money1" style="display: inline">
+                                    <strong class="t kuaijie" >金额</strong>
+                                    <span id="bulk-amount-input " class="kuaijie" >
+                                        <input type="text" class="elem_amount_input elem_amount_input_quick" name=""
+                                               maxlength="9" id="AllMoney1" >
+                                    </span>
+                                </div>
+                                <a href="javascript:void(0)" onclick="submitforms()" class="btn_m elem_btn" id="submit">确 定</a>
+                                <a href="javascript:void(0)" class="btn_m elem_btn" id="reset">重 置</a></div>
                         </td>
                         <td width="30%" class="align-r"></td>
                     </tr>

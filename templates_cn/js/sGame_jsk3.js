@@ -125,13 +125,15 @@ function MyReset(){
     $('.o').attr('title','');
     $('.inp1').val('');
     $('#AllMoney').val('');
+    $('#AllMoney1').val('');
 }
 
 function AllMoney(){
     var sel=false;
+    var money = $('#AllMoney').val() != ''? $('#AllMoney').val():$('#AllMoney1').val();
     $('.loads').each(function(){
         if(  $(this).prev().attr('title')=='选中' ){ //已选中
-            $(this).find('input').val( $('#AllMoney').val() );
+            $(this).find('input').val(money);
             sel=true;
         }
     })

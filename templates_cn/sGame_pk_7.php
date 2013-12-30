@@ -540,7 +540,7 @@ $sub_type = "6 ~ 10";
                 <strong class="t kuaijie">金额</strong>
                                     <span class="kuaijie">
                                         <input type="text" class="elem_amount_input elem_amount_input_quick"
-                                               id="AllMoney" name="" maxlength="9" id="" onkeydown="return IsNumeric()">
+                                               id="AllMoney1" name="" maxlength="9" id="" onkeydown="return IsNumeric()">
                                     </span>
             </div>
             <a class="btn_m elem_btn" id="submit_top" onclick="submitforms()">确 定</a>
