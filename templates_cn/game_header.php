@@ -81,11 +81,15 @@
         <td width="28%" class="align-c">
             <div class="elem_amount">
                 <div id="td_input_money" style="display: inline">
+                    <?php
+                    if ($gametype == '幸运农场' && $sub_type != '两面盘') {?>
+                    <?php } else { ?>
                     <strong class="t kuaijie">金额</strong>
-                                    <span class="kuaijie">
+                        <span class="kuaijie" >
                                         <input type="text" class="elem_amount_input elem_amount_input_quick"
                                                id="AllMoney" name="" maxlength="9" id="" onkeydown="return IsNumeric()">
                                     </span>
+                    <?php } ?>
                 </div>
                 <a class="btn_m elem_btn" id="submit_top" onclick="submitforms()">确 定</a>
                 <a onclick="MyReset()" class="btn_m elem_btn" id="reset_top">重 置</a></div>
