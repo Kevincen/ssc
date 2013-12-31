@@ -455,7 +455,7 @@ function nameformatcq1(str){
 			if(xh==7) return "全骰";	
 			return xh;
 		case 'c':
-			return $('.'+str).html();
+			return $('#'+str).prev().text();
 		case 'd':
 			var div1 = $('.'+str).find('div')[0];
 			var div2 = $('.'+str).find('div')[1];
