@@ -355,7 +355,7 @@ if(getCookie("soundbut")=="on" || getCookie("soundbut")==null || getCookie("soun
 			for (var key in row.row1){
 				rowHtml3.push(row.row1[key]);
 			}
-			var cHtml = '<tr class="t_list_caption"><th colspan="6">近期开奖结果这里显示有问题</th></tr>';
+			var cHtml = '<tr class="t_list_caption"><th colspan="6">近期开奖结果</th></tr>';
 			$("#cl").html(cHtml+rowHtml3.join(""));
 		}
 		if (bool == true) {

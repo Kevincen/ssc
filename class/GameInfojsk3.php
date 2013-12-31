@@ -32,14 +32,22 @@ class GameInfojsk3
 		$result = $this->result;
 		for ($i=0; $i<count($result); $i++)
 		{
+
 			$history[]="<tr>
-							<td class='white' width=40>".substr($result[$i][0],-2)."期</td>
-							<td class='NO_JS_".$result[$i][1]."' width=27></td>
-							<td class='NO_JS_".$result[$i][2]."' width=27></td>
-							<td class='NO_JS_".$result[$i][3]."' width=27></td>
-							<td class='white' width=30>".($result[$i][1]+$result[$i][2]+$result[$i][3])."</td>
-							<td class='white' width=30>".jsk3Number(array($result[$i][1],$result[$i][2],$result[$i][3]))."</td>
-						</tr>";		 
+
+							<td class='align-c tdqs'>".substr($result[$i][0],-2)."期</td>
+							<td class='tdball'>
+                                <span class='NO_JS_".$result[$i][1]."'></span>
+							</td>
+							<td class='tdball'>
+                                <span class='NO_JS_".$result[$i][2]."'></span>
+							</td>
+							<td class='tdball'>
+                                <span class='NO_JS_".$result[$i][3]."' ></span>
+							</td>
+							<td class='align-c tdnum'>".($result[$i][1]+$result[$i][2]+$result[$i][3])."</td>
+							<td class='align-c tdbig'>".jsk3Number(array($result[$i][1],$result[$i][2],$result[$i][3]))."</td>
+						</tr>";
 		}
 		return $history;
 	}
