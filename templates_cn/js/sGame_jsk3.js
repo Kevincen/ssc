@@ -213,7 +213,7 @@ var _hiden, _endtime, _opentime, _refreshtime, _openNumber, _lock=false;
 			for (var i in oddslist[n]){
 				odds = oddslist[n][i];
 				urls = "fnjsk3.php?tid="+bc(a[n])+"&numberid="+number+"&hid="+a[n]+i;
-				link = "<a href=\""+urls+"\"   target=\"leftFrame\" class=\"bgh\">"+odds+"</a>";
+				link = "<span class=\"bgh\">"+odds+"</span>";
 				$("#"+a[n]+i).html(link);
 			}
 		}
@@ -409,7 +409,7 @@ function submitforms(){
 			m=  nameformatcq1(s[1]); 
 			ss += s+","+value+","+z+","+m+"|";
 			 
-			o = $("#"+s[1]+" a").html(); 
+			o = $("#"+s[1]+"").text();
 			n = z+"["+m+"] @ "+o+" x ￥"+value;
             ball_array.push(z+ ' ' + m);
             odd_array.push(o);
@@ -428,6 +428,7 @@ function submitforms(){
 		$(".actiionn").html(s_type);
 //		return a;
 /*	}*/
+    MyReset();
     submit_confirm(ball_array,odd_array,money_array);
 	return false;
 }
