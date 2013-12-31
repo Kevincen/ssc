@@ -402,9 +402,6 @@ function add_prefix(ball_array)
 {
     for (var i=0;i<ball_array.length;i++) {
         if (ball_array[i] <=20 && ball_array[i] >0) {
-            if (ball_array[i] < 10) {
-                ball_array[i] = '0'+ball_array[i];
-            }
             ball_array[i] = '正码 ' + ball_array[i];
         } else {
             switch (ball_array[i]) {
