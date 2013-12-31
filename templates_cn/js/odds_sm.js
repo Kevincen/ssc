@@ -37,16 +37,16 @@ for (var i=1; i<=8;i++) {
 }
 
 /*龙虎 h4 h8*/
-how_to_fill_input['ah36'] = 't1_h4';
-how_to_fill_input['ah37'] = 't1_h8';
+how_to_fill_input['ah36'] = 't1_h36';
+how_to_fill_input['ah37'] = 't1_h37';
 
 for (var i=1; i<=8;i++) {
     how_to_fill_input['bh2'+i] = 't2_h2'+i;//第二球大~合数双
 }
 
 /*龙虎 h4 h8*/
-how_to_fill_input['bh36'] = 't2_h4';
-how_to_fill_input['bh37'] = 't2_h8';
+how_to_fill_input['bh36'] = 't2_h36';
+how_to_fill_input['bh37'] = 't2_h37';
 
 
 for (var i=1; i<=8;i++) {
@@ -54,8 +54,8 @@ for (var i=1; i<=8;i++) {
 }
 
 /*龙虎 h4 h8*/
-how_to_fill_input['ch36'] = 't3_h4';
-how_to_fill_input['ch37'] = 't3_h8';
+how_to_fill_input['ch36'] = 't3_h36';
+how_to_fill_input['ch37'] = 't3_h37';
 
 
 for (var i=1; i<=8;i++) {
@@ -63,43 +63,31 @@ for (var i=1; i<=8;i++) {
 }
 
 /*龙虎 h4 h8*/
-how_to_fill_input['dh36'] = 't4_h4';
-how_to_fill_input['dh37'] = 't4_h8';
+how_to_fill_input['dh36'] = 't4_h36';
+how_to_fill_input['dh37'] = 't4_h37';
 
 
 for (var i=1; i<=8;i++) {
     how_to_fill_input['eh2'+i] = 't5_h2'+i;//第五球大~合数双
 }
 
-/*龙虎 h4 h8*/
-how_to_fill_input['eh36'] = 't5_h4';
-how_to_fill_input['eh37'] = 't5_h8';
 
 
 for (var i=1; i<=8;i++) {
     how_to_fill_input['fh2'+i] = 't6_h2'+i;//第六球大~合数双
 }
 
-/*龙虎 h4 h8*/
-how_to_fill_input['fh36'] = 't6_h4';
-how_to_fill_input['fh37'] = 't6_h8';
 
 
 for (var i=1; i<=8;i++) {
     how_to_fill_input['gh2'+i] = 't7_h2'+i;//第七球大~合数双
 }
 
-/*龙虎 h4 h8*/
-how_to_fill_input['gh36'] = 't7_h4';
-how_to_fill_input['gh37'] = 't7_h8';
 
 for (var i=1; i<=8;i++) {
     how_to_fill_input['hh2'+i] = 't8_h2'+i;//第八球大~合数双
 }
 
-/*龙虎 h4 h8*/
-how_to_fill_input['hh36'] = 't8_h4';
-how_to_fill_input['hh37'] = 't8_h8';
 
 
  function kuijie(){
@@ -694,6 +682,8 @@ function nameformat(array){
 		case "h26": arr[1] = '尾小'; arr[2]=h+array[1]; break;
 		case "h27": arr[1] = '合數單'; arr[2]=h+array[1]; break;
 		case "h28": arr[1] = '合數雙'; arr[2]=h+array[1]; break;
+        case "h36": arr[1] = '龙'; arr[2]=h+array[1]; break;
+        case "h37": arr[1] = '虎'; arr[2]=h+array[1]; break;
 	}
 	return arr;
 }

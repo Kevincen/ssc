@@ -122,7 +122,6 @@ setAction[2] = function () { //刷新時間
 			setAction[3](true, data.odds);
 			if (_lock == true) {
 				$("#o").html(data.Phases);
-                action();
 				setAction[0]();
 				setAction[1]();
 				_lock=false;

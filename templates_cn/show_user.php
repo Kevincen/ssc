@@ -153,13 +153,15 @@ $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_ga
                     <tr>
                         <td colspan="3"><p>注单号：<span class="greener"><?php  echo $ListArr[0]['id']?></span></p>
 
-                            <p class="text-i-em3"><span class="bluer"><?php echo $stringList['type']?></span>&nbsp; @ &nbsp;<b class="red"><?php echo $odds ?></b></p>
+                            <p class="text-i-em3"><span class="bluer"><?php echo $lang->hk_cn($stringList['type'])?></span>&nbsp; @ &nbsp;<b class="red"><?php echo $odds ?></b></p>
 
                             <p class="text-i-em3"><span class="black">复式[<?php echo $results[0] ?>组]</span></p>
 
                             <p class="text-i-em3" style="text-indent:0"><span class="black"><?php echo $s_ball ?></span></p>
 
-                            <p>分组：<span class="black" style="padding-left:1em"><?php echo $results[0] ?>组</span></p>
+                            <p>分组：<span class="black" style="padding-left:1em">
+                                    <?php echo $s_money?>x<?php echo $results[0] ?>组</span>
+                            </p>
 
                             <p>下注额：<span class="black"><?php echo $countZhuEr?></span></p>
 

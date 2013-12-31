@@ -80,7 +80,7 @@ function submit_confirm(ball_array,odd_array,money_array)
         html_code += '<td>'+ odd_array[i]+'</td>';
         html_code += '<td>' +money_array[i] + '</td>';
         html_code += '</tr>';
-        total_money += money_array[i];
+        total_money += Number(money_array[i]);
     }
     $('#orderList').html(html_code);
     $('#groupNum').html(ball_array.length);

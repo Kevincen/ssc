@@ -493,12 +493,12 @@ div#row2 { }
                     <td class="loads"></td>
                                                
                 </tr>
-                <tr class="t_td_text" style="display: hidden">
+                <tr class="t_td_text" style="display: none">
                     <td class="caption_1">龙</td>
                     <td class="o" id="eh36"></td>
                     <td class="loads"></td>
                 </tr>
-                <tr class="t_td_text" style="display: hidden">
+                <tr class="t_td_text" style="display: none">
                     <td class="caption_1">虎</td>
                     <td class="o" id="eh37"></td>
                     <td class="loads"></td>
@@ -563,12 +563,12 @@ div#row2 { }
                     <td class="loads"></td>
                                                   
                 </tr>
-                <tr class="t_td_text" style="display:hidden">
+                <tr class="t_td_text" style="display:none">
                     <td class="caption_1">龙</td>
                     <td class="o" id="fh36"></td>
                     <td class="loads"></td>
                 </tr>
-                <tr class="t_td_text" style="display: hidden">
+                <tr class="t_td_text" style="display: none">
                     <td class="caption_1">虎</td>
                     <td class="o" id="fh37"></td>
                     <td class="loads"></td>
@@ -634,12 +634,12 @@ div#row2 { }
                     <td class="loads"></td>
                                                       
                 </tr>
-                <tr class="t_td_text" style="display: hidden">
+                <tr class="t_td_text" style="display:none">
                     <td class="caption_1">龙</td>
                     <td class="o" id="gh36"></td>
                     <td class="loads"></td>
                 </tr>
-                <tr class="t_td_text" selected="false">
+                <tr class="t_td_text" style="display: none">
                     <td class="caption_1">虎</td>
                     <td class="o" id="gh37"></td>
                     <td class="loads"></td>
@@ -696,12 +696,12 @@ div#row2 { }
                     <td class="o" id="hh28"></td>
                     <td class="loads"></td>               
                 </tr>
-                <tr class="t_td_text" style="display: hidden">
+                <tr class="t_td_text" style="display:none">
                     <td class="caption_1">龙</td>
                     <td class="o" id="hh36"></td>
                     <td class="loads"></td>
                 </tr>
-                <tr class="t_td_text" style="display: hidden">
+                <tr class="t_td_text" style="display:none">
                     <td class="caption_1">虎</td>
                     <td class="o" id="hh37"></td>
                     <td class="loads"></td>

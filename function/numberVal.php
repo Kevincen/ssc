@@ -253,6 +253,7 @@ function _isNumberIsNotNull ($db, $ball, $number)
             case '总和双' :
             case '总和尾大' :
             case '总和尾小' :
+            case '龙' ://虎在上面已经有了
                 $bool = true;
                 break;
 		}

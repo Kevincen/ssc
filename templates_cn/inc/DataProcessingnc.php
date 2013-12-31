@@ -400,6 +400,7 @@ if (isset($_SESSION['guid_code'])) {
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <link href="../css/left.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
     <style type="text/css">
         body {
             background-color: #FFEFE2

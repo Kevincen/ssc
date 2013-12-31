@@ -3059,7 +3059,7 @@ function _getString ($t, $ball=null)
 		{
 			if ($ball == '大' || $ball == '小')
 				$type = '1-8大小';
-            else if ($ball == '龍' || $ball == '虎')
+            else if ($ball == '龍' || $ball == '虎' ||$ball == '龙')
                 $type = '龍虎';
 			else if ($ball == '單' || $ball == '雙')
 				$type = '1-8單雙';
@@ -3473,7 +3473,9 @@ function GetOdds ($s_type, $select)
 		case '總和雙' : $select = 'h4'; break;
 		case '總和尾大' : $select = 'h5'; break;
 		case '總和尾小' : $select = 'h7'; break;
-		case '龍' : $select = 'h36'; break;
+        case '龍' :
+        case '龙' :
+            $select = 'h36'; break;
 		case '虎' : $select = 'h37'; break;
         //添加正码赔率
         case '总和大': $select ='h21';break;
