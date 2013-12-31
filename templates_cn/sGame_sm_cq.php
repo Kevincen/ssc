@@ -44,7 +44,7 @@ $result1 = $db->query($sql, 2);
 var s = window.parent.frames.leftFrame.location.href.split('/');
 		s = s[s.length-1];
 		if (s !== "left.php")
-			window.parent.frames.leftFrame.location.href = "/templates/left.php";
+			window.parent.frames.leftFrame.location.href = "/templates_cn/left.php";
 			
 				function soundset(sod){
 if(sod.value=="on"){
