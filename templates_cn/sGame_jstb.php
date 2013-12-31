@@ -89,7 +89,6 @@ $number_type = "k3"
 </head>
 <body class="<?php echo $_COOKIE['g_skin']; ?>">
 <div class="main-content bet-content" dom="layoutright" id="layoutright" style="display: block;">
-<form id="dp" action="" method="post" target="leftFrame" onsubmit="return submitforms()">
 <input type="hidden" name="actions" value="fn3"/>
 <input type="hidden" name="gtypes" value="1"/>
 <input type="hidden" id="mix" value="<?php echo $ConfigModel['g_mix_money'] ?>"/>
@@ -588,7 +587,6 @@ $number_type = "k3"
 </div>
 </div>
 
-</form>
 </div>
 </body>
 </html>

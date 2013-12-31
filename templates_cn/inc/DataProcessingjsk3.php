@@ -7,7 +7,7 @@ global $user, $UserOut;
 $dateTime = date('Y-m-d H:i:s');  
 if ( $dateTime < $stratGamejsk3 || $dateTime > $endGamejsk3)
 {
-	header("Location: ./right.php"); exit;
+	//header("Location: ./right.php"); exit;
 }
 
 $ConfigModel =configModel("`g_web_lock`, `g_jsk3_game_lock`,`g_mix_money`"); 
