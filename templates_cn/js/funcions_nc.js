@@ -468,7 +468,7 @@ function postodds (data)  //投注 by 2b
 			 
 			$(".inp1").val("");
             submit_confirm(ball_array,odd_array,money_array);
-            my_reset();
+            MyReset();
 /*			return true;
 		}
 		return false;*/

@@ -218,7 +218,6 @@ function set_clickable_nc()
 
 function my_reset()
 {
-    $('td.kon').removeClass('kon');
     $('td.onBg').removeClass('onBg');
     $("input[type=checkbox]").attr('checked',false);
     //清空数组
@@ -301,4 +300,5 @@ function submit_form()
     ball_array.push(game_name + ball_str);
 
     submit_confirm(ball_array, odd_array,money_array);
+    my_reset();
 }
