@@ -122,7 +122,8 @@ if($action=="fn3"){
 	}
 	upUserKyYongEr ($gMoney, $ListArr[0]['g_nid']);
 }		 
-new AutoLet($s_number, $ListArr, 9); 
+new AutoLet($s_number, $ListArr, 9);
+$number_1 = $s_number;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" oncontextmenu="return false">
