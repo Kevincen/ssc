@@ -47,8 +47,8 @@ $sub_type = '连码';
                 $("input[type=checkbox]").show();
             });
             action(set_lm, unset_lm);//设置赔率，开奖
-            if (typeof  set_enter_key != undefined) {
-                set_enter_key(function() {
+            if (typeof  common_action_set != undefined) {
+                common_action_set(function() {
                     set_action('fn1.php');
                 });
             }

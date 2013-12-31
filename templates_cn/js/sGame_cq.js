@@ -171,8 +171,8 @@ var setResultcq = new Array();
 		})
 
         kuijie();
-        if (typeof  set_enter_key != undefined) {
-            set_enter_key(function() {
+        if (typeof  common_action_set != undefined) {
+            common_action_set(function() {
                 submitforms();
             });
         }

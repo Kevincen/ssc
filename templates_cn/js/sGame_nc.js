@@ -132,8 +132,8 @@ $(function () {
 	action();
 	$("#dp").attr("action","./inc/DataProcessingnc.php?t="+encodeURI($("#tys").html()));
 
-    if (typeof  set_enter_key != undefined) {
-        set_enter_key(function() {
+    if (typeof  common_action_set() != undefined) {
+        common_action_set(function() {
             $("#submit_top,#submit_bottom").click();
         });
     }

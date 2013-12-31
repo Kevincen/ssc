@@ -71,11 +71,7 @@ $number_type = "k3"
                 yiban();
             })
             kuijie();
-            if (typeof  set_enter_key != undefined) {
-                set_enter_key(function() {
-                    submitforms();
-                });
-            }
+            common_action_set(submitforms);
         });
     </script>
     <style type="text/css">
@@ -404,14 +400,14 @@ $number_type = "k3"
         </td>
         <td width="45%" class="align-c">
             <div class="elem_amount">
-                <div id="td_input_money">
+                <div id="td_input_money1">
                     <strong class="t kuaijie">金额</strong>
                                     <span class="kuaijie">
                                         <input type="text" class="elem_amount_input elem_amount_input_quick"
                                                id="AllMoney1" name="" maxlength="9" id="" onkeydown="return IsNumeric()">
                                     </span>
                 </div>
-                <a class="btn_m elem_btn" id="submit_top" onclick="submitforms()">确 定</a>
+                <a class="btn_m elem_btn" id="submit_bottom" onclick="submitforms()">确 定</a>
                 <a onclick="MyReset()" class="btn_m elem_btn" id="reset_top">重 置</a></div>
         </td>
         <td width="30%" class="align-r"></td>

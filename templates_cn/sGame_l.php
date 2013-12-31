@@ -45,8 +45,8 @@ $g = $_GET['g'];
             })
             kuijie();
             action();
-            if (typeof  set_enter_key != undefined) {
-                set_enter_key(function() {
+            if (typeof  common_action_set != undefined) {
+                common_action_set(function() {
                     submit_odds();
                 });
             }

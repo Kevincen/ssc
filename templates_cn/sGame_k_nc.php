@@ -39,8 +39,8 @@ $sub_type = '连码';
     <script type="text/javascript" src="./js/lianma.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            if (typeof  set_enter_key != undefined) {
-                set_enter_key(function() {
+            if (typeof  common_action_set != undefined) {
+                common_action_set(function() {
                     submit_form();
                 });
             }

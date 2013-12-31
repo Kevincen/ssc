@@ -181,8 +181,8 @@ $(function () {
 
 	action()
 	$("#dp").attr("action","./inc/DataProcessing.php?t="+encodeURI($("#tys").html()));
-    if (typeof  set_enter_key != undefined) {
-        set_enter_key(function() {
+    if (typeof  common_action_set != undefined) {
+        common_action_set(function() {
             $("#submits,#submits1").click();
         });
     }
