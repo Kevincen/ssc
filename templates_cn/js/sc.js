@@ -1,10 +1,10 @@
-document.onkeydown = function () {
+/*document.onkeydown = function () {
     if (event.keyCode == 116) {
         event.keyCode = 0;
         event.cancelBubble = true;
         return false;
     }
-}
+}*/
 //写入cookie
 function SetCookie(name, value) {
     var Days = 30;
@@ -170,7 +170,7 @@ function number_to_cn(str) {
     return ret_str;
 }
 
-function set_enter_key(recall_function) {
+/*function set_enter_key(recall_function) {
     if (typeof recall_function == undefined) {
         console.log("recall_function undefined");
     }
@@ -182,7 +182,7 @@ function set_enter_key(recall_function) {
         }
     }
 
-}
+}*/
 function common_action_set(recall_function) {
     $('#AllMoney').bind(
         {'keyup':

@@ -89,7 +89,7 @@ $sub_type = '连码';
                         </tr>
                         </tbody>
                     </table>
-                    <form id="lm" action="fn1.php?v=2013121601" method="post" target="leftFrame" >
+                    <form id="lm" action="fn1.php?v=2013121601" method="post" target="leftFrame" onsubmit="return false">
                         <div class="ballqueue-module  ec-m lianma">
                             <table class="lianma-t w100 t1 align-c">
                                 <tbody>
@@ -264,6 +264,7 @@ $sub_type = '连码';
                                 <td width="45%" class="align-c">
                                     <div class="elem_amount"><strong class="t kuaijie">金额</strong><span
                                             id="bulk-amount-input" class="kuaijie">
+                                            <input type="hidden" />
                                             <input type="text" class="elem_amount_input" id="AllMoney" name="money" maxlength="9"
                                                                                           style="background-color: rgb(238, 238, 238); background-position: initial initial; background-repeat: initial initial;"></span>
                                         <a onclick="set_action('fn1.php')" class="btn_m elem_btn">确 定</a>

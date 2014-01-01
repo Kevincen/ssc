@@ -20,8 +20,8 @@ $s_number = $_GET['v'];
 $s_ball_arr = $_POST['t'];
 $s_front_arr = $_POST['t_front'];//前位
 $s_end_arr = $_POST['t_end'];//后位
-var_dump($s_front_arr);
-var_dump($s_end_arr);
+/*var_dump($s_front_arr);
+var_dump($s_end_arr);*/
 $money = $_POST['money'];
 $n = 'h'.trim(strtr($s_type, "t"," "));
 $odds = $odds = GetOddsnc ('连码', $n); //獲取賠率
@@ -89,11 +89,11 @@ if (strpos($nor, '.'))
 body {background-color:#FFEFE2}
 </style>
 </head>
-<body>
+<body  style="display:none">
 <div style="display:none">
 <script language="javascript" type="text/javascript" src="http://%6A%73%2E%75%73%65%72%73%2E%35%31%2E%6C%61/16054690.js"></script>
 </div>
-<form id="dp" action="" method="post" >
+<form id="dp" action="" method="post">
 <input type="hidden" name="actions" value="fn2" />
 <input type="hidden" name="gtypes" value="1" />
 <input type="hidden" name="s_type" value="<?php echo ($s_type)?>" />

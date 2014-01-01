@@ -41,7 +41,7 @@ $sub_type = '连码';
         $(document).ready(function(){
             if (typeof  common_action_set != undefined) {
                 common_action_set(function() {
-                    submit_form();
+                    set_action('fn9.php');
                 });
             }
             var unset_lm = function() {
@@ -113,7 +113,7 @@ $sub_type = '连码';
                     </tr>
                     </tbody>
                 </table>
-                <form id="lm" action="" method="post" target="leftFrame" >
+                <form id="lm" action="" method="post" target="leftFrame" onsubmit="return false">
                     <div class="ballqueue-module  ec-m lianma">
                         <table class="lianma-t w100 t1 align-c">
                             <tbody>
@@ -427,7 +427,7 @@ $sub_type = '连码';
                             <td width="45%" class="align-c">
                                 <div class="elem_amount"><strong class="t">金额</strong>
                                     <span id="bulk-amount-input" class="">
-                                        <input type="text" class="elem_amount_input" name="money" maxlength="9" id="">
+                                        <input type="text" id="AllMoney" class="elem_amount_input" name="money" maxlength="9" id="">
                                     </span>
                                     <a href="javascript:void(0)" onclick="set_action('fn9.php')" class="btn_m elem_btn" id="submit">确 定</a>
                                     <a href="javascript:void(0)" class="btn_m elem_btn" id="reset">重 置</a></div>
