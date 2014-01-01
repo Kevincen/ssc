@@ -192,11 +192,7 @@ function fen_pei_pk_set_data(data) {
                     if ( z+1 != ball_array[j]) {
                         body_html += '<span></span>';
                     } else {
-                        if (type_id == 9) {
-                            body_html += '<span class="number num'+ ball_array[j] + '</span>';
-                        } else {
                             body_html += '<span class="bc">' + ball_array[j] + '</span>';
-                        }
                     }
                 }
                 body_html +='</li>';
@@ -219,11 +215,7 @@ function fen_pei_pk_set_data(data) {
                     if ( z+1 != ball_array[j]) {
                         body_html += '<span></span>';
                     } else {
-                        if (type_id == 9) {
-                            body_html += '<span class="number num'+ ball_array[j] + '</span>';
-                        } else {
                             body_html += '<span class="bc">' + ball_array[j] + '</span>';
-                        }
                     }
                 }
                 body_html +='</li>';
@@ -285,6 +277,9 @@ function fen_pei_ssc_set_data(data)
     if (data) {
         for (var i=0; i < data.length; i++) {
             var qishu = data[i]['qishu'].substr(-3);
+            if (type_id == 9) {
+                qishu = qishu.substr(-1);
+            }
             var date = data[i]['date'];
             var ball = data[i]['balls'];
             var ball_array = new Array();
@@ -304,7 +299,7 @@ function fen_pei_ssc_set_data(data)
                         body_html += '<span></span>';
                     } else {
                         if (type_id == 9) {
-                            body_html += '<span class="number num'+ ball_array[j] + '</span>';
+                            body_html += '<span class="number num'+ ball_array[j] + '"></span>';
                         } else {
                             body_html += '<span class="bc">' + ball_array[j] + '</span>';
                         }
