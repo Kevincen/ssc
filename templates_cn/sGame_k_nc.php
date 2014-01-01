@@ -114,6 +114,7 @@ $sub_type = '连码';
                     </tbody>
                 </table>
                 <form id="lm" action="" method="post" target="leftFrame" onsubmit="return false">
+                </form>
                     <div class="ballqueue-module  ec-m lianma">
                         <table class="lianma-t w100 t1 align-c">
                             <tbody>
@@ -454,7 +455,6 @@ $sub_type = '连码';
                         </tbody>
                     </table>
                     <div class="empty-d"></div>
-                </form>
                 </div>
                 <div class="changlongbox">
                     <table style="" class="bet-table changlong-table dataArea w100 t1" id="cl">

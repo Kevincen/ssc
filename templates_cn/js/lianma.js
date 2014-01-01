@@ -17,8 +17,9 @@ Array.prototype.remove = function(val) {
 function set_action(url)
 {
     var number = $("#o").html()
-    $("#lm").attr('action',url + "?v=" + number);
-    submit_form();
+    url += "?v="+number;
+    $("#lm").attr('action',url);
+    submit_form(url);
 }
 
 
@@ -229,8 +230,44 @@ function my_reset()
     $('#selectedlist_m1').parent().hide();
     $('#selectedlist_m2').parent().hide();
 }
+/*
+ @param typename 输入的变量名
+ @param val      输入的变量值
+ return html_code*/
+function gen_input(typename, val)
+{
+    return '<input type="hidden" name="'+ typename + '" value="'+ val +'"/>'
+}
 
-function submit_form()
+function set_posts_gd(type,ball_array,money)
+{
+    var input_html = '';
+    input_html += gen_input('gg',type);
+    for (var i=0;i<ball_array.length;i++) {
+        input_html += gen_input('t[]',ball_array[i]);
+    }
+    input_html += gen_input('money',money);
+
+    $('#lm').html(input_html);
+
+}
+function set_posts_nc(type,front_array,end_array,money)
+{
+    var input_html = '';
+    input_html += gen_input('gg',type);
+    for (var i=0;i<front_array.length;i++) {
+        input_html += gen_input('t_front[]',front_array[i]);
+    }
+    for (var i=0;i<end_array.length;i++) {
+        input_html += gen_input('t_end[]',end_array[i]);
+    }
+    input_html += gen_input('money',money);
+
+    $('#lm').html(input_html);
+
+}
+
+function submit_form(url)
 {
     var game_name;
     var game_selecter = 'td.bq-title.kon';
@@ -238,17 +275,28 @@ function submit_form()
     var ball_array = new Array();
     var odd_array = new Array();
     var money_array = new Array();
+    var post_type;
+    var post_number;
+    var post_money;
+
+
 
     money_array.push($('input[name=money]').val());
     game_name = $(game_selecter).find('label').text();
     odd_array.push($(game_selecter).find('span').find('span').text());
+    post_number = $('#o').text();
+    post_money = money_array[0];
+    post_type = $(game_selecter).find('input').val();
 
 
     if (game_name == '选二连直') {
+        var post_front_array = new Array();
+        var post_end_array = new Array();
         var ball_str_front = '';
         $('input[name=t_front[]]').each(function(){
             if ($(this).attr('checked') == true) {
                 ball_str_front += $(this).val() + ' ';
+                post_front_array.push($(this).val());
             }
         });
         if (ball_str_front == '') {
@@ -260,6 +308,7 @@ function submit_form()
         $('input[name=t_end[]]').each(function(){
             if ($(this).attr('checked') == true) {
                 ball_str_end += $(this).val() + ' ';
+                post_end_array.push($(this).val());
             }
         });
         if (ball_str_end == '') {
@@ -268,13 +317,16 @@ function submit_form()
         }
 
         ball_str += '前位:' + ball_str_front + ' 后位:' + ball_str_end;
+        set_posts_nc(post_type,post_front_array,post_end_array,post_money);
     } else {
+        var post_ball_array = new Array();
         var ball_count = 0;
         var ball_min = 0;
         $('input[name=t[]]').each(function(){
             if ($(this).attr('checked') == true) {
                 ball_str += $(this).val() + ' ';
                 ball_count++;
+                post_ball_array.push($(this).val());
             }
         })
         if (game_name.indexOf('二') != -1) {
@@ -296,8 +348,11 @@ function submit_form()
              my_alert('请您选择号码');
              return ;
          }
+        set_posts_gd(post_type,post_ball_array,post_money);
     }
     ball_array.push(game_name + ball_str);
 
+
     submit_confirm(ball_array, odd_array,money_array);
+    my_reset();
 }

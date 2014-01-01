@@ -20,6 +20,10 @@ $s_type =  $_POST['gg'];
 $s_number = $_GET['v'];
 $s_ball_arr = $_POST['t'];
 $money = $_POST['money'];
+var_dump($s_type);
+var_dump($s_number);
+var_dump($s_ball_arr);
+var_dump($money);
 sort($s_ball_arr);
 $n = 'h'.trim(strtr($s_type, "t"," "));
 $odds = $odds = GetOdds ('連碼', $n); //獲取賠率

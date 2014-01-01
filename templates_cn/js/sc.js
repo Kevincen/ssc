@@ -90,9 +90,9 @@ function submit_confirm(ball_array, odd_array, money_array) {
             });
             $('#dp').submit();
             $('#lm').submit();
-            if (typeof my_reset != 'undefined') {
+/*            if (typeof my_reset != 'undefined') {
                 my_reset();
-            }
+            }*/
             this.close();
         },
         cancel: function () {
