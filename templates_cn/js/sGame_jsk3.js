@@ -456,13 +456,13 @@ function nameformatcq1(str){
 			return xh;
 		case 'c':
 			return $('#'+str).prev().text();
-		case 'd':
-			var div1 = $('.'+str).find('div')[0];
-			var div2 = $('.'+str).find('div')[1];
-			return $(div1).attr('class').replace('NO_JS_','')+'+'+$(div2).attr('class').replace('NO_JS_','');
+        case 'd':
+			var div1 = $('#'+str).prev().find('span')[0];
+			var div2 = $('#'+str).prev().find('span')[1];
+			return $(div1).attr('class').replace('number num','')+'+'+$(div2).attr('class').replace('number num','');
 		case 'e':
-			var div1 = $('.'+str).find('div')[0];
-			var div2 = $('.'+str).find('div')[1];
-			return $(div1).attr('class').replace('NO_JS_','')+'+'+$(div2).attr('class').replace('NO_JS_','');
+            var div1 = $('#'+str).prev().find('span')[0];
+            var div2 = $('#'+str).prev().find('span')[1];
+            return $(div1).attr('class').replace('number num','')+'+'+$(div2).attr('class').replace('number num','');
 	}
 }
