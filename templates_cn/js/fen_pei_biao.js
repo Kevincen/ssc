@@ -383,6 +383,9 @@ function fen_pei_klc_set_data(data)
     if (data) {
         for (var i=0; i < data.length; i++) {
             var qishu = data[i]['qishu'];
+            if (type_id == 5) {
+                qishu = qishu.substr(2);
+            }
             var ball = data[i]['balls'];
             var result = data[i]['result_array'];
             var class_name = type_id==1?"number num":"snumber snum";
