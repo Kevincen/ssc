@@ -26,6 +26,7 @@ $(document).ready(function(){
         var type;
         var count;
         var call_back;
+        $('#rusult_md_cs').hide();//隐藏游戏类型下拉表 bug104
 
         start_date = $(time_selecter).val();
         end_date = $(time_selecter).val();
@@ -439,6 +440,7 @@ function fen_pei_show_popup(title_html, body_html)
                 $('.pop-border .ball-list').html('');
                 Global.popup_window.close();
                 Global.popup_window = null;
+                $('#rusult_md_cs').show();//show游戏类型下拉表 bug104
                 return true;
             }
         });
