@@ -311,6 +311,7 @@ $number_type = "nc"
                 <td class=""></td>
                 <td class="tt"></td>
             </tr>
+            <?php if ($g == 'g1' || $g=='g2'||$g=='g3' ||$g=='g4') { ?>
             <tr id="1-4longhu" style="">
                 <td class="fontBlue  ballno-t-t caption_1">龙</td>
                 <td playtype="059" number="42" class="o" id="h36">1.986</td>
@@ -325,6 +326,7 @@ $number_type = "nc"
                 <td class=""></td>
                 <td class="tt"></td>
             </tr>
+            <?php } ?>
             </tbody>
         </table>
     </div>

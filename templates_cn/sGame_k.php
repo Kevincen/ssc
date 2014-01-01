@@ -47,6 +47,7 @@ $sub_type = '连码';
                 $("input[type=checkbox]").show();
             });
             action(set_lm, unset_lm);//设置赔率，开奖
+            //common_action_set(set_action('fn1.php'));
             if (typeof  common_action_set != undefined) {
                 common_action_set(function() {
                     set_action('fn1.php');
@@ -263,9 +264,9 @@ $sub_type = '连码';
                                 <td width="45%" class="align-c">
                                     <div class="elem_amount"><strong class="t kuaijie">金额</strong><span
                                             id="bulk-amount-input" class="kuaijie">
-                                            <input type="text" class="elem_amount_input" name="money" maxlength="9" id=""
+                                            <input type="text" class="elem_amount_input" id="AllMoney" name="money" maxlength="9"
                                                                                           style="background-color: rgb(238, 238, 238); background-position: initial initial; background-repeat: initial initial;"></span>
-                                        <a onclick="set_action('fn1.php')" class="btn_m elem_btn" id="submit" >确 定</a>
+                                        <a onclick="set_action('fn1.php')" class="btn_m elem_btn">确 定</a>
                                         <a href="javascript:void(0)" onclick="my_reset()" class="btn_m elem_btn" id="reset">重 置</a></div>
                                 </td>
                                 <td width="30%" class="align-r">

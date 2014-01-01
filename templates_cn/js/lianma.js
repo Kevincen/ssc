@@ -300,5 +300,4 @@ function submit_form()
     ball_array.push(game_name + ball_str);
 
     submit_confirm(ball_array, odd_array,money_array);
-    my_reset();
 }

@@ -10,6 +10,7 @@ if ( $dateTime < $stratGame || $dateTime > $endGame)
 	//back('開盤時間為：'.$stratGame);exit;
 }
 
+
 if ($user[0]['g_look'] == 2) exit(back($UserOut));
 if ($_SERVER["REQUEST_METHOD"] != "POST") {exit;}
 $guid = sha1(uniqid(time(),TRUE));
