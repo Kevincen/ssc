@@ -4,9 +4,8 @@ define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
 include_once ROOT_PATH . 'function/cheCookie.php';
 global $user;
 $db = new DB();
-if (!isset($_GET['type']) || $_GET['type'] == 0)
-    $g_type = " ";
-if ($_GET['type'] == 1)
+$lang = new utf8_lang();
+if (!isset($_GET['type']) || $_GET['type'] == 0||$_GET['type'] ==1)
     $g_type = " and g_type='廣東快樂十分' ";
 if ($_GET['type'] == 2)
     $g_type = " and g_type='重慶時時彩' ";
@@ -36,6 +35,8 @@ if ($results) {
         $countSNum += $countMoney['Win'];
     }
 }
+$total_jiner = 0;
+$total_winable = 0;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -109,9 +110,29 @@ if ($results) {
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="">
+                    <?php if (count($result) <= 0) { ?>
+                    <tr class="">
                     <td colspan="9">暂无数据!</td>
-                </tr>
+                    </tr>
+                    <?php } else {
+                        for($i=0;$i<count($result);$i++) {
+                            $total_jiner += $result[$i]['g_jiner'];
+                            $total_winable += $result[$i]['g_jiner'] * $result[$i]['g_odds'];
+                        ?>
+                    <tr class="">
+                        <td><?php echo $result[$i]['g_id']?></td>
+                        <td><?php echo $result[$i]['g_date']?></td>
+                        <td><?php echo $lang->hk_cn($result[$i]['g_type'])?></td>
+                        <td><?php echo $lang->hk_cn($result[$i]['g_mingxi_1'])?></td>
+                        <td name="title"><?php echo $user[0]['g_panlu'] ?></td>
+                        <td name="t1"><?php echo $result[$i]['g_jiner'] ?></td>
+                        <td><?php echo 100 -$result[$i]['g_tueishui'] ?>%</td>
+                            <?php //todo:可赢金额是这么算的么？。。。 ?>
+                        <td name="t2"><?php echo $result[$i]['g_jiner']*$result[$i]['g_odds'] ?></td>
+                        <td name="t3">成功</td>
+                    </tr>
+                    <?php }
+                     } ?>
                 </tbody>
                 <tfoot class="bg_g1">
                 <!-- <tr id="s_total" class="total bold"><td></td><td></td><td></td><td></td><td name="title"><strong class="blue">小计</strong></td><td name="t1"></td><td></td><td name="t2"></td><td name="t3"></td></tr> -->
@@ -121,9 +142,9 @@ if ($results) {
                     <td></td>
                     <td></td>
                     <td name="title"><strong class="blue">总计</strong></td>
-                    <td name="t1">0</td>
+                    <td name="t1"><?php echo $total_jiner?></td>
                     <td></td>
-                    <td name="t2">0</td>
+                    <td name="t2"><?php echo $total_winable?></td>
                     <td name="t3"></td>
                 </tr>
                 </tfoot>
