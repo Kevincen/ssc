@@ -9,9 +9,30 @@ $lang = new utf8_lang();
 
     //获取最新投注的10条记录
     //$type= $user['type'];
+    if (!isset($_POST['type'])) {
+        $type = '廣東快樂十分';
+    } else {
+        switch ($_POST['type']) {
+            case '1':
+                $type = '廣東快樂十分';
+                break;
+            case '2':
+                $type = '重慶時時彩';
+                break;
+            case '6':
+                $type = '北京赛车PK10';
+                break;
+            case '5':
+                $type = '幸运农场';
+                break;
+            case '9':
+                $type = '江苏骰寶(快3)';
+                break;
+        }
+    }
     $db=new DB();
     //$sql = "SELECT * FROM g_zhudan where g_nid='$name' and g_win=null and g_type='$type' ORDER BY g_id DESC LIMIT 10";
-    $sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_win is null ORDER BY g_id DESC LIMIT 10";
+    $sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id DESC LIMIT 10";
     $result1 = $db->query($sql, 1);
     for ($i=0;$i<count($result1);$i++) {
         $type = $result1[$i]['g_mingxi_1'];
@@ -100,7 +121,13 @@ $(function(){
 
 	//左侧注单刷新
 	$("#rushBtn").click(function(){
-        $.post("/templates_cn/left.php",{},function(data){
+        var game_type;
+        if (typeof window.current_game_type == 'undefined') {
+            game_type = 1;
+        } else {
+            game_type = window.current_game_type;
+        }
+        $.post("/templates_cn/left.php",{type:game_type},function(data){
             var orderhtml = '';
             console.log(data);
             for (var i=0;i<data.length;i++) {
