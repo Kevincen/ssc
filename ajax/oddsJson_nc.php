@@ -20,6 +20,7 @@ if ($tid == 1)
 {
 	//最新开奖记录
 	$db = new DB();
+    $lang = new utf8_lang();
 	$result = $db->query("SELECT `g_qishu`, `g_ball_1`, `g_ball_2`, `g_ball_3`, `g_ball_4`, `g_ball_5`, `g_ball_6`, `g_ball_7`, `g_ball_8` FROM `g_history5` WHERE g_ball_1 is not null ORDER BY g_qishu DESC LIMIT 1 ", 0);
 	$number = $result[0][0];
 	$ballArr = array();
@@ -43,11 +44,11 @@ if ($tid == 1)
 	$row_2 = sum_str_s_nc ($results, 8, 25, FALSE, FALSE, 4, 0);	//總和單雙
 	$row_3 = sum_str_s_nc ($results, 8, 25, FALSE, FALSE, 6, 0);	//總和尾數大小
 	$row_4 = sum_str_s_nc ($results, 8, 25, TRUE);	//龍虎
-	
-	$row_1 = json_encode($row_1);
-	$row_2 = json_encode($row_2);
-	$row_3 = json_encode($row_3);
-	$row_4 = json_encode($row_4);
+
+	$row_1 = json_encode($lang->hk_cn_array($row_1));
+	$row_2 = json_encode($lang->hk_cn_array($row_2));
+	$row_3 = json_encode($lang->hk_cn_array($row_3));
+	$row_4 = json_encode($lang->hk_cn_array($row_4));
 	
 	echo <<<JSON
 			{

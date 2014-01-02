@@ -4427,13 +4427,16 @@ function _getBallString_nc ($resultArray, $BallArray, $index=0, $bool=FALSE)
 
 
 function sum_ball_str_a_nc ($ball, $index, $p=1)
+    //index = 2 p = 0
 {
 	if ($index==0 || $index==1) //計算龍虎
 	{
 		if ($ball[0] > $ball[1])
-			return '家禽';
+			//return '家禽';
+            return '龙';
 		else
-			return '野兽';
+			//return '野兽';
+            return '虎';
 	}
 	else if ($index==2 || $index==3) //計算總和大小
 	{
@@ -4499,13 +4502,13 @@ function sum_ball_string_nc ($ball, $index, $p=1)
 	else if ($index == 8) //計算方位
 	{
 		if ($number == 1 || $number == 5 || $number == 9 || $number == 13 || $number == 17)
-			return '梅';
+			return '东';
 		else if ($number == 2 || $number == 6 || $number == 10 || $number == 14 || $number == 18)
-			return '兰';
+			return '西';
 		else if ($number == 3 || $number == 7 || $number == 11 || $number == 15 || $number == 19)
-			return '菊';
+			return '南';
 		else
-			return '竹';
+			return '北';
 	}
 	else if ($index == 9) //計算中發白
 	{
