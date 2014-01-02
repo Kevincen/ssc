@@ -229,6 +229,7 @@ function my_reset()
     total_length = 0;
     $('#selectedlist_m1').parent().hide();
     $('#selectedlist_m2').parent().hide();
+    $('#AllMoney').val('');
 }
 /*
  @param typename 输入的变量名

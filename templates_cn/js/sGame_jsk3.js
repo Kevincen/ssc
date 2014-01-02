@@ -411,8 +411,8 @@ function submitforms(){
 			 
 			o = $("#"+s[1]+"").text();
 			n = z+"["+m+"] @ "+o+" x ￥"+value;
-            ball_array.push(z+ ' ' + m);
-            odd_array.push('<span style="color:red">('+o+')</span>');
+            ball_array.push(z+ ' (' + m+')');
+            odd_array.push('<span style="color:red">'+o+'</span>');
             money_array.push(value);
 			names.push(n+"\n");
 		}
