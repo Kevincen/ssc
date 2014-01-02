@@ -108,7 +108,7 @@ function SelectType(LT) {
         parent.frames["mainFrame"].location="sGame_jstb.php?g=g10";
 	}
     window.parent.leftFrame.current_game_type = LT;
-    window.parent.leftFrame.$('#rushBtn').click()
+    window.parent.leftFrame.$('#rushBtn').click();
     $("a[title='开奖结果']").attr('href', 'result.php?id='+LT);
     $("a[title='个人资讯']").attr('href', 'topMenu.php?type='+LT);
     $("a[title='游戏规则']").attr('href', '/templates_r/rule.php?tid='+LT);

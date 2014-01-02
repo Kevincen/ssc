@@ -263,6 +263,8 @@ function opentimes(opentime){
 			clearInterval(interval);
 			_lock = true;
 			_refreshtime = 5;
+            //开奖时间结束也就是要开下一期的时候：要刷新左侧的注单
+            window.parent.leftFrame.$('#rushBtn').click();
 			openTime.html("00:00");
 			return false;
 		}

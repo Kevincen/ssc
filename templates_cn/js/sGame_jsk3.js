@@ -244,6 +244,8 @@ var _hiden, _endtime, _opentime, _refreshtime, _openNumber, _lock=false;
 				_lock = true;
 				_refreshtime = 5;
 				openTime.html("00:00");
+                //开奖时间结束也就是要开下一期的时候：要刷新左侧的注单
+                window.parent.leftFrame.$('#rushBtn').click();
 				return false;
 			}
 			_opentime--;

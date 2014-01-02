@@ -94,6 +94,8 @@ setAction[1] = function (){ //開獎時間
 		setHtml[1].html("00:00");
 		setTime[2] = 5;
 		setAction[8]();
+        //开奖时间结束也就是要开下一期的时候：要刷新左侧的注单
+        window.parent.leftFrame.$('#rushBtn').click();
 		_lock = true;
 		return;
 	} else {
