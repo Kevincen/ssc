@@ -110,7 +110,7 @@ div#row2 { }
         <td width="60" class="tz_title" valign="top">投注类型：</td>
         <td width="115"><a href="#this" class="intype_normal" id="kuijie">快捷</a><a href="#this" class="intype_hover" id="yiban">一般</a></td>
         <td align="left">
-        	<table border="0" width="278" >
+        	<table border="0" width="339" >
                 <tr height="26">
 					<td align="center">
                     	<span id="td_input_money"><font class="tz_title">金额</font>&nbsp;<input type="text"  id="AllMoney"  onkeydown="return IsNumeric()"  class="myAllMoney"  value=""  /></span>

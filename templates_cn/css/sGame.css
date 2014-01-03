@@ -93,7 +93,7 @@ td{
 	font-size:12px;
 }
 .o {
-	font-size:14px;
+	font-size:12px;
 	font-weight:bold;
 	color:red;
 }
@@ -125,7 +125,7 @@ td{
 }
 .t_td_text {
 	height: 29px;
-	line-height: 17px;
+	line-height: 15px;
 	text-align:center;
 	background-color: #FFFFFF;
 }
