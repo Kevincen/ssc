@@ -295,7 +295,7 @@ function fen_pei_ssc_set_data(data)
 
                 for(var z=0; z <span_count; z++) {
 
-                    if ( z != ball_array[j]) {
+                    if ( z+1 != ball_array[j]) {
                         body_html += '<span></span>';
                     } else {
                         if (type_id == 9) {
