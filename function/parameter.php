@@ -3208,20 +3208,20 @@ function SubBall ($num, $ball, $p=0)
 			else if ($ball <= 83)
 				return $p==0 ? '<font color="black">小</font>' : '小';
 			else
-				return $p==0 ? '<font color="blue">大</font>' : '大';
+				return $p==0 ? '<font color="red">大</font>' : '大';
 		case 1 : //總和單雙
 			if ($ball % 2 == 0)
-				return $p==0 ? '<font color="blue">雙</font>' : '雙';
+				return $p==0 ? '<font color="red">雙</font>' : '雙';
 			else 
 				return $p==0 ? '<font color="black">單</font>' : '單';
 		case 2 : //總和尾數大小
 			if ($ball >=5)
-				return $p==0 ? '<font color="blue">尾大</font>' : '尾大';
+				return $p==0 ? '<font color="red">尾大</font>' : '尾大';
 			else
 				return $p==0 ? '<font color="black">尾小</font>' : '尾小';
 		case 3 : //龍虎
 			if ($ball[0] > $ball[1])
-				return $p==0 ? '<font color="blue">龍</font>' : '龍';
+				return $p==0 ? '<font color="red">龍</font>' : '龍';
 			else
 				return $p==0 ? '<font color="black">虎</font>' : '虎';
 	}
@@ -4324,20 +4324,20 @@ function SubBallnc ($num, $ball, $p=0)
 			else if ($ball <= 83)
 				return $p==0 ? '<font color="black">小</font>' : '小';
 			else
-				return $p==0 ? '<font color="blue">大</font>' : '大';
+				return $p==0 ? '<font color="red">大</font>' : '大';
 		case 1 : //總和單雙
 			if ($ball % 2 == 0)
-				return $p==0 ? '<font color="blue">雙</font>' : '雙';
+				return $p==0 ? '<font color="red">雙</font>' : '雙';
 			else
 				return $p==0 ? '<font color="black">單</font>' : '單';
 		case 2 : //總和尾數大小
 			if ($ball >=5)
-				return $p==0 ? '<font color="blue">尾大</font>' : '尾大';
+				return $p==0 ? '<font color="red">尾大</font>' : '尾大';
 			else
 				return $p==0 ? '<font color="black">尾小</font>' : '尾小';
 		case 3 : //龍虎
 			if ($ball[0] > $ball[1])
-				return $p==0 ? '<font color="blue">家禽</font>' : '家禽';
+				return $p==0 ? '<font color="red">家禽</font>' : '家禽';
 			else
 				return $p==0 ? '<font color="black">野兽</font>' : '野兽';
 	}
@@ -4889,10 +4889,10 @@ function SubBallpk ($num, $ball, $p=0)
 			if ($ball <= 11)
 				return $p==0 ? '<font color="black">小</font>' : '小';
 			else
-				return $p==0 ? '<font color="blue">大</font>' : '大';
+				return $p==0 ? '<font color="red">大</font>' : '大';
 		case 1 : //冠亚军和單雙
 			if ($ball % 2 == 0)
-				return $p==0 ? '<font color="blue">雙</font>' : '雙';
+				return $p==0 ? '<font color="red">雙</font>' : '雙';
 			else 
 				return $p==0 ? '<font color="black">單</font>' : '單';
 		case 2 : //龍虎
