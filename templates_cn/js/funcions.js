@@ -139,7 +139,7 @@ setAction[3] = function(lock, odds) { //賠率
 	var Oclass = $(".o");
 	var nunId = encodeURI($("#o").html());
 	var tysId = encodeURI($("#tys").html());
-	if (!lock) {Oclass.html("-");display(false,false);return}
+	if (!lock) {Oclass.html("");display(false,false);return}
 	if (setTime[0] > 0){
 		display(true,true);
 		Oclass.each( function () {

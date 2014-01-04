@@ -413,7 +413,11 @@ function submitforms(){
 			 
 			o = $("#"+s[1]+"").text();
 			n = z+"["+m+"] @ "+o+" x ￥"+value;
-            ball_array.push(z+ ' (' + m+')');
+            if (m == "全骰" || z == '点数') {
+                ball_array.push(m);
+            } else {
+                ball_array.push(z+ ' (' + m+')');
+            }
             odd_array.push('<span style="color:red">'+o+'</span>');
             money_array.push(value);
 			names.push(n+"\n");
@@ -438,7 +442,7 @@ function submitforms(){
 function nameformatcq(str){
 	switch(str){ 
 		case "Ball_1" : return "三军";
-		case "Ball_2" : return "围骰、全骰";
+		case "Ball_2" : return "围骰";
 		case "Ball_3" : return "点数";
 		case "Ball_4" : return "长牌";
 		case "Ball_5" : return "短牌";
@@ -461,10 +465,10 @@ function nameformatcq1(str){
         case 'd':
 			var div1 = $('#'+str).prev().find('span')[0];
 			var div2 = $('#'+str).prev().find('span')[1];
-			return $(div1).attr('class').replace('number num','')+'+'+$(div2).attr('class').replace('number num','');
+			return $(div1).attr('class').replace('number num','')+$(div2).attr('class').replace('number num','');
 		case 'e':
             var div1 = $('#'+str).prev().find('span')[0];
             var div2 = $('#'+str).prev().find('span')[1];
-            return $(div1).attr('class').replace('number num','')+'+'+$(div2).attr('class').replace('number num','');
+            return $(div1).attr('class').replace('number num','')+$(div2).attr('class').replace('number num','');
 	}
 }
