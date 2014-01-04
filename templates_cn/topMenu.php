@@ -3,6 +3,86 @@ define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
 include_once ROOT_PATH . 'function/cheCookie.php';
 global $user;
+$sort_array_klc =
+    array('第一球'=>'第一球',
+          '第二球'=>'第二球',
+        '第三球'=>'第三球',
+        '第四球'=>'第四球',
+        '第五球'=>'第五球',
+        '第六球'=>'第六球',
+        '第七球'=>'第七球',
+        '第八球'=>'第八球',
+        '正码'=>'正码',
+        '1-8單雙'=>'1-8 单双' ,
+        '1-8大小'=>'1-8 大小',
+        '1-8尾數大小'=>'1-8 尾大尾小',
+        '1-8合數單雙'=>'',
+        '總和單雙'=>'',
+        '總和大小'=>'',
+        '總和尾數大小'=>'总和尾大尾小',
+        '1-8中發白'=>'1-8 中发白',
+        '1-8方位'=>'1-8 方位',
+        '龍虎'=>'1-4 龙虎',
+        '任選二'=>'','選二連組'=>'' ,
+        '任選三'=>'',
+        '選三前組'=>'',
+        '任選四'=>'',
+        '任選五'=>''
+    );
+$sort_array_pk10 =
+    array('冠军'=>'',
+        '亚军'=>'',
+        '第三名'=>'',
+        '第四名'=>'',
+        '第五名'=>'',
+        '第六名'=>'',
+        '第七名'=>'',
+        '第八名'=>'',
+        '第九名'=>'',
+        '第十名'=>'',
+        '1-10大小'=>'大小',
+        '1-10單雙'=>'单双',
+        '1-5龍虎'=>'龙虎',
+        '冠亞和大小'=>'冠亚大小',
+        '冠亞和單雙'=>'冠亚单双',
+        '冠、亞軍和'=>'冠亚和',
+    );
+$sort_array_nc =
+    array('第一球'=>'第一球',
+        '第二球'=>'第二球',
+        '第三球'=>'第三球',
+        '第四球'=>'第四球',
+        '第五球'=>'第五球',
+        '第六球'=>'第六球',
+        '第七球'=>'第七球',
+        '第八球'=>'第八球',
+        '正码'=>'正码',
+        '1-8單雙'=>'1-8 单双' ,
+        '1-8大小'=>'1-8 大小',
+        '1-8尾數大小'=>'1-8 尾大尾小',
+        '1-8合數單雙'=>'',
+        '總和單雙'=>'',
+        '總和大小'=>'',
+        '總和尾數大小'=>'总和尾大尾小',
+        '1-8中發白'=>'1-8 中发白',
+        '1-8梅兰菊竹'=>'1-8 东南西北',
+        '家禽野兽'=>'1-4 龙虎',
+        '任选二'=>'','选二连组'=>'' ,
+        '选二连直'=>'',
+        '任选三'=>'',
+        '选三前组'=>'',
+        '任选四'=>'',
+        '任选五'=>''
+    );
+$sort_array_sb =
+    array('三軍大小'=>'大小',
+        '三軍'=>'',
+        '圍骰'=>'',
+        '全骰'=>'',
+        '點數'=>'',
+        '長牌'=>'',
+        '短牌'=>''
+    );
 
 if (!isset($_GET['type'])) {
     if ((isset($_SESSION['cq']) && $_SESSION['cq'] == true))
@@ -42,8 +122,55 @@ if ($panlu == 'A') {
 $db = new DB();
 $sql = "SELECT `g_type`, {$sql_panlu} as g_tuishui,`g_danzhu_min`,`g_danzhu`, `g_danxiang` FROM `g_panbiao` WHERE `g_nid` = '{$user[0]['g_name']}' and g_game_id={$type} ORDER BY g_id DESC ";
 $result = $db->query($sql, 1);
+switch ($type) {
+    case 1:
+        $index_array = $sort_array_klc;
+        $result = reset_per_info($result,$index_array);
+        break;
+    case 2:
+        break;
+    case 6:
+        $index_array = $sort_array_pk10;
+        $result = reset_per_info($result,$index_array);
+        break;
+    case 5:
+        $index_array = $sort_array_nc;
+        $result = reset_per_info($result,$index_array);
+        break;
+    case 9:
+        $index_array = $sort_array_sb;
+        $result = reset_per_info($result,$index_array);
+        break;
+}
 //var_dump($result);
 $lang = new utf8_lang();
+
+function find_result_by_index ($array, $index)
+{
+    foreach ($array as $key) {
+        if ($key['g_type'] == $index)
+        {
+            return $key;
+        }
+    }
+    return null;
+}
+
+function reset_per_info($array,$index_array)
+{
+    $ret= array();
+    foreach ($index_array as $key=>$value)
+    {
+        $tmp = find_result_by_index($array,$key);
+        if ($value != '') {
+            $tmp['g_type'] = $value;
+        }
+
+        $ret[] = $tmp;
+    }
+
+    return $ret;
+}
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -56,7 +183,9 @@ $lang = new utf8_lang();
     <title>PHP</title>
 </head>
 <body class="skin_brown">
+<div class="main-content bet-content" dom="layoutright" id="layoutright" style="display: block;">
 <div class="mains_corll">
+<div id="rightLoader">
 <div id="infop" class="dataArea" tmp="infop">
 <div style="height:4px;visibility:hidden;font-size:0"></div>
 <table class="t1 w100">
@@ -123,9 +252,7 @@ $lang = new utf8_lang();
                 </tr>
                 </thead>
                 <tbody>
-
                 <?php for ($i = 0; $i < 13; $i++) {
-
                     ?>
                     <tr>
                         <th><?php echo $lang->hk_cn($result[$i]['g_type']) ?></th>
@@ -367,6 +494,7 @@ $lang = new utf8_lang();
 </div>
 </div>
 
+</div></div>
 
 </body>
 </html>
