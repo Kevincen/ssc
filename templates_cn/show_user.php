@@ -102,7 +102,7 @@ $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_ga
     }
     ?>
     <tr class="hide-successinfo t1" style="display: table-row;">
-        <td style="text-align:center;text-indent:0;" colspan="2"><a class="btn_m elem_btn" href="../left.php"
+        <td style="text-align:center;text-indent:0;" colspan="2"><a class="btn_m elem_btn" href="../left.php?type=<?php echo $gtypes ?>"
                                                                     id="sideLeftBack">返回</a></td>
     </tr>
     <tr id="left_times_title" class="t1" style="display: table-row;">

@@ -7,8 +7,7 @@ global $user;
 $name = base64_decode($_COOKIE['g_user']);
 $lang = new utf8_lang();
 
-    //获取最新投注的10条记录
-    //$type= $user['type'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_POST['type'])) {
         $type = '廣東快樂十分';
     } else {
@@ -30,6 +29,15 @@ $lang = new utf8_lang();
                 break;
         }
     }
+} else {
+    if (!isset($_GET['type'])) {
+        $type = '廣東快樂十分';
+    } else {
+        $type = $_GET['type'];
+    }
+
+}
+    //获取最新投注的10条记录
     $db=new DB();
     //$sql = "SELECT * FROM g_zhudan where g_nid='$name' and g_win=null and g_type='$type' ORDER BY g_id DESC LIMIT 10";
     $sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id DESC LIMIT 10";
@@ -44,7 +52,10 @@ $lang = new utf8_lang();
             $result1[$i]['g_mingxi_2'] = $lang->hk_cn($ball_array[0] ." ". $ball_array[1]);
         }
     }
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    for ($i=0;$i<count($result1);$i++) {
+        $result1[$i]['g_mingxi_2'] = $lang->hk_cn($result1[$i]['g_mingxi_2']);
+    }
     echo json_encode($result1);
     exit;
 }

@@ -19,7 +19,7 @@ $(document).ready(function(){
         $(this).addClass('ball-on');
     });
 
-    $(button_selecter).click(function(){
+    $('#ball_btn').click(function(){
         var time_selecter = '#dateName';
         var start_date;
         var end_date;
@@ -141,7 +141,7 @@ function fen_pei_pk_set_data(data) {
     data = data['ret_array'];
     var title_html = '';
     var body_html = '';
-    const span_count = 5;
+    var span_count = 5;
     var extra_class = 'ball-list-ssc';
     title_html = '<table class="dataArea t1 ball-list-ssc"> \
                 <thead> \
@@ -378,9 +378,7 @@ function fen_pei_klc_set_data(data)
     if (data) {
         for (var i=0; i < data.length; i++) {
             var qishu = data[i]['qishu'];
-            if (type_id == 5) {
-                qishu = qishu.substr(2);
-            }
+            qishu = qishu.substr(2);
             var ball = data[i]['balls'];
             var result = data[i]['result_array'];
             var class_name = type_id==1?"number num":"snumber snum";
@@ -399,9 +397,9 @@ function fen_pei_klc_set_data(data)
             } else {
                 //球号分配表 广东快乐十分19，20球需要标红色
                 var ball_array = ball.split(',');
-                for (var x=0;x<ball_array.length; i++) {
+                for (var x=0;x<ball_array.length; x++) {
                     if (ball_array[x] >= 19) {
-                        ball_array[x] = '<span class="red">' + ball_array[x] + '</span>';
+                        ball_array[x] = '<i class="red">' + ball_array[x] + '</i>';
                     }
                 }
                 ball = ball_array.join(',');

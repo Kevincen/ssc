@@ -240,7 +240,7 @@ switch ($typeid) {
         <option value="6" <?php if ($typeid == 6) echo 'selected="selected"' ?>>北京赛车(PK10)</option>
         <option value="5" <?php if ($typeid == 5) echo 'selected="selected"' ?>>幸运农场</option>
         <option value="9" <?php if ($typeid == 9) echo 'selected="selected"' ?>>江苏骰宝</option>
-    </select>&nbsp;&nbsp;<a class="btn_m elem_btn" id="ball_btn">球号分配表</a></div>
+    </select>&nbsp;&nbsp;<a href="javascript:void(0);" class="btn_m elem_btn" id="ball_btn">球号分配表</a></div>
 <table class="dataArea t1">
     <thead>
     <?php
