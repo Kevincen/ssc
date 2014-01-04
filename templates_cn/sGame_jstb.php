@@ -136,7 +136,7 @@ $number_type = "k3"
             <td class="amount huiseBg loads" id="Ball_1Nah3"></td>
             <td class="fontBlue huiseBg caption_1">大</td>
             <td playtype="001" number="01" class="huiseBg o" id="ah7"></td>
-            <td class="amount huiseBg loads" id="Bkall_1Nah7"></td>
+            <td class="amount huiseBg loads" id="Ball_1Nah7"></td>
         </tr>
         <tr>
             <td class="fontBlue huiseBg caption_1"><span class="number num4"></span></td>

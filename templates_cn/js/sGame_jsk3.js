@@ -458,8 +458,9 @@ function nameformatcq1(str){
 			if(xh==8) return "小";
 			return xh;
 		case 'b':
-			if(xh==7) return "全骰";	
-			return xh;
+			if(xh==7) return "全骰";
+            var ret = "" + xh + xh + xh;
+			return ret;
 		case 'c':
 			return $('#'+str).prev().text();
         case 'd':
