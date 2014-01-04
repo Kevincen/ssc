@@ -42,8 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //$sql = "SELECT * FROM g_zhudan where g_nid='$name' and g_win=null and g_type='$type' ORDER BY g_id DESC LIMIT 10";
     $sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id DESC LIMIT 10";
     $result1 = $db->query($sql, 1);
+    $used_money = 0;
     for ($i=0;$i<count($result1);$i++) {
         $type = $result1[$i]['g_mingxi_1'];
+        $used_money += $result1[$i]['g_jiner'];
         if ($type== '选二连直') {
             $ball_array = explode('|',$result1[$i]['g_mingxi_2']);
             $ball_array[0] = explode('、',$ball_array[0]);
@@ -60,6 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     for ($i=0;$i<count($result1);$i++) {
         $result1[$i]['g_mingxi_2'] = $lang->hk_cn($result1[$i]['g_mingxi_2']);
     }
+    $result1['length'] = count($result1);
+    $result1['used_money'] = $used_money;
     echo json_encode($result1);
     exit;
 }
@@ -155,6 +159,7 @@ $(function(){
                 </tr>'
             }
             $('#new_orders').html(orderhtml);
+            $('#used_money').html(data['used_money']);
         },'json');
 	});
 
@@ -182,7 +187,7 @@ $(function(){
   </tr>
   <tr>
     <td class="t_td_caption_1">已下金额：</td>
-    <td class="t_td_text">功能未做</td>
+    <td class="t_td_text" id='used_money'><?php echo $used_money?></td>
   </tr>
   
   

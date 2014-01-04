@@ -282,7 +282,7 @@ function submit_form(url)
 
 
 
-    money_array.push($('input[name=money]').val());
+    money_array.push($('#AllMoney').val());
     game_name = $(game_selecter).find('label').text();
     odd_array.push($(game_selecter).find('span').find('span').text());
     post_number = $('#o').text();

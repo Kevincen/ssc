@@ -128,7 +128,8 @@ $total_winable = 0;
                         <td name="t1"><?php echo $result[$i]['g_jiner'] ?></td>
                         <td><?php echo 100 -$result[$i]['g_tueishui'] ?>%</td>
                             <?php //todo:可赢金额是这么算的么？。。。 ?>
-                        <td name="t2"><?php echo $result[$i]['g_jiner']*$result[$i]['g_odds'] ?></td>
+                        <td name="t2"><?php echo $result[$i]['g_jiner']*($result[$i]['g_odds']-1) 
+                        + $result[$i]['g_jiner']*(100 -$result[$i]['g_tueishui'])/100 ?></td>
                         <td name="t3">成功</td>
                     </tr>
                     <?php }
