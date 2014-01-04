@@ -40,67 +40,6 @@ $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_ga
         <td class="t_list_caption left_version" colspan="2"><a href="/index.php?version=hk" target="_parent">新版</a></td>
     </tr>
     <!--临时按钮end-->
-    <?php if ($configModel['g_kg_game_lock'] == 1) { ?>
-        <tr>
-            <td class="t_list_caption font_st" colspan="2"><a
-                    href="http://baidu.lehecai.com/lottery/draw/view/544?agentId=5555" target="_blank">"广东快乐十分"开奖网</a>
-            </td>
-        </tr>
-    <?php
-    }
-    ?>
-    <?php if ($configModel['g_cq_game_lock'] == 1) { ?>
-        <tr>
-            <td class="t_list_caption font_st" colspan="2"><a href="http://video.shishicai.cn/cqssc/" target="_blank">"重庆时时彩"开奖网</a>
-            </td>
-        </tr>
-    <?php
-    }
-    ?>
-    <?php if ($configModel['g_pk_game_lock'] == 1) { ?>
-        <tr>
-        <tr>
-            <td class="t_list_caption font_st" colspan="2"><a href="http://www.bwlc.net/buy/trax/" target="_blank">"北京赛车(PK10)"官网</a>
-            </td>
-        </tr>
-    <?php
-    }
-    ?>
-    <?php if ($configModel['g_nc_game_lock'] == 1) { ?>
-        <tr>
-            <td class="t_list_caption font_st" colspan="2"><a href="http://www.16cp.com/gamedraw/lucky/open.shtml"
-                                                              target="_blank">"幸运农场"官网</a></td>
-        </tr>
-    <?php
-    }
-    ?>
-    <?php if ($configModel['g_gx_game_lock'] == 1) { ?>
-        <tr>
-            <td class="t_list_caption font_st" colspan="2"><a href="http://video.shishicai.cn/haoma/gxkl10/list/50.aspx"
-                                                              target="_blank">"广西快乐十分"开奖网</a></td>
-        </tr>
-    <?php
-    }
-    ?>
-
-    <?php if ($configModel['g_xj_game_lock'] == 1) { ?>
-        <tr>
-        <tr>
-            <td class="t_list_caption font_st" colspan="2"><a href="http://www.xjflcp.com/ssc/" target="_blank">"新疆时时彩"开奖网</a>
-            </td>
-        </tr>
-    <?php
-    }
-    ?>
-    <?php if ($configModel['g_jsk3_game_lock'] == 1) { ?>
-        <tr>
-        <tr>
-            <td class="t_list_caption font_st" colspan="2"><a href="http://www.cailele.com/lottery/k3/" target="_blank">"江苏骰宝（快3）"开奖网</a>
-            </td>
-        </tr>
-    <?php
-    }
-    ?>
     <tr class="hide-successinfo t1" style="display: table-row;">
         <td style="text-align:center;text-indent:0;" colspan="2"><a class="btn_m elem_btn" href="../left.php?type=<?php echo $gtypes ?>"
                                                                     id="sideLeftBack">返回</a></td>

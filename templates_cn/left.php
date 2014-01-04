@@ -46,10 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $type = $result1[$i]['g_mingxi_1'];
         if ($type== '选二连直') {
             $ball_array = explode('|',$result1[$i]['g_mingxi_2']);
+            $ball_array[0] = explode('、',$ball_array[0]);
+            $ball_array[0] = join(',',$ball_array[0]);
+            $ball_array[1] = explode('、',$ball_array[1]);
+            $ball_array[1] = join(',',$ball_array[1]);
 
             $ball_array[0] = '前位 ' .$ball_array[0];
-            $ball_array[1] = '后位' . $ball_array[1];
-            $result1[$i]['g_mingxi_2'] = $lang->hk_cn($ball_array[0] ." ". $ball_array[1]);
+            $ball_array[1] = '后位 ' . $ball_array[1];
+            $result1[$i]['g_mingxi_2'] = '选二连直 '.$lang->hk_cn($ball_array[0] ." ". $ball_array[1]);
         }
     }
  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -145,7 +149,7 @@ $(function(){
                 var date = data[i]['g_date'].split(' ');
                 orderhtml +='<tr> \
                     <td>'+ data[i]['g_mingxi_2']+ '</td> \
-                    <td>&nbsp;'+ data[i]['g_odds']+ '&nbsp;</td> \
+                    <td style="color: red">&nbsp;'+ data[i]['g_odds']+ '&nbsp;</td> \
                     <td>&nbsp;'+data[i]['g_jiner']+ '&nbsp;</td> \
                     <td>&nbsp;'+date[1] + '&nbsp;</td> \
                 </tr>'
@@ -223,7 +227,7 @@ $(function(){
   <?php
   }
   ?>
-  
+
   <?php if ($configModel['g_xj_game_lock']==1){?>
   <tr>
   <tr>
@@ -263,7 +267,7 @@ $(function(){
             ?>
             <tr>
                 <td><?php echo $lang->hk_cn($result1[$i]['g_mingxi_2']) ?></td>
-                <td><?php echo $lang->hk_cn( $result1[$i]['g_odds']) ?></td>
+                <td style="color: red"><?php echo $lang->hk_cn( $result1[$i]['g_odds']) ?></td>
                 <td><?php echo $lang->hk_cn($result1[$i]['g_jiner']) ?></td>
                 <td><?php echo $lang->hk_cn($date[1]) ?></td>
             </tr>
