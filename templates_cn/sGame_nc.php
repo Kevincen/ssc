@@ -93,7 +93,7 @@ $number_type = "nc"
         var s = window.parent.frames.leftFrame.location.href.split("/");
         s = s[s.length - 1];
         if (s !== "left.php")
-            window.parent.frames.leftFrame.location.href = "/templates_cn/left.php";
+            window.parent.frames.leftFrame.location.href = "/templates_cn/left.php?type=幸运农场";
 
 
         function soundset(sod) {

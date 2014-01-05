@@ -30,7 +30,7 @@ echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www
 		s = s[s.length-1];
 		if (s !== "left.php")
 		{
-			window.parent.frames.leftFrame.location.href = "/templates_cn/left.php";
+			window.parent.frames.leftFrame.location.href = "/templates_cn/left.php?type=廣東快樂十分";
 		}
 
 function soundset(sod){
