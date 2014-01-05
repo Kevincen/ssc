@@ -44,7 +44,12 @@ if ($tid == 1)
 	$row_2 = sum_str_s ($results, 8, 25, FALSE, FALSE, 4, 0);	//總和單雙
 	$row_3 = sum_str_s ($results, 8, 25, FALSE, FALSE, 6, 0);	//總和尾數大小
 	$row_4 = sum_str_s ($results, 8, 25, TRUE);	//龍虎
-	
+
+    $lang = new utf8_lang();
+
+    $row_1 = $lang->hk_cn_array($row_1);
+    $row_2 = $lang->hk_cn_array($row_2);
+    $row_2 = $lang->hk_cn_array($row_2);
 	$row_1 = json_encode($row_1);
 	$row_2 = json_encode($row_2);
 	$row_3 = json_encode($row_3);

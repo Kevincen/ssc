@@ -119,18 +119,19 @@ if ($typeId == "sumball_s")
 {
 	$href = get_ball_str ($_POST['href']) - 1;
 	$result = history_result(0);
+    $lang = new utf8_lang();
 	global $BallString, $BallString_a;
 	$row_2 = $href == 8 ? sum_str_s ($result, $href, 25, TRUE) : sum_str_s ($result, $href); //1-8號球-號碼
 	$row_3 = sum_str_s ($result, $href, 25, FALSE, 3);	//1-8號球-大小
-	$row_4 = sum_str_s ($result, $href, 25, FALSE, 1);	//1-8號球-單雙
+	$row_4 = $lang->hk_cn_array(sum_str_s ($result, $href, 25, FALSE, 1));	//1-8號球-單雙
 	$row_5 = sum_str_s ($result, $href, 25, FALSE, 5, NULL, 0);	//1-8號球-尾數大小
-	$row_6 = sum_str_s ($result, $href, 25, FALSE, 7, NULL, 0);	//1-8號球-合數單雙
-	$row_7 = sum_str_s ($result, $href, 25, FALSE, 8);	//1-8號球-方位
-	$row_8 = sum_str_s ($result, $href, 25, FALSE, 9);	//1-8號球-中發白
+	$row_6 = $lang->hk_cn_array(sum_str_s ($result, $href, 25, FALSE, 7, NULL, 0));	//1-8號球-合數單雙
+	$row_7 = $lang->hk_cn_array(sum_str_s ($result, $href, 25, FALSE, 8));	//1-8號球-方位
+	$row_8 = $lang->hk_cn_array(sum_str_s ($result, $href, 25, FALSE, 9));	//1-8號球-中發白
 	$row_9 = sum_str_s ($result, $href, 25, FALSE, FALSE, 2, 0); 	//總和大小
-	$row_10 = sum_str_s ($result, $href, 25, FALSE, FALSE, 4, 0);	//總和單雙
+	$row_10 = $lang->hk_cn_array(sum_str_s ($result, $href, 25, FALSE, FALSE, 4, 0));	//總和單雙
 	$row_11 = sum_str_s ($result, $href, 25, FALSE, FALSE, 6, 0);	//總和尾數大小
-	$row_12 = sum_str_s ($result, $href, 25, TRUE);	//龍虎
+	$row_12 = $lang->hk_cn_array(sum_str_s ($result, $href, 25, TRUE));	//龍虎
 	
 	//雙面計算
 	$num_arr = sum_ball_count_1 ($BallString, $BallString_a, $result, 2); 

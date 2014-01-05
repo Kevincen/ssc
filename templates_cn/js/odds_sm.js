@@ -710,7 +710,7 @@ function stringByInt (str){
 	switch (str){
 		case "总和大小" : return setResults[0];
 		case "总和单双" : return setResults[1];
-		case "总和和尾数大小" : return setResults[2];
+		case "总和尾数大小" : return setResults[2];
 		case "龙虎" : return setResults[3];
 	}
 }

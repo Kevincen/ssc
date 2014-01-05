@@ -221,6 +221,12 @@ setAction[6] = function () { //出球率與無出期數
 			var row_1Html = new Array();
 			var row_2Html = new Array();
 			for (var i in data.row_1){
+                if (data.row_1[i] >=4) {
+                    data.row_1[i] = '<span class="red fontweight">'+ data.row_1[i]+'</span>';
+                }
+                if (data.row_2[i] >=4) {
+                    data.row_2[i] = '<span class="red fontweight">'+ data.row_2[i]+'</span>';
+                }
 				row_1Html.push("<td>"+data.row_1[i]+"</td>");
 				row_2Html.push("<td>"+data.row_2[i]+"</td>");
 			}
@@ -376,15 +382,15 @@ function stringByInt (str)
 		return setResult[0];
 	switch (str){
 		case "大小" : return setResult[1];
-		case "單雙" : return setResult[2];
-		case "尾數大小" : return setResult[3];
-		case "合數單雙" : return setResult[4];
+		case "单双" : return setResult[2];
+		case "尾数大小" : return setResult[3];
+		case "合数单双" : return setResult[4];
 		case "方位" : return setResult[5];
-		case "中發白" : return setResult[6];
-		case "總和大小" : return setResult[7];
-		case "總和單雙" : return setResult[8];
-		case "總和尾數大小" : return setResult[9];
-		case "龍虎" : return setResult[10];
+		case "中发白" : return setResult[6];
+		case "总和大小" : return setResult[7];
+		case "总和单双" : return setResult[8];
+		case "总和尾数大小" : return setResult[9];
+		case "龙虎" : return setResult[10];
 	}
 }
 
