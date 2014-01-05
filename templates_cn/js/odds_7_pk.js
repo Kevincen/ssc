@@ -148,7 +148,7 @@ $(function (){
 		yiban();							   
 	})
     kuijie();
-    if (typeof  common_action_set() != undefined) {
+    if (typeof  common_action_set != undefined) {
         common_action_set(function() {
             submitforms();
         });

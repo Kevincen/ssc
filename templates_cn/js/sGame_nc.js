@@ -132,7 +132,7 @@ $(function () {
 	action();
 	$("#dp").attr("action","./inc/DataProcessingnc.php?t="+encodeURI($("#tys").html()));
 
-    if (typeof  common_action_set() != undefined) {
+    if (typeof  common_action_set != undefined) {
         common_action_set(function() {
             $("#submit_top,#submit_bottom").click();
         });
