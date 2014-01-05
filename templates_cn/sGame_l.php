@@ -270,11 +270,14 @@ $g = $_GET['g'];
     <tbody>
     <tr class="t_list_caption">
 
-        <td><a class="nv" onclick="getResult(this)" href="javascript:void(0)">总和大小</a></td>
+        <td class="nv_ab"><a class="nv_a" onclick="getResult(this)" href="javascript:void(0)">总和大小</a></td>
         <td><a class="nv" onclick="getResult(this)" href="javascript:void(0)">总和单双</a></td>
         <td class=""><a class="nv" onclick="getResult(this)" href="javascript:void(0)">总和尾数大小</a></td>
     </tr>
     </tbody>
+</table>
+<table class="wqs" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+    <tr class="t_td_text" id="z_cl"><td>&nbsp;</td></tr>
 </table>
 <div class="blank10">&nbsp;</div>
 <?php include_once 'inc/cl_file.php'; ?>

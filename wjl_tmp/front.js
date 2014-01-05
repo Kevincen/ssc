@@ -344,3 +344,19 @@ function shuangmian_submit_odds(ball_selecter)
     return true;
 
 }
+function getResult ($this)
+{
+    $(".nv_a").addClass("nv").removeClass("nv_a");
+    $($this).removeClass("nv").addClass("nv_a");
+    $(".nv_ab").removeClass("nv_ab");
+    $($this).parent().addClass("nv_ab");
+    var rowHtml = new Array();
+    var data = stringByInt ($($this).html());
+    //alert(data);
+    for (var k in data)
+    {
+        rowHtml.push(data[k]);
+    }
+    $("#z_cl").html(rowHtml.join(''));
+    $(".z_cl:even").addClass("hhg");
+}

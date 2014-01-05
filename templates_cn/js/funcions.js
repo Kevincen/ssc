@@ -265,10 +265,18 @@ setAction[7] = function () { //兩面長龍
 			var cHtml = '<tr class="t_list_caption"><th colspan="2">两面长龙排行</th></tr>';
 			$("#cl").html(cHtml+row_1Html.join(""));
 		}
-		for (var k in data.row_2){
-			row_2Html.push(data.row_2[k]);
-		}
-		$("#z_cl").html(row_2Html.join(''));
+        if (_href == 'zm') {
+            //正码总和大小，总和单双那一条
+            for (var k in setResult[7]){
+                row_2Html.push(setResult[7][k]);
+            }
+            $("#z_cl").html(row_2Html.join(''));
+        } else {
+            for (var k in data.row_2){
+                row_2Html.push(data.row_2[k]);
+            }
+            $("#z_cl").html(row_2Html.join(''));
+        }
 		$(".z_cl:even").addClass("hhg");
 	}, "json");
 };
