@@ -36,7 +36,7 @@ if (isset($_SESSION['guid_code']))
 	
 	if ($action == 'fn')
 	{
-		$types = base64_decode($_POST['types']); 
+		$types = base64_decode($_POST['types']);
 		switch($types){
 			case '冠军' : $ty="Ball_1";break;
 			case '亚军' : $ty="Ball_2";break;

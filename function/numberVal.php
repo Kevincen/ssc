@@ -872,6 +872,9 @@ function isBallTypexjsz($type, $ball, $p=false)
 
 function isNumberpk ($type=null, $ball=null, $number=null)
 {
+    echo $type;
+    echo $ball;
+    echo $number;
 	$bool = false;
 	if ($number != null)
 	{
@@ -915,7 +918,9 @@ function _isNumberIsNotNullpk ($db, $ball, $number)
 			case '冠亞和龍' : $bool = true; break;
 			case '冠亞和虎' : $bool = true; break;
 			case '龍' : $bool = true; break;
-			case '虎' : $bool = true; break;		
+			case '虎' : $bool = true; break;
+            default:
+                $bool= true;
 		}
 	}
 	return $bool;

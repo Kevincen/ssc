@@ -479,10 +479,10 @@ function nameformat(array){
 		case "h10": arr[1] = '10'; arr[2]=h+array[1]; break;
 		case "h11": arr[1] = '大'; arr[2]=h+array[1]; break;
 		case "h12": arr[1] = '小'; arr[2]=h+array[1]; break;
-        case "h13": arr[1] = '单'; arr[2]=h+array[1]; break;
-        case "h14": arr[1] = '双'; arr[2]=h+array[1]; break;
-        case "h15": arr[1] = '龙'; arr[2]=h+array[1]; break;
-		case "h16": arr[1] = '虎'; arr[2]=h+array[1]; break;
+        case "h13": arr[1] = '單'; arr[2]=h+array[1]; break;
+        case "h14": arr[1] = '雙'; arr[2]=h+array[1]; break;
+        case "h15": arr[1] = '龍'; arr[2]=h+array[1]; break;
+        case "h16": arr[1] = '虎'; arr[2]=h+array[1]; break;
 	}
 	return arr;
 }
