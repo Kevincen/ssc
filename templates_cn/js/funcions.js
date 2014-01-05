@@ -78,7 +78,8 @@ if(getCookie("soundbut")=="on" || getCookie("soundbut")==null || getCookie("soun
 		setAction[3](false, null);
 		display(false,false);
 		setHtml[0].html("00:00");
-        window.parent.leftFrame.$('#rushBtn').click();
+        window.parent.leftFrame.$('#new_orders').html('');
+        window.parent.leftFrame.$('#used_money').html('0');
 		return;
 	} else {
 		MinutesRound[0] = Math.floor(setTime[0] / 60);
@@ -98,7 +99,8 @@ setAction[1] = function (){ //開獎時間
 		setAction[8]();
 		_lock = true;
         //开奖时间结束也就是要开下一期的时候：要刷新左侧的注单
-        window.parent.leftFrame.$('#rushBtn').click();
+        window.parent.leftFrame.$('#new_orders').html('');
+        window.parent.leftFrame.$('#used_money').html('0');
 		return;
 	} else {
 		MinutesRound[1] = Math.floor(setTime[1] / 60);

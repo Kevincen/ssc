@@ -8,6 +8,16 @@
 
 $lang = new utf8_lang();
 
+//获取最新投注的10条记录
+$db=new DB();
+$type = $gtypes;
+//$sql = "SELECT * FROM g_zhudan where g_nid='$name' and g_win=null and g_type='$type' ORDER BY g_id DESC LIMIT 10";
+$sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id DESC LIMIT 10";
+$result1 = $db->query($sql, 1);
+$used_money = 0;
+for ($i=0;$i<count($result1);$i++) {
+    $used_money += $result1[$i]['g_jiner'];
+}
 //获取游戏的开放情况
 $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_game_lock,g_nc_game_lock,g_lhc_game_lock,g_xj_game_lock,g_jsk3_game_lock");
 ?>
@@ -31,7 +41,7 @@ $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_ga
     </tr>
     <tr>
         <td class="t_td_caption_1">已下金额：</td>
-        <td class="t_td_text">功能未做</td>
+        <td class="t_td_text"><?php echo $used_money?></td>
     </tr>
 
 

@@ -95,7 +95,8 @@ setAction[1] = function (){ //開獎時間
 		setTime[2] = 5;
 		setAction[8]();
         //开奖时间结束也就是要开下一期的时候：要刷新左侧的注单
-        window.parent.leftFrame.$('#rushBtn').click();
+        window.parent.leftFrame.$('#new_orders').html('');
+        window.parent.leftFrame.$('#used_money').html('0');
 		_lock = true;
 		return;
 	} else {
@@ -360,7 +361,7 @@ function stringByInt (str)
 		case "中发白" : return setResult[6];
 		case "总和大小" : return setResult[7];
 		case "总和单双" : return setResult[8];
-		case "总和尾数" : return setResult[9];
+		case "总和尾数大小" : return setResult[9];
 		case "龙虎" : return setResult[10];
 	}
 }

@@ -5040,15 +5040,15 @@ function sum_ball_str_a_smpk ($ball, $index, $p=1)
 	if ($index==2 || $index==3) //計算冠亚和大小
 	{
 		if ($ball>11)
-			return '冠亞和大';
+			return '大';
 		else
-			return '冠亞和小';
+			return '小';
 	}else if ($index==4 || $index==5) //計算冠亚和单双
 	{
 		if ($ball % 2 == 0) 
-			return '冠亞和雙';
+			return '雙';
 		else
-			return '冠亞和單';
+			return '單';
 	}
 	
 }

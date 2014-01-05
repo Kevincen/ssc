@@ -258,8 +258,10 @@ function cRadio ($this)
 
 function getResult ($this)
 {
-	$(".nv_a").addClass("nv").removeClass("nv_a");
-	$($this).removeClass("nv").addClass("nv_a");
+/*	$(".nv_a").addClass("nv").removeClass("nv_a");
+	$($this).removeClass("nv").addClass("nv_a");*/
+    $('.kon').removeClass('kon');
+    $($this).addClass("kon");
 	var rowHtml = new Array();
 	var data = stringByInt ($($this).html());
 	//alert(data);

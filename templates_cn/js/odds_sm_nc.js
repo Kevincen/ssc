@@ -273,7 +273,8 @@ function opentimes(opentime){
 			_refreshtime = 5;
 			openTime.html("00:00");
             //开奖时间结束也就是要开下一期的时候：要刷新左侧的注单
-            window.parent.leftFrame.$('#rushBtn').click();
+            window.parent.leftFrame.$('#new_orders').html('');
+            window.parent.leftFrame.$('#used_money').html('0');
 			return false;
 		}
 		_opentime--;
@@ -514,9 +515,9 @@ function getResult ($this){
 
 function stringByInt (str){
 	switch (str){
-		case "總和大小" : return setResults[0];
-		case "總和單雙" : return setResults[1];
-		case "總和尾數大小" : return setResults[2];
+		case "总和大小" : return setResults[0];
+		case "总和单双" : return setResults[1];
+		case "总和尾数大小" : return setResults[2];
 		case "家禽野兽" : return setResults[3];
 	}
 }

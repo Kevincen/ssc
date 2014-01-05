@@ -38,10 +38,12 @@ if ($tid == 1)
 	$results = history_resultpk(0);
 	$num_arr = sum_ball_count_1_pk ($BallStringpk, $BallString_apk, $results, 2);
 	arsort($num_arr);
+    $lang = new utf8_lang();
 	$num_arr = json_encode($num_arr);
 	$row_1 = sum_str_s_pk ($results, 8, 25, FALSE, FALSE, 6, 0); 	//冠亚和
 	$row_2 = sum_str_s_pk ($results, 8, 25, FALSE, FALSE, 2, 0);	//冠亚和大小
 	$row_3 = sum_str_s_pk ($results, 8, 25, FALSE, FALSE, 4, 0);	//冠亚和单双
+    $row_3 = $lang->hk_cn_array($row_3);
 
 	
 	$row_1 = json_encode($row_1);

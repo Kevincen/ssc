@@ -272,7 +272,8 @@ var setResultcq = new Array();
 				_refreshtime = 5;
 				openTime.html("00:00");
                 //开奖时间结束也就是要开下一期的时候：要刷新左侧的注单
-                window.parent.leftFrame.$('#rushBtn').click();
+                window.parent.leftFrame.$('#new_orders').html('');
+                window.parent.leftFrame.$('#used_money').html('0');
 				return false;
 			}
 			_opentime--;
@@ -378,6 +379,9 @@ if(getCookie("soundbut")=="on" || getCookie("soundbut")==null || getCookie("soun
 		var rowHtml2 = new Array();
 		var rowHtml3 = new Array();
 		for (var i in row.row1){
+            if (row.row1[i] >= 4) {
+                row.row1[i] = '<span style="color: red">'+row.row1[i]+'</span>'
+            }
 			rowHtml1.push("<td>"+row.row1[i]+"</td>");
 		}
 		$("#su").html(rowHtml1.join(''));
@@ -435,10 +439,10 @@ function stringByInt (str){
 		return setResultcq[0];
 	switch (str){
 		case "大小" : return setResultcq[1];
-		case "單雙" : return setResultcq[2];
-		case "總和大小" : return setResultcq[3];
-		case "總和單雙" : return setResultcq[4];
-		case "龍虎和" : return setResultcq[5];
+		case "单双" : return setResultcq[2];
+		case "总和大小" : return setResultcq[3];
+		case "总和单双" : return setResultcq[4];
+		case "龙虎和" : return setResultcq[5];
 	}
 }
 

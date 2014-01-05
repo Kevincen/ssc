@@ -43,7 +43,9 @@ if ($tid == 1)
 	$row_2 = sum_str_s_pk ($results, 8, 25, FALSE, FALSE, 2, 0);	//冠亚和大小
 	$row_3 = sum_str_s_pk ($results, 8, 25, FALSE, FALSE, 4, 0);	//冠亚和单双
 
-	
+
+    $lang = new utf8_lang();
+    $row_3 = $lang->hk_cn_array($row_3);
 	$row_1 = json_encode($row_1);
 	$row_2 = json_encode($row_2);
 	$row_3 = json_encode($row_3);

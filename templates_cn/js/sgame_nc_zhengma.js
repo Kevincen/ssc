@@ -226,7 +226,8 @@ setAction[1] = function (){ //開獎時間
         setTime[2] = 5;
         setAction[8]();
         //开奖时间结束也就是要开下一期的时候：要刷新左侧的注单
-        window.parent.leftFrame.$('#rushBtn').click();
+        window.parent.leftFrame.$('#new_orders').html('');
+        window.parent.leftFrame.$('#used_money').html('0');
         _lock = true;
         return;
     } else {
