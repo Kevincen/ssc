@@ -851,34 +851,44 @@ div#row2 {}
     </tr>
 </table>
 </form>
-<table class="wqs" border="0" cellpadding="0" cellspacing="0"  style="margin-top:10px;">
-	<tr class="t_list_caption" style="color:#0066FF">
-    	<td width="10%">0</td>
-    	<td width="10%">1</td>
-        <td width="10%">2</td>
-        <td width="10%">3</td>
-        <td width="10%">4</td>
-        <td width="10%">5</td>
-        <td width="10%">6</td>
-        <td width="10%">7</td>
-        <td width="10%">8</td>
-        <td>9</td>
+<table class="wqs" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px" id="bottom_table1">
+    <tr class="t_list_caption">
+        <td style="cursor: pointer" class="nv_ab"><a class="nv_a" name="1" onclick="get_Result_ball(this)">第一球</a></td>
+        <td style="cursor: pointer"><a class="nv" name="2" onclick="get_Result_ball(this)">第二球</a></td>
+        <td style="cursor: pointer"><a class="nv" name="3" onclick="get_Result_ball(this)">第三球</a></td>
+        <td style="cursor: pointer"><a class="nv" name="4" onclick="get_Result_ball(this)">第四球</a></td>
+        <td style="cursor: pointer"><a class="nv" name="5" onclick="get_Result_ball(this)">第五球</a></td>
     </tr>
-    <tr class="t_td_text" id="su">
+</table>
+<table class="wqs" border="0" cellpadding="0" cellspacing="0"  style="margin-top:0px;">
+	<tr class="t_td_text" style="height:20px">
+    	<td width="10%" style="color: blue">0</td>
+    	<td width="10%" style="color: blue">1</td>
+        <td width="10%" style="color: blue">2</td>
+        <td width="10%" style="color: blue">3</td>
+        <td width="10%" style="color: blue">4</td>
+        <td width="10%" style="color: blue">5</td>
+        <td width="10%" style="color: blue">6</td>
+        <td width="10%" style="color: blue">7</td>
+        <td width="10%" style="color: blue">8</td>
+        <td style="color: blue">9</td>
+    </tr>
+    <tr class="t_td_text" style="height: 20px" id="su">
     	<td colspan="10">&nbsp;</td>
     </tr>
 </table>
 
-<table class="wqs" border="0" cellpadding="0" cellspacing="0" style="margin-top:10px">
-	<tr class="t_list_caption">
-        <td><a class="nv_a" <?php echo $onclick?>>第1球</a></td>
-        <td><a class="nv" <?php echo $onclick?>>第2球</a></td>
-        <td><a class="nv" <?php echo $onclick?>>第3球</a></td>
-        <td><a class="nv" <?php echo $onclick?>>第4球</a></td>
-        <td><a class="nv" <?php echo $onclick?>>第5球</a></td>
+<table class="wqs" border="0" cellpadding="0" cellspacing="0"  style="margin-top:10px;" id="bottom_table2">
+    <tr class="t_list_caption">
+        <td width="125" class="nv_ab" ><a class="nv" id="result_ball" <?php echo $onclick?>>第一球</a> </td>
+        <td width="84"><a class="nv" <?php echo $onclick?>>大小</a></td>
+        <td width="85"><a class="nv" <?php echo $onclick?>>单双</a></td>
+        <td width="166"><a class="nv" <?php echo $onclick?>>总和大小</a></td>
+        <td width="166"><a class="nv" <?php echo $onclick?>>总和单双</a></td>
+        <td><a class="nv" <?php echo $onclick?>>龙虎和</a></td>
     </tr>
 </table>
-<table class="wqs" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px;">
+<table class="wqs" border="0" cellpadding="0" cellspacing="0" style="margin-top:0;">
    <tr class="t_td_text" id="z_cl"><td>&nbsp;</td></tr>
 </table>
 <div class="blank10">&nbsp;</div>

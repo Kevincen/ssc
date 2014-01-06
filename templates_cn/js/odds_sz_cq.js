@@ -230,6 +230,7 @@ function openNumberCount(row, bool){
 		for (var k in row.row2){
 			rowHtml2.push(row.row2[k]);
 		}
+        get_Result_ball($('#bottom_table1 .nv_ab a'));
 		$("#z_cl").html(rowHtml2.join(''));
 		$(".z_cl:even").addClass("hhg");
 		if (row.row8 != ""){
@@ -246,6 +247,8 @@ function openNumberCount(row, bool){
 		setResultcq[3] = row.row4;
 		setResultcq[4] = row.row5;
 		setResultcq[5] = row.row6;
+        //第n球
+
 	}
 
 
@@ -591,9 +594,8 @@ function nameformat2(array){
 
 
 function getResult ($this){
-	$(".nv_a").addClass("nv").removeClass("nv_a");
 	$($this).removeClass("nv").addClass("nv_a");
-	$(".nv_ab").removeClass("nv_ab");
+    $($this).parent().siblings(".nv_ab").removeClass("nv_ab").find('a').removeClass('.nv_a').addClass('nv');
 	$($this).parent().addClass("nv_ab");
 	var rowHtml = new Array();
 	var data = stringByInt ($($this).html());
@@ -603,15 +605,65 @@ function getResult ($this){
 	$("#z_cl").html(rowHtml.join(''));
 	$(".z_cl:even").addClass("hhg");
 }
+function get_Result_ball($this)
+{
+    $($this).removeClass("nv").addClass("nv_a");
+    $($this).parent().siblings(".nv_ab").removeClass("nv_ab").find('a').removeClass('.nv_a').addClass('nv');
+    $($this).parent().addClass("nv_ab");
+    var _hiden = $($this).attr('name');
+    var result_ball_html = '';
+
+    $.post("/ajax/cqJson.php", { typeid : 1, mid : _hiden}, function(data){
+        setResultcq[0] = data.row2;
+        setResultcq[1] = data.row3;
+        setResultcq[2] = data.row4;
+        setResultcq[3] = data.row5;
+        setResultcq[4] = data.row6;
+        setResultcq[5] = data.row7;
+        getResult($('#bottom_table2 td:first a'));
+        var rowHtml1 = new Array();
+        for (var i in data.row1){
+            if (data.row1[i] >= 4) {
+                data.row1[i] = '<span style="color: red;font-weight: bold">'+data.row1[i]+'</span>'
+            }
+            rowHtml1.push("<td>"+data.row1[i]+"</td>");
+        }
+        $("#su").html(rowHtml1.join(''));
+    }, "json");
+
+    switch (_hiden) {
+        case '1':
+            result_ball_html = '第一球';
+            break;
+        case '2':
+            result_ball_html = '第二球';
+            break;
+        case '3':
+            result_ball_html = '第三球';
+            break;
+        case '4':
+            result_ball_html = '第四球';
+            break;
+        case '5':
+            result_ball_html = '第五球';
+            break;
+        default :
+            console.log('球号超出范围');
+
+    }
+    $('#result_ball').text(result_ball_html);
+}
 
 function stringByInt (str){
-	switch (str){
-		case "第1球" : return setResultcq[1];
-		case "第2球" : return setResultcq[2];
-		case "第3球" : return setResultcq[3];
-		case "第4球" : return setResultcq[4];
-		case "第5球" : return setResultcq[5];
-	}
+    if (str == "第一球" || str == "第二球" || str == "第三球" || str == "第四球" || str == "第五球")
+        return setResultcq[0];
+    switch (str){
+        case "大小" : return setResultcq[1];
+        case "单双" : return setResultcq[2];
+        case "总和大小" : return setResultcq[3];
+        case "总和单双" : return setResultcq[4];
+        case "龙虎和" : return setResultcq[5];
+    }
 }
 
 
