@@ -229,16 +229,16 @@ div#row2 { }
         <col style="width:8.33%">
     </colgroup>
     <tr class="t_td_text">
-    	<td class="caption_1 bh1" width="80">总和大</td>
+    	<td class="caption_1 bh1" width="80">总和 大</td>
    	 	<td class="o" id="bh1">&nbsp;</td>
     	<td class="loads" width="80">&nbsp;</td>
-    	<td class="caption_1 bh2" width="80">总和小</td>
+    	<td class="caption_1 bh2" width="80">总和 小</td>
    	  	<td class="o" id="bh2">&nbsp;</td>
     	<td class="loads" width="80">&nbsp;</td>
-    	<td class="caption_1 bh3" width="80">总和单</td>
+    	<td class="caption_1 bh3" width="80">总和 单</td>
    	  	<td class="o" id="bh3">&nbsp;</td>
     	<td class="loads" width="80">&nbsp;</td>
-    	<td class="caption_1 bh4" width="80">总和双</td>
+    	<td class="caption_1 bh4" width="80">总和 双</td>
    	  	<td class="o" id="bh4">&nbsp;</td>
     	<td class="loads" width="80">&nbsp;</td>
     </tr>
