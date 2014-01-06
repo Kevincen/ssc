@@ -239,9 +239,9 @@ $sub_type = "冠亚军组合";
                 <table class="w100 t1 dataArea longhu-tb" id="firstball" cat="" play="sumDT_pk10">
                     <tbody>
                     <tr>
-                        <th class="bq-title kon nv" cat="15" <?php echo $onclick?>>冠、亚军和</th>
-                        <th class="bq-title nv" cat="13" <?php echo $onclick?>>冠、亚军和 大小</th>
-                        <th class="bq-title nv" cat="14" <?php echo $onclick?>>冠、亚军和 单双</th>
+                        <th class="bq-title kon" cat="15" <?php echo $onclick?>>冠、亚军和</th>
+                        <th class="bq-title" cat="13" <?php echo $onclick?>>冠、亚军和 大小</th>
+                        <th class="bq-title" cat="14" <?php echo $onclick?>>冠、亚军和 单双</th>
                     </tr>
                     </tbody>
                 </table>

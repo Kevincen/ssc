@@ -513,7 +513,7 @@ function getResult ($this){
 	$(".nv_ab").removeClass("nv_ab");*/
     $('.kon').removeClass('kon');
     $($this).addClass('kon');
-	$($this).parent().addClass("nv_ab");
+/*	$($this).parent().addClass("nv_ab");*/
 	var rowHtml = new Array();
 	var data = stringByInt ($($this).html());
 	for (var k in data){

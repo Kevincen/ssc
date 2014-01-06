@@ -20,6 +20,59 @@ for ($i=0;$i<count($result1);$i++) {
 }
 //获取游戏的开放情况
 $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_game_lock,g_nc_game_lock,g_lhc_game_lock,g_xj_game_lock,g_jsk3_game_lock");
+//处理回显文字
+
+for ($i=0;$i<count($ListArr);$i++) {
+    $subtype = $ListArr[$i]['g_mingxi_1'];
+    $used_money += $ListArr[$i]['g_jiner'];
+    if ($subtype== '选二连直') {
+        $ball_array = explode('|',$ListArr[$i]['g_mingxi_2']);
+        $ball_array[0] = explode('、',$ball_array[0]);
+        $ball_array[0] = join(',',$ball_array[0]);
+        $ball_array[1] = explode('、',$ball_array[1]);
+        $ball_array[1] = join(',',$ball_array[1]);
+
+        $ball_array[0] = '前位 ' .$ball_array[0];
+        $ball_array[1] = '后位 ' . $ball_array[1];
+        $ListArr[$i]['g_mingxi_2'] = '选二连直 '.$lang->hk_cn($ball_array[0] ." ". $ball_array[1]);
+    } else if ($subtype == '三军' || $subtype == '长牌' ||$subtype == '围骰') {
+        //江苏sb特殊处理
+        if ($ListArr[$i]['g_mingxi_2'] != '大'
+            && $ListArr[$i]['g_mingxi_2'] != '小'
+            && $ListArr[$i]['g_mingxi_2'] != '全骰' ) {
+
+            $tmp = explode('+',$ListArr[$i]['g_mingxi_2']);
+            $ListArr[$i]['g_mingxi_2'] = join('',$tmp);
+            $ListArr[$i]['g_mingxi_2'] = $subtype . ' ('.$ListArr[$i]['g_mingxi_2'].')';
+        }
+    } else if ($subtype == '點數') {
+        $ListArr[$i]['g_mingxi_2'] = '点' . ' ' . $ListArr[$i]['g_mingxi_2'];
+    } else {
+        $tmp = explode('、',$ListArr[$i]['g_mingxi_2']);
+        $tmp = join(',',$tmp);
+        if ($subtype == '總和、家禽野兽') {
+            $subtype = '总和';
+            $tmp = substr($tmp,6);
+        } else if ($subtype == '冠、亞軍和') {
+            $subtype = '冠亚和';
+        } else if ($subtype == '冠亞和') {
+            $subtype = '冠亚';
+            $tmp = substr($tmp,9);
+        } else if ($subtype == '總和、龍虎和') {
+            $preg = '總和.';
+            $subtype = '';
+            if (preg_match($preg,$tmp)) {
+                $subtype = '总和';
+                $tmp = substr($tmp,6);
+            }
+        } else if ($subtype == '總和、龍虎') {
+            $subtype = '总和';
+            $tmp = substr($tmp,6);
+        }
+        $ListArr[$i]['g_mingxi_2'] = $subtype . ' '. $tmp;
+
+    }
+}
 ?>
 <table border="0" cellpadding="0" cellspacing="0" class="t_list">
     <tr>
@@ -112,8 +165,8 @@ $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_ga
                                     <?php echo $s_money?>x<?php echo $results[0] ?>组</span>
                             </p>
 
-                            <p>下注额：<span class="black"><?php echo $countZhuEr?></span></p>
 
+                            <p>下注额：<span class="black"><?php echo $countZhuEr?></span></p>
                             <p>可赢额：<span class="black"><?php echo $ListArr[0]['KeYing']?></span></p></td>
                     </tr>
                     <tr>
@@ -134,7 +187,8 @@ $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_ga
                 <?php
                 } else if ($action == 'fn' || $action == 'fn1' || $action == 'fn3') { //單筆循環投注單
                     for ($i=0; $i<count($ListArr); $i++) {
-                        $nn = $ListArr[$i]['g_mingxi_1'] == '總和、龍虎' ? $ListArr[$i]['g_mingxi_2'] : $ListArr[$i]['g_mingxi_1'].' '.$ListArr[$i]['g_mingxi_2'].'';
+                        //$nn = $ListArr[$i]['g_mingxi_1'] == '總和、龍虎' ? $ListArr[$i]['g_mingxi_2'] : $ListArr[$i]['g_mingxi_1'].' '.$ListArr[$i]['g_mingxi_2'].'';
+                        $nn = $ListArr[$i]['g_mingxi_2'];
                         ?>
                         <tr>
                             <td colspan="3"><p>注单号：<span class="greener"><?php echo  $ListArr[$i]['id']?></span></p>
