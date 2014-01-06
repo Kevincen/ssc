@@ -40,7 +40,7 @@ $sub_type = '连码';
     <script type="text/javascript">
         var s = window.parent.frames.leftFrame.location.href.split('/');
         s = s[s.length - 1];
-        if (s !== "left.php")
+        if (s !== "left.php?type=幸运农场")
             window.parent.frames.leftFrame.location.href = "/templates_cn/left.php?type=幸运农场";
         $(document).ready(function(){
             if (typeof  common_action_set != undefined) {

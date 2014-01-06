@@ -49,7 +49,7 @@ $number_type = "nc"
     <script type="text/javascript">
         var s = window.parent.frames.leftFrame.location.href.split('/');
         s = s[s.length - 1];
-        if (s !== "left.php")
+        if (s !== "left.php?type=幸运农场")
             window.parent.frames.leftFrame.location.href = "/templates_cn/left.php?type=幸运农场";
 
 

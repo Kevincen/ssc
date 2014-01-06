@@ -44,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result1 = $db->query($sql, 1);
     $used_money = 0;
     for ($i=0;$i<count($result1);$i++) {
-        $type = $result1[$i]['g_mingxi_1'];
+        $subtype = $result1[$i]['g_mingxi_1'];
         $used_money += $result1[$i]['g_jiner'];
-        if ($type== '选二连直') {
+        if ($subtype== '选二连直') {
             $ball_array = explode('|',$result1[$i]['g_mingxi_2']);
             $ball_array[0] = explode('、',$ball_array[0]);
             $ball_array[0] = join(',',$ball_array[0]);
@@ -56,6 +56,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $ball_array[0] = '前位 ' .$ball_array[0];
             $ball_array[1] = '后位 ' . $ball_array[1];
             $result1[$i]['g_mingxi_2'] = '选二连直 '.$lang->hk_cn($ball_array[0] ." ". $ball_array[1]);
+        } else if ($subtype == '三军' || $subtype == '长牌' ||$subtype == '围骰') {
+            //江苏sb特殊处理
+            if ($result1[$i]['g_mingxi_2'] != '大'
+                && $result1[$i]['g_mingxi_2'] != '小'
+                && $result1[$i]['g_mingxi_2'] != '全骰' ) {
+
+                $tmp = explode('+',$result1[$i]['g_mingxi_2']);
+                $result1[$i]['g_mingxi_2'] = join('',$tmp);
+                $result1[$i]['g_mingxi_2'] = $subtype . ' ('.$result1[$i]['g_mingxi_2'].')';
+            }
+        } else if ($subtype == '點數') {
+            $result1[$i]['g_mingxi_2'] = '点' . ' ' . $result1[$i]['g_mingxi_2'];
+        } else {
+            $tmp = explode('、',$result1[$i]['g_mingxi_2']);
+            $tmp = join(',',$tmp);
+            if ($subtype == '總和、家禽野兽') {
+                $subtype = '总和';
+                $tmp = substr($tmp,6);
+            } else if ($subtype == '冠、亞軍和') {
+                $subtype = '冠亚和';
+            } else if ($subtype == '冠亞和') {
+                $subtype = '冠亚';
+                $tmp = substr($tmp,9);
+            } else if ($subtype == '總和、龍虎和') {
+                $subtype = '';
+            } else if ($subtype == '總和、龍虎') {
+                $subtype = '总和';
+                $tmp = substr($tmp,6);
+            }
+            $result1[$i]['g_mingxi_2'] = $subtype . ' '. $tmp;
+
         }
     }
  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
