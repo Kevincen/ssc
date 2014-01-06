@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id DESC LIMIT 10";
     $result1 = $db->query($sql, 1);
     $used_money = 0;
+//此处文字处理同show_user.php的文字处理
     for ($i=0;$i<count($result1);$i++) {
         $subtype = $result1[$i]['g_mingxi_1'];
         $used_money += $result1[$i]['g_jiner'];
@@ -81,6 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $tmp = substr($tmp,9);
             } else if ($subtype == '總和、龍虎和') {
                 $subtype = '';
+                if ($tmp == '總和大'
+                    ||$tmp == '總和小'
+                    ||$tmp == '總和雙'
+                    ||$tmp == '總和單'
+                ) {
+                    $subtype = '总和';
+                    $tmp = substr($tmp,6);
+                }
             } else if ($subtype == '總和、龍虎') {
                 $subtype = '总和';
                 $tmp = substr($tmp,6);

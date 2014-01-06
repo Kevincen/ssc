@@ -21,12 +21,12 @@ for ($i=0;$i<count($result1);$i++) {
 //获取游戏的开放情况
 $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_game_lock,g_nc_game_lock,g_lhc_game_lock,g_xj_game_lock,g_jsk3_game_lock");
 //处理回显文字
-
+//此处同left.php当中的文字处理
 for ($i=0;$i<count($ListArr);$i++) {
     $subtype = $ListArr[$i]['g_mingxi_1'];
     $used_money += $ListArr[$i]['g_jiner'];
     if ($subtype== '选二连直') {
-        $ball_array = explode('|',$ListArr[$i]['g_mingxi_2']);
+/*        $ball_array = explode('|',$ListArr[$i]['g_mingxi_2']);
         $ball_array[0] = explode('、',$ball_array[0]);
         $ball_array[0] = join(',',$ball_array[0]);
         $ball_array[1] = explode('、',$ball_array[1]);
@@ -34,7 +34,7 @@ for ($i=0;$i<count($ListArr);$i++) {
 
         $ball_array[0] = '前位 ' .$ball_array[0];
         $ball_array[1] = '后位 ' . $ball_array[1];
-        $ListArr[$i]['g_mingxi_2'] = '选二连直 '.$lang->hk_cn($ball_array[0] ." ". $ball_array[1]);
+        $ListArr[$i]['g_mingxi_2'] = '选二连直 '.$lang->hk_cn($ball_array[0] ." ". $ball_array[1]);*/
     } else if ($subtype == '三军' || $subtype == '长牌' ||$subtype == '围骰') {
         //江苏sb特殊处理
         if ($ListArr[$i]['g_mingxi_2'] != '大'
@@ -59,9 +59,13 @@ for ($i=0;$i<count($ListArr);$i++) {
             $subtype = '冠亚';
             $tmp = substr($tmp,9);
         } else if ($subtype == '總和、龍虎和') {
-            $preg = '總和.';
+/*            $preg = '總和.';*/
             $subtype = '';
-            if (preg_match($preg,$tmp)) {
+            if ($tmp == '總和大'
+            ||$tmp == '總和小'
+            ||$tmp == '總和雙'
+            ||$tmp == '總和單'
+            ) {
                 $subtype = '总和';
                 $tmp = substr($tmp,6);
             }
