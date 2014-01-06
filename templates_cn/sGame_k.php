@@ -35,8 +35,8 @@ $sub_type = '连码';
     <script type="text/javascript">
         var s = window.parent.frames.leftFrame.location.href.split('/');
         s = s[s.length - 1];
-        if (s !== "left.php?type=廣東快樂十分")
-            window.parent.frames.leftFrame.location.href = "/templates_cn/left.php?type=廣東快樂十分";
+        if (s !== "left.php")
+            window.parent.frames.leftFrame.location.href = "/templates_cn/left.php";
         $(document).ready(function () {
             var unset_lm = function() {
                 unset_clickable('.ballno-t-t', '#selectedlist', '#selectedAmount');

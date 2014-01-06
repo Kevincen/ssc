@@ -48,8 +48,8 @@ $sub_type = "冠亚军组合";
     <script type="text/javascript">
         var s = window.parent.frames.leftFrame.location.href.split('/');
         s = s[s.length - 1];
-        if (s !== "left.php?type=北京赛车PK10")
-            window.parent.frames.leftFrame.location.href = "/templates_cn/left.php?type=北京赛车PK10";
+        if (s !== "left.php")
+            window.parent.frames.leftFrame.location.href = "/templates_cn/left.php";
         function soundset(sod) {
             if (sod.value == "on") {
                 sod.src = "images/soundoff.png";

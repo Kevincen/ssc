@@ -40,8 +40,8 @@ $result1 = $db->query($sql, 2);
 <script type="text/javascript">
 var s = window.parent.frames.leftFrame.location.href.split('/');
 		s = s[s.length-1];
-		if (s !== "left.php")
-			window.parent.frames.leftFrame.location.href = "/templates/left.php";
+if (s !== "left.php")
+    window.parent.frames.leftFrame.location.href = "/templates_cn/left.php";
 			
 			
 function soundset(sod){

@@ -11,30 +11,22 @@ $lang = new utf8_lang();
 //获取最新投注的10条记录
 $db=new DB();
 $type = $gtypes;
-//$sql = "SELECT * FROM g_zhudan where g_nid='$name' and g_win=null and g_type='$type' ORDER BY g_id DESC LIMIT 10";
-$sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id DESC LIMIT 10";
-$result1 = $db->query($sql, 1);
-$used_money = 0;
-for ($i=0;$i<count($result1);$i++) {
-    $used_money += $result1[$i]['g_jiner'];
-}
-//获取游戏的开放情况
-$configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_game_lock,g_nc_game_lock,g_lhc_game_lock,g_xj_game_lock,g_jsk3_game_lock");
+
 //处理回显文字
 //此处同left.php当中的文字处理
 for ($i=0;$i<count($ListArr);$i++) {
     $subtype = $ListArr[$i]['g_mingxi_1'];
     $used_money += $ListArr[$i]['g_jiner'];
     if ($subtype== '选二连直') {
-/*        $ball_array = explode('|',$ListArr[$i]['g_mingxi_2']);
-        $ball_array[0] = explode('、',$ball_array[0]);
-        $ball_array[0] = join(',',$ball_array[0]);
-        $ball_array[1] = explode('、',$ball_array[1]);
-        $ball_array[1] = join(',',$ball_array[1]);
+        /*        $ball_array = explode('|',$ListArr[$i]['g_mingxi_2']);
+                $ball_array[0] = explode('、',$ball_array[0]);
+                $ball_array[0] = join(',',$ball_array[0]);
+                $ball_array[1] = explode('、',$ball_array[1]);
+                $ball_array[1] = join(',',$ball_array[1]);
 
-        $ball_array[0] = '前位 ' .$ball_array[0];
-        $ball_array[1] = '后位 ' . $ball_array[1];
-        $ListArr[$i]['g_mingxi_2'] = '选二连直 '.$lang->hk_cn($ball_array[0] ." ". $ball_array[1]);*/
+                $ball_array[0] = '前位 ' .$ball_array[0];
+                $ball_array[1] = '后位 ' . $ball_array[1];
+                $ListArr[$i]['g_mingxi_2'] = '选二连直 '.$lang->hk_cn($ball_array[0] ." ". $ball_array[1]);*/
     } else if ($subtype == '三军' || $subtype == '长牌' ||$subtype == '围骰') {
         //江苏sb特殊处理
         if ($ListArr[$i]['g_mingxi_2'] != '大'
@@ -59,12 +51,12 @@ for ($i=0;$i<count($ListArr);$i++) {
             $subtype = '冠亚';
             $tmp = substr($tmp,9);
         } else if ($subtype == '總和、龍虎和') {
-/*            $preg = '總和.';*/
+            /*            $preg = '總和.';*/
             $subtype = '';
             if ($tmp == '總和大'
-            ||$tmp == '總和小'
-            ||$tmp == '總和雙'
-            ||$tmp == '總和單'
+                ||$tmp == '總和小'
+                ||$tmp == '總和雙'
+                ||$tmp == '總和單'
             ) {
                 $subtype = '总和';
                 $tmp = substr($tmp,6);
@@ -77,6 +69,16 @@ for ($i=0;$i<count($ListArr);$i++) {
 
     }
 }
+
+//$sql = "SELECT * FROM g_zhudan where g_nid='$name' and g_win=null and g_type='$type' ORDER BY g_id DESC LIMIT 10";
+$sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id DESC LIMIT 10";
+$result1 = $db->query($sql, 1);
+$used_money = 0;
+for ($i=0;$i<count($result1);$i++) {
+    $used_money += $result1[$i]['g_jiner'];
+}
+//获取游戏的开放情况
+$configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_game_lock,g_nc_game_lock,g_lhc_game_lock,g_xj_game_lock,g_jsk3_game_lock");
 ?>
 <table border="0" cellpadding="0" cellspacing="0" class="t_list">
     <tr>
@@ -108,7 +110,7 @@ for ($i=0;$i<count($ListArr);$i++) {
     </tr>
     <!--临时按钮end-->
     <tr class="hide-successinfo t1" style="display: table-row;">
-        <td style="text-align:center;text-indent:0;" colspan="2"><a class="btn_m elem_btn" href="../left.php?type=<?php echo $gtypes ?>"
+        <td style="text-align:center;text-indent:0;" colspan="2"><a class="btn_m elem_btn" href="../left.php"
                                                                     id="sideLeftBack">返回</a></td>
     </tr>
     <tr id="left_times_title" class="t1" style="display: table-row;">

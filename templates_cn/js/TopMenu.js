@@ -107,8 +107,9 @@ function SelectType(LT) {
         document.getElementById("Type_List").innerHTML='<a class="red" href="sGame_jstb.php"  target="mainFrame">大小骰宝</a>';
         parent.frames["mainFrame"].location="sGame_jstb.php?g=g10";
 	}
+    $.cookie('current_type',LT);
     window.parent.leftFrame.current_game_type = LT;
-    window.parent.leftFrame.$('#rushBtn').click();
+    window.parent.leftFrame.jQuery('#rushBtn').click();
     $("a[title='下注状况']").attr('href', 'report.php?type='+LT);
     $("a[title='开奖结果']").attr('href', 'result.php?id='+LT);
     $("a[title='个人资讯']").attr('href', 'topMenu.php?type='+LT);

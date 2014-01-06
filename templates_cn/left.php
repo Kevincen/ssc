@@ -6,6 +6,7 @@ global $user;
 
 $name = base64_decode($_COOKIE['g_user']);
 $lang = new utf8_lang();
+$type_id = 1;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_POST['type'])) {
@@ -29,11 +30,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 break;
         }
     }
+    $type_id = $type;
 } else {
     if (!isset($_GET['type'])) {
         $type = '廣東快樂十分';
     } else {
         $type = $_GET['type'];
+    }
+    switch ($_GET['type']) {
+        case '廣東快樂十分':
+            $type_id = 1;
+            break;
+        case '重慶時時彩':
+            $type_id = 2;
+            break;
+        case '北京赛车PK10':
+            $type_id = 6;
+            break;
+        case '幸运农场':
+            $type_id = 5;
+            break;
+        case '江苏骰寶(快3)':
+            $type_id = 9;
+            break;
     }
 
 }
@@ -181,11 +200,7 @@ $(function(){
 	//左侧注单刷新
 	$("#rushBtn").click(function(){
         var game_type;
-        if (typeof window.current_game_type == 'undefined') {
-            game_type = 1;
-        } else {
-            game_type = window.current_game_type;
-        }
+        game_type = $.cookie('current_type');
         $.post("/templates_cn/left.php",{type:game_type},function(data){
             var orderhtml = '';
             console.log(data);
@@ -203,6 +218,7 @@ $(function(){
         },'json');
 	});
 
+    $("#rushBtn").click();
 
 });
 
