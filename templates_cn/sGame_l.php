@@ -51,7 +51,7 @@ $g = $_GET['g'];
             action();
             if (typeof  common_action_set != undefined) {
                 common_action_set(function() {
-                    submit_odds();
+                    submit_odds('<?php echo $types ?>','.o');
                 });
             }
         });
