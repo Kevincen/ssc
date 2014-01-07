@@ -187,10 +187,10 @@ $sub_type = "冠亚军组合";
                         <td class="amount tt" id="t12_h2"><input type="text" class="amount-input" maxlength="9"></td>
                         <td class="fontBlue  ballno-t-t caption_1">冠亚单</td>
                         <td class="o" id="kh3"></td>
-                        <td class="amount tt" id="t12_h4"><input type="text" class="amount-input" maxlength="9"></td>
+                        <td class="amount tt" id="t12_h3"><input type="text" class="amount-input" maxlength="9"></td>
                         <td class="fontBlue  ballno-t-t caption_1">冠亚双</td>
-                        <td class="o" id="kh5"></td>
-                        <td class="amount tt" id="t12_h5"><input type="text" class="amount-input" maxlength="9"></td>
+                        <td class="o" id="kh4"></td>
+                        <td class="amount tt" id="t12_h4"><input type="text" class="amount-input" maxlength="9"></td>
                     </tr>
                     </tbody>
                 </table>

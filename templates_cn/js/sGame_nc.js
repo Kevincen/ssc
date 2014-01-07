@@ -134,7 +134,7 @@ $(function () {
 
     if (typeof  common_action_set != undefined) {
         common_action_set(function() {
-            $("#submit_top,#submit_bottom").click();
+            $("#submit_top").click();
         });
     }
 	//POST提交表單
