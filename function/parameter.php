@@ -1537,6 +1537,7 @@ function gameTypeFormatgx($type)
 function insertNumbernc($day, $d, $times, $startNum, $endNum, $closeTime=3)
 {
     $closeTime=2;
+    $day = get_start_date(5);
 	$db = new DB();
 	$db->query("DELETE FROM `g_kaipan5` ", 2);
 	$d = $d >0 ? $d-1 : $d;
@@ -1571,11 +1572,41 @@ function insertNumbernc($day, $d, $times, $startNum, $endNum, $closeTime=3)
 	$sql = mb_substr($sql, 0, mb_strlen($sql, 'utf-8')-1);
 	$db->query($sql, 2);
 }
+
+function get_start_date($typeid)
+{
+    $ret = 0;
+    switch ($typeid) {
+        case 1:
+            $type_name = 'g_open_time_gd';
+            break;
+        case 2:
+            $type_name = 'g_open_time_cq';
+            break;
+        case 6:
+            $type_name = 'g_open_time_pk';
+            break;
+        case 5:
+            $type_name = 'g_open_time_nc';
+            break;
+        case 9:
+            $type_name = 'open_time_jsk3';
+            break;
+    }
+    $sqlstr = "select $type_name from g_config where 1 limit 1";
+    $db = new DB();
+    $result = $db->query($sqlstr,0);
+    $ret = $result[0][0];
+
+    return $ret;
+}
  
 function InsertNumber ($day=1, $closeTime=2)
 {
 	     $closeTime=2;
-    $start_date = date('Y-m-d 08:30:00',time()+60*60*24*$day);
+    $start_date = get_start_date(1);
+
+    $start_date = date('Y-m-d '.$start_date,time()+60*60*24*$day);
     echo $start_date;
     $add_time = 10;
     $current_date = 0;
@@ -1635,10 +1666,11 @@ function insertNumberjsk3 ($d=1, $closeTime=3)
 {
     $closeTime=2;
 	$db = new DB();
-	$db->query("DELETE FROM `g_kaipan9` ", 2); 
-	$day = date( "Y-m-d 08:40:00",time()+60*60*24*$d ); 
+	$db->query("DELETE FROM `g_kaipan9` ", 2);
+    $day = get_start_date(9);
+	$day = date( "Y-m-d ". $day,time()+60*60*24*$d );
 	$sql = "INSERT INTO `g_kaipan9` ( `g_qishu`, `g_feng_date`, `g_open_date`, `g_lock` ) VALUES "; 
-	$time=0;
+	$time=10;
 	$times=10;
 	for ($i=1; $i<=82; $i++)
 	{  
@@ -1656,10 +1688,11 @@ function insertNumberjsk3 ($d=1, $closeTime=3)
 	 
 	$db->query($sql, 2);
 }
-function insertNumbers($day, $d, $times, $startNum, $endNum, $closeTime=2)
+function insertNumbers($day, $d, $times, $startNum, $endNum, $closeTime=2)//重庆
 {
     $closeTime=1;
 	$db = new DB();
+    $day = get_start_date(2);
 	$db->query("DELETE FROM `g_kaipan2` ", 2);
 	$d = $d >0 ? $d-1 : $d;
 	$insertDate = date( "Y-m-d ", mktime(0, 0, 0, date('m'), date('d')+$d, date('Y')));
@@ -1725,8 +1758,8 @@ function InsertNumber_pk10 ($day=1, $closeTime=1)
 	$insertDate = date( "Y-m-d ", mktime(0, 0, 0, date('m'), date('d')+$day, date('Y')));
 	$date = date( "Ymd", mktime(0, 0, 0, date('m'), date('d')+$day, date('Y')));
 	$count = 0;
-	$dateArr = array(); 
-	$starttm = "09:02:30";
+	$dateArr = array();
+    $starttm = get_start_date(6);
 	$jgminute=5;
 	$stratDate = strtotime($insertDate." ".$starttm);
 	 
