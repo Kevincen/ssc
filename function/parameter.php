@@ -1575,28 +1575,23 @@ function insertNumbernc($day, $d, $times, $startNum, $endNum, $closeTime=3)
 function InsertNumber ($day=1, $closeTime=2)
 {
 	     $closeTime=2;
-	
-	$insertDate = date( "Y-m-d ", mktime(0, 0, 0, date('m'), date('d')+$day, date('Y')));
-	$date = date( "Ymd", mktime(0, 0, 0, date('m'), date('d')+$day, date('Y')));
-	$count = 0;
-	$dateArr = array();
+    $start_date = date('Y-m-d 08:30:00',time()+60*60*24*$day);
+    echo $start_date;
+    $add_time = 10;
+    $current_date = 0;
+    $time_interval = $add_time *60;
+    for ($i = 1; $i <=84;$i++) {
+        $current_date = date("Y-m-d H:i:s", strtotime($start_date)+$time_interval*$i);
+        echo $current_date;
+        if ($i < 10) {
+            $dateArr['Number'][] = date('Ymd', strtotime($start_date)). '0' . $i;
+        } else {
+            $dateArr['Number'][] = date('Ymd', strtotime($start_date)) . $i;
+        }
+        $dateArr['feng_date'][] = date("Y-m-d H:i:s", strtotime($current_date)-($closeTime*60));
+        $dateArr['open_date'][] = $current_date;
+    }
 
-	for ($i=9; $i<=23; $i++)
-	{
-		for ($n=0; $n<6; $n++)
-		{
-			if ($i == 9 && $n == 0 && Copyright)continue;
-			$count ++;
-			$count = mb_strlen($count) <=1 ? '0'.$count :$count; // 01-84
-			$stratDate = $insertDate.$i.':'.$n.'0:'.'00';
-			$a = strtotime($stratDate) - ($closeTime * 60); //封盤時間
-			$endDate = date('Y-m-d H:i:s',$a);
-			$dateArr['Number'][] = $date.$count; // YYYYMMDD[01-84]
-			$dateArr['stratDate'][] = $stratDate;
-			$dateArr['endDate'][] = $endDate;
-			if ($i == 23)break;
-		}
-	}
 	$db = new DB();
 	$db->query("DELETE FROM `g_kaipan` WHERE `g_id` > 0 ", 2);
 	// 插入新的开盘期数，除了第一期g_lock=2代表下一期开盘，其他都用1表示未开盘
@@ -1604,7 +1599,7 @@ function InsertNumber ($day=1, $closeTime=2)
 	for ($i=0; $i<count($dateArr['Number']); $i++)
 	{
 		$lock = $i == 0 ? 2 : 1;
-		$sql .= "( '{$dateArr['Number'][$i]}', '{$dateArr['endDate'][$i]}', '{$dateArr['stratDate'][$i]}', '{$lock}' ),";
+		$sql .= "( '{$dateArr['Number'][$i]}', '{$dateArr['feng_date'][$i]}', '{$dateArr['open_date'][$i]}', '{$lock}' ),";
 	}
 	$sql = mb_substr($sql, 0, mb_strlen($sql, 'utf-8')-1);
 	$db->query($sql, 2);

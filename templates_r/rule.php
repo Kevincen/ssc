@@ -35,7 +35,7 @@ switch ($tid) {
     case 5:
         $rule_html = 'rule_nc.html';
         break;
-    case 4:
+    case 9:
         $rule_html = 'rule_k3.html';
         break;
 }
