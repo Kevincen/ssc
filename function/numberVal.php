@@ -156,9 +156,12 @@ function upUserKyYongEr ($kMoney, $userName)
  */
 function isUserMoney ($money, $max,$totalmoney)
 {
-/*	 echo $totalmoney;
+	 //echo $totalmoney;
+/*    echo 'money:'.$money;
     echo '</br>';
-    var_dump($max);*/
+    echo 'max:';
+    var_dump($max);
+    echo '</br>';*/
 	if (!is_numeric($money))
 		exit("MoneyrError");
 	if (!is_numeric($totalmoney))

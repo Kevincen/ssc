@@ -3103,7 +3103,7 @@ function _getString ($t, $ball=null)
                 $type = '總和大小';
             else if ($ball == '总和单' || $ball == '总和双')
                 $type = '總和單雙';
-            else if ($ball == '总和尾数小' || $ball == '总和尾数大')
+            else if ($ball == '总和尾小' || $ball == '总和尾大')
                 $type = '總和尾數大小';
 		}
 	}

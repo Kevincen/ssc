@@ -270,7 +270,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid'])) {
         } else {
             $validMoney = validMoney($userModel, $userList[0]['g_money'], $userList[0]['g_nid'] . UserModel::Like(), false);
         }
-        //get mr  by wjl
+        //get mr  by 2b
         $dateTime = date('Y-m-d H:i:s');
         $a = day();
         $stratGame = $a[0];

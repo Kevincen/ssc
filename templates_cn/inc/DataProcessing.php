@@ -118,10 +118,10 @@ if (isset($_SESSION['guid_code']))
 		$s_ball_arr = $_POST['s_ball'];//下注的具体小项目编号
 		$s_money_arr = $_POST['s_money'];//每一注的金钱
 		$s_hid_arr = $_POST['s_hid'];//具体编号
-        var_dump($s_hid_arr);//h1
+        //var_dump($s_hid_arr);//h1
 		$count_money = 0;
-        var_dump($s_ball_arr);//123
-        var_dump($s_money_arr);
+        //var_dump($s_ball_arr);//123
+        //var_dump($s_money_arr);
         $s_hid_arr = $s_ball_arr;
         $s = 0; //笔数
 		//循環判斷
