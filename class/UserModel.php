@@ -223,9 +223,9 @@ class UserModel
 	public function GetUserMR ($name, $param=FALSE)
 	{
 		if ($param && Copyright)
-			$sql = "SELECT g_type, g_panlu_a,g_panlu_b,g_panlu_c, g_danzhu, g_danxiang FROM g_panbiao WHERE `g_nid` = '{$name}' ORDER BY g_id DESC ";
+			$sql = "SELECT g_type, g_panlu_a,g_panlu_b,g_panlu_c,g_danzhu_min, g_danzhu, g_danxiang FROM g_panbiao WHERE `g_nid` = '{$name}' ORDER BY g_id DESC ";
 		else 
-			$sql = "SELECT g_type, g_a_limit, g_b_limit, g_c_limit, g_d_limit, g_e_limit  FROM g_send_back WHERE `g_name` = '{$name}' ORDER BY g_id DESC ";
+			$sql = "SELECT g_type, g_a_limit, g_b_limit, g_c_limit,g_danzhu_min, g_d_limit, g_e_limit  FROM g_send_back WHERE `g_name` = '{$name}' ORDER BY g_id DESC ";
 
 			return $this->db->query($sql, 1);
 	}

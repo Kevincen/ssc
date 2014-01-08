@@ -6042,4 +6042,33 @@ function auto_kaipan($li){
 		}
 	}
 }
+
+
+function find_result_by_index ($array, $index)
+{
+    foreach ($array as $key) {
+        if ($key['g_type'] == $index)
+        {
+            return $key;
+        }
+    }
+    return null;
+}
+//提取新版所需的项目以及顺序
+function reset_per_info($array,$index_array)
+{
+    $ret= array();
+    foreach ($index_array as $key=>$value)
+    {
+        $tmp = find_result_by_index($array,$key);
+        if ($value != '') {
+            $tmp['g_type'] = $value;
+        }
+
+        $ret[] = $tmp;
+    }
+
+    return $ret;
+}
+
 ?>

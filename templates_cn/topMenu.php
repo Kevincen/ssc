@@ -145,32 +145,6 @@ switch ($type) {
 //var_dump($result);
 $lang = new utf8_lang();
 
-function find_result_by_index ($array, $index)
-{
-    foreach ($array as $key) {
-        if ($key['g_type'] == $index)
-        {
-            return $key;
-        }
-    }
-    return null;
-}
-
-function reset_per_info($array,$index_array)
-{
-    $ret= array();
-    foreach ($index_array as $key=>$value)
-    {
-        $tmp = find_result_by_index($array,$key);
-        if ($value != '') {
-            $tmp['g_type'] = $value;
-        }
-
-        $ret[] = $tmp;
-    }
-
-    return $ret;
-}
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
