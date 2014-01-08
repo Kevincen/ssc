@@ -535,7 +535,8 @@ class UserModel
 		$this->db->query($sql, 2);
 		//取出退水盤
 		$lenght=0;
-		$sql = "SELECT `g_type`, `g_d_limit`, `g_e_limit`, `g_game_id`";
+        //增加单注最小限额
+		$sql = "SELECT `g_type`, `g_danzhu_min`, `g_d_limit`, `g_e_limit`, `g_game_id`";
 		$P=$userList['g_panlus'];
 		if(strstr($P,'A')!=''){$sql.=',g_a_limit ';$lenght++;}
 		if(strstr($P,'B')!=''){$sql.=',g_b_limit ';$lenght++;}
@@ -544,24 +545,26 @@ class UserModel
 		
 		$result = $this->db->query($sql, 0);
 		//寫入退水盤
-		$sql = " INSERT INTO `g_panbiao` (`g_nid`, `g_type`,`g_danzhu`, `g_danxiang`, `g_game_id`";
+        //插入增加单注最小限额
+		$sql = " INSERT INTO `g_panbiao` (`g_nid`, `g_type`,`g_danzhu_min`,`g_danzhu`, `g_danxiang`, `g_game_id`";
 		if(strstr($P,'A')!=''){$sql.=',g_panlu_a ';}
 		if(strstr($P,'B')!=''){$sql.=',g_panlu_b ';}
 		if(strstr($P,'C')!=''){$sql.=',g_panlu_c ';}
 		$sql = $sql.") VALUES ";
 		for ($i=0; $i<count($result); $i++)
 		{
-			$sql.= "('{$userList['g_name']}', '{$result[$i][0]}', '{$result[$i][1]}', '{$result[$i][2]}', '{$result[$i][3]}'"; 			         for($m=1;$m<=$lenght;$m++){
-			$flag=3+$m;
-		//	$sql.=",'{$result[$i][$flag]}'";
-		
-		if($userList['g_tuishui']+$result[$i][$flag] > 100 ) {
-		$sql.=",'100'";
-		}
-		if($userList['g_tuishui']+$result[$i][$flag] <= 100 ) {
-			$temp=$result[$i][$flag]+$userList['g_tuishui'];
-			$sql.=",'{$temp}'";
-		}
+			$sql.= "('{$userList['g_name']}', '{$result[$i][0]}', '{$result[$i][1]}', '{$result[$i][2]}', '{$result[$i][3]}','{$result[$i][4]}'";
+            for($m=1;$m<=$lenght;$m++){
+                $flag=4+$m;
+                //	$sql.=",'{$result[$i][$flag]}'";
+
+                if($userList['g_tuishui']+$result[$i][$flag] > 100 ) {
+                $sql.=",'100'";
+                }
+                if($userList['g_tuishui']+$result[$i][$flag] <= 100 ) {
+                    $temp=$result[$i][$flag]+$userList['g_tuishui'];
+                    $sql.=",'{$temp}'";
+                }
 			}
 			
 			$sql.=" ),";
