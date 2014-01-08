@@ -313,7 +313,7 @@
             <?php //todo:所有的最大值都应该是上级的?>
             <div class="spaning"><input name="a<?php echo $i ?>"
 
-                    <?php echo $klc_array[$i]['g_panlu_a'] == NULL? 'value="0.5" disabled="disabled ': 'value="'.$klc_array[$i]['g_panlu_a'].'"' ?>
+                    <?php echo $klc_array[$i]['g_panlu_a'] == NULL? 'value="0.5" disabled="disabled ': 'value="'.(100-$klc_array[$i]['g_panlu_a']).'"' ?>
                                          type="text" minvalue="0"
                                         maxvalue="<?php //echo $count > 0 ? $klc_array[$i]['g_a_limit'] : 0; ?>"><a
                     href="javascript:void(0)" name="up"></a><a
@@ -321,7 +321,7 @@
         </td>
         <td>
             <div class="spaning"><input name="b<?php echo $i ?>"
-                    <?php echo $klc_array[$i]['g_panlu_b'] == NULL? 'value="1.6" disabled="disabled ': 'value="'.$klc_array[$i]['g_panlu_b'].'"' ?>
+                    <?php echo $klc_array[$i]['g_panlu_b'] == NULL? 'value="1.6" disabled="disabled ': 'value="'.(100-$klc_array[$i]['g_panlu_b']).'"' ?>
                                         vname="klcdiscountB00" type="text" minvalue="0"
                                         maxvalue="<?php //echo $count > 0 ? $klc_array[$i]['g_b_limit'] : 0; ?>"><a
                     href="javascript:void(0)" name="up"></a><a
@@ -329,7 +329,7 @@
         </td>
         <td>
             <div class="spaning"><input name="c<?php echo $i ?>"
-                    <?php echo $klc_array[$i]['g_panlu_c'] == NULL? 'value="2.6" disabled="disabled ': 'value="'.$klc_array[$i]['g_panlu_c'].'"' ?>
+                    <?php echo $klc_array[$i]['g_panlu_c'] == NULL? 'value="2.6" disabled="disabled ': 'value="'.(100-$klc_array[$i]['g_panlu_c']).'"' ?>
                                         vname="klcdiscountC00" type="text" minvalue="0"
                                         maxvalue="<?php //echo $count > 0 ? $klc_array[$i]['g_c_limit'] : 0; ?>"><a
                     href="javascript:void(0)" name="up"></a><a
@@ -341,9 +341,6 @@
             break;
         ?>
         <?php
-        $klc_array[$i]['g_a_limit'] = 100 - $klc_array[$i]['g_a_limit'];
-        $klc_array[$i]['g_b_limit'] = 100 - $klc_array[$i]['g_b_limit'];
-        $klc_array[$i]['g_c_limit'] = 100 - $klc_array[$i]['g_c_limit'];
         ?>
         <th><span class="playColor bGreen">&nbsp;</span><?php echo $lang->hk_cn($klc_array[$i]['g_type']) ?></th>
         <td><input name="klc00"  maxlength="9"
@@ -356,7 +353,7 @@
         </td>
         <td>
             <div class="spaning"><input name="a<?php echo $i ?>"
-                    <?php echo $klc_array[$i]['g_panlu_a'] == NULL? 'value="0.5" disabled="disabled ': 'value="'.$klc_array[$i]['g_panlu_a'].'"' ?>
+                    <?php echo $klc_array[$i]['g_panlu_a'] == NULL? 'value="0.5" disabled="disabled ': 'value="'.(100-$klc_array[$i]['g_panlu_a']).'"' ?>
                                         vname="klcdiscountB00" type="text" minvalue="0"
                                         maxvalue="<?php //echo $count > 0 ? $klc_array[$i]['g_a_limit'] : 0; ?>"><a
                     href="javascript:void(0)" name="up"></a><a
@@ -364,7 +361,7 @@
         </td>
         <td>
             <div class="spaning"><input name="b<?php echo $i ?>"
-                    <?php echo $klc_array[$i]['g_panlu_b'] == NULL? 'value="1.6" disabled="disabled ': 'value="'.$klc_array[$i]['g_panlu_b'].'"' ?>
+                    <?php echo $klc_array[$i]['g_panlu_b'] == NULL? 'value="1.6" disabled="disabled ': 'value="'.(100-$klc_array[$i]['g_panlu_b']).'"' ?>
                                         vname="klcdiscountB18" type="text" minvalue="0"
                                         maxvalue="<?php //echo $count > 0 ? $klc_array[$i]['g_b_limit'] : 0; ?>"><a
                     href="javascript:void(0)" name="up"></a><a
@@ -372,7 +369,7 @@
         </td>
         <td>
             <div class="spaning"><input name="c<?php echo $i ?>"
-                    <?php echo $klc_array[$i]['g_panlu_c'] == NULL? 'value="2.6" disabled="disabled ': 'value="'.$klc_array[$i]['g_panlu_c'].'"' ?>
+                    <?php echo $klc_array[$i]['g_panlu_c'] == NULL? 'value="2.6" disabled="disabled ': 'value="'.(100-$klc_array[$i]['g_panlu_c']).'"' ?>
                                         vname="klcdiscountC18" type="text" minvalue="0"
                                         maxvalue="<?php //echo $count > 0 ? $klc_array[$i]['g_c_limit'] : 0; ?>"><a
                     href="javascript:void(0)" name="up"></a><a

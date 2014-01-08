@@ -210,7 +210,7 @@ function smlen(data) { //兩面長龍
 	setResults[3] = data.row_4; //龍虎
 	var row_2Html = new Array();
 	for (var k in data.row_4){
-			row_2Html.push(data.row_4[k]);
+			row_2Html.push(data.row_1[k]);
 		}
 		$("#z_cl").html(row_2Html.join(''));
 		$(".z_cl:even").addClass("hhg");

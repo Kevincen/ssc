@@ -61,11 +61,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //$sql = "SELECT * FROM g_zhudan where g_nid='$name' and g_win=null and g_type='$type' ORDER BY g_id DESC LIMIT 10";
     $sql = "SELECT g_mingxi_1,g_mingxi_2,g_date,g_odds,g_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id DESC LIMIT 10";
     $result1 = $db->query($sql, 1);
-    $used_money = 0;
+    $sql = "SELECT sum(g_jiner) as sum_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id ";
+    $result_total = $db->query($sql, 1);
+    $used_money = $result_total[0]['sum_jiner'] == NULL ? 0:$result_total[0]['sum_jiner'];
 //此处文字处理同show_user.php的文字处理
     for ($i=0;$i<count($result1);$i++) {
         $subtype = $result1[$i]['g_mingxi_1'];
-        $used_money += $result1[$i]['g_jiner'];
         if ($subtype== '选二连直') {
             $ball_array = explode('|',$result1[$i]['g_mingxi_2']);
             $ball_array[0] = explode('、',$ball_array[0]);
