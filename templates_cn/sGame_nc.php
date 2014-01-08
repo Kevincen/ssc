@@ -530,72 +530,7 @@ $number_type = "nc"
         </tbody>
         <tbody id="changlong">
         <tr>
-            <td class="cl_1 inner_text">第1球<span class="part">-</span>尾小</td>
-            <td class="align-c red" style="width:33%;">9期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第7球<span class="part">-</span>合数单</td>
-            <td class="align-c red" style="width:33%;">8期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第4球<span class="part">-</span>双</td>
-            <td class="align-c red" style="width:33%;">6期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第1球<span class="part">-</span>龙</td>
-            <td class="align-c red" style="width:33%;">5期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第8球<span class="part">-</span>小</td>
-            <td class="align-c red" style="width:33%;">5期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第2球<span class="part">-</span>单</td>
-            <td class="align-c red" style="width:33%;">4期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第2球<span class="part">-</span>尾大</td>
-            <td class="align-c red" style="width:33%;">4期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第5球<span class="part">-</span>大</td>
-            <td class="align-c red" style="width:33%;">4期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第3球<span class="part">-</span>大</td>
-            <td class="align-c red" style="width:33%;">3期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第3球<span class="part">-</span>单</td>
-            <td class="align-c red" style="width:33%;">3期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第3球<span class="part">-</span>合数双</td>
-            <td class="align-c red" style="width:33%;">3期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第1球<span class="part">-</span>双</td>
-            <td class="align-c red" style="width:33%;">2期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第3球<span class="part">-</span>尾小</td>
-            <td class="align-c red" style="width:33%;">2期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第4球<span class="part">-</span>尾大</td>
-            <td class="align-c red" style="width:33%;">2期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第8球<span class="part">-</span>单</td>
-            <td class="align-c red" style="width:33%;">2期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第8球<span class="part">-</span>尾小</td>
-            <td class="align-c red" style="width:33%;">2期</td>
-        </tr>
-        <tr>
-            <td class="cl_1 inner_text">第8球<span class="part">-</span>合数单</td>
-            <td class="align-c red" style="width:33%;">2期</td>
+            <td colspan="2">暂无数据</td>
         </tr>
         </tbody>
     </table>
