@@ -240,7 +240,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid'])) {
             //end of 用户信息修改
 
             //start 退水修改
-            update_MR($_GET['cid']);
+            post_tuishui_handle($_POST,$name,$cid);
             exit(alert_href('更變成功！', 'Actfor.php?cid=' . $cid));
         }
 
@@ -308,7 +308,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid'])) {
 else {
     exit(href('quit.php'));
 }
-function update_MR($cid)
+/*function update_MR($cid)
 {
     echo "enter update_MR";
     global $_POST;
@@ -379,7 +379,7 @@ function update_MR($cid)
     } else {
         exit(alert_href('用戶不存在', 'Actfor.php?cid=' . $_GET['cid']));
     }
-}
+}*/
 
 function validMoney($userModel, $countMoney, $nid, $param)
 {
@@ -566,7 +566,11 @@ $lang = new utf8_lang();
             </span>上级<span id="superior"><?php echo $top_info['rank'].$top_info['g_name'] ?></span><a href="Actfor.php?cid=<?php echo $cid ?>"
                                                                                                       id="reback" level="1"
                                                                                                       class="mag-btn1">返回</a></div>
+            <?php if ($cid == 5) {?>
             <form method="post" action="Manage_Up.php?cid=<?php echo $cid?>&uid=<?php echo $uid?>">
+            <?php } else { ?>
+            <form method="post" action="?cid=<?php echo $cid ?>&uid=<?php echo $uid ?>">
+            <?php } ?>
                 <table class="clear-table base-info">
                     <caption>
                         <div>基本资料</div>

@@ -6153,11 +6153,7 @@ function post_tuishui_handle($array,$user_name,$user_rank)
     /*    var_dump($decoded_array);
         exit;*/
 
-    if ($user_rank == 5) {
-        update_tuishui_memenber($decoded_array,$user_name);
-    } else {
-
-    }
+    update_tuishui($decoded_array,$user_name,$user_rank);
 }
 //@parame $result 大项分类后的数组，如时时彩的数组
 function sub_type_decode($result, $index_array)
@@ -6172,7 +6168,7 @@ function sub_type_decode($result, $index_array)
     }
     return $ret;
 }
-function update_tuishui_memenber($array,$user_name)
+function update_tuishui($array,$user_name,$user_rank)
 {
     $db = new DB();
     $sql_str = '';
@@ -6182,9 +6178,15 @@ function update_tuishui_memenber($array,$user_name)
         //echo (count($array[$i],1));
         unset($array[$i]['game_id']);
         for($j=0;$j<count($array[$i]);$j++) {
-            $panlu_a = isset($array[$i][$j]['panlu_a'])?'`g_panlu_a`='. (100-$array[$i][$j]['panlu_a']).'':'';
-            $panlu_b = isset($array[$i][$j]['panlu_b'])?'`g_panlu_b`='. (100-$array[$i][$j]['panlu_b']).'':'';
-            $panlu_c = isset($array[$i][$j]['panlu_c'])?'`g_panlu_c`='. (100-$array[$i][$j]['panlu_c']).'':'';
+            if($user_rank == 5) {
+                $panlu_a = isset($array[$i][$j]['panlu_a'])?'`g_panlu_a`='. (100-$array[$i][$j]['panlu_a']).'':'';
+                $panlu_b = isset($array[$i][$j]['panlu_b'])?'`g_panlu_b`='. (100-$array[$i][$j]['panlu_b']).'':'';
+                $panlu_c = isset($array[$i][$j]['panlu_c'])?'`g_panlu_c`='. (100-$array[$i][$j]['panlu_c']).'':'';
+            } else {
+                $panlu_a = isset($array[$i][$j]['panlu_a'])?'`g_a_limit`='. (100-$array[$i][$j]['panlu_a']).',':'';
+                $panlu_b = isset($array[$i][$j]['panlu_b'])?'`g_b_limit`='. (100-$array[$i][$j]['panlu_b']).',':'';
+                $panlu_c = isset($array[$i][$j]['panlu_c'])?'`g_c_limit`='. (100-$array[$i][$j]['panlu_c']).',':'';
+            }
             $danzhu_min = $array[$i][$j]['danzhu_min'];
             $danzhu_max = $array[$i][$j]['danzhu_max'];
             $danxiang_max = $array[$i][$j]['danxiang_max'];
@@ -6204,7 +6206,9 @@ function update_tuishui_memenber($array,$user_name)
                         echo $danxiang_max;*/
             //var_dump($array[$i][$j]);
 
-            $sql_str = "update g_panbiao set
+            if ($user_rank == 5) {
+
+                $sql_str = "update g_panbiao set
                 $panlu_a
                 $panlu_b
                 $panlu_c,
@@ -6212,6 +6216,19 @@ function update_tuishui_memenber($array,$user_name)
                 `g_danzhu`='{$danzhu_max}',
                 `g_danxiang`='{$danxiang_max}'
                 WHERE g_nid = '{$user_name}' and g_game_id='{$game_id}' and g_type='{$type_name}' LIMIT 1";
+            } else {
+                $sql_str = "UPDATE `g_send_back` SET
+                            $panlu_a
+                            $panlu_b
+                            $panlu_c
+                            `g_danzhu_min`='{$danzhu_min}',
+                            `g_d_limit` = '{$danzhu_max}',
+                            `g_e_limit` = '{$danxiang_max}'
+                        WHERE `g_name` = '{$user_name}'
+                        AND g_type = '{$type_name}'
+                        AND g_game_id = '{$game_id}' LIMIT 1";
+            }
+
             /*            echo $sql_str;
                         echo '</br>';*/
             if ($db->query($sql_str,2) == -1) {
