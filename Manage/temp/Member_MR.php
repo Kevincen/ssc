@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	$typeidb = $_POST['typeidb'];
 	$typeidc = $_POST['typeidc'];
 	$typeid="";
-	
+
 	$memberModel = $userModel->GetMemberModel($name);
 	if ($memberModel)
 	{

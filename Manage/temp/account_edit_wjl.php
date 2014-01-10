@@ -400,13 +400,23 @@ function upDateRankLock($db, $result, $lock, $p=0){
     }
 }
 
+function get_array_by_id($result,$game_id)
+{
+    $ret_array = array();
+    for ($i=0; $i<count($result); $i++) {
+        if ($result[$i]['g_game_id'] == $game_id) {
+            $ret_array[] =  $result[$i];
+        }
+    }
+    return $ret_array;
+}
 
 $sort_array_klc =
     array('第一球'=>'1~8单码',
         '任選二'=>'',
         '正码'=>'正码',
-        '選二連組'=>'' ,
-        '1-8單雙'=>'1-8两面' ,
+        '選二連組'=>'',
+        '1-8單雙'=>'1~8两面',
 /*        '1-8大小'=>'1-8 大小',
         '1-8尾數大小'=>'1-8 尾大尾小',
         '1-8合數單雙'=>'',*/
@@ -415,18 +425,113 @@ $sort_array_klc =
 /*        '總和大小'=>'',
         '總和尾數大小'=>'总和尾大尾小',*/
         '選三前組'=>'',
-        '1-8中發白'=>'1-8 中发白',
+        '1-8中發白'=>'1~8中发白',
         '任選四'=>'',
-        '1-8方位'=>'1-8 方位',
+        '1-8方位'=>'1~8方位',
         '任選五'=>'',
-        '龍虎'=>'1-4 龙虎',
+        '龍虎'=>'1~4龙虎',
     );
+$sort_array_ssc =
+    array('第一球'=>'1~5单码',
+        '顺子'=>'',
+        '總和單雙'=>'两面',
+        '对子'=>'',
+        '龍虎'=>'龙虎',
+        '半顺'=>'',
+        '和'=>'',
+        '杂六'=>'',
+        '豹子'=>'',
+    );
+$sort_array_pk10 =
+    array('冠军'=>'冠亚,3~10单码',
+        '1-10大小'=>'1~10两面',
+        '1-5龍虎'=>'1~5龙虎',
+        '冠亞和大小'=>'冠亚大小',
+        '冠亞和單雙'=>'冠亚单双',
+        '冠、亞軍和'=>'冠亚和',
+    );
+$sort_array_nc =
+    array('第一球'=>'1~8单码',
+        '任选二'=>'',
+        '正码'=>'正码',
+        '选二连直'=>'',
+        '1-8單雙'=>'1~8两面',
+        '选二连组'=>'' ,
+        '總和單雙'=>'总和两面',
+        '任选三'=>'',
+        '1-8中發白'=>'1~8中发白',
+        '选三前组'=>'',
+        '1-8梅兰菊竹'=>'1~8东南西北',
+        '任选四'=>'',
+        '家禽野兽'=>'1~4龙虎',
+        '任选五'=>''
+    );
+$sort_array_sb =
+    array('三軍大小'=>'大小',
+        '點數'=>'',
+        '三軍'=>'',
+        '長牌'=>'',
+        '圍骰'=>'',
+        '短牌'=>'',
+        '全骰'=>''
+    );
+
+$klc_array = get_array_by_id($result,1);
+$ssc_array = get_array_by_id($result,2);
+$pk10_array = get_array_by_id($result,6);
+$nc_array = get_array_by_id($result,5);
+$jstb_array = get_array_by_id($result,9);
+
 //var_dump($result);
-$klc_array = reset_per_info($result,$sort_array_klc);
-/*$ssc_array = reset_per_info($result,2);
-$pk10_array = reset_per_info($result,6);
-$nc_array = reset_per_info($result,5);
-$jstb_array = reset_per_info($result,9);*/
+$klc_array = reset_per_info($klc_array,$sort_array_klc);
+$ssc_array = reset_per_info($ssc_array,$sort_array_ssc);
+$pk10_array = reset_per_info($pk10_array,$sort_array_pk10);
+$nc_array = reset_per_info($nc_array,$sort_array_nc);
+$jstb_array = reset_per_info($jstb_array,$sort_array_sb);
+
+$color_array = array(
+    '1~8单码'=>'bBlue',
+    '正码'=>'bBlue',
+    '1~5单码'=>'bBlue',
+    '冠亚,3~10单码'=>'bBlue',
+    '大小'=>'bBlue',
+    '三军'=>'bBlue',
+
+    '1~8两面'=>'bZise',
+    '总和两面'=>'bZise',
+    '1~4龙虎'=>'bZise',
+    '两面'=>'bZise',
+    '龙虎'=>'bZise',
+    '和'=>'bZise',
+    '1~10两面'=>'bZise',
+    '1~5龙虎'=>'bZise',
+    '冠亚大小'=>'bZise',
+    '冠亚单双'=>'bZise',
+
+    '1~8中发白'=>'bRed',
+    '1~8方位'=>'bRed',
+    '豹子'=>'bRed',
+    '顺子'=>'bRed',
+    '对子'=>'bRed',
+    '半顺'=>'bRed',
+    '杂六'=>'bRed',
+    '冠亚和'=>'bRed',
+    '1~8东南西北'=>'bRed',
+    '点数'=>'bRed',
+
+    '任选二'=>'bGreen',
+    '选二连组'=>'bGreen',
+    '选二连直'=>'bGreen',
+    '任选三'=>'bGreen',
+    '选三前组'=>'bGreen',
+    '任选四'=>'bGreen',
+    '任选五'=>'bGreen',
+    '围骰'=>'bGreen',
+    '全骰'=>'bGreen',
+    '长牌'=>'bGreen',
+    '短牌'=>'bGreen',
+);
+
 
 $lang = new utf8_lang();
 if ($cid == 5) {

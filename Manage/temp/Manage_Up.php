@@ -1,4 +1,4 @@
-<?php 
+<?php
 define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 include_once ROOT_PATH.'Manage/ExistUser.php';
@@ -25,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
     $user_lock = $_POST['s_money'];
 	$lock = $_POST['lock'];
 	$s_pan = isset($_POST['s_pan']) ? $_POST['s_pan'] : null;
-	
-	
+
+
 	//为会员分配盘口
 	for($i=0;$i<count($s_pan);$i++){
 	$s_panlus=$s_panlus.strtoupper($s_pan[$i]).',';
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 		if ($Size_ky != null)
 			if (!Matchs::isNumber($Size_ky)) exit(back('占成輸入錯誤！'));
 		if (!Matchs::isNumber($user_lock)) exit(back('帳號限額輸入錯誤！'));
-		
+
 		//信用額計算
 		$_s_money = $memberModel[0]['g_money'];
 		$g_money_yes = $memberModel[0]['g_money_yes'];
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 					$g_money_yes = 0;
 					exit(back('當前會員已進行下注，没有足够的限额。'));
 				exit(back(' 當前會員已進行下注，無法回收餘額！'));
-			} 
+			}
 			*/
 		}
 		//非空，上級占成計算
@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 				exit(back('更變權限不足！'));
 		}
 		$db =new DB();
-		$sql = "UPDATE `g_user` SET 
+		$sql = "UPDATE `g_user` SET
 		`g_f_name`='{$s_F_Name}',
 		`g_password`='{$s_Pwd}',
 		`g_money`='{$s_money}',
@@ -125,10 +125,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 		`g_panlus`='{$s_panlus}',
 		`g_panlu`='{$s_panl}',
 		`g_xianer`='{$user_lock}',
-		`g_look`='{$lock}' ".$g_pwd." 
+		`g_look`='{$lock}' ".$g_pwd."
 		WHERE g_name = '{$name}' LIMIT 1";
 		$db->query($sql, 2);
-		
+
 		if ($memberModel[0]['g_xianer'] != $user_lock){
 			$valueList = array();
 			$valueList['g_name'] = $memberModel[0]['g_name'];
@@ -139,10 +139,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 			$valueList['g_s_id'] = 1;
 			insertLogValue($valueList);
 		}
-		
+
 		if ($memberModel[0]['g_panlus'] != $s_panlus){
 			$valueList = array();
-			//$a = strtolower($s_panl);	
+			//$a = strtolower($s_panl);
 			$sql = "SELECT `g_type`";
 			$P=$s_panlus;
 			if(strstr($P,'A')!=''){$sql.=',g_a_limit ';}
@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 			if(strstr($P,'A')!=''){$sql.=",g_panlu_a='{$sresult[$i]['g_a_limit']}' ";}
 			if(strstr($P,'B')!=''){$sql.=",g_panlu_b='{$sresult[$i]['g_b_limit']}' ";}
 			if(strstr($P,'C')!=''){$sql.=",g_panlu_c='{$sresult[$i]['g_c_limit']}' ";}
-				$sql.= " WHERE g_nid = '{$memberModel[0]['g_name']}' 
+				$sql.= " WHERE g_nid = '{$memberModel[0]['g_name']}'
 				AND g_type = '{$sresult[$i]['g_type']}' AND g_game_id = '{$sresult[$i]['g_game_id']}'";
 				$db->query($sql, 2);
 			}
@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 			$valueList['g_s_id'] = 1;
 			insertLogValue($valueList);
 		}
-		
+
 		if ($memberModel[0]['g_f_name'] != $s_F_Name){
 			$valueList = array();
 			$valueList['g_name'] = $memberModel[0]['g_name'];
@@ -180,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 			$valueList['g_s_id'] = 1;
 			insertLogValue($valueList);
 		}
-		
+
 		if ($s_money != $memberModel[0]['g_money']){
 			$valueList = array();
 			$valueList['g_name'] = $memberModel[0]['g_name'];
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 			$valueList['g_s_id'] = 1;
 			insertLogValue($valueList);
 		}
-		
+
 		if ($Size_ky != $memberModel[0]['g_distribution']){
 			$valueList = array();
 			$valueList['g_name'] = $memberModel[0]['g_name'];
@@ -202,8 +202,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['cid']))
 			$valueList['g_s_id'] = 1;
 			insertLogValue($valueList);
 		}
-		
-		
+
+
+        post_tuishui_handle($_POST,$name,5);
+
 		exit(alert_href('更改成功', 'Actfor.php?cid='.$cid));
 	}
 	exit;
@@ -225,7 +227,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['cid']) && isset($_G
 	}
 	$Luser = $userModel->GetUserName_Like($nid);
 	$Lnid = $userModel->GetLoginIdByString($Luser[0]['g_login_id']);
-	
+
 	//當可用額大於信用額時，顯示信用額。
 	//小於信用額時，顯示可用額
 	$validMoneys = $memberModel[0]['g_money_yes'];
@@ -240,6 +242,8 @@ function validMoney ($userModel, $countMoney, $nid, $param) {
 	$validMoney = $countMoney - $userModel->SumMoney($nid,$param);
 	return $validMoney;
 }
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php echo $oncontextmenu?>>
@@ -320,7 +324,7 @@ function validMoney ($userModel, $countMoney, $nid, $param) {
                 </tr>
                 <tr style="height:28px">
                   <td class="bj">開放盤口</td>
-                  <script type="text/javascript"> 
+                  <script type="text/javascript">
 										function check(spanl){
    											var flag=0;
    										for(var i=0;i<document.getElementsByName("s_pan[]").length;i++){

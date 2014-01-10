@@ -6071,4 +6071,155 @@ function reset_per_info($array,$index_array)
     return $ret;
 }
 
+
+function post_tuishui_handle($array,$user_name,$user_rank)
+{
+    $klc_decode_array = array(
+        '1~8单码'=>array('第一球','第二球','第三球','第四球','第五球','第六球','第七球','第八球'),
+        '正码'=>array('正码'),
+        '1~8两面'=>array('1-8單雙','1-8大小','1-8尾數大小','1-8合數單雙'),
+        '总和两面' =>array('總和單雙','總和大小','總和尾數大小'),
+        '1~8中发白'=>array('1-8中發白'),
+        '1~8方位'=>array('1-8方位'),
+        '1~4龙虎'=>array('龍虎'),
+        '任选二'=>array('任選二'),
+        '任选三'=>array('任選三'),
+        '选二连组'=>array('選二連組'),
+        '选三前组'=>array('選三前組'),
+        '任选四'=>array('任選四'),
+        '任选五'=>array('任選五'),
+    );
+    $ssc_decode_array = array(
+        '1~5单码'=>array('第一球','第二球','第三球','第四球','第五球'),
+        '龙虎'=>array('龍虎'),
+        '顺子'=>array('顺子'),
+        '两面'=>array('總和單雙','總和大小','1-5單雙','1-5大小'),
+        '对子'=>array('对子'),
+        '半顺'=>array('半顺'),
+        '和'=>array('和'),
+        '杂六'=>array('杂六'),
+        '豹子'=>array('豹子'),
+    );
+    $pk10_decode_array = array(
+        '冠亚,3~10单码'=>array('冠军','亚军','第三名','第四名','第五名','第六名','第七名',
+            '第八名','第九名','第十名'),
+        '1~10两面'=>array('1-10單雙','1-10大小'),
+        '1~5龙虎'=>array('1-5龍虎'),
+        '冠亚大小'=>array('冠亞和大小'),
+        '冠亚单双'=>array('冠亞和單雙'),
+        '冠亚和'=>array('冠、亞軍和'),
+    );
+    $nc_decode_array = array(
+        '1~8单码'=>array('第一球','第二球','第三球','第四球','第五球','第六球','第七球','第八球'),
+        '正码'=>array('正码'),
+        '1~8两面'=>array('1-8單雙','1-8大小','1-8尾數大小','1-8合數單雙'),
+        '总和两面' =>array('總和單雙','總和大小','總和尾數大小'),
+        '1~8中发白'=>array('1-8中發白'),
+        '1~8方位'=>array('1-8梅兰菊竹'),
+        '1~4龙虎'=>array('家禽野兽'),
+        '任选二'=>array('任選二'),
+        '任选三'=>array('任選三'),
+        '选二连组'=>array('選二連組'),
+        '选二连直'=>array('选二连直'),
+        '选三前组'=>array('選三前組'),
+        '任选四'=>array('任選四'),
+        '任选五'=>array('任選五'),
+    );
+    $jstb_decode_array = array(
+        '大小'=>array('三軍大小'),
+        '点数'=>array('點數'),
+        '三军'=>array('三軍'),
+        '长牌'=>array('長牌'),
+        '围骰'=>array('圍骰'),
+        '短牌'=>array('短牌'),
+        '全骰'=>array('全骰')
+    );
+    $decoded_array = array();
+    $klc_array = sub_type_decode($array[1],$klc_decode_array);
+    $klc_array['game_id'] = 1;
+    $decoded_array[] = $klc_array;
+    $ssc_array = sub_type_decode($array[2],$ssc_decode_array);
+    $ssc_array['game_id'] = 2;
+    $decoded_array[] = $ssc_array;
+    $pk10_array = sub_type_decode($array[6],$pk10_decode_array);
+    $pk10_array['game_id'] = 6;
+    $decoded_array[] = $pk10_array;
+    $nc_array = sub_type_decode($array[5],$nc_decode_array);
+    $nc_array['game_id'] = 5;
+    $decoded_array[] = $nc_array;
+    $jstb_array = sub_type_decode($array[9],$jstb_decode_array);
+    $jstb_array['game_id'] = 9;
+    $decoded_array[] = $jstb_array;
+    /*    var_dump($decoded_array);
+        exit;*/
+
+    if ($user_rank == 5) {
+        update_tuishui_memenber($decoded_array,$user_name);
+    } else {
+
+    }
+}
+//@parame $result 大项分类后的数组，如时时彩的数组
+function sub_type_decode($result, $index_array)
+{
+    $ret = array();
+    foreach ($result as $key=>$sub_array) {
+        for ($i=0;$i<count($index_array[$key]);$i++) {
+            $real_typename = $index_array[$key][$i];
+            $result[$key]['type'] = $real_typename;
+            $ret[] = $result[$key];
+        }
+    }
+    return $ret;
+}
+function update_tuishui_memenber($array,$user_name)
+{
+    $db = new DB();
+    $sql_str = '';
+    for ($i=0;$i<count($array);$i++) {
+        $game_id = $array[$i]['game_id'];
+        //var_dump($array[$i]);
+        //echo (count($array[$i],1));
+        unset($array[$i]['game_id']);
+        for($j=0;$j<count($array[$i]);$j++) {
+            $panlu_a = isset($array[$i][$j]['panlu_a'])?'`g_panlu_a`='. (100-$array[$i][$j]['panlu_a']).'':'';
+            $panlu_b = isset($array[$i][$j]['panlu_b'])?'`g_panlu_b`='. (100-$array[$i][$j]['panlu_b']).'':'';
+            $panlu_c = isset($array[$i][$j]['panlu_c'])?'`g_panlu_c`='. (100-$array[$i][$j]['panlu_c']).'':'';
+            $danzhu_min = $array[$i][$j]['danzhu_min'];
+            $danzhu_max = $array[$i][$j]['danzhu_max'];
+            $danxiang_max = $array[$i][$j]['danxiang_max'];
+            $type_name = $array[$i][$j]['type'];
+            /*            echo $panlu_a;
+                        echo ' ';
+                        echo $panlu_a;
+                        echo ' ';
+                        echo $panlu_b;
+                        echo ' ';
+                        echo $panlu_c;
+                        echo ' ';
+                        echo $danzhu_min;
+                        echo ' ';
+                        echo $danzhu_max;
+                        echo ' ';
+                        echo $danxiang_max;*/
+            //var_dump($array[$i][$j]);
+
+            $sql_str = "update g_panbiao set
+                $panlu_a
+                $panlu_b
+                $panlu_c,
+                `g_danzhu_min`='{$danzhu_min}',
+                `g_danzhu`='{$danzhu_max}',
+                `g_danxiang`='{$danxiang_max}'
+                WHERE g_nid = '{$user_name}' and g_game_id='{$game_id}' and g_type='{$type_name}' LIMIT 1";
+            /*            echo $sql_str;
+                        echo '</br>';*/
+            if ($db->query($sql_str,2) == -1) {
+                return -1;
+            }
+        }
+    }
+
+}
+
 ?>

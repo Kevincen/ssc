@@ -104,6 +104,10 @@ class UserModel
                 exit(alert("Get_rank_from_name erro!i=$i,name=$name"));
         }
     }
+    public function update_memenber_tuishui($varlist)
+    {
+
+    }
 	/**
 	 * UNION 查詢
 	 * 判斷帳號用戶是否存在
@@ -223,9 +227,9 @@ class UserModel
 	public function GetUserMR ($name, $param=FALSE)
 	{
 		if ($param && Copyright)
-			$sql = "SELECT g_type, g_panlu_a,g_panlu_b,g_panlu_c,g_danzhu_min, g_danzhu, g_danxiang FROM g_panbiao WHERE `g_nid` = '{$name}' ORDER BY g_id DESC ";
+			$sql = "SELECT g_type, g_panlu_a,g_panlu_b,g_panlu_c,g_danzhu_min, g_danzhu, g_danxiang,g_game_id FROM g_panbiao WHERE `g_nid` = '{$name}' ORDER BY g_id DESC ";
 		else 
-			$sql = "SELECT g_type, g_a_limit, g_b_limit, g_c_limit,g_danzhu_min, g_d_limit, g_e_limit  FROM g_send_back WHERE `g_name` = '{$name}' ORDER BY g_id DESC ";
+			$sql = "SELECT g_type, g_a_limit, g_b_limit, g_c_limit,g_danzhu_min, g_d_limit, g_e_limit,g_game_id FROM g_send_back WHERE `g_name` = '{$name}' ORDER BY g_id DESC ";
 
 			return $this->db->query($sql, 1);
 	}
