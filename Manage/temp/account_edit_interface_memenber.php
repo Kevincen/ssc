@@ -14,14 +14,46 @@
     <script type="text/javascript" src="/js/actiontop.js"></script>
     <script type="text/javascript" src="/js/jquery.js"></script>
     <link rel="stylesheet" href="/wjl_tmp/steal.css"/>
+    <script type="text/javascript" src="/Manage/temp/js/common.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var win_height = window.innerHeight;
             $("#layout").css('height',win_height+'px');
 
         });
+        function change_input_by_color ($this)
+        {
+            console.log($this);
+            var color = '';
+            var danzhu_min = 0;
+            var danzhu_max = 0;
+            var danxiang_max = 0;
+            var panlu_a = 0;
+            var panlu_b = 0;
+            var panlu_c = 0;
+            color = $this.attr('id');
+            danzhu_min = $('input[vname=general_'+ color + '_ordermin]').val();
+            danzhu_max = $('input[vname=general_'+ color + '_ordermax]').val();
+            danxiang_max = $('input[vname=general_'+ color + '_itemmax]').val();
+            panlu_a = $('input[vname=general_'+ color + '_A]').val();
+            panlu_b = $('input[vname=general_'+ color + '_B]').val();
+            panlu_c = $('input[vname=general_'+ color + '_C]').val();
+
+            var set_function = function ($this,$val){
+                $this.val($val);
+                $this.addClass('quickset');
+            };
+
+
+            $('input[vname=sub_'+ color + '_ordermin]').each(function(){set_function($(this),danzhu_min)});
+            $('input[vname=sub_'+ color + '_ordermax]').each(function(){set_function($(this),danzhu_max)});
+            $('input[vname=sub_'+ color + '_itemmax]').each(function(){set_function($(this),danxiang_max)});
+            $('input[vname=sub_'+ color + '_A]').each(function(){set_function($(this),panlu_a)});
+            $('input[vname=sub_'+ color + '_B]').each(function(){set_function($(this),panlu_b)});
+            $('input[vname=sub_'+ color + '_C]').each(function(){set_function($(this),panlu_b)});
+
+        }
     </script>
-    <script type="text/javascript" src="/Manage/temp/js/common.js"></script>
     <script type="text/javascript" src="/Manage/temp/js/Pwd_Safety.js"></script>
     <title></title>
 </head>
@@ -144,130 +176,130 @@
     </tr>
     <tr>
         <th>单码项（1~8单码、1~5单码、冠亚，3~10单码...）</th>
-        <td><span class="playColor bBlue">&nbsp;</span><input name="general00" vname="generalordermin00"
-                                                              autocomplete="off" maxlength="9" type="text"
-                                                              style="margin-top:4px;_margin-top:2px;_"
-                                                              value="2"></td>
-        <td><input name="general00" vname="generalordermax00" autocomplete="off" maxlength="9" type="text"
+        <td><span class="playColor bBlue">&nbsp;</span>
+            <input name="general00" vname="general_bBlue_ordermin" autocomplete="off" maxlength="9" type="text"
+                   style="margin-top:4px;_margin-top:2px;_" value="2"></td>
+        <td><input name="general00" vname="general_bBlue_ordermax" autocomplete="off" maxlength="9" type="text"
                    value="20000"></td>
-        <td><input name="general00" vname="generalitem00" autocomplete="off" maxlength="9" type="text"
+        <td><input name="general00" vname="general_bBlue_itemmax" autocomplete="off" maxlength="9" type="text"
                    value="50000"></td>
         <td>
-            <div class="spaning"><input name="general00" value="0.6" vname="generaldiscountA00" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning">
+                <input name="general00" value="0.6" vname="general_bBlue_A" type="text"
+                                        minvalue="0" maxvalue="100"
+                    <?php if (strstr($P,'A')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <div class="spaning"><input name="general00" value="1.6" vname="generaldiscountB00" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning"><input name="general00" value="1.6" vname="general_bBlue_B" type="text"
+                                        minvalue="0" maxvalue="100"
+                    <?php if (strstr($P,'B')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <div class="spaning"><input name="general00" value="2.6" vname="generaldiscountC00" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning"><input name="general00" value="2.6" vname="general_bBlue_C" type="text"
+                    <?php if (strstr($P,'C')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <button id="g00" type="button">修改</button>
+            <button id="bBlue" type="button" onclick="change_input_by_color($(this))">修改</button>
         </td>
     </tr>
     <tr>
         <th>两面项（1~8两面，1~10两面、龙虎、三军…）</th>
-        <td><span class="playColor bZise">&nbsp;</span><input name="general08" vname="generalordermin08"
-                                                              autocomplete="off" maxlength="9" type="text"
-                                                              style="margin-top:4px;_margin-top:2px;_"
-                                                              value="2"></td>
-        <td><input name="general08" vname="generalordermax08" autocomplete="off" maxlength="9" type="text"
-                   value="100000"></td>
-        <td><input name="general08" vname="generalitem08" autocomplete="off" maxlength="9" type="text"
-                   value="200000"></td>
+        <td><span class="playColor bZise">&nbsp;</span>
+            <input name="general00" vname="general_bZise_ordermin" autocomplete="off" maxlength="9" type="text"
+                   style="margin-top:4px;_margin-top:2px;_" value="2"></td>
+        <td><input name="general00" vname="general_bZise_ordermax" autocomplete="off" maxlength="9" type="text"
+                   value="20000"></td>
+        <td><input name="general00" vname="general_bZise_itemmax" autocomplete="off" maxlength="9" type="text"
+                   value="50000"></td>
         <td>
-            <div class="spaning"><input name="general08" value="0.6" vname="generaldiscountA08" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning"><input name="general00" value="0.6" vname="general_bZise_A" type="text"
+                    <?php if (strstr($P,'A')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
+                <a href="javascript:void(0)" class="down" name="down"></a></div>
+        </td>
+        <td>
+            <div class="spaning"><input name="general00" value="1.6" vname="general_bZise_B" type="text"
+                    <?php if (strstr($P,'B')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
+                <a href="javascript:void(0)" class="down" name="down"></a></div>
+        </td>
+        <td>
+            <div class="spaning"><input name="general00" value="2.6" vname="general_bZise_C" type="text"
+                    <?php if (strstr($P,'C')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <div class="spaning"><input name="general08" value="1.6" vname="generaldiscountB08" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
-                    href="javascript:void(0)" class="down" name="down"></a></div>
-        </td>
-        <td>
-            <div class="spaning"><input name="general08" value="2.6" vname="generaldiscountC08" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
-                    href="javascript:void(0)" class="down" name="down"></a></div>
-        </td>
-        <td>
-            <button id="g01" type="button">修改</button>
+            <button id="bZise" type="button" onclick="change_input_by_color($(this))">修改</button>
         </td>
     </tr>
     <tr>
         <th>连码项（任选二、任选三、围骰、长牌…）</th>
-        <td><span class="playColor bGreen">&nbsp;</span><input name="general18" vname="generalordermin18"
-                                                               autocomplete="off" maxlength="9" type="text"
-                                                               style="margin-top:4px;_margin-top:2px;_"
-                                                               value="2"></td>
-        <td><input name="general18" vname="generalordermax18" autocomplete="off" maxlength="9" type="text"
-                   value="2000"></td>
-        <td><input name="general18" vname="generalitem18" autocomplete="off" maxlength="9" type="text"
-                   value="5000"></td>
+        <td><span class="playColor bGreen">&nbsp;</span>
+            <input name="general00" vname="general_bGreen_ordermin" autocomplete="off" maxlength="9" type="text"
+                   style="margin-top:4px;_margin-top:2px;_" value="2"></td>
+        <td><input name="general00" vname="general_bGreen_ordermax" autocomplete="off" maxlength="9" type="text"
+                   value="20000"></td>
+        <td><input name="general00" vname="general_bGreen_itemmax" autocomplete="off" maxlength="9" type="text"
+                   value="50000"></td>
         <td>
-            <div class="spaning"><input name="general18" value="0.6" vname="generaldiscountA18" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning"><input name="general00" value="0.6" vname="general_bGreen_A" type="text"
+                    <?php if (strstr($P,'A')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <div class="spaning"><input name="general18" value="1.6" vname="generaldiscountB18" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning"><input name="general00" value="1.6" vname="general_bGreen_B" type="text"
+                    <?php if (strstr($P,'B')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <div class="spaning"><input name="general18" value="2.6" vname="generaldiscountC18" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning"><input name="general00" value="2.6" vname="general_bGreen_C" type="text"
+                    <?php if (strstr($P,'C')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <button id="g02" type="button">修改</button>
+            <button id="bGreen" type="button" onclick="change_input_by_color($(this))">修改</button>
         </td>
     </tr>
     <tr>
         <th>杂项（方位、豹子、冠亚和、点数…）</th>
-        <td><span class="playColor bRed">&nbsp;</span><input name="general15" vname="generalordermin15"
-                                                             autocomplete="off" maxlength="9" type="text"
-                                                             style="margin-top:4px;_margin-top:2px;_" value="2">
-        </td>
-        <td><input name="general15" vname="generalordermax15" autocomplete="off" maxlength="9" type="text"
+        <td><span class="playColor bRed">&nbsp;</span>
+            <input name="general00" vname="general_bRed_ordermin" autocomplete="off" maxlength="9" type="text"
+                   style="margin-top:4px;_margin-top:2px;_" value="2"></td>
+        <td><input name="general00" vname="general_bRed_ordermax" autocomplete="off" maxlength="9" type="text"
                    value="20000"></td>
-        <td><input name="general15" vname="generalitem15" autocomplete="off" maxlength="9" type="text"
-                   value="60000"></td>
+        <td><input name="general00" vname="general_bRed_itemmax" autocomplete="off" maxlength="9" type="text"
+                   value="50000"></td>
         <td>
-            <div class="spaning"><input name="general15" value="0.6" vname="generaldiscountA15" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning"><input name="general00" value="0.6" vname="general_bRed_A" type="text"
+                    <?php if (strstr($P,'A')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <div class="spaning"><input name="general15" value="1.6" vname="generaldiscountB15" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning"><input name="general00" value="1.6" vname="general_bRed_B" type="text"
+                    <?php if (strstr($P,'B')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <div class="spaning"><input name="general15" value="2.6" vname="generaldiscountC15" type="text"
-                                        minvalue="0" maxvalue="100"><a href="javascript:void(0)"
-                                                                       name="up"></a><a
+            <div class="spaning"><input name="general00" value="2.6" vname="general_bRed_C" type="text"
+                    <?php if (strstr($P,'C')=='') echo 'readonly="readonly" disabled="disabled"' ?>>
+                <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
-            <button id="g03" type="button">修改</button>
+            <button id="bRed" type="button" onclick="change_input_by_color($(this))">修改</button>
         </td>
     </tr>
     </tbody>
