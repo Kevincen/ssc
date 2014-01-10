@@ -1996,7 +1996,7 @@ a {
     color: red;
     text-align: center;
     font-weight: 700;
-    background: url("./account_title.png?v=1") no-repeat;
+    background: url("./account_title.png") no-repeat;
 }
 
 .general_info .game-flag div {

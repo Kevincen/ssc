@@ -213,4 +213,36 @@ function set_ball_in_top(val)
     }
     //如果没有数据则什么都不做
 }
+function change_input_by_color ($this)
+{
+    console.log($this);
+    var color = '';
+    var danzhu_min = 0;
+    var danzhu_max = 0;
+    var danxiang_max = 0;
+    var panlu_a = 0;
+    var panlu_b = 0;
+    var panlu_c = 0;
+    color = $this.attr('id');
+    danzhu_min = $('input[vname=general_'+ color + '_ordermin]').val();
+    danzhu_max = $('input[vname=general_'+ color + '_ordermax]').val();
+    danxiang_max = $('input[vname=general_'+ color + '_itemmax]').val();
+    panlu_a = $('input[vname=general_'+ color + '_A]').val();
+    panlu_b = $('input[vname=general_'+ color + '_B]').val();
+    panlu_c = $('input[vname=general_'+ color + '_C]').val();
+
+    var set_function = function ($this,$val){
+        $this.val($val);
+        $this.addClass('quickset');
+    };
+
+
+    $('input[vname=sub_'+ color + '_ordermin]').each(function(){set_function($(this),danzhu_min)});
+    $('input[vname=sub_'+ color + '_ordermax]').each(function(){set_function($(this),danzhu_max)});
+    $('input[vname=sub_'+ color + '_itemmax]').each(function(){set_function($(this),danxiang_max)});
+    $('input[vname=sub_'+ color + '_A]').each(function(){set_function($(this),panlu_a)});
+    $('input[vname=sub_'+ color + '_B]').each(function(){set_function($(this),panlu_b)});
+    $('input[vname=sub_'+ color + '_C]').each(function(){set_function($(this),panlu_b)});
+
+}
 
