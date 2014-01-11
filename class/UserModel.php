@@ -257,7 +257,7 @@ class UserModel
 			WHERE g_nid like '".$Like."'  {$name}  {$order} {$limit}";
 			}
 		else{
-			$sql = " SELECT `g_nid`, `g_login_id`, `g_name`, `g_password`, `g_f_name`, `g_money`, `g_distribution`, `g_distribution_limit`, `g_Immediate_lock`, `g_Immediate2_lock`, `g_lock`, `g_ip`, `g_date`, `g_uid`, `g_out`, `g_count_time` FROM `g_rank` 
+			$sql = " SELECT `g_nid`, `g_login_id`, `g_name`, `g_password`, `g_f_name`, `g_money`,`g_panlu`, `g_distribution`, `g_distribution_limit`, `g_Immediate_lock`, `g_Immediate2_lock`, `g_lock`, `g_ip`, `g_date`, `g_uid`, `g_out`, `g_count_time` FROM `g_rank`
 			WHERE g_nid LIKE '{$nid}'  {$name}  {$order} {$limit}";
 			
 			}

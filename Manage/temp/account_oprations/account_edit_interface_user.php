@@ -56,10 +56,11 @@
         <td><label for="share_flag1"><input id="share_flag1" value="true" name="share_flag" type="radio"
                                             checked="">是</label><label for="share_flag2"><input
                     id="share_flag2" value="false" name="share_flag" type="radio">否</label></td>
-        <th name="currentname"><?php echo $Rank[0] ?>及下级占成权限总和(%)??</th>
+<!--        是自己的distribution -->
+        <th name="currentname"><?php echo $Rank[0] ?>及下级占成权限总和(%)</th>
         <td><!--<select name='share_total'><option value="0"></option></select>-->
             <div class="share_up_div"><select name="s_size_ky"  >
-                    <?php for ($i=0;$i<=$top_info['g_distribution_limit'];$i += 5)  {
+                    <?php for ($i=0;$i+$userList[0]['g_distribution_limit']<=$top_info['g_distribution'];$i += 5)  {
                         $add_str = $i==$userList[0]['g_distribution']? 'selected="selected"':'';
                         echo '<option value="'. $i .'" '.$add_str.'>'.$i.'</option>';
                     }
@@ -67,14 +68,15 @@
                 </select>
             </div>
         </td>
-        <!--        上级占成其实是 上级总占成-当前等级占城-->
+<!--        两者 之和不能大于上级的destribution-->
+        <!--        其实是 distibution_limit-->
         <th name="parentname"><?php echo $top_info['rank'] ?>占成(%)</th>
         <td><!--<select name='share_up'><option value="0"></option></select>-->
             <div class="share_up_div"><select name="s_next_ky" type="text" maxlength="3" vname="share_up"
                                               value="<?php echo $userList[0]['g_distribution_limit']?>">
-                    <?php for ($i=0;$i<=$top_info[0]['g_distribution_limit'];$i += 5)  {
+                    <?php for ($i=0;$i+$userList[0]['g_distribution']<=$top_info[0]['g_distribution'];$i += 5)  {
                         $add_str =
-                            $i==($userList[0]['g_distribution'] - $userList[0]['g_distribution'])? 'selected="selected"':'';
+                            $i==($userList[0]['g_distribution_limit'])? 'selected="selected"':'';
                         echo '<option value="'. $i .'" '.$add_str.'>'.$i.'</option>';
                     }
                     ?>

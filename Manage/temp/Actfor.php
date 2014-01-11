@@ -2,7 +2,10 @@
 define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
 include_once ROOT_PATH . 'Manage/ExistUser.php';
+include_once ROOT_PATH .'Class/Lang.php';
 global $Users, $LoginId;
+
+$lang = new utf8_lang();
 $ConfigModel = configModel("`g_son_member_lock`");
 $left_html = '';
 //TODO:要获得所有上级
@@ -183,7 +186,7 @@ function get_upper($user_nid) {
 <div id="rightLoader" class="main-content bet-content">
 
 <div id='memberList' class='page'>
-<div class='title'><span name='account_name'><?php echo $Rank[1] ?></span><span class='hidden'
+<div class='title'><span name='account_name'><?php echo $lang->hk_cn($Rank[1]) ?></span><span class='hidden'
                                                             id='superior'>&nbsp;&nbsp;上级<select
             id='superior_se'>
             <option value=''>全部</option>
