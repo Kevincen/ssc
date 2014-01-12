@@ -1,11 +1,24 @@
 <?php
 /**
  *
+ *
  * Created by PhpStorm.
  * User: 2b
  * Date: 14-1-9
  * Time: 下午10:41
  */
+/*var_dump($sub_array);
+echo '</br>';
+var_dump($color_array);*/
+/*for ($i=0;$i <count($sub_array);$i++)
+{
+    var_dump($sub_array[$i]);
+    echo '</br>';
+}
+
+exit;*/
+
+$count=1;
 ?>
 <tbody id="klc">
 <tr>
@@ -30,7 +43,7 @@
     <td>B盘(%)</td>
     <td>C盘(%)</td>
 </tr>
-<?php for ($i = 0; $i <count($sub_array); $i++) { ?>
+<?php for ($i = 0; $i <count($sub_array); ) { ?>
 <tr>
     <?php
     for ($n=0;$n<2;$n++,$i++) {

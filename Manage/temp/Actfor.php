@@ -728,7 +728,8 @@ function get_upper($user_nid) {
                 $stockholder = array(null); //股东
                 $comp = array(null); //分公司
                 $_a = '--';
-                $topname = '';
+                $top_account_id = '';
+                $top_cid=0;
                 $user_nid = mb_substr($result[$i]['g_nid'], 0, mb_strlen($result[$i]['g_nid']) - 32);
                 $_nid = $userModel->GetUserName_Like($user_nid);
                 $_nid = $_nid[0];
@@ -743,7 +744,8 @@ function get_upper($user_nid) {
                     //$d = $userModel->GetUserName_Like($v);
                     $main_agent['name'] = $_nid['g_name'];
                     $main_agent['dis'] = $result[$i]['g_distribution'];
-                    $topname = $main_agent['name'];
+                    $top_account_id = $main_agent['name'];
+                    $top_cid = 3;
                 } else if ($_nid['g_login_id'] == 22) { //股東直屬
                     $mumberType = '<font class="red">直屬股東</font>';
                     $stockholder['name'] = $_nid['g_name'];
@@ -751,14 +753,16 @@ function get_upper($user_nid) {
                     $v = mb_substr($user_nid, 0, mb_strlen($user_nid, 'utf-8') - 32);
                     echo $v;
                     $d = $userModel->GetUserName_Like($v);
-                    $topname = $stockholder['name'];
+                    $top_account_id = $stockholder['name'];
+                    $top_cid = 2;
                 } else if ($_nid['g_login_id'] == 56) { //分公司直屬
                     $mumberType = '<font class="red">直屬分公司</font>';
                     $comp['name'] = $_nid['g_name'];
                     $comp['dis'] = $result[$i]['g_distribution'];
                     $v = mb_substr($user_nid, 0, mb_strlen($user_nid, 'utf-8') - 32);
                     $d = $userModel->GetUserName_Like($v);
-                    $topname = $comp['name'];
+                    $top_account_id = $comp['name'];
+                    $top_cid = 1;
                 }
 
             } else {
@@ -767,7 +771,8 @@ function get_upper($user_nid) {
                 $agent = get_upper($value); //代理
                 $main_agent = get_upper($agent['nid']); //总代理
                 $stockholder = get_upper($main_agent['nid']); //股东
-                $topname = $agent['name'];
+                $top_account_id = $agent['name'];
+                $top_cid = 4;
             }
             var_dump($_nid['g_login_id']);
 
@@ -784,7 +789,7 @@ function get_upper($user_nid) {
                     <? } ?>
                     title='最后一次登录IP：*'></td>
                 <td class='t-l'><a href='javascript:void(0)' lower='753'
-                                   class='bold'><?php echo $result[$i]['g_f_name'] ?></a>[<?php echo $topname; ?>
+                                   class='bold'><?php echo $result[$i]['g_f_name'] ?></a>[<?php echo $top_account_id; ?>
                     ]
                 </td>
                 <td><?php echo $linkName ?></td>
@@ -834,7 +839,8 @@ function get_upper($user_nid) {
                        onclick="act_change_use('<?php echo $result[$i]['g_name']; ?>',this);">
                         <?php echo $result[$i]['g_look'] == 2 ? '停用' : '停押'; ?>
                     </a> /
-                    <a href="account_edit_wjl.php?cid=<?php echo $cid ?>&uid=<?php echo $result[$i]['g_name'] ?>"
+                    <a
+                        href="./account_oprations/account_oprations.php?action=update&cid=<?php echo $cid ?>&my_account_id=<?php echo $result[$i]['g_name']?>&top_account_id=<?php echo $top_account_id?>&top_cid=<?php echo $top_cid?>"
                        edit='753'>修改</a>/
                     <a account_name='aaa11' log='753'
                        href="LoginLog.php?uid=<?php echo $result[$i]['g_name'] ?>&cid=<?php echo $cid?>">日志</a>/
@@ -886,22 +892,22 @@ function get_upper($user_nid) {
             <tbody>
             <script type="text/javascript">/*获得上级，跳转到新增页面.并将上级参数传入
                  */
-                function select_upper(val, cid, sid)
+                function select_upper(value, cid)
                 {
-                    if (val != 0) {
-                        var href = "/Manage/temp/Account_Edit.php?aid=add&cid="+ cid +"&sid=" + sid + "&top_name="+val;
+                    if (value != "") {
+                        var href = "/Manage/temp/account_oprations/account_oprations.php?action=add&cid="+ cid +value;
                         location.href = href;
                     }
                 }</script>
             <tr>
                 <th>选择上级<span id="superior_name"></span></th>
                 <td>
-                    <select id="superior_new" onchange="select_upper(this.value,<?php echo $end_index?>, 1)" >
+                    <select id="superior_new"  onchange="select_upper($(this).val(),<?php echo $end_index?>)">
                         <option value="0">选择上级</option>
                         <?php for ($i=0; $i<count($id_name_array); $i++) { ?>
-                            <optgroup label="<?php echo $id_name_array[$i] ?>">
+                            <optgroup label="<?php echo $id_name_array[$i] ?>" cid="<?php echo $i+1?>">
                                 <?php for($j=0;$j <count($all_account[$i]); $j++) { ?>
-                                    <option value="<?php echo $all_account[$i][$j]['g_name']; ?>">
+                                    <option value="&top_account_id=<?php echo $all_account[$i][$j]['g_name']; ?>&top_cid=<?php echo $i+1?>" >
                                         <?php echo $all_account[$i][$j]['g_name']; ?>
                                     </option>
                                 <?php } //for j end ?>

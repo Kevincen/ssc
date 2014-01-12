@@ -400,16 +400,6 @@ function upDateRankLock($db, $result, $lock, $p=0){
     }
 }
 
-function get_array_by_id($result,$game_id)
-{
-    $ret_array = array();
-    for ($i=0; $i<count($result); $i++) {
-        if ($result[$i]['g_game_id'] == $game_id) {
-            $ret_array[] =  $result[$i];
-        }
-    }
-    return $ret_array;
-}
 
 
 $klc_array = get_array_by_id($result,1);

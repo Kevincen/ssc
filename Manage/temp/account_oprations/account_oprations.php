@@ -5,6 +5,42 @@
  * Date: 14-1-11
  * Time: 下午12:37
  */
+define('Copyright', '作者QQ:1834219632');
+define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
+include_once ROOT_PATH . 'Manage/ExistUser.php';
+include_once ROOT_PATH . 'Class/User_formater.php';
+include_once ROOT_PATH . 'Class/Lang.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+
+    exit();
+} else if ($_SERVER['REQUEST_METHOD'] == 'GET')
+{
+    $cid = $_GET['cid'];
+    $top_cid = $_GET['top_cid'];
+    $action = $_GET['action'];
+    $top_account_id = $_GET['top_account_id'];
+
+    if ($action == 'update') {
+        $my_account_id = $_GET['my_account_id'];
+        $op_str = '修改';
+    } else if ($action == 'add') {
+        $my_account_id = '';
+        $op_str = '新增';
+    } else {
+        echo 'wrong action';
+        exit;
+    }
+
+    $this_module = new User_info($my_account_id,$cid,$top_account_id);
+    $top_module =  new User_info($top_account_id,$top_cid);
+    $this_module->get_from_db();
+    $top_module->get_from_db();
+}
+$lang = new utf8_lang();
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -33,15 +69,10 @@
 <div id="rightLoader" dom="right" class="main-content bet-content" style="display: block;">
 <div id="member" class="member">
 <div class="title">
-    <span id="account_name">修改<?php echo $userModel->Get_rank_from_name($userList[0]['g_f_name']) ?><?php echo $userList[0]['g_f_name'] ?>
-            </span>上级<span id="superior"><?php echo $top_info['rank'].$top_info['g_name'] ?></span><a href="Actfor.php?cid=<?php echo $cid ?>"
-                                                                                                      id="reback" level="1"
-                                                                                                      class="mag-btn1">返回</a></div>
-<?php if ($cid == 5) {?>
-<form method="post" action="Manage_Up.php?cid=<?php echo $cid?>&uid=<?php echo $uid?>">
-<?php } else { ?>
-<form method="post" action="?cid=<?php echo $cid ?>&uid=<?php echo $uid ?>">
-<?php } ?>
+    <span id="account_name"><?php echo $op_str?><?php echo $this_module->rank_name ?><?php echo $this_module->my_account_id ?>
+            </span>上级<span id="superior"><?php echo $top_module->rank_name.':'.$top_module->my_account_id ?></span>
+    <a href="../Actfor.php?cid=<?php echo $cid ?>" id="reback" level="1" class="mag-btn1">返回</a></div>
+<form method="post" action="?action=update&cid=<?php echo $cid ?>&uid=<?php echo $uid ?>">
 <table class="clear-table base-info">
     <caption>
         <div>基本资料</div>
@@ -51,10 +82,10 @@
         <th>名称</th>
         <td><input autocomplete="off" name="s_F_Name" type="text" vname="name"
                    vmessage="由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！"
-                   value="<?php echo $userList[0]['g_f_name'] ?>"></td>
+                   value="<?php echo $this_module->my_name ?>"></td>
         <th>账号</th>
         <td><input autocomplete="off" name="name" type="text" vname="account" readonly
-                   vmessage="账号由1-12位英文字母、数字、下划线组成，且第一位不能是下划线！" value="<?php echo $userList[0]['g_name'] ?>" class="">
+                   vmessage="账号由1-12位英文字母、数字、下划线组成，且第一位不能是下划线！" value="<?php echo $this_module->my_account_id ?>" class="">
         </td>
         <th>密码</th>
         <td><input autocomplete="off" name="s_Pwd" type="password" vname="password"
@@ -64,7 +95,7 @@
                                       vname="repassword" vmessage="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
     </tr>
     <?php
-    if ($cid == 5) {
+    if ($this_module->cid == '5') {
         include_once "./account_edit_interface_memenber.php";
     } else {
         include_once "./account_edit_interface_user.php";
@@ -89,6 +120,13 @@
         <td>C盘(%)</td>
         <td>操作</td>
     </tr>
+    <?php
+    if ($cid != 5) {
+       $P = $this_module->panlu;
+    } else {
+       $P = 'ABC';
+    }
+    ?>
     <tr>
         <th>单码项（1~8单码、1~5单码、冠亚，3~10单码...）</th>
         <td><span class="playColor bBlue">&nbsp;</span>
@@ -221,28 +259,29 @@
 </table>
 <table class="games_info" id="games_info"><!-- 广东快乐十分 -->
     <?php
+    $color_array = $this_module->color_array;
     $type_name = '广东快乐十分';
-    $sub_array = $klc_array;
+    $sub_array = $this_module->klc_array;
     include './account_inter_face.php'
     ?>
     <?php
     $type_name = '重庆时时彩';
-    $sub_array = $ssc_array;
+    $sub_array = $this_module->ssc_array;
     include './account_inter_face.php'
     ?>
     <?php
     $type_name = '北京赛车';
-    $sub_array = $pk10_array;
+    $sub_array = $this_module->pk10_array;
     include './account_inter_face.php'
     ?>
     <?php
     $type_name = '幸运农场';
-    $sub_array = $nc_array;
+    $sub_array = $this_module->nc_array;
     include './account_inter_face.php'
     ?>
     <?php
     $type_name = '江苏骰宝';
-    $sub_array = $jstb_array;
+    $sub_array = $this_module->jstb_array;
     include './account_inter_face.php'
     ?>
     <!-- 重庆时时彩 -->
