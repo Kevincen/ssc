@@ -82,6 +82,9 @@ class User_info
         '短牌'=>'bGreen',
     );
 
+    private $nid;//辨识编码
+    private $login_id;
+    private $db_format_tuishui;//数据库格式退水
 
     private $db;
     private $userModel;
@@ -263,11 +266,7 @@ class User_info
             $parent_info = $this->get_userinfo_by_account(4,$this->top_account_id);
             $this->panlu = $parent_info[0]['g_panlu'];//新会员盘路跟随父级
         } else {
-            if ($this->cid == 5 ) {
-                $tuishui = $this->userModel->GetUserMR($this->my_account_id,true);
-            } else {
-                $tuishui = $this->userModel->GetUserMR($this->my_account_id);
-            }
+            $tuishui = $this->get_tuishui($this->my_account_id,$this->cid);
             $this->set_tuishui($tuishui);
             $my_info = $this->get_userinfo_by_account($this->cid,$this->my_account_id);
             $this->set_info($my_info[0]);
@@ -291,5 +290,427 @@ class User_info
 
           }
 
+    }
+
+    //单纯的录入数据
+    private function data_entry($array)
+    {
+        $this->my_name = $array['my_name'];
+        $this->my_account_id = $array['my_account_id'];
+        $this->password = $array['password'];
+        $this->account_money = $array['account_money'];
+        $this->panlu = $array['panlu'];
+        $this->status = $array['status'];
+        $this->buhuo = $array['buhuo'];
+        $this->buhuo_dis = $array['buhuo_dis'];
+        $this->upper_distribution = $array['upper_distribution'];
+        $this->my_distribution = $array['my_distribution'];
+        $this->beishu = $array['beishu'];
+        $this->klc_array = $array['1'];
+        $this->ssc_array = $array['2'];
+        $this->pk10_array = $array['6'];
+        $this->nc_array = $array['5'];
+        $this->jstb_array = $array['9'];
+    }
+    private function general_data_into_array()
+    {
+        if ($this->cid == 5) {
+            $insert_array['g_name'] = $this->my_account_id;
+            $insert_array['g_f_name'] = $this->my_name;
+            //普通会员和直属会员的区别
+            $insert_array['g_password'] = $this->password;
+            $insert_array['g_money'] = $this->account_money;
+            $insert_array['g_money_yes'] = $this->account_money;
+            $insert_array['g_distribution'] = $this->upper_distribution;
+            $insert_array['g_panlu'] = $this->panlu;
+            $insert_array['g_look'] = $this->status;
+            $insert_array['g_panlus'] = $this->panlu.'.';
+        } else {
+            $insert_array['g_name'] = $this->my_account_id;
+            $insert_array['g_f_name'] = $this->my_name;
+            $insert_array['g_password'] = $this->password;
+            $insert_array['g_money'] = $this->account_money;
+            //占成诠释不同
+            $insert_array['g_distribution'] = $this->my_distribution;
+            $insert_array['g_distribution_limit'] = $this->upper_distribution;
+            $insert_array['g_panlu'] = $this->panlu;
+            $insert_array['g_lock'] = $this->status;
+            //补货限制
+            $insert_array['g_Immediate_lock'] = $this->buhuo;
+
+        }
+        return $insert_array;
+
+    }
+    private function proccess_befor_add()
+    {
+        $top_info = $this->userModel->GetUserModel(null,$this->top_account_id);
+        $top_nid = $top_info[0]['g_nid'];
+        $top_login_id = $top_info[0]['g_login_id'];
+        $this->nid = $top_nid . md5(uniqid(time(),true));
+        switch($this->cid) {
+            case 5:
+                $this->login_id = $top_nid == $this->userModel->agent_id? 9:$top_login_id;
+                break;
+            case 4:
+                $this->login_id = $this->userModel->agent_id;
+                break;
+            case 3:
+                $this->login_id = $this->userModel->maina_id;
+                break;
+            case 2:
+                $this->login_id = $this->userModel->stock_id;
+                break;
+            case 1:
+                $this->login_id = $this->userModel->cop_id;
+                break;
+
+        }
+    }
+    private function insert_into_db()
+    {
+        //先生成自己的nid login_id等值
+        $this->proccess_befor_add();
+        //转化为数组
+        $insert_array = $this->general_data_into_array();
+        $sql_str = '';
+        //新增特有的东西
+        if ($this->cid == 5) {
+            $sql_str_from = 'g_user';
+
+            //下面的为新增才需要的
+            //todo:单号限额暂写死为10000
+            $insert_array['g_nid'] = $this->nid;
+            $insert_array['g_login_id'] = $this->login_id;
+            //普通会员和直属会员的区别
+            $insert_array['g_mumber_type'] = $this->nid==9?1:2;
+            $insert_array['g_xianer'] = 1000000;
+            $insert_array['g_out'] = 0;
+            $insert_array['g_uid'] = md5(uniqid(time(),true));
+/*            $insert_array['g_state'] = null;*/
+            //todo:要测试下这玩意到底是不是初次登陆改密码的根据
+            $insert_array['g_pwd'] = 1;
+            $insert_array['g_ip'] = UserModel::GetIP();
+            $insert_array['g_date'] = date("Y-m-d H:i:s");
+            $insert_array['g_autofail'] = 0;
+            $insert_array['g_autowin'] = 0;
+        } else {
+            $sql_str_from = 'g_rank';
+
+            //下面为新增才需要的
+            $insert_array['g_nid'] = $this->nid;
+            $insert_array['g_login_id'] = $this->login_id;
+            $insert_array['g_uid'] = md5(uniqid(time(),true));
+            $insert_array['g_ip'] = UserModel::GetIP();
+            $insert_array['g_date'] = date("Y-m-d H:i:s");
+            //todo:要测试下这玩意到底是不是初次登陆改密码的根据
+            $insert_array['g_pwd'] = 1;
+        }
+        $ret = $this->db_ops($insert_array,$sql_str_from,'add');
+        if ($ret <= 0) {
+            return -1;
+        }
+
+        //插入退水信息
+        $ret = $this->insert_tuishui();
+
+        return $ret;
+    }
+
+    private function db_ops($data_array,$db_name,$action,$wheres=null)
+    {
+        //插入自己的信息
+        $sql_str = '';
+        if ($action == 'add') {
+            $sql_str_keys = "(";
+            $sql_str_values = "(";
+            foreach ($data_array as $key=>$value)
+            {
+                $sql_str_keys .= '`'.$key.'`';
+                $sql_str_values .= "'".$value."'";
+                $sql_str_keys.=',';
+                $sql_str_values .=',';
+            }
+            $sql_str_keys = substr($sql_str_keys,0,-1);
+            $sql_str_values = substr($sql_str_values,0,-1);
+            $sql_str_values .=')';
+            $sql_str_keys .= ')';
+
+            $sql_str = "insert into $db_name $sql_str_keys values $sql_str_values";
+        } else if ($action == 'update' && $wheres != null) {
+            $sql_str_data = '';
+            foreach ($data_array as $key=>$value) {
+                $sql_str_data .= '`'.$key.'`='."'".$value."'";
+                $sql_str_data .= ',';
+            }
+            $sql_str_data = substr($sql_str_data,0,-1);
+            $sql_str = "update $db_name set $sql_str_data where $wheres";
+        }
+        $ret = $this->db->query($sql_str,2);
+        return $ret;
+    }
+
+    private function update_into_db()
+    {
+        //更新自己的信息
+        //更新退水信息
+        $insert_array = $this->general_data_into_array();
+        if ($this->cid == 5) {
+            $db_name = 'g_user';
+        } else {
+            $db_name = 'g_rank';
+        }
+        $db_where = 'g_name ='.$this->my_account_id;
+        $ret = $this->db_ops($insert_array,$db_name,'update',$db_where);
+        if ($ret <= 0) {
+            return -1;
+        }
+        $ret = $this->update_tuishui();
+        return $ret;
+    }
+    //@param $action 更新 or 新增
+    public function set_from_array($array,$action='update')
+    {
+        $ret = 0;
+
+        $this->data_entry($array);
+        $this->data_process();
+
+        if ($action == 'add') {
+            $ret = $this->insert_into_db();
+        } else {
+            $ret = $this->update_into_db();
+        }
+        return $ret;
+    }
+
+    private function data_process()
+    {
+        if (!Matchs::isString($this->password, 8, 20)) exit(back('密码输入有误'));
+        $this->password = sha1($this->password);
+
+        $this->db_format_tuishui =  $this->tuishui_data_process();
+    }
+
+    private function tuishui_data_process()
+    {
+        $klc_decode_array = array(
+            '1~8单码'=>array('第一球','第二球','第三球','第四球','第五球','第六球','第七球','第八球'),
+            '正码'=>array('正码'),
+            '1~8两面'=>array('1-8單雙','1-8大小','1-8尾數大小','1-8合數單雙'),
+            '总和两面' =>array('總和單雙','總和大小','總和尾數大小'),
+            '1~8中发白'=>array('1-8中發白'),
+            '1~8方位'=>array('1-8方位'),
+            '1~4龙虎'=>array('龍虎'),
+            '任选二'=>array('任選二'),
+            '任选三'=>array('任選三'),
+            '选二连组'=>array('選二連組'),
+            '选三前组'=>array('選三前組'),
+            '任选四'=>array('任選四'),
+            '任选五'=>array('任選五'),
+        );
+        $ssc_decode_array = array(
+            '1~5单码'=>array('第一球','第二球','第三球','第四球','第五球'),
+            '龙虎'=>array('龍虎'),
+            '顺子'=>array('顺子'),
+            '两面'=>array('總和單雙','總和大小','1-5單雙','1-5大小'),
+            '对子'=>array('对子'),
+            '半顺'=>array('半顺'),
+            '和'=>array('和'),
+            '杂六'=>array('杂六'),
+            '豹子'=>array('豹子'),
+        );
+        $pk10_decode_array = array(
+            '冠亚,3~10单码'=>array('冠军','亚军','第三名','第四名','第五名','第六名','第七名',
+                '第八名','第九名','第十名'),
+            '1~10两面'=>array('1-10單雙','1-10大小'),
+            '1~5龙虎'=>array('1-5龍虎'),
+            '冠亚大小'=>array('冠亞和大小'),
+            '冠亚单双'=>array('冠亞和單雙'),
+            '冠亚和'=>array('冠、亞軍和'),
+        );
+        $nc_decode_array = array(
+            '1~8单码'=>array('第一球','第二球','第三球','第四球','第五球','第六球','第七球','第八球'),
+            '正码'=>array('正码'),
+            '1~8两面'=>array('1-8單雙','1-8大小','1-8尾數大小','1-8合數單雙'),
+            '总和两面' =>array('總和單雙','總和大小','總和尾數大小'),
+            '1~8中发白'=>array('1-8中發白'),
+            '1~8方位'=>array('1-8梅兰菊竹'),
+            '1~4龙虎'=>array('家禽野兽'),
+            '任选二'=>array('任選二'),
+            '任选三'=>array('任選三'),
+            '选二连组'=>array('選二連組'),
+            '选二连直'=>array('选二连直'),
+            '选三前组'=>array('選三前組'),
+            '任选四'=>array('任選四'),
+            '任选五'=>array('任選五'),
+        );
+        $jstb_decode_array = array(
+            '大小'=>array('三軍大小'),
+            '点数'=>array('點數'),
+            '三军'=>array('三軍'),
+            '长牌'=>array('長牌'),
+            '围骰'=>array('圍骰'),
+            '短牌'=>array('短牌'),
+            '全骰'=>array('全骰')
+        );
+        $decoded_array = array();
+        $klc_array = $this->sub_type_decode($this->klc_array,$klc_decode_array);
+        $klc_array['game_id'] = 1;
+        $decoded_array[] = $klc_array;
+        $ssc_array = $this->sub_type_decode($this->ssc_array,$ssc_decode_array);
+        $ssc_array['game_id'] = 2;
+        $decoded_array[] = $ssc_array;
+        $pk10_array = $this->sub_type_decode($this->pk10_array,$pk10_decode_array);
+        $pk10_array['game_id'] = 6;
+        $decoded_array[] = $pk10_array;
+        $nc_array = $this->sub_type_decode($this->nc_array,$nc_decode_array);
+        $nc_array['game_id'] = 5;
+        $decoded_array[] = $nc_array;
+        $jstb_array = $this->sub_type_decode($this->jstb_array,$jstb_decode_array);
+        $jstb_array['game_id'] = 9;
+        $decoded_array[] = $jstb_array;
+        return $decoded_array;
+
+        /*    var_dump($decoded_array);
+            exit;*/
+
+        //update_tuishui($decoded_array,$user_name,$user_rank);
+    }
+//@parame $result 大项分类后的数组，如时时彩的数组
+    private function sub_type_decode($result, $index_array)
+    {
+        $ret = array();
+        foreach ($result as $key=>$sub_array) {
+            for ($i=0;$i<count($index_array[$key]);$i++) {
+                $real_typename = $index_array[$key][$i];
+                $result[$key]['type'] = $real_typename;
+                $ret[] = $result[$key];
+            }
+        }
+        return $ret;
+    }
+    private function update_tuishui()
+    {
+        $db = $this->db;
+        $array = $this->db_format_tuishui;
+        $user_rank = $this->cid;
+        $user_name = $this->my_account_id;
+        $sql_str = '';
+        for ($i=0;$i<count($array);$i++) {
+            $game_id = $array[$i]['game_id'];
+            //var_dump($array[$i]);
+            //echo (count($array[$i],1));
+            unset($array[$i]['game_id']);
+            for($j=0;$j<count($array[$i]);$j++) {
+                if($user_rank == 5) {
+                    $panlu_a = isset($array[$i][$j]['panlu_a'])?'`g_panlu_a`='. (100-$array[$i][$j]['panlu_a']).'':'';
+                    $panlu_b = isset($array[$i][$j]['panlu_b'])?'`g_panlu_b`='. (100-$array[$i][$j]['panlu_b']).'':'';
+                    $panlu_c = isset($array[$i][$j]['panlu_c'])?'`g_panlu_c`='. (100-$array[$i][$j]['panlu_c']).'':'';
+                } else {
+                    $panlu_a = isset($array[$i][$j]['panlu_a'])?'`g_a_limit`='. (100-$array[$i][$j]['panlu_a']).',':'';
+                    $panlu_b = isset($array[$i][$j]['panlu_b'])?'`g_b_limit`='. (100-$array[$i][$j]['panlu_b']).',':'';
+                    $panlu_c = isset($array[$i][$j]['panlu_c'])?'`g_c_limit`='. (100-$array[$i][$j]['panlu_c']).',':'';
+                }
+                $danzhu_min = $array[$i][$j]['danzhu_min'];
+                $danzhu_max = $array[$i][$j]['danzhu_max'];
+                $danxiang_max = $array[$i][$j]['danxiang_max'];
+                $type_name = $array[$i][$j]['type'];
+                /*            echo $panlu_a;
+                            echo ' ';
+                            echo $panlu_a;
+                            echo ' ';
+                            echo $panlu_b;
+                            echo ' ';
+                            echo $panlu_c;
+                            echo ' ';
+                            echo $danzhu_min;
+                            echo ' ';
+                            echo $danzhu_max;
+                            echo ' ';
+                            echo $danxiang_max;*/
+                //var_dump($array[$i][$j]);
+
+                if ($user_rank == 5) {
+
+                    $sql_str = "update g_panbiao set
+                $panlu_a
+                $panlu_b
+                $panlu_c,
+                `g_danzhu_min`='{$danzhu_min}',
+                `g_danzhu`='{$danzhu_max}',
+                `g_danxiang`='{$danxiang_max}'
+                WHERE g_nid = '{$user_name}' and g_game_id='{$game_id}' and g_type='{$type_name}' LIMIT 1";
+                } else {
+                    $sql_str = "UPDATE `g_send_back` SET
+                            $panlu_a
+                            $panlu_b
+                            $panlu_c
+                            `g_danzhu_min`='{$danzhu_min}',
+                            `g_d_limit` = '{$danzhu_max}',
+                            `g_e_limit` = '{$danxiang_max}'
+                        WHERE `g_name` = '{$user_name}'
+                        AND g_type = '{$type_name}'
+                        AND g_game_id = '{$game_id}' LIMIT 1";
+                }
+
+                /*            echo $sql_str;
+                            echo '</br>';*/
+                if ($db->query($sql_str,2) == -1) {
+                    return -1;
+                }
+            }
+        }
+
+    }
+    private function insert_tuishui()
+    {
+        $insert_array = array();
+        $array = $this->db_format_tuishui;
+        for ($i=0;$i<count($array);$i++) {
+
+            $game_id = $array[$i]['game_id'];
+            unset($array[$i]['game_id']);
+
+            if ($this->cid == 5) {
+                $db_name = 'g_panbiao';
+                for ($j=0;$j<count($array[$i]);$j++) {
+                    $insert_array['g_panlu_a'] = isset($array[$i][$j]['panlu_a'])?(100-$array[$i][$j]['panlu_a']):'NULL';
+                    $insert_array['g_panlu_b'] = isset($array[$i][$j]['panlu_b'])?(100-$array[$i][$j]['panlu_b']):'NULL';
+                    $insert_array['g_panlu_c'] = isset($array[$i][$j]['panlu_c'])?(100-$array[$i][$j]['panlu_c']):'NULL';
+                    $insert_array['g_danzhu_min'] = $array[$i][$j]['danzhu_min'];
+                    $insert_array['g_danzhu'] = $array[$i][$j]['danzhu_max'];
+                    $insert_array['g_danxiang'] = $array[$i][$j]['danxiang_max'];
+                    $insert_array['g_nid'] = $this->my_account_id;
+                    $insert_array['g_type'] = $array[$i][$j]['type'];
+                    $insert_array['g_game_id'] = $game_id;
+
+                    $ret = $this->db_ops($insert_array,$db_name,'add');
+                    if ($ret == -1) {
+                        return $ret;
+                    }
+                }
+            } else {
+                $db_name = 'g_send_back';
+                for ($j=0;$j<count($array[$i]);$j++) {
+                    $insert_array['g_a_limit'] = isset($array[$i][$j]['panlu_a'])?(100-$array[$i][$j]['panlu_a']):'NULL';
+                    $insert_array['g_b_limit'] = isset($array[$i][$j]['panlu_b'])?(100-$array[$i][$j]['panlu_b']):'NULL';
+                    $insert_array['g_c_limit'] = isset($array[$i][$j]['panlu_c'])?(100-$array[$i][$j]['panlu_c']):'NULL';
+                    $insert_array['g_danzhu_min'] = $array[$i][$j]['danzhu_min'];
+                    $insert_array['g_d_limit'] = $array[$i][$j]['danzhu_max'];
+                    $insert_array['g_e_limit'] = $array[$i][$j]['danxiang_max'];
+                    $insert_array['g_name'] = $this->my_account_id;
+                    $insert_array['g_type'] = $array[$i][$j]['type'];
+                    $insert_array['g_game_id'] = $game_id;
+
+                    $ret = $this->db_ops($insert_array,$db_name,'add');
+                    if ($ret == -1) {
+                        return  $ret;
+                    }
+                }
+            }
+        }
+
+        return 1;
     }
 }

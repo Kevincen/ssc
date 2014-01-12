@@ -8,15 +8,15 @@
  * Time: 下午10:41
  */
 /*var_dump($sub_array);
-echo '</br>';
-var_dump($color_array);*/
+echo '</br>';*/
+//var_dump($color_array);
 /*for ($i=0;$i <count($sub_array);$i++)
 {
     var_dump($sub_array[$i]);
     echo '</br>';
-}
+}*/
 
-exit;*/
+//exit;
 
 $count=1;
 ?>

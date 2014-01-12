@@ -13,6 +13,17 @@ include_once ROOT_PATH . 'Class/Lang.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
+    $cid = $_GET['cid'];
+    $action = $_GET['action'];
+    $top_account_id = $_GET['top_account_id'];
+    //$top_cid = $_GET['top_cid'];
+
+    $this_module = new User_info($my_account_id,$cid,$top_account_id);
+    if ($this_module->set_from_array($_POST,$action) <= 0) {
+        echo 'set into db_erro';
+    } else {
+        exit(back(alert('操作成功')));
+    }
 
     exit();
 } else if ($_SERVER['REQUEST_METHOD'] == 'GET')
@@ -37,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $top_module =  new User_info($top_account_id,$top_cid);
     $this_module->get_from_db();
     $top_module->get_from_db();
+    //var_dump($this_module);
 }
 $lang = new utf8_lang();
 
@@ -72,7 +84,7 @@ $lang = new utf8_lang();
     <span id="account_name"><?php echo $op_str?><?php echo $this_module->rank_name ?><?php echo $this_module->my_account_id ?>
             </span>上级<span id="superior"><?php echo $top_module->rank_name.':'.$top_module->my_account_id ?></span>
     <a href="../Actfor.php?cid=<?php echo $cid ?>" id="reback" level="1" class="mag-btn1">返回</a></div>
-<form method="post" action="?action=update&cid=<?php echo $cid ?>&uid=<?php echo $uid ?>">
+<form method="post" action="?action=<?php echo $action?>&cid=<?php echo $cid?>&top_account_id=<?php echo $top_account_id?>&top_cid=<?php echo $top_cid ?>">
 <table class="clear-table base-info">
     <caption>
         <div>基本资料</div>
@@ -80,15 +92,15 @@ $lang = new utf8_lang();
     <tbody>
     <tr>
         <th>名称</th>
-        <td><input autocomplete="off" name="s_F_Name" type="text" vname="name"
+        <td><input autocomplete="off" name="my_name" type="text" vname="name"
                    vmessage="由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！"
                    value="<?php echo $this_module->my_name ?>"></td>
         <th>账号</th>
-        <td><input autocomplete="off" name="name" type="text" vname="account" readonly
+        <td><input autocomplete="off" name="my_account_id" type="text" vname="account" <?php if ($action=='update') echo 'readonly'?>
                    vmessage="账号由1-12位英文字母、数字、下划线组成，且第一位不能是下划线！" value="<?php echo $this_module->my_account_id ?>" class="">
         </td>
         <th>密码</th>
-        <td><input autocomplete="off" name="s_Pwd" type="password" vname="password"
+        <td><input autocomplete="off" name="password" type="password" vname="password"
                    vmessage="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
         <th>确认密码</th>
         <td class="error-info"><input autocomplete="off" name="repassword" type="password"

@@ -9,15 +9,15 @@
 ?>
 <tr>
     <th>总信用额度</th>
-    <td><input autocomplete="off" type="text" name="s_money" maxlength="9" vname="credit"
+    <td><input autocomplete="off" type="text" name="account_money" maxlength="9" vname="credit"
                vmessage="10000~47000" title="10000~47000" value="<?php echo $this_module->account_money; ?>"></td>
     <th>所属盘口</th>
-    <td><select name="s_pan">
+    <td><select name="panlu">
             <option value="<?php echo strtolower($this_module->panlu) ?>"><?php echo $this_module->panlu ?></option>
         </select>盘
     </td>
     <th>状态</th>
-    <td><select name="lock">
+    <td><select name="status">
             <option value="3"
                 <?php if ($this_module->status == 3) {
                     echo 'selected="selected"';
@@ -40,7 +40,7 @@
     <th>对此<?php echo $this_module->rank_name ?>的实际占成数(%)</th>
     <td>
         <div class="share_up_div">
-            <input name="share_up" type="text" maxlength="3" max_value="<?php echo $top_module->my_distribution?>" value="<?php echo $this_module->upper_distribution?>">
+            <input name="my_distribution" type="text" maxlength="3" max_value="<?php echo $top_module->my_distribution?>" value="<?php echo $this_module->upper_distribution?>">
             <a href="javascript:void(0)" class="select" id="share_up"></a>
             <ul id="share_up_list" class="share_up_list" style="display: none;">
                 <li style="">0</li>
@@ -52,11 +52,11 @@
     <th>倍数投注</th>
     <td>
         <label for="beishu_set1">
-            <input id="beishu_set1" value="true" name="beishu_set" type="radio"
+            <input id="beishu_set1" value="true" name="beishu" type="radio"
                 checked="<?php echo $this_module->beishu==1?'true':'false' ?>">允许
         </label>
         <label for="beishu_set2">
-            <input id="beishu_set2" value="false" name="beishu_set" type="radio"
+            <input id="beishu_set2" value="false" name="beishu" type="radio"
                    checked="<?php echo $this_module->beishu==1?'false':'true' ?>">不允许
         </label>
     </td>
