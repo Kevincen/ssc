@@ -679,7 +679,8 @@ function get_upper($user_nid) {
                        onclick="act_change_use('<?php echo $result[$i]['g_name']; ?>',this);">
                         <?php echo $result[$i]['g_lock'] == 2 ? '停用' : '停押'; ?>
                     </a> /
-                    <a href="account_edit_wjl.php?cid=<?php echo $cid ?>&uid=<?php echo $result[$i]['g_name'] ?>"
+                    <a
+                        href="./account_oprations/account_oprations.php?action=update&cid=<?php echo $cid ?>&my_account_id=<?php echo $result[$i]['g_name']?>&top_account_id=<?php echo $top_account_id?>&top_cid=<?php echo $top_cid?>"
                        edit='753'>修改</a>/
                     <a account_name='aaa11' log='753'
                        href="LoginLog.php?uid=<?php echo $result[$i]['g_name'] ?>&cid=<?php echo $cid?>">日志</a>/

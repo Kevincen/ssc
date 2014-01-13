@@ -37,11 +37,42 @@
                 >启用
             </option>
         </select></td>
+    <script type="text/javascript">
+        function list_click($this)
+        {
+            var value = $this.text();
+            $input = $this.parent().prev().prev();
+            $input.val(value);
+            $this.parent().hide();
+        }
+        function set_list($this)
+        {
+            var max_value = $this.prev().attr('max_value');
+            var $list = $this.next();
+            var $input = $this.prev();
+
+            var list_html = '';
+            for (var i=0; i<=max_value;i+=5) {
+                list_html += '<li onclick="list_click($(this))">' + i + '</li>';
+            }
+
+            $list.html(list_html);
+            $list.show();
+        }
+        $(document).ready(function() {
+            $('input[name=my_distribution]').bind( 'keyup'
+                ,function(event) {
+                    $(this).val('');
+                }
+            )
+        });
+    </script>
     <th>对此<?php echo $this_module->rank_name ?>的实际占成数(%)</th>
     <td>
         <div class="share_up_div">
-            <input name="my_distribution" type="text" maxlength="3" max_value="<?php echo $top_module->my_distribution?>" value="<?php echo $this_module->upper_distribution?>">
-            <a href="javascript:void(0)" class="select" id="share_up"></a>
+            <input name="my_distribution" type="text" maxlength="3"
+                   max_value="<?php echo $top_module->my_distribution?>" value="<?php echo $this_module->upper_distribution?>">
+            <a href="javascript:void(0)" class="select" id="share_up" onclick="set_list($(this))"></a>
             <ul id="share_up_list" class="share_up_list" style="display: none;">
                 <li style="">0</li>
             </ul>

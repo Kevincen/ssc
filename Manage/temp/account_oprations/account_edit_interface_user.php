@@ -63,6 +63,49 @@
                    checked="<?php echo $this_module->buhuo_dis == 1 ? 'false' : 'true' ?>">否
         </label>
     </td>
+    <script type="text/javascript">
+        function list_click($this)
+        {
+            var value = $this.text();
+            $input = $this.parent().prev().prev();
+            $input.val(value);
+            $this.parent().hide();
+
+            var another_max_value = total_max_value - value;
+            if ($input.attr('name') == 'upper_distribution') {
+                $('input[name=my_distribution]').attr('max_value',another_max_value);
+            }else if ($input.attr('name') == 'my_distribution') {
+                $('input[name=upper_distribution]').attr('max_value',another_max_value);
+            }
+        }
+        function set_list($this)
+        {
+            var max_value = $this.prev().attr('max_value');
+            var $list = $this.next();
+            var $input = $this.prev();
+
+            var list_html = '';
+            for (var i=0; i<=max_value;i+=5) {
+                list_html += '<li onclick="list_click($(this))">' + i + '</li>';
+            }
+
+            $list.html(list_html);
+            $list.show();
+        }
+        var total_max_value=0;
+        $(document).ready(function() {
+            total_max_value = $('input[name=my_distribution]').bind( 'keyup'
+                ,function(event) {
+                    $(this).val('');
+                }
+            ).attr('max_value');
+            $('input[name=upper_distribution]').bind('keyup'
+                ,function(event) {
+                    $(this).val('');
+                }
+            )
+        });
+    </script>
     <!--        是自己的distribution -->
     <th name="currentname"><?php echo $this_module->rank_name ?>及下级占成权限总和(%)</th>
     <td><!--<select name='share_total'><option value="0"></option></select>-->
@@ -70,7 +113,7 @@
             <input name="upper_distribution" type="text" maxlength="3"
                    max_value="<?php echo $top_module->my_distribution - $this_module->upper_distribution ?>"
                    value="<?php echo $this_module->my_distribution ?>">
-            <a href="javascript:void(0)" class="select" id="upper_dis"></a>
+            <a href="javascript:void(0)" class="select" id="upper_dis" onclick="set_list($(this))"></a>
             <ul id="upper_dis_list" class="share_up_list" style="display: none;">
                 <li style="">0</li>
             </ul>
@@ -84,7 +127,7 @@
             <input name="my_distribution" type="text" maxlength="3" vname="share_up"
                     max_value="<?php echo $top_module->my_distribution - $this_module->my_distribution ?>"
                     value="<?php echo $this_module->upper_distribution ?>">
-            <a href="javascript:void(0)" class="select" id="this_dis"></a>
+            <a href="javascript:void(0)" class="select" id="this_dis" onclick="set_list($(this))"></a>
             <ul id="this_dis_list" class="share_up_list" style="display: none;">
                 <li style="">0</li>
             </ul>
