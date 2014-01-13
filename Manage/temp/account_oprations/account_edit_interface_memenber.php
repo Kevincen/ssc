@@ -13,7 +13,7 @@
                vmessage="10000~47000" title="10000~47000" value="<?php echo $this_module->account_money; ?>"></td>
     <th>所属盘口</th>
     <td><select name="panlu">
-            <option value="<?php echo strtolower($this_module->panlu) ?>"><?php echo $this_module->panlu ?></option>
+            <option value="<?php echo strtoupper($this_module->panlu) ?>"><?php echo $this_module->panlu ?></option>
         </select>盘
     </td>
     <th>状态</th>

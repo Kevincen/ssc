@@ -734,6 +734,7 @@ function get_upper($user_nid) {
                 $_nid = $userModel->GetUserName_Like($user_nid);
                 $_nid = $_nid[0];
                 if ($_nid['g_login_id'] == 78) { //總代直屬
+                    echo 'daili ';
                     $mumberType = '<font class="red">直屬總代理</font>';
                     //$_a = $_nid['g_name'].'（'.$result[$i]['g_distribution'].'%）';
                     //$v = mb_substr($user_nid, 0, mb_strlen($user_nid,'utf-8')-32);
@@ -747,11 +748,11 @@ function get_upper($user_nid) {
                     $top_account_id = $main_agent['name'];
                     $top_cid = 3;
                 } else if ($_nid['g_login_id'] == 22) { //股東直屬
+                    echo 'gudong ';
                     $mumberType = '<font class="red">直屬股東</font>';
                     $stockholder['name'] = $_nid['g_name'];
                     $stockholder['dis'] = $result[$i]['g_distribution'];
                     $v = mb_substr($user_nid, 0, mb_strlen($user_nid, 'utf-8') - 32);
-                    echo $v;
                     $d = $userModel->GetUserName_Like($v);
                     $top_account_id = $stockholder['name'];
                     $top_cid = 2;
@@ -763,18 +764,21 @@ function get_upper($user_nid) {
                     $d = $userModel->GetUserName_Like($v);
                     $top_account_id = $comp['name'];
                     $top_cid = 1;
+                    echo 'gudong ';
                 }
 
             } else {
+                echo 'abc';
                 $value = $result[$i]['g_nid'];
+                var_dump($value);
                 $mumberType = '普通會員';
                 $agent = get_upper($value); //代理
+                var_dump($agent);
                 $main_agent = get_upper($agent['nid']); //总代理
                 $stockholder = get_upper($main_agent['nid']); //股东
                 $top_account_id = $agent['name'];
                 $top_cid = 4;
             }
-            var_dump($_nid['g_login_id']);
 
             $linkName = $LoginId == 89 ? '<a href="information.php?uid=' . $result[$i]['g_name'] . '&mid=1">' . $result[$i]['g_name'] . '</a>' : $result[$i]['g_name'];
             ?>
