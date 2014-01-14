@@ -64,10 +64,56 @@ $lang = new utf8_lang();
     <link rel="stylesheet" href="/wjl_tmp/steal.css"/>
     <script type="text/javascript" src="/Manage/temp/js/common.js"></script>
     <script type="text/javascript" src="/wjl_tmp/common.js"></script>
+    <script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             var win_height = window.innerHeight;
             $("#layout").css('height',win_height+'px');
+            $('input').focus(function(){
+                var msg = $(this).attr('errormsg');
+
+                if ($(this).attr('readonly') == true) {
+                    return;
+                } else if ($(this).attr('name') == 'account_money') {
+                    msg += '<span>'+$(this).val()+'</span>';
+                }
+
+                $(this).prev().prev().show().removeClass('g-vd-error').addClass('g-vd-prompt').find('p').html(msg);
+            //});
+            }).blur(function(){
+                    $(this).prev().prev().hide().find('p').text('');
+            });
+            $('#user_form').Validform({
+                tiptype:function(msg,o,cssctl) {
+                    //msg：提示信息;
+                    //o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+                    //cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+                    if(!o.obj.is("form")){//验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
+                        var objtip = o.obj.prev('.g-vd-tooltip').find('p');
+                        objtip.html(msg);
+                        cssctl(objtip, o.type);
+
+                        var infoobj = o.obj.prev('.g-vd-tooltip');
+                        if (o.type == 2) {
+                            infoobj.hide();
+                        } else {
+                            infoobj.removeClass('g-vd-prompt').addClass('g-vd-error');
+                            infoobj.show();
+                        }
+                    }
+
+
+                },datatype: {
+                    "user_name":function(gets,obj,curform,regxp) {
+                        //参数gets是获取到的表单元素值，obj为当前表单元素，curform为当前验证的表单，regxp为内置的一些正则表达式的引用;
+                        var reg1 = /^[a-z|A-Z|\.|\u4e00-\u9fa5|\d|_]+$/;
+                        if (gets.length < 16 && reg1.test(gets)) {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+            })
 
         });
     </script>
@@ -84,7 +130,7 @@ $lang = new utf8_lang();
     <span id="account_name"><?php echo $op_str?><?php echo $this_module->rank_name ?><?php echo $this_module->my_account_id ?>
             </span>上级<span id="superior"><?php echo $top_module->rank_name.':'.$top_module->my_account_id ?></span>
     <a href="../Actfor.php?cid=<?php echo $cid ?>" id="reback" level="1" class="mag-btn1">返回</a></div>
-<form method="post" action="?action=<?php echo $action?>&cid=<?php echo $cid?>&top_account_id=<?php echo $top_account_id?>&top_cid=<?php echo $top_cid ?>">
+<form id="user_form" method="post" action="?action=<?php echo $action?>&cid=<?php echo $cid?>&top_account_id=<?php echo $top_account_id?>&top_cid=<?php echo $top_cid ?>">
 <table class="clear-table base-info">
     <caption>
         <div>基本资料</div>
@@ -92,19 +138,72 @@ $lang = new utf8_lang();
     <tbody>
     <tr>
         <th>名称</th>
-        <td><input autocomplete="off" name="my_name" type="text" vname="name"
-                   vmessage="由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！"
+        <td>
+            <span class="g-vd-tooltip g-vd-prompt" style="display:none;z-index:10000000">
+                <p>
+                    由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！
+                </p>
+                <i></i>
+            </span>
+            <span class="g-vd-tooltip g-vd-prompt" style="display:none">
+                <p>
+                    由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！
+                </p>
+                <i></i>
+            </span>
+            <input autocomplete="off" name="my_name" type="text" vname="name"
+                   errormsg="由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！"
+                   nullmsg="请输入用户名称" datatype="user_name"
                    value="<?php echo $this_module->my_name ?>"></td>
         <th>账号</th>
-        <td><input autocomplete="off" name="my_account_id" type="text" vname="account" <?php if ($action=='update') echo 'readonly'?>
-                   vmessage="账号由1-12位英文字母、数字、下划线组成，且第一位不能是下划线！" value="<?php echo $this_module->my_account_id ?>" class="">
+        <td>
+            <span class="g-vd-tooltip g-vd-prompt" style="display:none;z-index:10000000">
+                <p>
+                    由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！
+                </p>
+                <i></i>
+            </span>
+            <span class="g-vd-tooltip g-vd-prompt" style="display:none">
+                <p>
+                </p>
+                <i></i>
+            </span>
+            <input autocomplete="off" name="my_account_id" type="text" vname="account" <?php if ($action=='update') echo 'readonly'?>
+                   nullmsg="请输入用户账号" datatype="user_name"
+                   errormsg="账号由1-12位英文字母、数字、下划线组成，且第一位不能是下划线！" value="<?php echo $this_module->my_account_id ?>" class="">
         </td>
         <th>密码</th>
-        <td><input autocomplete="off" name="password" type="password" vname="password"
-                   vmessage="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
+        <td>
+            <span class="g-vd-tooltip g-vd-prompt" style="display:none;z-index:10000000">
+                <p>
+                    由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！
+                </p>
+                <i></i>
+            </span>
+            <span class="g-vd-tooltip g-vd-prompt" style="display:none">
+                <p>
+                </p>
+                <i></i>
+            </span>
+            <input autocomplete="off" name="password" type="password" vname="password"
+                   nullmsg="请输入用户密码" datatype="s6-18"
+                   errormsg="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
         <th>确认密码</th>
-        <td class="error-info"><input autocomplete="off" name="repassword" type="password"
-                                      vname="repassword" vmessage="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
+        <td class="error-info">
+            <span class="g-vd-tooltip g-vd-prompt" style="display:none;z-index:10000000">
+                <p>
+                    由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！
+                </p>
+                <i></i>
+            </span>
+            <span class="g-vd-tooltip g-vd-prompt" style="display:none">
+                <p>
+                </p>
+                <i></i>
+            </span>
+            <input autocomplete="off" name="repassword" type="password"
+                   nullmsg="请输入用户密码" datatype="s6-18" vname="repassword"
+                   errormsg="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
     </tr>
     <?php
     if ($this_module->cid == '5') {

@@ -9,8 +9,20 @@
 ?>
 <tr>
     <th>总信用额度</th>
-    <td><input autocomplete="off" type="text" name="account_money" maxlength="9" vname="credit"
-               vmessage="10000~47000" title="10000~47000" value="<?php echo $this_module->account_money; ?>"></td>
+    <td>
+        <span class="g-vd-tooltip g-vd-prompt" style="display:none;z-index:10000000">
+            <p>
+                由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！
+            </p>
+            <i></i>
+        </span>
+        <span class="g-vd-tooltip g-vd-prompt" style="display:none">
+            <p>
+            </p>
+            <i></i>
+        </span>
+        <input autocomplete="off" type="text" name="account_money" maxlength="9" datatype="n"
+               errormsg="10000~47000" nullmsg="请输入信用额度" title="10000~47000" value="<?php echo $this_module->account_money; ?>"></td>
     <th>所属盘口</th>
     <td><select name="panlu">
             <option value="<?php echo strtoupper($this_module->panlu) ?>"><?php echo $this_module->panlu ?></option>
@@ -57,12 +69,14 @@
             }
 
             $list.html(list_html);
-            $list.show();
+            $list.toggle();
         }
         $(document).ready(function() {
             $('input[name=my_distribution]').bind( 'keyup'
                 ,function(event) {
-                    $(this).val('');
+                    if (event.keycode != 13) {//避免回车提交表单时此栏目被清空
+                        $(this).val('');
+                    }
                 }
             )
         });
@@ -70,7 +84,7 @@
     <th>对此<?php echo $this_module->rank_name ?>的实际占成数(%)</th>
     <td>
         <div class="share_up_div">
-            <input name="my_distribution" type="text" maxlength="3"
+            <input name="upper_distribution" type="text" maxlength="3"
                    max_value="<?php echo $top_module->my_distribution?>" value="<?php echo $this_module->upper_distribution?>">
             <a href="javascript:void(0)" class="select" id="share_up" onclick="set_list($(this))"></a>
             <ul id="share_up_list" class="share_up_list" style="display: none;">

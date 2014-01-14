@@ -318,7 +318,9 @@ class User_info
             $insert_array['g_name'] = $this->my_account_id;
             $insert_array['g_f_name'] = $this->my_name;
             //普通会员和直属会员的区别
-            $insert_array['g_password'] = $this->password;
+            if ($this->password != '') {
+                $insert_array['g_password'] = $this->password;
+            }
             $insert_array['g_money'] = $this->account_money;
             $insert_array['g_money_yes'] = $this->account_money;
             $insert_array['g_distribution'] = $this->upper_distribution;
@@ -328,7 +330,9 @@ class User_info
         } else {
             $insert_array['g_name'] = $this->my_account_id;
             $insert_array['g_f_name'] = $this->my_name;
-            $insert_array['g_password'] = $this->password;
+            if ($this->password != '') {
+                $insert_array['g_password'] = $this->password;
+            }
             $insert_array['g_money'] = $this->account_money;
             //占成诠释不同
             $insert_array['g_distribution'] = $this->my_distribution;

@@ -1083,6 +1083,9 @@ a {
     border: 1px solid #BBBCC0;
     border-bottom: none;
 }
+.clear-table td {
+    position: relative;
+}
 
 .clear-table th, .clear-table td {
     border: 1px solid #bbbcc0;
@@ -3590,10 +3593,13 @@ label {
 }
 
 .g-vd-tooltip {
-    position: absolute;
     display: none;
+    position: absolute;
+    bottom:20px;
+    overflow: visible;
+    width:auto;
+    white-space: nowrap;
     text-align: left;
-    white-space: normal;
     _width: 140px;
 }
 
@@ -3611,7 +3617,7 @@ label {
     display: inline-block;
     width: 14px;
     height: 7px;
-    background: url(./ico_vdt.gif) no-repeat;
+    background: url(/wjl_tmp/ico_vdt.gif) no-repeat;
     margin-top: -1px;
     overflow: hidden;
     margin-left: 10px;

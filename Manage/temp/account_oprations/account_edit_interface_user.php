@@ -8,8 +8,20 @@
 ?>
 <tr>
     <th>总信用额度</th>
-    <td><input autocomplete="off" type="text" name="account_money" maxlength="9" vname="credit"
-               vmessage="10000~47000" title="10000~47000" value="<?php echo $this_module->account_money; ?>"></td>
+    <td>
+            <span class="g-vd-tooltip g-vd-prompt" style="display:none;z-index:10000000">
+                <p>
+                    由汉字的简繁体(一个汉字2位字符)、圆点(.)、字母、数字、下划线组成，长度不超过16个英文字符或8个汉字！
+                </p>
+                <i></i>
+            </span>
+        <span class="g-vd-tooltip g-vd-prompt" style="display:none">
+            <p>
+            </p>
+            <i></i>
+        </span>
+        <input autocomplete="off" type="text" name="account_money" maxlength="9" datatype="n" nullmsg="请输入信用额度"
+               errormsg="10000~47000" title="10000~47000" value="<?php echo $this_module->account_money; ?>"></td>
     <th>所属盘口</th>
     <td><select name="panlu">
             <option value="<?php echo strtolower($this_module->panlu) ?>"><?php echo $this_module->panlu ?></option>
@@ -90,7 +102,7 @@
             }
 
             $list.html(list_html);
-            $list.show();
+            $list.toggle();
         }
         var total_max_value=0;
         $(document).ready(function() {
