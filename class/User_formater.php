@@ -82,12 +82,14 @@ class User_info
         '短牌'=>'bGreen',
     );
 
-    private $nid;//辨识编码
-    private $login_id;
-    private $db_format_tuishui;//数据库格式退水
 
-    private $db;
-    private $userModel;
+    protected  $nid = '';//辨识编码
+    protected  $data_get = 0;
+    protected  $login_id;
+    protected  $db_format_tuishui;//数据库格式退水
+
+    protected  $db;
+    protected  $userModel;
     private $sort_array_klc =
         array('第一球' => '1~8单码',
             '任選二' => '',
@@ -153,6 +155,7 @@ class User_info
             '全骰' => ''
         );
 
+
     private function get_array_by_id($result,$game_id) {
         $ret_array = array();
         for ($i=0; $i<count($result); $i++) {
@@ -202,6 +205,7 @@ class User_info
             $this->buhuodis = 1;
             $this->beishu = 1;
         }
+        $this->nid = $my_info['g_nid'];
     }
 
     public function get_userinfo_by_account($cid,$account_id)
@@ -260,6 +264,11 @@ class User_info
 
     public function get_from_db()
     {
+        //防止重复获取
+        if ($this->data_get == 1) {
+            return;
+        }
+
         if ($this->my_account_id == '') {//获取父级退水，盘路
             $tuishui = $this->get_tuishui($this->top_account_id,4);
             $this->set_tuishui($tuishui);
@@ -290,6 +299,13 @@ class User_info
 
           }
 
+        $this->data_get = 1;
+    }
+
+    public function force_get_from_db()
+    {
+        $this->data_get = 0;
+        $this->get_from_db();
     }
 
     //单纯的录入数据
@@ -718,3 +734,127 @@ class User_info
         return 1;
     }
 }
+
+
+class Memenber extends User_info
+{
+    public $cid = 5;
+
+    function __construct($my_account_id,$cid=5,$top_account_id="")
+    {
+        parent::__construct($my_account_id,5);
+        $this->get_from_db();
+    }
+
+    public function get_user_zhudan()
+    {
+        $result = array();
+
+        $my_account_id = $this->my_account_id;
+        $sql_str = "select * from g_zhudan where g_nid='{$my_account_id}'";
+        $tmp = $this->db->query($sql_str,1);
+
+        for ($i=0;$i<count($tmp);$i++) {
+            $tmp[$i] = zhudan_tansfer($tmp[$i]);
+            foreach($tmp[$i] as $key=>$val) {
+                $result[$key] += $tmp[$i][$key];
+            }
+        }
+
+        return $result;
+    }
+
+}
+
+class Proxy extends User_info
+{
+    //下级直属
+    public $son = array();
+    protected $memenbers = array();
+
+    function __construct($my_account_id,$cid) {
+        parent::__construct($my_account_id,$cid);
+        $this->get_from_db();
+    }
+
+    //获取所有的下级会员名
+    private function get_my_memenbers()
+    {
+        //不需要重复获取
+        if (count($this->memenbers) != 0) {
+            return;
+        }
+
+        if ($this->nid === '') {
+            $this->get_from_db();
+        }
+
+        $my_nid = $this->nid;
+        $sql_str = "select g_name from g_user where g_nid like '{$my_nid}%'";
+        $memenber_name_array = $this->db->query($sql_str,1);
+        for ($i=0;$i<count($memenber_name_array);$i++) {
+            $this->memenbers[] = new Memenber($memenber_name_array[$i]['g_name'],5);
+        }
+
+    }
+
+    //获得名下所有会员的注单总和
+    //如果自己已经是会员则获取自己的注单数额
+    public function get_user_zhudan() {
+
+        $this->get_my_memenbers();
+        $sum_zhudan = array();
+
+        for ($i=0;$i<count($this->memenbers);$i++) {
+            $zhudan = $this->memenbers[$i]->get_user_zhudan();
+            //计算总和
+            foreach ($zhudan as $key=>$val) {
+                $sum_zhudan[$key] += $zhudan[$key];
+            }
+        }
+        return $sum_zhudan;
+
+    }
+
+
+    public function get_my_sons()
+    {
+        //获取nid
+        $next_nid = $this->nid . $this->userModel->Like();
+
+        if ($this->cid != 4) {
+            $sql_str = "select g_name from g_rank where g_nid like '{$next_nid}'";
+            $name_array = $this->db->query($sql_str,1);
+
+            for ($i=0;$i<count($name_array);$i++) {
+                $this->son[] = new Proxy($name_array[$i]['g_name'],$this->cid+1);
+            }
+        } else {
+            $this->get_my_memenbers();
+            $this->son= $this->memenbers;
+        }
+
+        return $this->son;
+
+    }
+
+}
+
+/*
+ * @describe 后台报表注单转换函数,接受单个注单
+ * @param $zhudan 单个注单
+ * @retval 转换后所需的格式
+ * */
+function zhudan_tansfer($zhudan)
+{
+    $result = array();
+
+    //todo:选二连直之类的注数会不会是mingxi_1str？需要验证
+    //if ($zhudan['g_mingxi_'])
+    $result['count'] = 1;//注数，每个算一注
+    $result['money'] = $zhudan['g_jiner'];//每注金额
+    $result['win'] = $zhudan['g_win'];
+
+    return $result;
+}
+

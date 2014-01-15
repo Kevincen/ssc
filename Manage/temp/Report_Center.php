@@ -105,7 +105,7 @@ if (date("H") >= 3) {
     <div dom="main_nav" class="main-content1" style="display: none;"></div>
     <div dom="main" class="main-content1">
         <div id="reportForm" class="reportForm">
-            <form action="Report_Crystals.php" method="get">
+            <form action="./report_center/report_router.php" method="post">
                 <input type="hidden" value="" name="s_type"/>
                 <?php //因为报表里面要判断下注类型，我们这里没有这个选项,所以设置一个空值 ?>
                 <div id="basicSettings">
