@@ -170,7 +170,7 @@ function get_upper($user_nid) {
                     ?>;
                 var current_name = '<?php echo $Users[0]['g_name']; ?>';
                 if (current_cid == current_top_id + 1) {
-                    select_upper(current_name,current_cid, 1);
+                select_upper(current_cid, '&top_account_id='+current_name+'&top_cid='+current_top_id);
                 } else {
                     $('#rightLoader').hide();
                     $('#new_add').show();
@@ -908,7 +908,10 @@ function get_upper($user_nid) {
                 <th>选择上级<span id="superior_name"></span></th>
                 <td>
                     <select id="superior_new"  onchange="select_upper($(this).val(),<?php echo $end_index?>)">
+
                         <option value="0">选择上级</option>
+
+                        <?php if ($cid == 5) { ?>
                         <?php for ($i=0; $i<count($id_name_array); $i++) { ?>
                             <optgroup label="<?php echo $id_name_array[$i] ?>" cid="<?php echo $i+1?>">
                                 <?php for($j=0;$j <count($all_account[$i]); $j++) { ?>
@@ -918,6 +921,17 @@ function get_upper($user_nid) {
                                 <?php } //for j end ?>
                             </optgroup>
                         <?php } //for i end?>
+                        <?php }else {
+                            $i = $cid -2;//根据当前cid获得上级作为i
+                            ?>
+                            <optgroup label="<?php echo $id_name_array[$i] ?>" cid="<?php echo $i+1?>">
+                                <?php for($j=0;$j <count($all_account[$i]); $j++) { ?>
+                                    <option value="&top_account_id=<?php echo $all_account[$i][$j]['g_name']; ?>&top_cid=<?php echo $i+1?>" >
+                                        <?php echo $all_account[$i][$j]['g_name']; ?>
+                                    </option>
+                                <?php } //for j end ?>
+                            </optgroup>
+                        <? } ?>
                     </select>
                 </td>
             </tr>
