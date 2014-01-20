@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit(alert('用户登录权限有误，请联系管理员'));
     }
 
-    $tmp = zhudan::getZhudan('','','','','','67552ea64c6dce1646a263bae714e788cd970d0d6f7899df9d58efd38d068693c4415e6e5f6d9d802711f3cbdea8d08358e703c3ba2f17faca3c2a2a681345de1373f21b19b0e01c677cb6ebc5e0b5f');
+    $tmp = zhudan::getZhudan('','','1','','','67552ea64c6dce1646a263bae714e788cd970d0d6f7899df9d58efd38d068693c4415e6e5f6d9d802711f3cbdea8d08358e703c3ba2f17faca3c2a2a681345de1373f21b19b0e01c677cb6ebc5e0b5f');
     $tree= new ReportTypeTree('total','total');
     $tree->buildTree($tmp);
     //print_r($tree->children[0]->children[0]->children[0]->parent);
@@ -79,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $current_type = ReportFactory::CreateType('all',$current_user);
     $current_view = ReportFactory::CreateTypeView($current_type);*/
     //()
-    echo 98.6*0.2-98.1*0.2;
 
 } else {
 

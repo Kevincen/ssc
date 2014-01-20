@@ -126,7 +126,7 @@ class Zhudan {
 
             }
 
-            $zhudan_obj->data = Zhudan::zhudan_calculate($zhudan_array);
+            $zhudan_obj->data = Zhudan::zhudan_calculate($tmp);
 
             //$zhudan_obj->data = $tmp;
             $result[] = $zhudan_obj;
@@ -162,25 +162,25 @@ class Zhudan {
             //会员金额:退水前输赢
             $ret[5]['jiangjin'] = $zhudan['g_win'];
             //会员退水百分比
-            $ret[5]['tuishui_per'] = 100 - $zhudan['g_tuishui'];
+            $ret[5]['tuishui_per'] = 100 - $zhudan['g_tueishui'];
             //会员退水
             $ret[5]['tuishui'] = $ret['zhue'] * ($ret[5]['tuishui_per']/100);
             //取整佣金
             $ret[5]['yongjin'] = floor($ret[5]['tuishui']);
 
             //会员盈亏
-            $ret[5]['yingkui'] = $ret['jiangjin'] + $ret['yongjin'];
+            $ret[5]['yingkui'] = $ret[5]['jiangjin'] + $ret[5]['yongjin'];
         } else {
-            Zhudan::calculate_each_rank($cid+1,$ret,$zhudan);
+            $ret = Zhudan::calculate_each_rank($cid+1,$ret,$zhudan);
 
             if ($cid != 4) {
                 $ret[$cid]['dis'] = $zhudan['g_distribution_'.(4-$cid)];
             } else {
                 $ret[$cid]['dis'] = $zhudan['g_distribution'];
             }
-            $ret[$cid]['tuishui_per'] = 100 - $zhudan['g_tuishui_'.(5-$cid)];
+            $ret[$cid]['tuishui_per'] = 100 - $zhudan['g_tueishui_'.(5-$cid)];
             $ret[$cid]['dis_money'] = ($ret[$cid]['dis'] / 100) * $ret['zhue'];
-            $ret[$cid]['jiangjin'] = Zhudan::negtive(($ret[$cid]['dis'] / 100) * $ret[$cid+1]['jiangjin']);
+            $ret[$cid]['jiangjin'] = Zhudan::negtive(($ret[$cid]['dis'] / 100) * $ret[5]['jiangjin']);
             $ret[$cid]['tuishui'] = $ret[$cid]['dis_money'] * ($ret[$cid]['tuishui_per']/100);
             $ret[$cid]['yongjin'] = floor($ret[$cid]['tuishui']);
             $ret[$cid]['yongjincha'] = $ret[$cid+1]['tuishui'] - $ret[$cid+1]['yongjin'];

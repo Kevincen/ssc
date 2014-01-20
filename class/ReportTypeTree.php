@@ -20,17 +20,6 @@ class DataField {
     }
 }
 
-class ReportTypeDate extends ReportTypeTree {
-    public $date;
-    function __construct($date, $parent = NULL) {
-        parent::__construct('date', 'date', $parent);
-        $this->date = $date;
-    }
-    public function insertDate($zhudan) {
-        $this->children[] = new ReportTypeNode($zhudan, $this);
-
-    }
-}
 
 class ReportTypeNode extends ReportNode
 {
@@ -42,13 +31,13 @@ class ReportTypeNode extends ReportNode
         $this->zhudan = $zhudan;
     }
 
-    public function sum() {
+/*    public function sum() {
         foreach ($this->zhudan as $key => $value) {
             if ($key == 'data') {
                 $this->parent->sumField($key, $value);
             }
         }
-    }
+    }*/
 }
 
 class ReportTypeTree extends ReportTree
@@ -57,11 +46,11 @@ class ReportTypeTree extends ReportTree
     public $title;
     public $dataField;
 
-    public function sumField($key, $value) {
+/*    public function sumField($key, $value) {
         $this->dataField->sumField($key, $value);
         $this->parent->sumField($key, $value);
         $this->dataField = new DataField();
-    }
+    }*/
 
     function __construct($property, $title, $parent = NULL)
     {
@@ -106,3 +95,14 @@ class ReportTypeTree extends ReportTree
 }
 
 
+class ReportTypeDate extends ReportTypeTree {
+    public $date;
+    function __construct($date, $parent = NULL) {
+        parent::__construct('date', 'date', $parent);
+        $this->date = $date;
+    }
+    public function insertDate($zhudan) {
+        $this->children[] = new ReportTypeNode($zhudan, $this);
+
+    }
+}
