@@ -28,7 +28,7 @@ function common_load(url, str) {
 
 function Actfor_load(url) {
     //common_load(url, "#rightLoader");
-    window.location=url;
+    window.location = url;
 }
 /*
  * @describe ajax动态更改禁用启用
@@ -59,7 +59,7 @@ function changeAjax(type, uid, utype, callback) {
  */
 function act_change_use(name, thisobj) {
     var op_str = thisobj.innerHTML;
-    var stat_selecter = 'tr[account=' + name + '] '+ 'td[name=cur_status]';
+    var stat_selecter = 'tr[account=' + name + '] ' + 'td[name=cur_status]';
     var is_use_selecter = 'tr[account=' + name + '] ' + 'a[name=is_used]';
     var is_frozen_selecter = 'tr[account=' + name + '] ' + 'a[name=is_frozen]';
     var target_status = thisobj.getAttribute('target_status');
@@ -102,7 +102,7 @@ function act_change_use(name, thisobj) {
 }
 
 function show_Rank() {
-    
+
 }
 
 function set_sub_water(water, selector) {
@@ -112,17 +112,16 @@ function set_sub_water(water, selector) {
 }
 
 function set_water(water) {
-    for (var i=0; i< 166; i++) {
-        set_sub_water(water['a'], "a"+i);
-        set_sub_water(water['b'], "b"+i);
-        set_sub_water(water['c'], "c"+i);
+    for (var i = 0; i < 166; i++) {
+        set_sub_water(water['a'], "a" + i);
+        set_sub_water(water['b'], "b" + i);
+        set_sub_water(water['c'], "c" + i);
     }
 }
 
-function water_setting(value)
-{
-    var default_water  = new Array();
-    default_water['a']= 0.73;
+function water_setting(value) {
+    var default_water = new Array();
+    default_water['a'] = 0.73;
     default_water['b'] = 1.73;
     default_water['c'] = 2.73;
     if (value == 0) {
@@ -137,8 +136,7 @@ function water_setting(value)
     }
     set_water(default_water);
 }
-function set_credit_show(tid)
-{
+function set_credit_show(tid) {
     var selector_string = Global.credit_array[tid];
     $selector = $("#" + selector_string);
     if ($selector.length < 0) {
@@ -150,7 +148,7 @@ function set_credit_show(tid)
 }
 function form_type_change(value) {
     var select_str;
-    $(".show").addClass('hidden').removeClass('show').attr("name","");
+    $(".show").addClass('hidden').removeClass('show').attr("name", "");
     switch (value) {
         case '0':
             select_str = "#default";
@@ -171,20 +169,18 @@ function form_type_change(value) {
             select_str = "#jssb";
             break;
     }
-    $(select_str).addClass('show').removeClass("hidden").attr("name","s_number");
+    $(select_str).addClass('show').removeClass("hidden").attr("name", "s_number");
 
 }
 /*
-* 快乐十分树球转换
-* */
-function klsf_num_to_ball(value)
-{
-    var html_code = '<span class="number num'+ value +'"></span>'
+ * 快乐十分树球转换
+ * */
+function klsf_num_to_ball(value) {
+    var html_code = '<span class="number num' + value + '"></span>'
     return html_code;
 }
 
-function set_ball_in_form(ball_list, typeid)
-{
+function set_ball_in_form(ball_list, typeid) {
     var func;
     var html_code = '<tr>';
 
@@ -198,13 +194,12 @@ function set_ball_in_form(ball_list, typeid)
     html_code += '</tr>';
 }
 //在期数选择的时候将底部的球号写入顶部
-function set_ball_in_top(val)
-{
+function set_ball_in_top(val) {
     console.log(val);
     var $tops = $('.qiuhao').siblings(".qiuhao");
     console.log($tops);
     if (val != undefined) {
-        var $selected = $('#'+val);
+        var $selected = $('#' + val);
         var $balls = $selected.children();
         console.log($balls);
         for (var key in $tops) {
@@ -213,8 +208,7 @@ function set_ball_in_top(val)
     }
     //如果没有数据则什么都不做
 }
-function change_input_by_color ($this)
-{
+function change_input_by_color($this) {
     console.log($this);
     var color = '';
     var danzhu_min = 0;
@@ -224,25 +218,401 @@ function change_input_by_color ($this)
     var panlu_b = 0;
     var panlu_c = 0;
     color = $this.attr('id');
-    danzhu_min = $('input[vname=general_'+ color + '_ordermin]').val();
-    danzhu_max = $('input[vname=general_'+ color + '_ordermax]').val();
-    danxiang_max = $('input[vname=general_'+ color + '_itemmax]').val();
-    panlu_a = $('input[vname=general_'+ color + '_A]').val();
-    panlu_b = $('input[vname=general_'+ color + '_B]').val();
-    panlu_c = $('input[vname=general_'+ color + '_C]').val();
+    danzhu_min = $('input[vname=general_' + color + '_ordermin]').val();
+    danzhu_max = $('input[vname=general_' + color + '_ordermax]').val();
+    danxiang_max = $('input[vname=general_' + color + '_itemmax]').val();
+    panlu_a = $('input[vname=general_' + color + '_A]').val();
+    panlu_b = $('input[vname=general_' + color + '_B]').val();
+    panlu_c = $('input[vname=general_' + color + '_C]').val();
 
-    var set_function = function ($this,$val){
+    var set_function = function ($this, $val) {
         $this.val($val);
         $this.addClass('quickset');
     };
 
 
-    $('input[vname=sub_'+ color + '_ordermin]').each(function(){set_function($(this),danzhu_min)});
-    $('input[vname=sub_'+ color + '_ordermax]').each(function(){set_function($(this),danzhu_max)});
-    $('input[vname=sub_'+ color + '_itemmax]').each(function(){set_function($(this),danxiang_max)});
-    $('input[vname=sub_'+ color + '_A]').each(function(){set_function($(this),panlu_a)});
-    $('input[vname=sub_'+ color + '_B]').each(function(){set_function($(this),panlu_b)});
-    $('input[vname=sub_'+ color + '_C]').each(function(){set_function($(this),panlu_b)});
+    $('input[vname=sub_' + color + '_ordermin]').each(function () {
+        set_function($(this), danzhu_min)
+    });
+    $('input[vname=sub_' + color + '_ordermax]').each(function () {
+        set_function($(this), danzhu_max)
+    });
+    $('input[vname=sub_' + color + '_itemmax]').each(function () {
+        set_function($(this), danxiang_max)
+    });
+    $('input[vname=sub_' + color + '_A]').each(function () {
+        set_function($(this), panlu_a)
+    });
+    $('input[vname=sub_' + color + '_B]').each(function () {
+        set_function($(this), panlu_b)
+    });
+    $('input[vname=sub_' + color + '_C]').each(function () {
+        set_function($(this), panlu_b)
+    });
 
 }
-
+var a = {"property": "total", "title": "total", "children": [
+    {"property": "game", "title": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "children": [
+        {"property": "type", "title": "\u603b\u548c\u5927\u5c0f", "children": [
+            {"property": "detail", "title": "\u5927", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null},
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null},
+                    {"property": "date", "title": "2014-01-14", "children": [
+                        {"date": "2014-01-14", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-14", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u5c0f", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5c0f", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null},
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5c0f", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5c0f", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null},
+                    {"property": "date", "title": "2014-01-14", "children": [
+                        {"date": "2014-01-14", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5927\u5c0f", "detail": "\u5c0f", "detail1": "", "date": "2014-01-14", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "1~8 \u5927\u5c0f", "children": [
+            {"property": "detail", "title": "\u5927", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "1~8 \u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u5c0f", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "1~8 \u5927\u5c0f", "detail": "\u5c0f", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "1~8 \u9f99\u864e", "children": [
+            {"property": "detail", "title": "\u9f99", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "1~8 \u9f99\u864e", "detail": "\u9f99", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "1~8 \u9f99\u864e", "detail": "\u9f99", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u864e", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "1~8 \u9f99\u864e", "detail": "\u864e", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "1~8 \u9f99\u864e", "detail": "\u864e", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u6b63\u7801", "children": [
+            {"property": "detail", "title": "1", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "1", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "11", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "11", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "12", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "12", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "5", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "5", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "5", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "5", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "5", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "5", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "5", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "5", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "10", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "10", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "10", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "10", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "10", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "10", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "10", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "10", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "15", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "15", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "15", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "15", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "15", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "15", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "15", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "15", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "20", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "20", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "20", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "20", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "20", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "20", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "20", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u6b63\u7801", "detail": "20", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u4efb\u9009\u4e8c", "children": [
+            {"property": "detail", "title": "", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u4efb\u9009\u4e8c", "detail": "", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u51a0\u4e9a\u5927\u5c0f", "children": [
+            {"property": "detail", "title": "\u5927", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5317\u4eac\u8d5b\u8f66", "type": "\u51a0\u4e9a\u5927\u5c0f", "detail": "\u5927", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u5c0f", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5317\u4eac\u8d5b\u8f66", "type": "\u51a0\u4e9a\u5927\u5c0f", "detail": "\u5c0f", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u51a0\u4e9a\u5355\u53cc", "children": [
+            {"property": "detail", "title": "\u5355", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5317\u4eac\u8d5b\u8f66", "type": "\u51a0\u4e9a\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u53cc", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u5317\u4eac\u8d5b\u8f66", "type": "\u51a0\u4e9a\u5355\u53cc", "detail": "\u53cc", "detail1": "", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u4e24\u9762", "children": [
+            {"property": "detail", "title": "\u7b2c\u4e00\u7403", "children": [
+                {"property": "detail1", "title": "\u5927", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u91cd\u5e86\u65f6\u65f6\u5f69", "type": "\u4e24\u9762", "detail": "\u7b2c\u4e00\u7403", "detail1": "\u5927", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u7b2c\u4e8c\u7403", "children": [
+                {"property": "detail1", "title": "\u5927", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u91cd\u5e86\u65f6\u65f6\u5f69", "type": "\u4e24\u9762", "detail": "\u7b2c\u4e8c\u7403", "detail1": "\u5927", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u7b2c\u4e09\u7403", "children": [
+                {"property": "detail1", "title": "\u5927", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u91cd\u5e86\u65f6\u65f6\u5f69", "type": "\u4e24\u9762", "detail": "\u7b2c\u4e09\u7403", "detail1": "\u5927", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u7b2c\u56db\u7403", "children": [
+                {"property": "detail1", "title": "\u5927", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u91cd\u5e86\u65f6\u65f6\u5f69", "type": "\u4e24\u9762", "detail": "\u7b2c\u56db\u7403", "detail1": "\u5927", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u7b2c\u4e94\u7403", "children": [
+                {"property": "detail1", "title": "\u5927", "children": [
+                    {"property": "date", "title": "2014-01-07", "children": [
+                        {"date": "2014-01-07", "children": [
+                            {"zhudan": {"game": "\u91cd\u5e86\u65f6\u65f6\u5f69", "type": "\u4e24\u9762", "detail": "\u7b2c\u4e94\u7403", "detail1": "\u5927", "date": "2014-01-07", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u603b\u548c\u5355\u53cc", "children": [
+            {"property": "detail", "title": "\u5355", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u5355", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u53cc", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u53cc", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u53cc", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5355\u53cc", "detail": "\u53cc", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u603b\u548c\u5c3e\u5927\u5c3e\u5c0f", "children": [
+            {"property": "detail", "title": "\u5c3e\u5927", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5c3e\u5927\u5c3e\u5c0f", "detail": "\u5c3e\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null},
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5c3e\u5927\u5c3e\u5c0f", "detail": "\u5c3e\u5927", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null},
+            {"property": "detail", "title": "\u5c3e\u5c0f", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-08", "children": [
+                        {"date": "2014-01-08", "children": [
+                            {"zhudan": {"game": "\u5e7f\u4e1c\u5feb\u4e50\u5341\u5206", "type": "\u603b\u548c\u5c3e\u5927\u5c3e\u5c0f", "detail": "\u5c3e\u5c0f", "detail1": "", "date": "2014-01-08", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u8c79\u5b50", "children": [
+            {"property": "detail", "title": "\u8c79\u5b50 \u524d\u4e09", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-14", "children": [
+                        {"date": "2014-01-14", "children": [
+                            {"zhudan": {"game": "\u91cd\u5e86\u65f6\u65f6\u5f69", "type": "\u8c79\u5b50", "detail": "\u8c79\u5b50 \u524d\u4e09", "detail1": "", "date": "2014-01-14", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u5bf9\u5b50", "children": [
+            {"property": "detail", "title": "\u5bf9\u5b50 \u524d\u4e09", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-14", "children": [
+                        {"date": "2014-01-14", "children": [
+                            {"zhudan": {"game": "\u91cd\u5e86\u65f6\u65f6\u5f69", "type": "\u5bf9\u5b50", "detail": "\u5bf9\u5b50 \u524d\u4e09", "detail1": "", "date": "2014-01-14", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null},
+        {"property": "type", "title": "\u534a\u987a", "children": [
+            {"property": "detail", "title": "\u534a\u987a \u524d\u4e09", "children": [
+                {"property": "detail1", "title": "", "children": [
+                    {"property": "date", "title": "2014-01-14", "children": [
+                        {"date": "2014-01-14", "children": [
+                            {"zhudan": {"game": "\u91cd\u5e86\u65f6\u65f6\u5f69", "type": "\u534a\u987a", "detail": "\u534a\u987a \u524d\u4e09", "detail1": "", "date": "2014-01-14", "data": []}, "parent": null}
+                        ], "parent": null}
+                    ], "parent": null}
+                ], "parent": null}
+            ], "parent": null}
+        ], "parent": null}
+    ], "parent": {"property": "total", "title": "total", "children": null, "parent": null}}
+], "parent": null}

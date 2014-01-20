@@ -13,20 +13,12 @@ include_once ROOT_PATH . 'Manage/ExistUser.php';
 
 $report_type = $_POST['ReportType'];
 
-$rank_transfer_array = array(
-    0 => '',
-    1 => '分公司',
-    2 => '股东',
-    3 => '总代',
-    4 => '代理',
-    5 => '会员'
-);
 
 if ($report_type == 1) //总账
 {
     include_once "./rank_report.php";
 
 } else if ($report_type == 2) { //分类账
-
+    include_once "./type_report.php";
 }
 

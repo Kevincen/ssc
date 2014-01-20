@@ -8,14 +8,9 @@
 if (!defined('ROOT_PATH'))
     exit('invalid request');
 
-class Field
-{
-    public $name;
-    public $value;
-    public $max;
-    public $min;
-    public $vmessage;
-}
+include_once './UserModel.php';
+include_once './DB.php';
+include_once ROOT_PATH . 'function/parameter.php';
 
 class User_info
 {
@@ -82,6 +77,14 @@ class User_info
         '短牌'=>'bGreen',
     );
 
+    static $cid_rank_array = array(
+        0=>'后台',
+        1=>'分公司',
+        2=>'股东',
+        3=>'总代',
+        4=>'代理',
+        5=>'会员'
+    );
 
     protected  $nid = '';//辨识编码
     protected  $data_get = 0;
@@ -771,6 +774,7 @@ class Proxy extends User_info
     //下级直属
     public $son = array();
     protected $memenbers = array();
+    //public $direct_memenbers = array();
 
     function __construct($my_account_id,$cid) {
         parent::__construct($my_account_id,$cid);
@@ -778,35 +782,41 @@ class Proxy extends User_info
     }
 
     //获取所有的下级会员名
-    private function get_my_memenbers()
+    private function get_my_memenbers($type = 0)
     {
-        //不需要重复获取
-        if (count($this->memenbers) != 0) {
-            return;
-        }
+        $ret = array();
 
         if ($this->nid === '') {
             $this->get_from_db();
         }
 
         $my_nid = $this->nid;
-        $sql_str = "select g_name from g_user where g_nid like '{$my_nid}%'";
-        $memenber_name_array = $this->db->query($sql_str,1);
-        for ($i=0;$i<count($memenber_name_array);$i++) {
-            $this->memenbers[] = new Memenber($memenber_name_array[$i]['g_name'],5);
+        if ($type == 0) {
+            $sql_str = "select g_name from g_user where g_nid like '{$my_nid}%'";
+        } else if ($type == 1) {//获取直属会员
+            $my_nid .= $this->userModel->Like();
+            $sql_str = "select g_name from g_user where g_nid like '{$my_nid}'";
+        } else {
+            exit('get_my_members type erro');
         }
+        $memenber_name_array = $this->db->query($sql_str,1);
+        $ret = $memenber_name_array;
+
+        return $ret;
 
     }
 
     //获得名下所有会员的注单总和
     //如果自己已经是会员则获取自己的注单数额
-    public function get_user_zhudan() {
+    //param 0为所有会员，1为直属会员
+    public function get_memenber_zhudan($type = 0)
+    {
 
-        $this->get_my_memenbers();
+        $memenbers = $this->get_my_memenbers($type);
         $sum_zhudan = array();
 
-        for ($i=0;$i<count($this->memenbers);$i++) {
-            $zhudan = $this->memenbers[$i]->get_user_zhudan();
+        for ($i=0;$i<count($memenbers);$i++) {
+            $zhudan = $memenbers[$i]->get_user_zhudan();
             //计算总和
             foreach ($zhudan as $key=>$val) {
                 $sum_zhudan[$key] += $zhudan[$key];
@@ -821,17 +831,20 @@ class Proxy extends User_info
     {
         //获取nid
         $next_nid = $this->nid . $this->userModel->Like();
+        $db_name = $this->cid ==4 ? 'g_user':'g_rank';
 
-        if ($this->cid != 4) {
-            $sql_str = "select g_name from g_rank where g_nid like '{$next_nid}'";
-            $name_array = $this->db->query($sql_str,1);
+        //获取下属
+        $sql_str = "select g_name from $db_name where g_nid like '{$next_nid}'";
+        $name_array = $this->db->query($sql_str,1);
+        for ($i=0;$i<count($name_array);$i++) {
+            $this->son[] = ReportFactory::CreateUser($name_array[$i]['g_name'],$this->cid+1);
+        }
 
-            for ($i=0;$i<count($name_array);$i++) {
-                $this->son[] = new Proxy($name_array[$i]['g_name'],$this->cid+1);
-            }
-        } else {
-            $this->get_my_memenbers();
-            $this->son= $this->memenbers;
+/*        echo $this->cid.' '. count($this->get_memenber_zhudan(1));*/
+        if ($this->cid != 4
+            && count($this->get_my_memenbers(1)) > 0) {
+
+            $this->son[] = ReportFactory::CreateUser($this->my_account_id,0);
         }
 
         return $this->son;
@@ -853,8 +866,90 @@ function zhudan_tansfer($zhudan)
     //if ($zhudan['g_mingxi_'])
     $result['count'] = 1;//注数，每个算一注
     $result['money'] = $zhudan['g_jiner'];//每注金额
-    $result['win'] = $zhudan['g_win'];
+    $result['user_tuishui'] = $zhudan['g_jiner'] * (100 - $zhudan['g_tuishui']) /100; //会员佣金
+    $result['win'] = $zhudan['g_win'] - $result['user_tuishui']; //会员奖金 (退水前）
+    $result['user_money'] = $zhudan['g_win'];//会员盈亏 (退水后)
+
+    //agent_相关数据
+    $result[4] = array();
+    $result[4]['dis_money'] = $zhudan['g_distribution'] / 100 * $result['money'];//占成金额
+    $result[4]['dis'] = $zhudan['g_distribution']; //占成百分比
+    $result[4]['tuishui_money'] = $result[4]['dis_money'] * (100-$zhudan['g_tuishui_1'])/100;//退水
+    $result[4]['tuishui'] = $zhudan['g_tuishui_1'];
+    $result[4]['give_upper'] = $result[4]['dis_money'] -$result[4]['tuishui'];
+    $result[4]['jine'] = $result['win'] * (100 - $result[4]['dis'])/100;//本级拿到的盈亏
+
+    //@param cid 用户等级标示
+    //@param zhudan 注单整体
+    function get_data($cid,$zhudan)
+    {
+        $tuishui_num = 5-$cid;
+        $dis_num = 4- $cid;
+
+        if ($dis_num == 0) {
+            $dis_num = '';
+        } else {
+            $dis_num = '_'.$dis_num;
+        }
+
+        $result = array();
+        $result['dis'] = $zhudan['g_distribution'.$dis_num]; //占成百分比
+        $result['tuishui'] = 100 -$zhudan['g_tuishui_'. $tuishui_num];
+        $result['dis_money'] = $result['dis'] / 100 * $result['money'];//占成金额 = 注额 *本级占城比
+        $result['tuishui_money'] = $zhudan['money'] * $result['tuishui']/100;//退水 = 注额 * 本级退水
+
+        if ($cid == 4) {
+            $result['give_upper'] = $zhudan['money'] - $result['dis_money']; //代理占城上缴 注数总金额 - 代理占城金额
+            //本级奖金 会员盈亏（退水前）* 本级占成
+            $result['jiangjin'] =  $zhudan['win'];
+            //代理金额，也就是会员盈亏(退水前) - 本级对该盈亏的占城;
+            $result['jine'] = (1 - $result['dis']/100) * $zhudan['win'];
+            //代理上缴金额
+            $result['jine_upper'] = $result['jine'] + $result['tuishui'];
+        } else {
+            $result['give_upper'] = $zhudan[$cid+1]['give_upper'] - $result['dis']; //占城上缴 = 上级上缴- 本级占成
+            //本级金额，也就是上一层给过来的盈亏 - 本级对此盈亏的占成
+            $result['jine'] = $result[$cid+1]['jine_upper'] *(1-$result['dis']/100);
+            //本级上缴金额（盈亏)
+            $result['jine_upper'] = $result['jine'] + $result['tuishui'];
+        }
+
+        $result['jine'] = $result['win'] * $result['dis']/100;//本级拿到的盈亏 = 本注盈亏 * 本级占城
+        //todo:本级真正的盈亏
+        $result['yingkui'] = $result['jine'];
+
+    }
+    //总代理相关数据
+    $result[3] = array();
+    $result[3]['dis_money'] = $zhudan['g_distribution_1'] / 100 * $result['money'];
+    $result[3]['dis'] = $zhudan['g_distribution_1'];
+    $result[3]['tuishui'] = $zhudan['g_tuishui_2'];
+    $result[3]['tuishui_money'] = $result[3]['dis_money'] * (100-$zhudan['g_tuishui_2'])/100;
+    $result[3]['give_upper'] = $result[3]['dis_money'] -$result[3]['tuishui_money'];
+    $result[3]['jine'] = $result['win'] * (100 - $result[3]['dis'])/100;//本级拿到的盈亏
+
+    //股东相关数据
+    $result[2] = array();
+    $result[2]['dis_money'] = $zhudan['g_distribution_2'] / 100 * $result['money'];
+    $result[2]['dis'] = $zhudan['g_distribution_2'];
+    $result[2]['tuishui'] = $zhudan['g_tuishui_3'];
+    $result[2]['tuishui_money'] = $result[2]['dis_money'] * (100-$zhudan['g_tuishui_3'])/100;
+    $result[2]['give_upper'] = $result[2]['dis_money'] -$result[2]['tuishui_money'];
+    $result[3]['jine'] = $result['win'] * (100 - $result[3]['dis'])/100;//本级拿到的盈亏
+
+    //分公司相关数据
+    $result[1] = array();
+    $result[1]['dis_money'] = $zhudan['g_distribution_3'] / 100 * $result['money'];
+    $result[1]['dis'] = $zhudan['g_distribution_3'];
+    $result[1]['tuishui'] = $zhudan['g_tuishui_4'];
+    $result[1]['tuishui_money'] = $result[1]['dis_money'] * (100-$zhudan['g_tuishui_4'])/100;
+    $result[1]['give_upper'] = $result[1]['dis_money'] -$result[1]['tuishui_money'];
 
     return $result;
 }
 
+
+class TransparentProxy extends Proxy
+{
+
+}
