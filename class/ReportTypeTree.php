@@ -10,16 +10,6 @@
 include_once 'ReportTree.php';
 include_once 'zhudan.php';
 
-class DataField {
-    public $zhudan;
-    function __construct() {
-        $this->zhudan = new Zhudan();
-    }
-    public function sumField($key, $value) {
-        $this->zhudan->$key += $value;
-    }
-}
-
 
 class ReportTypeNode extends ReportNode
 {
@@ -31,32 +21,28 @@ class ReportTypeNode extends ReportNode
         $this->zhudan = $zhudan;
     }
 
-/*    public function sum() {
-        foreach ($this->zhudan as $key => $value) {
-            if ($key == 'data') {
-                $this->parent->sumField($key, $value);
-            }
-        }
-    }*/
 }
 
 class ReportTypeTree extends ReportTree
 {
     public $property;
     public $title;
-    public $dataField;
+    public $zhudan;
 
-/*    public function sumField($key, $value) {
-        $this->dataField->sumField($key, $value);
-        $this->parent->sumField($key, $value);
-        $this->dataField = new DataField();
-    }*/
+    public function sumZhudan($zhudan) {
+        $this->zhudan->sum($zhudan);
+        if ($this->parent != NULL) {
+            $this->parent->sumZhudan($zhudan);
+        }
+
+    }
 
     function __construct($property, $title, $parent = NULL)
     {
         parent::__construct($parent);
         $this->property = $property;
         $this->title = $title;
+        $this->zhudan = new Zhudan();
     }
 
     public function buildTree($zhudanArray)
@@ -66,43 +52,29 @@ class ReportTypeTree extends ReportTree
         }
     }
 
-    private function insertChildren($property, $zhudan)
+    public function insertChildren($property, $zhudan)
     {
         $this->property = $property;
         $nextProperty = $zhudan->findNextProperty($property);
-
-        if ($nextProperty['depth'] > 3) {
+        $depth = $nextProperty['depth'];
+        if ($depth < 0) {
+            // error
+        } else if ($depth > 3) {
             // 不需要再深入进去了
-            $child = $this->findChild('date', $zhudan->date);
-            if ($child == NULL) {
-                $child = new ReportTypeDate($zhudan->date, $this);
-                $this->children[] = $child;
-            }
-            $child->insertDate($zhudan);
+            $this->children[] = $zhudan;
+            $this->sumZhudan($zhudan);
         } else if ($nextProperty['property'] != NULL) {
             // 继续递归创建子树
-            $child = $this->findChild('title', $zhudan->$nextProperty['property']);
+            $title = $zhudan->$nextProperty['property'];
+            $child = $this->findChild('title', $title);
             if ($child == NULL) {
-                $child = new ReportTypeTree($nextProperty['property'], $zhudan->$nextProperty['property'], $this);
+                $child = new ReportTypeTree($nextProperty['property'], $title, $this);
                 $this->children[] = $child;
             }
             $child->insertChildren($nextProperty['property'], $zhudan);
         } else {
-            // 出错了
+            // error
         }
     }
 
-}
-
-
-class ReportTypeDate extends ReportTypeTree {
-    public $date;
-    function __construct($date, $parent = NULL) {
-        parent::__construct('date', 'date', $parent);
-        $this->date = $date;
-    }
-    public function insertDate($zhudan) {
-        $this->children[] = new ReportTypeNode($zhudan, $this);
-
-    }
 }

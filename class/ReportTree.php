@@ -30,7 +30,3 @@ class ReportTree extends ReportNode {
         return NULL;
     }
 }
-
-class ReportDate extends  ReportTree {
-
-}

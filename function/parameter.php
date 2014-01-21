@@ -2106,6 +2106,8 @@ function floorMoneygx ($user, $types, $ball, $RankUser, $p=false)
 
 function RankUser ($db, $likeNid)
 {
+    echo "SELECT * FROM `g_rank` WHERE g_nid = '{$likeNid}' LIMIT 1";
+        echo '</br>';
 	return $db->query("SELECT * FROM `g_rank` WHERE g_nid = '{$likeNid}' LIMIT 1", 1);
 }
 

@@ -11,14 +11,15 @@ if (!defined('ROOT_PATH'))
 include_once './UserModel.php';
 include_once './DB.php';
 include_once ROOT_PATH . 'function/parameter.php';
+include_once ROOT_PATH . 'Class/zhudan.php';
 
-class User_info
+Class ReportUser
 {
+    public $parent = NULL;
     public $cid;
     public $my_account_id;
     public $top_account_id;
-
-    public $rank_name;//阶层名称：如会员、代理，总代理等
+    public $rank_name; //阶层名称：如会员、代理，总代理等
     public $my_name;
     public $password;
     public $account_money;
@@ -29,70 +30,156 @@ class User_info
     public $upper_distribution;
     public $buhuo_dis; //补货是否占城
     public $beishu; //倍数投注
+
+    protected $db;
+    protected $userModel;
+    protected $nid = ''; //辨识编码
+    protected $data_get = 0;
+    protected $login_id;
+    protected $db_format_tuishui; //数据库格式退水
+
+    function __construct($my_account_id, $cid, $top_account_id = "")
+    {
+        $this->cid = $cid;
+        $this->my_account_id = $my_account_id;
+        $this->top_account_id = $top_account_id;
+        $this->db = new DB();
+      //  $this->userModel = new UserModel();
+    }
+    public function get_userinfo_by_account($cid, $account_id)
+    {
+        $result = array();
+        $sql_str = "";
+        if ($cid == 5) {
+            $sql_str = "select * from `g_user` where g_name='{$account_id}'";
+        } else {
+            $sql_str = "select * from `g_rank` where g_name='{$account_id}'";
+        }
+        $result = $this->db->query($sql_str, 1);
+        return $result;
+    }
+
+    protected function set_info($my_info)
+    {
+        if ($this->cid == 5) {
+            $this->my_name = $my_info['g_f_name'];
+            $this->password = '';
+            $this->account_money = $my_info['g_money'];
+            $this->panlu = $my_info['g_panlu'];
+            $this->status = $my_info['g_look'];
+            $this->buhuo = 1;
+            $this->my_distribution = NULL;
+            $this->upper_distribution = $my_info['g_distribution'];
+            $this->buhuodis = 1;
+            $this->beishu = 1;
+        } else {
+            $this->my_name = $my_info['g_f_name'];
+            $this->password = '';
+            $this->account_money = $my_info['g_money'];
+            $this->panlu = $my_info['g_panlu'];
+            $this->status = $my_info['g_lock'];
+            $this->buhuo = $my_info['g_immediate_lock'];
+            $this->my_distribution = $my_info['g_distribution'];
+            $this->upper_distribution = $my_info['g_distribution_limit'];
+            $this->buhuodis = 1;
+            $this->beishu = 1;
+        }
+        $this->nid = $my_info['g_nid'];
+    }
+    public function get_from_db()
+    {
+        //防止重复获取
+        if ($this->data_get == 1) {
+            return;
+        }
+
+        $my_info = $this->get_userinfo_by_account($this->cid, $this->my_account_id);
+        $this->set_info($my_info[0]);
+        switch ($this->cid) {
+            case '5':
+                $this->rank_name = '会员';
+                break;
+            case '4':
+                $this->rank_name = '代理';
+                break;
+            case '3':
+                $this->rank_name = '总代理';
+                break;
+            case '2':
+                $this->rank_name = '股东';
+                break;
+            case '1':
+                $this->rank_name = '分公司';
+                break;
+
+        }
+
+        $this->data_get = 1;
+    }
+}
+
+class User_info extends ReportUser
+{
+
+
     public $klc_array = array();
     public $ssc_array = array();
     public $pk10_array = array();
     public $nc_array = array();
     public $jstb_array = array();
     public $color_array = array(
-        '1~8单码'=>'bBlue',
-        '正码'=>'bBlue',
-        '1~5单码'=>'bBlue',
-        '冠亚,3~10单码'=>'bBlue',
-        '大小'=>'bBlue',
-        '三军'=>'bBlue',
+        '1~8单码' => 'bBlue',
+        '正码' => 'bBlue',
+        '1~5单码' => 'bBlue',
+        '冠亚,3~10单码' => 'bBlue',
+        '大小' => 'bBlue',
+        '三军' => 'bBlue',
 
-        '1~8两面'=>'bZise',
-        '总和两面'=>'bZise',
-        '1~4龙虎'=>'bZise',
-        '两面'=>'bZise',
-        '龙虎'=>'bZise',
-        '和'=>'bZise',
-        '1~10两面'=>'bZise',
-        '1~5龙虎'=>'bZise',
-        '冠亚大小'=>'bZise',
-        '冠亚单双'=>'bZise',
+        '1~8两面' => 'bZise',
+        '总和两面' => 'bZise',
+        '1~4龙虎' => 'bZise',
+        '两面' => 'bZise',
+        '龙虎' => 'bZise',
+        '和' => 'bZise',
+        '1~10两面' => 'bZise',
+        '1~5龙虎' => 'bZise',
+        '冠亚大小' => 'bZise',
+        '冠亚单双' => 'bZise',
 
-        '1~8中发白'=>'bRed',
-        '1~8方位'=>'bRed',
-        '豹子'=>'bRed',
-        '顺子'=>'bRed',
-        '对子'=>'bRed',
-        '半顺'=>'bRed',
-        '杂六'=>'bRed',
-        '冠亚和'=>'bRed',
-        '1~8东南西北'=>'bRed',
-        '点数'=>'bRed',
+        '1~8中发白' => 'bRed',
+        '1~8方位' => 'bRed',
+        '豹子' => 'bRed',
+        '顺子' => 'bRed',
+        '对子' => 'bRed',
+        '半顺' => 'bRed',
+        '杂六' => 'bRed',
+        '冠亚和' => 'bRed',
+        '1~8东南西北' => 'bRed',
+        '点数' => 'bRed',
 
-        '任选二'=>'bGreen',
-        '选二连组'=>'bGreen',
-        '选二连直'=>'bGreen',
-        '任选三'=>'bGreen',
-        '选三前组'=>'bGreen',
-        '任选四'=>'bGreen',
-        '任选五'=>'bGreen',
-        '围骰'=>'bGreen',
-        '全骰'=>'bGreen',
-        '长牌'=>'bGreen',
-        '短牌'=>'bGreen',
+        '任选二' => 'bGreen',
+        '选二连组' => 'bGreen',
+        '选二连直' => 'bGreen',
+        '任选三' => 'bGreen',
+        '选三前组' => 'bGreen',
+        '任选四' => 'bGreen',
+        '任选五' => 'bGreen',
+        '围骰' => 'bGreen',
+        '全骰' => 'bGreen',
+        '长牌' => 'bGreen',
+        '短牌' => 'bGreen',
     );
 
     static $cid_rank_array = array(
-        0=>'后台',
-        1=>'分公司',
-        2=>'股东',
-        3=>'总代',
-        4=>'代理',
-        5=>'会员'
+        0 => '后台',
+        1 => '分公司',
+        2 => '股东',
+        3 => '总代',
+        4 => '代理',
+        5 => '会员'
     );
 
-    protected  $nid = '';//辨识编码
-    protected  $data_get = 0;
-    protected  $login_id;
-    protected  $db_format_tuishui;//数据库格式退水
 
-    protected  $db;
-    protected  $userModel;
     private $sort_array_klc =
         array('第一球' => '1~8单码',
             '任選二' => '',
@@ -159,90 +246,59 @@ class User_info
         );
 
 
-    private function get_array_by_id($result,$game_id) {
+    private function get_array_by_id($result, $game_id)
+    {
         $ret_array = array();
-        for ($i=0; $i<count($result); $i++) {
+        for ($i = 0; $i < count($result); $i++) {
             if ($result[$i]['g_game_id'] == $game_id) {
-                $ret_array[] =  $result[$i];
+                $ret_array[] = $result[$i];
             }
         }
         return $ret_array;
     }
+
     private function set_tuishui($tuishui)
     {
-        $klc_array = $this->get_array_by_id($tuishui,1);
-        $ssc_array = $this->get_array_by_id($tuishui,2);
-        $pk10_array = $this->get_array_by_id($tuishui,6);
-        $nc_array = $this->get_array_by_id($tuishui,5);
-        $jstb_array = $this->get_array_by_id($tuishui,9);
+        $klc_array = $this->get_array_by_id($tuishui, 1);
+        $ssc_array = $this->get_array_by_id($tuishui, 2);
+        $pk10_array = $this->get_array_by_id($tuishui, 6);
+        $nc_array = $this->get_array_by_id($tuishui, 5);
+        $jstb_array = $this->get_array_by_id($tuishui, 9);
 
-        $this->klc_array = reset_per_info($klc_array,$this->sort_array_klc);
-        $this->ssc_array = reset_per_info($ssc_array,$this->sort_array_ssc);
-        $this->pk10_array = reset_per_info($pk10_array,$this->sort_array_pk10);
-        $this->nc_array = reset_per_info($nc_array,$this->sort_array_nc);
-        $this->jstb_array = reset_per_info($jstb_array,$this->sort_array_sb);
-    }
-
-    private function set_info($my_info)
-    {
-        if ($this->cid == 5) {
-            $this->my_name = $my_info['g_f_name'];
-            $this->password = '';
-            $this->account_money = $my_info['g_money'];
-            $this->panlu = $my_info['g_panlu'];
-            $this->status = $my_info['g_look'];
-            $this->buhuo = 1;
-            $this->my_distribution = NULL;
-            $this->upper_distribution = $my_info['g_distribution'];
-            $this->buhuodis = 1;
-            $this->beishu = 1;
-        } else {
-            $this->my_name = $my_info['g_f_name'];
-            $this->password = '';
-            $this->account_money = $my_info['g_money'];
-            $this->panlu = $my_info['g_panlu'];
-            $this->status = $my_info['g_lock'];
-            $this->buhuo = $my_info['g_immediate_lock'];
-            $this->my_distribution = $my_info['g_distribution'];
-            $this->upper_distribution = $my_info['g_distribution_limit'];
-            $this->buhuodis = 1;
-            $this->beishu = 1;
-        }
-        $this->nid = $my_info['g_nid'];
-    }
-
-    public function get_userinfo_by_account($cid,$account_id)
-    {
-        $result = array();
-        $sql_str = "";
-        if ($cid == 5) {
-            $sql_str = "select * from `g_user` where g_name='{$account_id}'";
-        } else {
-            $sql_str = "select * from `g_rank` where g_name='{$account_id}'";
-        }
-        $result = $this->db->query($sql_str,1);
-        return $result;
+        $this->klc_array = reset_per_info($klc_array, $this->sort_array_klc);
+        $this->ssc_array = reset_per_info($ssc_array, $this->sort_array_ssc);
+        $this->pk10_array = reset_per_info($pk10_array, $this->sort_array_pk10);
+        $this->nc_array = reset_per_info($nc_array, $this->sort_array_nc);
+        $this->jstb_array = reset_per_info($jstb_array, $this->sort_array_sb);
     }
 
 
-    function __construct($my_account_id, $cid, $top_account_id="")
+
+
+
+
+    function __construct($my_account_id, $cid, $top_account_id = "")
     {
+        /*
         $this->clear_me();
         $this->cid = $cid;
         $this->my_account_id = $my_account_id;
         $this->top_account_id = $top_account_id;
-        $this->db = new DB();
+        $this->db = new DB();*/
         $this->userModel = new UserModel();
+
+        parent::__construct($my_account_id, $cid, $top_account_id);
     }
-    private function get_tuishui($account_id,$cid)
+
+    private function get_tuishui($account_id, $cid)
     {
         $ret = array();
-        if ($cid == 5 ) {
-            $tuishui = $this->userModel->GetUserMR($account_id,true);
+        if ($cid == 5) {
+            $tuishui = $this->userModel->GetUserMR($account_id, true);
             $ret = $tuishui;
         } else {
             $tuishui = $this->userModel->GetUserMR($account_id);
-            for ($i=0;$i<count($tuishui);$i++) {
+            for ($i = 0; $i < count($tuishui); $i++) {
                 $tmp['g_type'] = $tuishui[$i]['g_type'];
                 $tmp['g_panlu_a'] = $tuishui[$i]['g_a_limit'];
                 $tmp['g_panlu_b'] = $tuishui[$i]['g_b_limit'];
@@ -256,12 +312,13 @@ class User_info
         }
         return $ret;
     }
+
     private function clear_me()
     {
         //全空初始化
-/*        foreach ($this as $key=>$value) {
-            $this->$key = '';
-        }*/
+        /*        foreach ($this as $key=>$value) {
+                    $this->$key = '';
+                }*/
 
     }
 
@@ -272,15 +329,15 @@ class User_info
             return;
         }
 
-        if ($this->my_account_id == '') {//获取父级退水，盘路
-            $tuishui = $this->get_tuishui($this->top_account_id,4);
+        if ($this->my_account_id == '') { //获取父级退水，盘路
+            $tuishui = $this->get_tuishui($this->top_account_id, 4);
             $this->set_tuishui($tuishui);
-            $parent_info = $this->get_userinfo_by_account(4,$this->top_account_id);
-            $this->panlu = $parent_info[0]['g_panlu'];//新会员盘路跟随父级
+            $parent_info = $this->get_userinfo_by_account(4, $this->top_account_id);
+            $this->panlu = $parent_info[0]['g_panlu']; //新会员盘路跟随父级
         } else {
-            $tuishui = $this->get_tuishui($this->my_account_id,$this->cid);
+            $tuishui = $this->get_tuishui($this->my_account_id, $this->cid);
             $this->set_tuishui($tuishui);
-            $my_info = $this->get_userinfo_by_account($this->cid,$this->my_account_id);
+            $my_info = $this->get_userinfo_by_account($this->cid, $this->my_account_id);
             $this->set_info($my_info[0]);
         }
         switch ($this->cid) {
@@ -300,7 +357,7 @@ class User_info
                 $this->rank_name = '分公司';
                 break;
 
-          }
+        }
 
         $this->data_get = 1;
     }
@@ -331,6 +388,7 @@ class User_info
         $this->nc_array = $array['5'];
         $this->jstb_array = $array['9'];
     }
+
     private function general_data_into_array()
     {
         if ($this->cid == 5) {
@@ -345,7 +403,7 @@ class User_info
             $insert_array['g_distribution'] = $this->upper_distribution;
             $insert_array['g_panlu'] = $this->panlu;
             $insert_array['g_look'] = $this->status;
-            $insert_array['g_panlus'] = $this->panlu.'.';
+            $insert_array['g_panlus'] = $this->panlu . '.';
         } else {
             $insert_array['g_name'] = $this->my_account_id;
             $insert_array['g_f_name'] = $this->my_name;
@@ -365,15 +423,20 @@ class User_info
         return $insert_array;
 
     }
+
     private function proccess_befor_add()
     {
-        $top_info = $this->userModel->GetUserModel(null,$this->top_account_id);
+        $top_info = $this->userModel->GetUserModel(null, $this->top_account_id);
         $top_nid = $top_info[0]['g_nid'];
         $top_login_id = $top_info[0]['g_login_id'];
-        $this->nid = $top_nid . md5(uniqid(time(),true));
-        switch($this->cid) {
+        if ($this->cid == 5) {
+            $this->cid = $top_nid;
+        } else {
+            $this->nid = $top_nid . md5(uniqid(time(), true));
+        }
+        switch ($this->cid) {
             case 5:
-                $this->login_id = $top_login_id == $this->userModel->agent_id? 9:$top_login_id;
+                $this->login_id = $top_login_id == $this->userModel->agent_id ? 9 : $top_login_id;
                 break;
             case 4:
                 $this->login_id = $this->userModel->agent_id;
@@ -390,6 +453,7 @@ class User_info
 
         }
     }
+
     private function insert_into_db()
     {
         //先生成自己的nid login_id等值
@@ -406,11 +470,11 @@ class User_info
             $insert_array['g_nid'] = $this->nid;
             $insert_array['g_login_id'] = $this->login_id;
             //普通会员和直属会员的区别
-            $insert_array['g_mumber_type'] = $this->login_id==9?1:2;
+            $insert_array['g_mumber_type'] = $this->login_id == 9 ? 1 : 2;
             $insert_array['g_xianer'] = 1000000;
             $insert_array['g_out'] = 0;
-            $insert_array['g_uid'] = md5(uniqid(time(),true));
-/*            $insert_array['g_state'] = null;*/
+            $insert_array['g_uid'] = md5(uniqid(time(), true));
+            /*            $insert_array['g_state'] = null;*/
             //todo:要测试下这玩意到底是不是初次登陆改密码的根据
             $insert_array['g_pwd'] = 1;
             $insert_array['g_ip'] = UserModel::GetIP();
@@ -423,13 +487,13 @@ class User_info
             //下面为新增才需要的
             $insert_array['g_nid'] = $this->nid;
             $insert_array['g_login_id'] = $this->login_id;
-            $insert_array['g_uid'] = md5(uniqid(time(),true));
+            $insert_array['g_uid'] = md5(uniqid(time(), true));
             $insert_array['g_ip'] = UserModel::GetIP();
             $insert_array['g_date'] = date("Y-m-d H:i:s");
             //todo:要测试下这玩意到底是不是初次登陆改密码的根据
             $insert_array['g_pwd'] = 1;
         }
-        $ret = $this->db_ops($insert_array,$sql_str_from,'add');
+        $ret = $this->db_ops($insert_array, $sql_str_from, 'add');
         if ($ret <= 0) {
             return -1;
         }
@@ -440,36 +504,35 @@ class User_info
         return $ret;
     }
 
-    private function db_ops($data_array,$db_name,$action,$wheres=null)
+    private function db_ops($data_array, $db_name, $action, $wheres = null)
     {
         //插入自己的信息
         $sql_str = '';
         if ($action == 'add') {
             $sql_str_keys = "(";
             $sql_str_values = "(";
-            foreach ($data_array as $key=>$value)
-            {
-                $sql_str_keys .= '`'.$key.'`';
-                $sql_str_values .= "'".$value."'";
-                $sql_str_keys.=',';
-                $sql_str_values .=',';
+            foreach ($data_array as $key => $value) {
+                $sql_str_keys .= '`' . $key . '`';
+                $sql_str_values .= "'" . $value . "'";
+                $sql_str_keys .= ',';
+                $sql_str_values .= ',';
             }
-            $sql_str_keys = substr($sql_str_keys,0,-1);
-            $sql_str_values = substr($sql_str_values,0,-1);
-            $sql_str_values .=')';
+            $sql_str_keys = substr($sql_str_keys, 0, -1);
+            $sql_str_values = substr($sql_str_values, 0, -1);
+            $sql_str_values .= ')';
             $sql_str_keys .= ')';
 
             $sql_str = "insert into $db_name $sql_str_keys values $sql_str_values";
         } else if ($action == 'update' && $wheres != null) {
             $sql_str_data = '';
-            foreach ($data_array as $key=>$value) {
-                $sql_str_data .= '`'.$key.'`='."'".$value."'";
+            foreach ($data_array as $key => $value) {
+                $sql_str_data .= '`' . $key . '`=' . "'" . $value . "'";
                 $sql_str_data .= ',';
             }
-            $sql_str_data = substr($sql_str_data,0,-1);
+            $sql_str_data = substr($sql_str_data, 0, -1);
             $sql_str = "update $db_name set $sql_str_data where $wheres";
         }
-        $ret = $this->db->query($sql_str,2);
+        $ret = $this->db->query($sql_str, 2);
         return $ret;
     }
 
@@ -483,16 +546,17 @@ class User_info
         } else {
             $db_name = 'g_rank';
         }
-        $db_where = 'g_name ='.$this->my_account_id;
-        $ret = $this->db_ops($insert_array,$db_name,'update',$db_where);
+        $db_where = "g_name ='" . $this->my_account_id . "'";
+        $ret = $this->db_ops($insert_array, $db_name, 'update', $db_where);
         if ($ret <= 0) {
             return -1;
         }
         $ret = $this->update_tuishui();
         return $ret;
     }
+
     //@param $action 更新 or 新增
-    public function set_from_array($array,$action='update')
+    public function set_from_array($array, $action = 'update')
     {
         $ret = 0;
 
@@ -512,85 +576,85 @@ class User_info
         if (!Matchs::isString($this->password, 8, 20)) exit(back('密码输入有误'));
         $this->password = sha1($this->password);
 
-        $this->db_format_tuishui =  $this->tuishui_data_process();
+        $this->db_format_tuishui = $this->tuishui_data_process();
     }
 
     private function tuishui_data_process()
     {
         $klc_decode_array = array(
-            '1~8单码'=>array('第一球','第二球','第三球','第四球','第五球','第六球','第七球','第八球'),
-            '正码'=>array('正码'),
-            '1~8两面'=>array('1-8單雙','1-8大小','1-8尾數大小','1-8合數單雙'),
-            '总和两面' =>array('總和單雙','總和大小','總和尾數大小'),
-            '1~8中发白'=>array('1-8中發白'),
-            '1~8方位'=>array('1-8方位'),
-            '1~4龙虎'=>array('龍虎'),
-            '任选二'=>array('任選二'),
-            '任选三'=>array('任選三'),
-            '选二连组'=>array('選二連組'),
-            '选三前组'=>array('選三前組'),
-            '任选四'=>array('任選四'),
-            '任选五'=>array('任選五'),
+            '1~8单码' => array('第一球', '第二球', '第三球', '第四球', '第五球', '第六球', '第七球', '第八球'),
+            '正码' => array('正码'),
+            '1~8两面' => array('1-8單雙', '1-8大小', '1-8尾數大小', '1-8合數單雙'),
+            '总和两面' => array('總和單雙', '總和大小', '總和尾數大小'),
+            '1~8中发白' => array('1-8中發白'),
+            '1~8方位' => array('1-8方位'),
+            '1~4龙虎' => array('龍虎'),
+            '任选二' => array('任選二'),
+            '任选三' => array('任選三'),
+            '选二连组' => array('選二連組'),
+            '选三前组' => array('選三前組'),
+            '任选四' => array('任選四'),
+            '任选五' => array('任選五'),
         );
         $ssc_decode_array = array(
-            '1~5单码'=>array('第一球','第二球','第三球','第四球','第五球'),
-            '龙虎'=>array('龍虎'),
-            '顺子'=>array('顺子'),
-            '两面'=>array('總和單雙','總和大小','1-5單雙','1-5大小'),
-            '对子'=>array('对子'),
-            '半顺'=>array('半顺'),
-            '和'=>array('和'),
-            '杂六'=>array('杂六'),
-            '豹子'=>array('豹子'),
+            '1~5单码' => array('第一球', '第二球', '第三球', '第四球', '第五球'),
+            '龙虎' => array('龍虎'),
+            '顺子' => array('顺子'),
+            '两面' => array('總和單雙', '總和大小', '1-5單雙', '1-5大小'),
+            '对子' => array('对子'),
+            '半顺' => array('半顺'),
+            '和' => array('和'),
+            '杂六' => array('杂六'),
+            '豹子' => array('豹子'),
         );
         $pk10_decode_array = array(
-            '冠亚,3~10单码'=>array('冠军','亚军','第三名','第四名','第五名','第六名','第七名',
-                '第八名','第九名','第十名'),
-            '1~10两面'=>array('1-10單雙','1-10大小'),
-            '1~5龙虎'=>array('1-5龍虎'),
-            '冠亚大小'=>array('冠亞和大小'),
-            '冠亚单双'=>array('冠亞和單雙'),
-            '冠亚和'=>array('冠、亞軍和'),
+            '冠亚,3~10单码' => array('冠军', '亚军', '第三名', '第四名', '第五名', '第六名', '第七名',
+                '第八名', '第九名', '第十名'),
+            '1~10两面' => array('1-10單雙', '1-10大小'),
+            '1~5龙虎' => array('1-5龍虎'),
+            '冠亚大小' => array('冠亞和大小'),
+            '冠亚单双' => array('冠亞和單雙'),
+            '冠亚和' => array('冠、亞軍和'),
         );
         $nc_decode_array = array(
-            '1~8单码'=>array('第一球','第二球','第三球','第四球','第五球','第六球','第七球','第八球'),
-            '正码'=>array('正码'),
-            '1~8两面'=>array('1-8單雙','1-8大小','1-8尾數大小','1-8合數單雙'),
-            '总和两面' =>array('總和單雙','總和大小','總和尾數大小'),
-            '1~8中发白'=>array('1-8中發白'),
-            '1~8方位'=>array('1-8梅兰菊竹'),
-            '1~4龙虎'=>array('家禽野兽'),
-            '任选二'=>array('任選二'),
-            '任选三'=>array('任選三'),
-            '选二连组'=>array('選二連組'),
-            '选二连直'=>array('选二连直'),
-            '选三前组'=>array('選三前組'),
-            '任选四'=>array('任選四'),
-            '任选五'=>array('任選五'),
+            '1~8单码' => array('第一球', '第二球', '第三球', '第四球', '第五球', '第六球', '第七球', '第八球'),
+            '正码' => array('正码'),
+            '1~8两面' => array('1-8單雙', '1-8大小', '1-8尾數大小', '1-8合數單雙'),
+            '总和两面' => array('總和單雙', '總和大小', '總和尾數大小'),
+            '1~8中发白' => array('1-8中發白'),
+            '1~8方位' => array('1-8梅兰菊竹'),
+            '1~4龙虎' => array('家禽野兽'),
+            '任选二' => array('任選二'),
+            '任选三' => array('任選三'),
+            '选二连组' => array('選二連組'),
+            '选二连直' => array('选二连直'),
+            '选三前组' => array('選三前組'),
+            '任选四' => array('任選四'),
+            '任选五' => array('任選五'),
         );
         $jstb_decode_array = array(
-            '大小'=>array('三軍大小'),
-            '点数'=>array('點數'),
-            '三军'=>array('三軍'),
-            '长牌'=>array('長牌'),
-            '围骰'=>array('圍骰'),
-            '短牌'=>array('短牌'),
-            '全骰'=>array('全骰')
+            '大小' => array('三軍大小'),
+            '点数' => array('點數'),
+            '三军' => array('三軍'),
+            '长牌' => array('長牌'),
+            '围骰' => array('圍骰'),
+            '短牌' => array('短牌'),
+            '全骰' => array('全骰')
         );
         $decoded_array = array();
-        $klc_array = $this->sub_type_decode($this->klc_array,$klc_decode_array);
+        $klc_array = $this->sub_type_decode($this->klc_array, $klc_decode_array);
         $klc_array['game_id'] = 1;
         $decoded_array[] = $klc_array;
-        $ssc_array = $this->sub_type_decode($this->ssc_array,$ssc_decode_array);
+        $ssc_array = $this->sub_type_decode($this->ssc_array, $ssc_decode_array);
         $ssc_array['game_id'] = 2;
         $decoded_array[] = $ssc_array;
-        $pk10_array = $this->sub_type_decode($this->pk10_array,$pk10_decode_array);
+        $pk10_array = $this->sub_type_decode($this->pk10_array, $pk10_decode_array);
         $pk10_array['game_id'] = 6;
         $decoded_array[] = $pk10_array;
-        $nc_array = $this->sub_type_decode($this->nc_array,$nc_decode_array);
+        $nc_array = $this->sub_type_decode($this->nc_array, $nc_decode_array);
         $nc_array['game_id'] = 5;
         $decoded_array[] = $nc_array;
-        $jstb_array = $this->sub_type_decode($this->jstb_array,$jstb_decode_array);
+        $jstb_array = $this->sub_type_decode($this->jstb_array, $jstb_decode_array);
         $jstb_array['game_id'] = 9;
         $decoded_array[] = $jstb_array;
         return $decoded_array;
@@ -600,12 +664,13 @@ class User_info
 
         //update_tuishui($decoded_array,$user_name,$user_rank);
     }
+
 //@parame $result 大项分类后的数组，如时时彩的数组
     private function sub_type_decode($result, $index_array)
     {
         $ret = array();
-        foreach ($result as $key=>$sub_array) {
-            for ($i=0;$i<count($index_array[$key]);$i++) {
+        foreach ($result as $key => $sub_array) {
+            for ($i = 0; $i < count($index_array[$key]); $i++) {
                 $real_typename = $index_array[$key][$i];
                 $result[$key]['type'] = $real_typename;
                 $ret[] = $result[$key];
@@ -613,6 +678,7 @@ class User_info
         }
         return $ret;
     }
+
     private function update_tuishui()
     {
         $db = $this->db;
@@ -620,20 +686,20 @@ class User_info
         $user_rank = $this->cid;
         $user_name = $this->my_account_id;
         $sql_str = '';
-        for ($i=0;$i<count($array);$i++) {
+        for ($i = 0; $i < count($array); $i++) {
             $game_id = $array[$i]['game_id'];
             //var_dump($array[$i]);
             //echo (count($array[$i],1));
             unset($array[$i]['game_id']);
-            for($j=0;$j<count($array[$i]);$j++) {
-                if($user_rank == 5) {
-                    $panlu_a = isset($array[$i][$j]['panlu_a'])?'`g_panlu_a`='. (100-$array[$i][$j]['panlu_a']).'':'';
-                    $panlu_b = isset($array[$i][$j]['panlu_b'])?'`g_panlu_b`='. (100-$array[$i][$j]['panlu_b']).'':'';
-                    $panlu_c = isset($array[$i][$j]['panlu_c'])?'`g_panlu_c`='. (100-$array[$i][$j]['panlu_c']).'':'';
+            for ($j = 0; $j < count($array[$i]); $j++) {
+                if ($user_rank == 5) {
+                    $panlu_a = isset($array[$i][$j]['panlu_a']) ? '`g_panlu_a`=' . (100 - $array[$i][$j]['panlu_a']) . '' : '';
+                    $panlu_b = isset($array[$i][$j]['panlu_b']) ? '`g_panlu_b`=' . (100 - $array[$i][$j]['panlu_b']) . '' : '';
+                    $panlu_c = isset($array[$i][$j]['panlu_c']) ? '`g_panlu_c`=' . (100 - $array[$i][$j]['panlu_c']) . '' : '';
                 } else {
-                    $panlu_a = isset($array[$i][$j]['panlu_a'])?'`g_a_limit`='. (100-$array[$i][$j]['panlu_a']).',':'';
-                    $panlu_b = isset($array[$i][$j]['panlu_b'])?'`g_b_limit`='. (100-$array[$i][$j]['panlu_b']).',':'';
-                    $panlu_c = isset($array[$i][$j]['panlu_c'])?'`g_c_limit`='. (100-$array[$i][$j]['panlu_c']).',':'';
+                    $panlu_a = isset($array[$i][$j]['panlu_a']) ? '`g_a_limit`=' . (100 - $array[$i][$j]['panlu_a']) . ',' : '';
+                    $panlu_b = isset($array[$i][$j]['panlu_b']) ? '`g_b_limit`=' . (100 - $array[$i][$j]['panlu_b']) . ',' : '';
+                    $panlu_c = isset($array[$i][$j]['panlu_c']) ? '`g_c_limit`=' . (100 - $array[$i][$j]['panlu_c']) . ',' : '';
                 }
                 $danzhu_min = $array[$i][$j]['danzhu_min'];
                 $danzhu_max = $array[$i][$j]['danzhu_max'];
@@ -679,28 +745,29 @@ class User_info
 
                 /*            echo $sql_str;
                             echo '</br>';*/
-                if ($db->query($sql_str,2) == -1) {
+                if ($db->query($sql_str, 2) == -1) {
                     return -1;
                 }
             }
         }
 
     }
+
     private function insert_tuishui()
     {
         $insert_array = array();
         $array = $this->db_format_tuishui;
-        for ($i=0;$i<count($array);$i++) {
+        for ($i = 0; $i < count($array); $i++) {
 
             $game_id = $array[$i]['game_id'];
             unset($array[$i]['game_id']);
 
             if ($this->cid == 5) {
                 $db_name = 'g_panbiao';
-                for ($j=0;$j<count($array[$i]);$j++) {
-                    $insert_array['g_panlu_a'] = isset($array[$i][$j]['panlu_a'])?(100-$array[$i][$j]['panlu_a']):'NULL';
-                    $insert_array['g_panlu_b'] = isset($array[$i][$j]['panlu_b'])?(100-$array[$i][$j]['panlu_b']):'NULL';
-                    $insert_array['g_panlu_c'] = isset($array[$i][$j]['panlu_c'])?(100-$array[$i][$j]['panlu_c']):'NULL';
+                for ($j = 0; $j < count($array[$i]); $j++) {
+                    $insert_array['g_panlu_a'] = isset($array[$i][$j]['panlu_a']) ? (100 - $array[$i][$j]['panlu_a']) : 'NULL';
+                    $insert_array['g_panlu_b'] = isset($array[$i][$j]['panlu_b']) ? (100 - $array[$i][$j]['panlu_b']) : 'NULL';
+                    $insert_array['g_panlu_c'] = isset($array[$i][$j]['panlu_c']) ? (100 - $array[$i][$j]['panlu_c']) : 'NULL';
                     $insert_array['g_danzhu_min'] = $array[$i][$j]['danzhu_min'];
                     $insert_array['g_danzhu'] = $array[$i][$j]['danzhu_max'];
                     $insert_array['g_danxiang'] = $array[$i][$j]['danxiang_max'];
@@ -708,17 +775,17 @@ class User_info
                     $insert_array['g_type'] = $array[$i][$j]['type'];
                     $insert_array['g_game_id'] = $game_id;
 
-                    $ret = $this->db_ops($insert_array,$db_name,'add');
+                    $ret = $this->db_ops($insert_array, $db_name, 'add');
                     if ($ret == -1) {
                         return $ret;
                     }
                 }
             } else {
                 $db_name = 'g_send_back';
-                for ($j=0;$j<count($array[$i]);$j++) {
-                    $insert_array['g_a_limit'] = isset($array[$i][$j]['panlu_a'])?(100-$array[$i][$j]['panlu_a']):'NULL';
-                    $insert_array['g_b_limit'] = isset($array[$i][$j]['panlu_b'])?(100-$array[$i][$j]['panlu_b']):'NULL';
-                    $insert_array['g_c_limit'] = isset($array[$i][$j]['panlu_c'])?(100-$array[$i][$j]['panlu_c']):'NULL';
+                for ($j = 0; $j < count($array[$i]); $j++) {
+                    $insert_array['g_a_limit'] = isset($array[$i][$j]['panlu_a']) ? (100 - $array[$i][$j]['panlu_a']) : 'NULL';
+                    $insert_array['g_b_limit'] = isset($array[$i][$j]['panlu_b']) ? (100 - $array[$i][$j]['panlu_b']) : 'NULL';
+                    $insert_array['g_c_limit'] = isset($array[$i][$j]['panlu_c']) ? (100 - $array[$i][$j]['panlu_c']) : 'NULL';
                     $insert_array['g_danzhu_min'] = $array[$i][$j]['danzhu_min'];
                     $insert_array['g_d_limit'] = $array[$i][$j]['danzhu_max'];
                     $insert_array['g_e_limit'] = $array[$i][$j]['danxiang_max'];
@@ -726,9 +793,9 @@ class User_info
                     $insert_array['g_type'] = $array[$i][$j]['type'];
                     $insert_array['g_game_id'] = $game_id;
 
-                    $ret = $this->db_ops($insert_array,$db_name,'add');
+                    $ret = $this->db_ops($insert_array, $db_name, 'add');
                     if ($ret == -1) {
-                        return  $ret;
+                        return $ret;
                     }
                 }
             }
@@ -738,218 +805,3 @@ class User_info
     }
 }
 
-
-class Memenber extends User_info
-{
-    public $cid = 5;
-
-    function __construct($my_account_id,$cid=5,$top_account_id="")
-    {
-        parent::__construct($my_account_id,5);
-        $this->get_from_db();
-    }
-
-    public function get_user_zhudan()
-    {
-        $result = array();
-
-        $my_account_id = $this->my_account_id;
-        $sql_str = "select * from g_zhudan where g_nid='{$my_account_id}'";
-        $tmp = $this->db->query($sql_str,1);
-
-        for ($i=0;$i<count($tmp);$i++) {
-            $tmp[$i] = zhudan_tansfer($tmp[$i]);
-            foreach($tmp[$i] as $key=>$val) {
-                $result[$key] += $tmp[$i][$key];
-            }
-        }
-
-        return $result;
-    }
-
-}
-
-class Proxy extends User_info
-{
-    //下级直属
-    public $son = array();
-    protected $memenbers = array();
-    //public $direct_memenbers = array();
-
-    function __construct($my_account_id,$cid) {
-        parent::__construct($my_account_id,$cid);
-        $this->get_from_db();
-    }
-
-    //获取所有的下级会员名
-    private function get_my_memenbers($type = 0)
-    {
-        $ret = array();
-
-        if ($this->nid === '') {
-            $this->get_from_db();
-        }
-
-        $my_nid = $this->nid;
-        if ($type == 0) {
-            $sql_str = "select g_name from g_user where g_nid like '{$my_nid}%'";
-        } else if ($type == 1) {//获取直属会员
-            $my_nid .= $this->userModel->Like();
-            $sql_str = "select g_name from g_user where g_nid like '{$my_nid}'";
-        } else {
-            exit('get_my_members type erro');
-        }
-        $memenber_name_array = $this->db->query($sql_str,1);
-        $ret = $memenber_name_array;
-
-        return $ret;
-
-    }
-
-    //获得名下所有会员的注单总和
-    //如果自己已经是会员则获取自己的注单数额
-    //param 0为所有会员，1为直属会员
-    public function get_memenber_zhudan($type = 0)
-    {
-
-        $memenbers = $this->get_my_memenbers($type);
-        $sum_zhudan = array();
-
-        for ($i=0;$i<count($memenbers);$i++) {
-            $zhudan = $memenbers[$i]->get_user_zhudan();
-            //计算总和
-            foreach ($zhudan as $key=>$val) {
-                $sum_zhudan[$key] += $zhudan[$key];
-            }
-        }
-        return $sum_zhudan;
-
-    }
-
-
-    public function get_my_sons()
-    {
-        //获取nid
-        $next_nid = $this->nid . $this->userModel->Like();
-        $db_name = $this->cid ==4 ? 'g_user':'g_rank';
-
-        //获取下属
-        $sql_str = "select g_name from $db_name where g_nid like '{$next_nid}'";
-        $name_array = $this->db->query($sql_str,1);
-        for ($i=0;$i<count($name_array);$i++) {
-            $this->son[] = ReportFactory::CreateUser($name_array[$i]['g_name'],$this->cid+1);
-        }
-
-/*        echo $this->cid.' '. count($this->get_memenber_zhudan(1));*/
-        if ($this->cid != 4
-            && count($this->get_my_memenbers(1)) > 0) {
-
-            $this->son[] = ReportFactory::CreateUser($this->my_account_id,0);
-        }
-
-        return $this->son;
-
-    }
-
-}
-
-/*
- * @describe 后台报表注单转换函数,接受单个注单
- * @param $zhudan 单个注单
- * @retval 转换后所需的格式
- * */
-function zhudan_tansfer($zhudan)
-{
-    $result = array();
-
-    //todo:选二连直之类的注数会不会是mingxi_1str？需要验证
-    //if ($zhudan['g_mingxi_'])
-    $result['count'] = 1;//注数，每个算一注
-    $result['money'] = $zhudan['g_jiner'];//每注金额
-    $result['user_tuishui'] = $zhudan['g_jiner'] * (100 - $zhudan['g_tuishui']) /100; //会员佣金
-    $result['win'] = $zhudan['g_win'] - $result['user_tuishui']; //会员奖金 (退水前）
-    $result['user_money'] = $zhudan['g_win'];//会员盈亏 (退水后)
-
-    //agent_相关数据
-    $result[4] = array();
-    $result[4]['dis_money'] = $zhudan['g_distribution'] / 100 * $result['money'];//占成金额
-    $result[4]['dis'] = $zhudan['g_distribution']; //占成百分比
-    $result[4]['tuishui_money'] = $result[4]['dis_money'] * (100-$zhudan['g_tuishui_1'])/100;//退水
-    $result[4]['tuishui'] = $zhudan['g_tuishui_1'];
-    $result[4]['give_upper'] = $result[4]['dis_money'] -$result[4]['tuishui'];
-    $result[4]['jine'] = $result['win'] * (100 - $result[4]['dis'])/100;//本级拿到的盈亏
-
-    //@param cid 用户等级标示
-    //@param zhudan 注单整体
-    function get_data($cid,$zhudan)
-    {
-        $tuishui_num = 5-$cid;
-        $dis_num = 4- $cid;
-
-        if ($dis_num == 0) {
-            $dis_num = '';
-        } else {
-            $dis_num = '_'.$dis_num;
-        }
-
-        $result = array();
-        $result['dis'] = $zhudan['g_distribution'.$dis_num]; //占成百分比
-        $result['tuishui'] = 100 -$zhudan['g_tuishui_'. $tuishui_num];
-        $result['dis_money'] = $result['dis'] / 100 * $result['money'];//占成金额 = 注额 *本级占城比
-        $result['tuishui_money'] = $zhudan['money'] * $result['tuishui']/100;//退水 = 注额 * 本级退水
-
-        if ($cid == 4) {
-            $result['give_upper'] = $zhudan['money'] - $result['dis_money']; //代理占城上缴 注数总金额 - 代理占城金额
-            //本级奖金 会员盈亏（退水前）* 本级占成
-            $result['jiangjin'] =  $zhudan['win'];
-            //代理金额，也就是会员盈亏(退水前) - 本级对该盈亏的占城;
-            $result['jine'] = (1 - $result['dis']/100) * $zhudan['win'];
-            //代理上缴金额
-            $result['jine_upper'] = $result['jine'] + $result['tuishui'];
-        } else {
-            $result['give_upper'] = $zhudan[$cid+1]['give_upper'] - $result['dis']; //占城上缴 = 上级上缴- 本级占成
-            //本级金额，也就是上一层给过来的盈亏 - 本级对此盈亏的占成
-            $result['jine'] = $result[$cid+1]['jine_upper'] *(1-$result['dis']/100);
-            //本级上缴金额（盈亏)
-            $result['jine_upper'] = $result['jine'] + $result['tuishui'];
-        }
-
-        $result['jine'] = $result['win'] * $result['dis']/100;//本级拿到的盈亏 = 本注盈亏 * 本级占城
-        //todo:本级真正的盈亏
-        $result['yingkui'] = $result['jine'];
-
-    }
-    //总代理相关数据
-    $result[3] = array();
-    $result[3]['dis_money'] = $zhudan['g_distribution_1'] / 100 * $result['money'];
-    $result[3]['dis'] = $zhudan['g_distribution_1'];
-    $result[3]['tuishui'] = $zhudan['g_tuishui_2'];
-    $result[3]['tuishui_money'] = $result[3]['dis_money'] * (100-$zhudan['g_tuishui_2'])/100;
-    $result[3]['give_upper'] = $result[3]['dis_money'] -$result[3]['tuishui_money'];
-    $result[3]['jine'] = $result['win'] * (100 - $result[3]['dis'])/100;//本级拿到的盈亏
-
-    //股东相关数据
-    $result[2] = array();
-    $result[2]['dis_money'] = $zhudan['g_distribution_2'] / 100 * $result['money'];
-    $result[2]['dis'] = $zhudan['g_distribution_2'];
-    $result[2]['tuishui'] = $zhudan['g_tuishui_3'];
-    $result[2]['tuishui_money'] = $result[2]['dis_money'] * (100-$zhudan['g_tuishui_3'])/100;
-    $result[2]['give_upper'] = $result[2]['dis_money'] -$result[2]['tuishui_money'];
-    $result[3]['jine'] = $result['win'] * (100 - $result[3]['dis'])/100;//本级拿到的盈亏
-
-    //分公司相关数据
-    $result[1] = array();
-    $result[1]['dis_money'] = $zhudan['g_distribution_3'] / 100 * $result['money'];
-    $result[1]['dis'] = $zhudan['g_distribution_3'];
-    $result[1]['tuishui'] = $zhudan['g_tuishui_4'];
-    $result[1]['tuishui_money'] = $result[1]['dis_money'] * (100-$zhudan['g_tuishui_4'])/100;
-    $result[1]['give_upper'] = $result[1]['dis_money'] -$result[1]['tuishui_money'];
-
-    return $result;
-}
-
-
-class TransparentProxy extends Proxy
-{
-
-}

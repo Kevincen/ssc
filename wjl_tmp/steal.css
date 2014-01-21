@@ -460,7 +460,7 @@ a {
     background: url(./vertical_bg.png) repeat-x 0 -278px;
     padding: 0 2px;
     zoom: 1;
-    width: 98.8%;
+/*    width: 100%;*/
     margin: 0 auto;
     overflow-y: auto;
     position: relative;

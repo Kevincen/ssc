@@ -122,7 +122,7 @@
     <th name="currentname"><?php echo $this_module->rank_name ?>及下级占成权限总和(%)</th>
     <td><!--<select name='share_total'><option value="0"></option></select>-->
         <div class="share_up_div">
-            <input name="upper_distribution" type="text" maxlength="3"
+            <input name="my_distribution" type="text" maxlength="3"
                    max_value="<?php echo $top_module->my_distribution - $this_module->upper_distribution ?>"
                    value="<?php echo $this_module->my_distribution ?>">
             <a href="javascript:void(0)" class="select" id="upper_dis" onclick="set_list($(this))"></a>
@@ -136,7 +136,7 @@
     <th name="parentname"><?php echo $top_module->rank_name ?>占成(%)</th>
     <td><!--<select name='share_up'><option value="0"></option></select>-->
         <div class="share_up_div">
-            <input name="my_distribution" type="text" maxlength="3" vname="share_up"
+            <input name="upper_distribution" type="text" maxlength="3" vname="share_up"
                     max_value="<?php echo $top_module->my_distribution - $this_module->my_distribution ?>"
                     value="<?php echo $this_module->upper_distribution ?>">
             <a href="javascript:void(0)" class="select" id="this_dis" onclick="set_list($(this))"></a>

@@ -10,9 +10,11 @@ define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
 include_once ROOT_PATH . 'Manage/ExistUser.php';
 include_once ROOT_PATH . 'Class/User_formater.php';
+include_once ROOT_PATH . "Class/ReportUser.php";
 include_once ROOT_PATH . 'Class/ReportFactory.php';
 include_once ROOT_PATH . 'Class/UserModel.php';
 include_once ROOT_PATH . 'Class/DB.php';
+
 
 global $Users;
 
@@ -50,34 +52,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $end_date = $_POST['endDate'];
 
 
-    $type = $_POST['s_type'];//彩票类型
-    if ($type!=0  && $start_date==$end_date) {//只有在同一天并且写明彩票类型的情况下才会有期数这一说
-        $number = $_POST['s_number'];//期数
+    $type = $_POST['s_type']; //彩票类型
+    if ($type != 0 && $start_date == $end_date) { //只有在同一天并且写明彩票类型的情况下才会有期数这一说
+        $number = $_POST['s_number']; //期数
     }
-    $status = $_POST['Balance'];//结算状态 1为已结算，0为未结算
+    $status = $_POST['Balance']; //结算状态 1为已结算，0为未结算
 
     $current_user_account_id = $Users[0]['g_name'];
+    $current_user_name = $Users[0]['g_f_name'];
     $current_cid = $top_cid;
 
-    $current_user = ReportFactory::CreateUser($current_user_account_id,$current_cid);
-/*    print_r($current_user);*/
-    $current_view = ReportFactory::CreateUserView($current_user);
+    $tree = ReportFactory::CreateUser($current_user_account_id, $current_cid, NULL);
+    $tree->buildTree('', '', '1', '', '');
+
+    /*    print_r($current_user);*/
+    //$current_view = ReportFactory::CreateUserView($current_user);
 
 } else {
     $start_date = $_GET['startDate'];
     $end_date = $_GET['endDate'];
 
 
-    $type = $_GET['s_type'];//彩票类型
-    if ($type!=0  && $start_date==$end_date) {//只有在同一天并且写明彩票类型的情况下才会有期数这一说
-        $number = $_GET['s_number'];//期数
+    $type = $_GET['s_type']; //彩票类型
+    if ($type != 0 && $start_date == $end_date) { //只有在同一天并且写明彩票类型的情况下才会有期数这一说
+        $number = $_GET['s_number']; //期数
     }
-    $status = $_GET['Balance'];//结算状态 1为已结算，0为未结算
+    $status = $_GET['Balance']; //结算状态 1为已结算，0为未结算
     $current_account_id = $_GET['account_id'];
-/*    $param_show_type = $_GET['type']; //0为普通会员，1为直属会员*/
+    /*    $param_show_type = $_GET['type']; //0为普通会员，1为直属会员*/
     $current_cid = intval($_GET['cid']);
-    $current_user = ReportFactory::CreateUser($current_account_id,$current_cid);
-    $current_view = ReportFactory::CreateUserView($current_user);
+
+    //$current_view = ReportFactory::CreateUserView($current_user);
 
 }
 
@@ -114,61 +119,156 @@ switch ($type) {
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="/wjl_tmp/steal.css"/>
     <script type="text/javascript" src="/js/jquery.js"></script>
-</head>
-<body>
-<div dom="main" class="main-content1">
-    <div id="reportForm_con">
-        <div id="bet-type">
-            <p class="bet-type">
-                [<?php echo $type_name?>]
-                <span class="bluer">日期范围: </span><span name="date"><?php echo $start_date?>~<?php echo $end_date?></span>
-                <span class="bluer">报表分类:</span> 总账
-                <?php
-                for ($i=$top_cid;$i<$current_user->cid;$i++) {
-                    echo '-&gt; <a href="javascript:void(0)" onclick="history.go('.($i-$current_user->cid).')">'.$rank_transfer_array[$i].'</a>';
-                    //echo '-&gt; <span onclick="history.go('.$i-$current_user->cid.')">'.$rank_transfer_array[$i].'</span>';
-                }
-                ?>
-                -&gt; <?php echo $current_user->rank_name?>
-                [<span class="bluer"><?php echo $current_user->my_name ?></span>]<?php echo $current_user->my_account_id?>
-                <a href="javascript:void(0)" onclick="history.go(-1)" id="getBack">返回</a>
-            </p>
-        </div>
-        <script>
-            $(document).ready(function(){
+    <script src="/wjl_tmp/type_rep.js"></script>
+    <script src="/wjl_tmp/user_rep.js"></script>
+    <script>
+        var current_tree = undefined;
+        var cid = <?php echo $current_cid?>;
+        var level = 1;
+        var nav_html = '';
+        var nav_head = '[<?php echo $type_name ?>]\
+            <span class="bluer">日期范围: </span><span name="date"><?php echo $start_date ?>\
+            ~<?php echo $end_date ?></span>\
+        <span class="bluer">报表分类:</span> 总账';
+        var nav_tail = ''
+        $(document).ready(function () {
+            var win_height = window.innerHeight;
+            $("#layout").css('height', win_height + 'px');
 
-                $('.hc').click(function(){
-                    var id = $(this).attr('id');
 
-                    $('.'+id).toggle();
-                });
+            current_tree = JSON.parse('<?php echo json_encode((object)$tree)?>');
+            console.log(current_tree);
 
-                $('a[name=user]').click(function(){
-                    var form_selecter = '#url_form';
-                    var url = "./rank_report.php";
-                    var account_id = $(this).attr('account_id');
-                    var cid = $(this).attr('cid');
-                    $(form_selecter).find('input[name=account_id]').val(account_id);
-                    $(form_selecter).find('input[name=cid]').val(cid);
-                    $(form_selecter).attr('action',url);
-                    $(form_selecter).submit();
-                });
+            var c_view = new UserView(current_tree);
+            $('#table').html(c_view.show());
+
+            $('.hc').click(function () {
+                var id = $(this).attr('id');
+                $('.' + id).toggle();
             });
 
-        </script>
+
+            $('#getBack').click(function () {
+                history.go(-1);
+            });
+        });
+
+        function sub_click($this) {
+            var index = $this.attr('index');
+            console.log('current_tree');
+            console.log(current_tree);
+            var parent = current_tree;
+            current_tree = current_tree.children[index];
+            current_tree.parent = parent;
+            /* while (current_tree.children[0].title == '') {
+             parent = current_tree;
+             current_tree = current_tree.children[0];
+             current_tree.parent = parent;
+             }*/
+
+            var view;
+            if (current_tree.property === 'date') {
+                //draw caption
+                view = new DateView(cid, current_tree);
+            } else if (current_tree.cid == 5) {
+                view = new FLZDetailView(cid, current_tree);
+            } else {
+
+                view = new UserView(current_tree);
+            }
+            var html = view.show();
+            document.getElementById('table').innerHTML = html;
+            document.getElementById('getBack').onclick = backward;
+
+            var nav = gen_nav();
+
+            $('#getBack').unbind('click').click(function () {
+                backward();
+            });
+
+        }
+        function backward(level) {
+            if (level === undefined) {
+                level = 1;
+            }
+            for (var i = 0; i < level; i++) {
+                current_tree = current_tree.parent;
+            }
+            var view;
+
+            if (current_tree.parent == null) {
+                $('#getBack').unbind('click').click(function () {
+                    history.go(-1);
+                });
+            }
+            if (current_tree.property === 'date') {
+                view = new DateView(cid, current_tree);
+            } else if (current_tree.cid == 5) {
+                view = new FLZDetailView(cid, current_tree);
+            } else {
+                view = new UserView(current_tree);
+            }
+
+
+            var html = view.show();
+            document.getElementById('table').innerHTML = html;
+        }
+        function gen_nav() {
+            if (current_tree.cid !== undefined) {
+                nav_html += wrap_elem('a', rank_name_array[current_tree.cid], 'class="nav_bar" level="' + level + '"');
+                level++;
+            }
+            return nav_html;
+        }
+    </script>
+</head>
+<body>
+<div id="layout" class="container">
+    <div dom="main" class="main-content1">
+        <div id="reportForm_con">
+            <div id="bet-type">
+                <p class="bet-type">
+                    [<?php echo $type_name ?>]
+                    <span class="bluer">日期范围: </span><span name="date"><?php echo $start_date ?>
+                        ~<?php echo $end_date ?></span>
+                    <span class="bluer">报表分类:</span> 总账
+                    -&gt; <?php echo $rank_transfer_array[$current_cid] ?>
+                    [<span
+                        class="bluer"><?php echo $current_user_name ?></span>]<?php echo $current_user_account_id ?>
+                    <a href="javascript:void(0)" id="getBack">返回</a>
+                </p>
+            </div>
+            <script>
+                /*            $(document).ready(function(){
+
+                 $('.hc').click(function(){
+                 var id = $(this).attr('id');
+
+                 $('.'+id).toggle();
+                 });
+
+                 $('a[name=user]').click(function(){
+                 var form_selecter = '#url_form';
+                 var url = "./rank_report.php";
+                 var account_id = $(this).attr('account_id');
+                 var cid = $(this).attr('cid');
+                 $(form_selecter).find('input[name=account_id]').val(account_id);
+                 $(form_selecter).find('input[name=cid]').val(cid);
+                 $(form_selecter).attr('action',url);
+                 $(form_selecter).submit();
+                 });
+
+
+                 var obj = JSON.parse('<?php echo json_encode($current_user)?>');
+                 console.log(obj);
+                 });*/
+
+            </script>
+        </div>
+        <div class="reportForm-table" id="table">
+        </div>
     </div>
-    <?php $current_view->show(); ?>
+
 </div>
-
-
-<form action="" method="get" id="url_form">
-    <input type="hidden" name="account_id" value=""/>
-    <input type="hidden" name="cid" id=""/>
-    <input type="hidden" name="startDate" value="<?php echo $start_date?>"/>
-    <input type="hidden" name="endDate" value="<?php echo $end_date?>"/>
-    <input type="hidden" name="s_type" value="<?php echo $type?>"/>
-    <input type="hidden" name="s_number" value="<?php echo $number?>"/>
-    <input type="hidden" name="Balance" value="<?php echo $status?>"/>
-</form>
 </body>
 </html>
