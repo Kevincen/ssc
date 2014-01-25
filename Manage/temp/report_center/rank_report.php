@@ -135,9 +135,9 @@ switch ($type) {
             this.step = step;
         }
 
-        function nav_push(cid) {
+        function nav_push(cid, account_id) {
             var obj;
-            if (cid != undefined && cid != 0) {
+            if (cid != undefined && account_id.indexOf('会员') < 0) {
                 obj = new nav_obj(cid,0);
                 nav_stack.push(obj);
             }
@@ -186,7 +186,7 @@ switch ($type) {
             console.log('current_tree');
             console.log(current_tree);
 
-            nav_push(current_tree.cid);
+            nav_push(current_tree.cid, current_tree.my_account_id);
 
             var parent = current_tree;
             current_tree = current_tree.children[index];
@@ -260,7 +260,7 @@ switch ($type) {
                 nav_html += wrap_elem('a', nav_stack[i].name, 'onclick="backward('+nav_stack[i].step+')"');
             }
 
-            if (current_tree.cid != undefined) {
+            if (current_tree.cid != undefined && current_tree.my_account_id.indexOf('会员')<0) {
                 nav_tail = '-&gt; ';
                 nav_tail += rank_name_array[current_tree.cid];
                 nav_tail += '[<span class="bluer">'+ current_tree.my_account_id +'</span>]'+current_tree.my_name;
