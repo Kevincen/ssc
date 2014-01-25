@@ -125,12 +125,40 @@ switch ($type) {
         var current_tree = undefined;
         var cid = <?php echo $current_cid?>;
         var level = 1;
-        var nav_html = '';
+        var nav_stack = new Array();
         var nav_head = '[<?php echo $type_name ?>]\
             <span class="bluer">日期范围: </span><span name="date"><?php echo $start_date ?>\
             ~<?php echo $end_date ?></span>\
         <span class="bluer">报表分类:</span> 总账';
-        var nav_tail = ''
+        var nav_obj = function (cid,step) {
+            this.name = rank_name_array[cid];
+            this.step = step;
+        }
+
+        function nav_push(cid) {
+            var obj;
+            if (cid != undefined && cid != 0) {
+                obj = new nav_obj(cid,0);
+                nav_stack.push(obj);
+            }
+
+            //对stack所有的元素step+1
+            for (var i=0;i<nav_stack.length; i++) {
+                nav_stack[i].step++;
+            }
+        }
+
+        function nav_pop() {
+            if (nav_stack[nav_stack.length-1].step == 1) {
+                nav_stack.pop();
+            }
+            //对stack所有的元素step+1
+            for (var i=0;i<nav_stack.length; i++) {
+                nav_stack[i].step--;
+            }
+        }
+
+
         $(document).ready(function () {
             var win_height = window.innerHeight;
             $("#layout").css('height', win_height + 'px');
@@ -157,6 +185,9 @@ switch ($type) {
             var index = $this.attr('index');
             console.log('current_tree');
             console.log(current_tree);
+
+            nav_push(current_tree.cid);
+
             var parent = current_tree;
             current_tree = current_tree.children[index];
             current_tree.parent = parent;
@@ -173,19 +204,17 @@ switch ($type) {
             } else if (current_tree.cid == 5) {
                 view = new FLZDetailView(cid, current_tree);
             } else {
-
                 view = new UserView(current_tree);
             }
+
             var html = view.show();
             document.getElementById('table').innerHTML = html;
             document.getElementById('getBack').onclick = backward;
 
-            var nav = gen_nav();
-
+            document.getElementById('nav').innerHTML = gen_nav();
             $('#getBack').unbind('click').click(function () {
                 backward();
             });
-
         }
         function backward(level) {
             if (level === undefined) {
@@ -208,16 +237,38 @@ switch ($type) {
             } else {
                 view = new UserView(current_tree);
             }
-
+            nav_pop();
 
             var html = view.show();
             document.getElementById('table').innerHTML = html;
+            document.getElementById('nav').innerHTML = gen_nav();
+            if (current_tree.parent == null) {
+                $('#getBack').unbind('click').click(function () {
+                    history.go(-1);
+                });
+            } else {
+                $('#getBack').unbind('click').click(function () {
+                    backward();
+                });
+            }
         }
         function gen_nav() {
-            if (current_tree.cid !== undefined) {
-                nav_html += wrap_elem('a', rank_name_array[current_tree.cid], 'class="nav_bar" level="' + level + '"');
-                level++;
+            var nav_html = '';
+            nav_html += nav_head;
+            for (var i=0;i<nav_stack.length; i++) {
+                nav_html += '-&gt; ';
+                nav_html += wrap_elem('a', nav_stack[i].name, 'onclick="backward('+nav_stack[i].step+')"');
             }
+
+            if (current_tree.cid != undefined) {
+                nav_tail = '-&gt; ';
+                nav_tail += rank_name_array[current_tree.cid];
+                nav_tail += '[<span class="bluer">'+ current_tree.my_account_id +'</span>]'+current_tree.my_name;
+                nav_tail += '<a href="javascript:void(0)" id="getBack">返回</a>'
+            }
+
+            nav_html += nav_tail;
+
             return nav_html;
         }
     </script>
@@ -227,7 +278,7 @@ switch ($type) {
     <div dom="main" class="main-content1">
         <div id="reportForm_con">
             <div id="bet-type">
-                <p class="bet-type">
+                <p class="bet-type" id="nav">
                     [<?php echo $type_name ?>]
                     <span class="bluer">日期范围: </span><span name="date"><?php echo $start_date ?>
                         ~<?php echo $end_date ?></span>
