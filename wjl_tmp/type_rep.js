@@ -407,9 +407,14 @@ var FLZDetailView = function (cid, data) {
         return html;
     });
 
-var DateView = function (cid, data) {
+var DateView = function (cid, data,type) {
     this.cid = cid;
     this.data = data;
+    if (type !== undefined) {
+        this.type = type;
+    } else {
+        this.type = null;
+    }
 }.inherits(View).
     method('showCaption',function () {
         var cid = this.cid;
@@ -448,6 +453,11 @@ var DateView = function (cid, data) {
             var row = '';
             zhudan = child.data;
             colospan = 0;
+            if (this.type != null) {
+                if (child.type.indexOf(this.type) < 0) {
+                    continue;
+                }
+            }
 
             sum_jine += zhudan.zhue;
             sum_jieguo += zhudan[5].yingkui;

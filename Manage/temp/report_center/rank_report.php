@@ -130,7 +130,7 @@ switch ($type) {
             <span class="bluer">日期范围: </span><span name="date"><?php echo $start_date ?>\
             ~<?php echo $end_date ?></span>\
         <span class="bluer">报表分类:</span> 总账';
-        var nav_obj = function (cid,step) {
+        var nav_obj = function (cid, step) {
             this.name = rank_name_array[cid];
             this.step = step;
         }
@@ -138,22 +138,22 @@ switch ($type) {
         function nav_push(cid, account_id) {
             var obj;
             if (cid != undefined && account_id.indexOf('会员') < 0) {
-                obj = new nav_obj(cid,0);
+                obj = new nav_obj(cid, 0);
                 nav_stack.push(obj);
             }
 
             //对stack所有的元素step+1
-            for (var i=0;i<nav_stack.length; i++) {
+            for (var i = 0; i < nav_stack.length; i++) {
                 nav_stack[i].step++;
             }
         }
 
         function nav_pop() {
-            if (nav_stack[nav_stack.length-1].step == 1) {
+            if (nav_stack[nav_stack.length - 1].step == 1) {
                 nav_stack.pop();
             }
             //对stack所有的元素step+1
-            for (var i=0;i<nav_stack.length; i++) {
+            for (var i = 0; i < nav_stack.length; i++) {
                 nav_stack[i].step--;
             }
         }
@@ -200,7 +200,8 @@ switch ($type) {
             var view;
             if (current_tree.property === 'date') {
                 //draw caption
-                view = new DateView(cid, current_tree);
+                $('#sysselect').show();
+                view = new DateView(cid, current_tree,'广东快乐十分');
             } else if (current_tree.cid == 5) {
                 view = new FLZDetailView(cid, current_tree);
             } else {
@@ -251,25 +252,35 @@ switch ($type) {
                     backward();
                 });
             }
+
+            //最内层边栏隐藏
+            $('#sysselect').hide();
         }
+
         function gen_nav() {
             var nav_html = '';
             nav_html += nav_head;
-            for (var i=0;i<nav_stack.length; i++) {
+            for (var i = 0; i < nav_stack.length; i++) {
                 nav_html += '-&gt; ';
-                nav_html += wrap_elem('a', nav_stack[i].name, 'onclick="backward('+nav_stack[i].step+')"');
+                nav_html += wrap_elem('a', nav_stack[i].name, 'onclick="backward(' + nav_stack[i].step + ')"');
             }
 
-            if (current_tree.cid != undefined && current_tree.my_account_id.indexOf('会员')<0) {
+            if (current_tree.cid != undefined && current_tree.my_account_id.indexOf('会员') < 0) {
                 nav_tail = '-&gt; ';
                 nav_tail += rank_name_array[current_tree.cid];
-                nav_tail += '[<span class="bluer">'+ current_tree.my_account_id +'</span>]'+current_tree.my_name;
+                nav_tail += '[<span class="bluer">' + current_tree.my_account_id + '</span>]' + current_tree.my_name;
                 nav_tail += '<a href="javascript:void(0)" id="getBack">返回</a>'
             }
 
             nav_html += nav_tail;
-
             return nav_html;
+        }
+
+        function select_type(type) {
+            var view = new DateView(cid,current_tree,type);
+
+            var html = view.show();
+            document.getElementById('table').innerHTML = html;
         }
     </script>
 </head>
@@ -316,6 +327,24 @@ switch ($type) {
 
             </script>
         </div>
+        <div id="sysselect" style="clear:both;display: none">
+            <a href="javascript:void(0)" class="sysSBtn  sysYBtn" >广东快乐十分</a>
+            <a href="javascript:void(0)" class="sysSBtn  ">重庆时时彩</a>
+            <a href="javascript:void(0)" class="sysSBtn  ">北京赛车</a>
+            <a href="javascript:void(0)" class="sysSBtn  ">幸运农场</a>
+            <a href="javascript:void(0)" class="sysSBtn  ">江苏骰宝</a>
+        </div>
+        <s class="blank8"></s>
+        <script>
+            $(document).ready(function(){
+                $('a.sysSBtn').click(function(){
+                    $('.sysYBtn').removeClass('sysYBtn');
+                    $(this).addClass('sysYBtn');
+                    var type = $(this).text();
+                    select_type(type);
+                });
+            });
+        </script>
         <div class="reportForm-table" id="table">
         </div>
     </div>
