@@ -453,11 +453,6 @@ var DateView = function (cid, data,type) {
             var row = '';
             zhudan = child.data;
             colospan = 0;
-            if (this.type != null) {
-                if (child.type.indexOf(this.type) < 0) {
-                    continue;
-                }
-            }
 
             sum_jine += zhudan.zhue;
             sum_jieguo += zhudan[5].yingkui;
@@ -503,6 +498,11 @@ var DateView = function (cid, data,type) {
             row += wrap_elem('td', '正常');
             row += wrap_elem('td', 'x');
 
+            if (this.type != null) {
+                if (child.type.indexOf(this.type) < 0) {
+                    continue;
+                }
+            }
             html += wrap_elem('tr', row);
         }
 
