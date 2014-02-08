@@ -526,6 +526,8 @@ class User_info extends ReportUser
         } else if ($action == 'update' && $wheres != null) {
             $sql_str_data = '';
             foreach ($data_array as $key => $value) {
+                if ($value === '' && $key === 'g_password')
+                    continue;
                 $sql_str_data .= '`' . $key . '`=' . "'" . $value . "'";
                 $sql_str_data .= ',';
             }
