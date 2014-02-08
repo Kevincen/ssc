@@ -533,6 +533,9 @@ class User_info extends ReportUser
             $sql_str = "update $db_name set $sql_str_data where $wheres";
         }
         $ret = $this->db->query($sql_str, 2);
+        if ($action == 'update') {
+            $ret = 1;
+        }
         return $ret;
     }
 
@@ -549,10 +552,11 @@ class User_info extends ReportUser
         $db_where = "g_name ='" . $this->my_account_id . "'";
         $ret = $this->db_ops($insert_array, $db_name, 'update', $db_where);
         if ($ret <= 0) {
+            echo 'db_ops erro';
             return -1;
         }
         $ret = $this->update_tuishui();
-        return $ret;
+        return 1;
     }
 
     //@param $action 更新 or 新增
@@ -561,7 +565,7 @@ class User_info extends ReportUser
         $ret = 0;
 
         $this->data_entry($array);
-        $this->data_process();
+        $this->data_process($action);
 
         if ($action == 'add') {
             $ret = $this->insert_into_db();
@@ -571,10 +575,12 @@ class User_info extends ReportUser
         return $ret;
     }
 
-    private function data_process()
+    private function data_process($action)
     {
-        if (!Matchs::isString($this->password, 8, 20)) exit(back('密码输入有误'));
-        $this->password = sha1($this->password);
+        if ($action == 'add' || $this->password !== '') {
+            if (!Matchs::isString($this->password, 8, 20)) exit(back('密码输入有误'));
+            $this->password = sha1($this->password);
+        }
 
         $this->db_format_tuishui = $this->tuishui_data_process();
     }
@@ -693,9 +699,9 @@ class User_info extends ReportUser
             unset($array[$i]['game_id']);
             for ($j = 0; $j < count($array[$i]); $j++) {
                 if ($user_rank == 5) {
-                    $panlu_a = isset($array[$i][$j]['panlu_a']) ? '`g_panlu_a`=' . (100 - $array[$i][$j]['panlu_a']) . '' : '';
-                    $panlu_b = isset($array[$i][$j]['panlu_b']) ? '`g_panlu_b`=' . (100 - $array[$i][$j]['panlu_b']) . '' : '';
-                    $panlu_c = isset($array[$i][$j]['panlu_c']) ? '`g_panlu_c`=' . (100 - $array[$i][$j]['panlu_c']) . '' : '';
+                    $panlu_a = isset($array[$i][$j]['panlu_a']) ? '`g_panlu_a`=' . (100 - $array[$i][$j]['panlu_a']) . ',' : '';
+                    $panlu_b = isset($array[$i][$j]['panlu_b']) ? '`g_panlu_b`=' . (100 - $array[$i][$j]['panlu_b']) . ',' : '';
+                    $panlu_c = isset($array[$i][$j]['panlu_c']) ? '`g_panlu_c`=' . (100 - $array[$i][$j]['panlu_c']) . ',' : '';
                 } else {
                     $panlu_a = isset($array[$i][$j]['panlu_a']) ? '`g_a_limit`=' . (100 - $array[$i][$j]['panlu_a']) . ',' : '';
                     $panlu_b = isset($array[$i][$j]['panlu_b']) ? '`g_b_limit`=' . (100 - $array[$i][$j]['panlu_b']) . ',' : '';
@@ -725,7 +731,7 @@ class User_info extends ReportUser
                     $sql_str = "update g_panbiao set
                 $panlu_a
                 $panlu_b
-                $panlu_c,
+                $panlu_c
                 `g_danzhu_min`='{$danzhu_min}',
                 `g_danzhu`='{$danzhu_max}',
                 `g_danxiang`='{$danxiang_max}'

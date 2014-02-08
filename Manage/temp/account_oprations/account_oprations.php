@@ -21,9 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     $this_module = new User_info($my_account_id,$cid,$top_account_id);
     if ($this_module->set_from_array($_POST,$action) <= 0) {
         echo 'set into db_erro';
-    } else {
-        exit(back(alert('操作成功')));
-    }
+    } else {?>
+        <script language="javascript" type="text/javascript">
+            alert('修改成功');
+            window.location.href='/Manage/temp/Actfor.php';
+        </script>
+
+    <?}
 
     exit();
 } else if ($_SERVER['REQUEST_METHOD'] == 'GET')
@@ -186,9 +190,10 @@ $lang = new utf8_lang();
                 <i></i>
             </span>
             <input autocomplete="off" name="password" type="password" vname="password"
-                   <?php if ($action=='add') {?>
-                       nullmsg="请输入用户密码"
+                   <?php if ($action!='add') {?>
+                       ignore="ignore"
                    <?php }?>
+                   nullmsg="请输入用户密码"
                    datatype="s6-18" errormsg="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
         <th>确认密码</th>
         <td class="error-info">
@@ -204,10 +209,10 @@ $lang = new utf8_lang();
                 <i></i>
             </span>
             <input autocomplete="off" name="repassword" type="password"
-                <?php if ($action=='add') {?>
-                   nullmsg="请输入用户密码"
+                <?php if ($action!='add') {?>
+                   ignore="ignore"
                 <?php }?>
-                   datatype="s6-18" recheck="password"
+                   nullmsg="请输入用户密码" datatype="s6-18" recheck="password"
                    errormsg="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
     </tr>
     <?php
