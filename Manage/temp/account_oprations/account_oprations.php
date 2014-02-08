@@ -186,8 +186,10 @@ $lang = new utf8_lang();
                 <i></i>
             </span>
             <input autocomplete="off" name="password" type="password" vname="password"
-                   nullmsg="请输入用户密码" datatype="s6-18"
-                   errormsg="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
+                   <?php if ($action=='add') {?>
+                       nullmsg="请输入用户密码"
+                   <?php }?>
+                   datatype="s6-18" errormsg="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
         <th>确认密码</th>
         <td class="error-info">
             <span class="g-vd-tooltip g-vd-prompt" style="display:none;z-index:10000000">
@@ -202,7 +204,10 @@ $lang = new utf8_lang();
                 <i></i>
             </span>
             <input autocomplete="off" name="repassword" type="password"
-                   nullmsg="请输入用户密码" datatype="s6-18" vname="repassword"
+                <?php if ($action=='add') {?>
+                   nullmsg="请输入用户密码"
+                <?php }?>
+                   datatype="s6-18" recheck="password"
                    errormsg="6~16位数字、字母组成！(为空表示密码不修改)" value=""></td>
     </tr>
     <?php

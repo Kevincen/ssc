@@ -32,6 +32,8 @@ class UserModel
      */
     public function  Get_all_count($query_type,$top_id='67552ea64c6dce1646a263bae714e788',$loginid=89)
     {
+        $orig_id = $top_id;
+
         $counter = 0;
         if ($loginid == $this->cop_id) {
             $counter = 5;
@@ -51,7 +53,7 @@ class UserModel
             if ($i != ($counter - 1)) {//说明是会员
                 $sql= "select g_name from `g_rank` where g_nid like '{$top_id}'";
             } else {
-                $sql = 'select g_name from `g_user`';
+                $sql = "select g_name from `g_user` where g_nid like '{$orig_id}%'";
             }
             $top_id .= $Like;
             $ret[$i]= $this->db->query($sql,$query_type);
