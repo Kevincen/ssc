@@ -382,6 +382,7 @@ function get_upper($user_nid) {
             $a = $userModel->GetUserName_Like($value);
             $l = $a[0]['g_name'];
             $p = $a[0]['g_distribution'] - $result[$i]['g_distribution'];
+            $top_account_id = $a[0]['g_name'];
             $like = UserModel::Like();
             $linkName = $LoginId == 89 ?
                 '<table border="0" cellspacing="0" cellpadding="0"><tr><td class="nones"><a href="Actfor.php?cid=3&name=' . $result[$i]['g_name'] . '" target="mainFrame">' . $result[$i]['g_name'] . '</a></td><td class="nones">&nbsp;&nbsp;<a href="information.php?uid=' . $result[$i]['g_name'] . '"><img src="../images/soundon.png" width="20px" height="20px" border="0" title="发送消息"/></a></td></tr></table>'
@@ -490,6 +491,7 @@ function get_upper($user_nid) {
             $value = mb_substr($result[$i]['g_nid'], 0, mb_strlen($result[$i]['g_nid'], 'utf-8') - 32);
             $a = $userModel->GetUserName_Like($value);
             $stockholder['name'] = $a[0]['g_name']; //股東
+            $top_account_id = $a[0]['g_name'];
 
             $value = mb_substr($a[0]['g_nid'], 0, mb_strlen($a[0]['g_nid'], 'utf-8') - 32);
             $h = $userModel->GetUserName_Like($value); //公司
@@ -617,6 +619,8 @@ function get_upper($user_nid) {
             $value = mb_substr($a[0]['g_nid'], 0, mb_strlen($a[0]['g_nid'], 'utf-8') - 32);
             $h = $userModel->GetUserName_Like($value);
             $stockholder['name'] = $h[0]['g_name']; //股東
+
+            $top_account_id = $h[0]['g_name'];
 
             $main_agent['dis'] = $a[0]['g_distribution'] - $result[$i]['g_distribution'];
             $stockholder['dis'] = 100 - ($result[$i]['g_distribution'] + ($a[0]['g_distribution'] - $result[$i]['g_distribution']));

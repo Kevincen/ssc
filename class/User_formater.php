@@ -811,5 +811,42 @@ class User_info extends ReportUser
 
         return 1;
     }
+
+
+//获取下级总额
+    public function get_son_money()
+    {
+
+        $top_nid = $this->nid;
+        $cid = $this->cid;
+        $ret = 0;
+        if ($cid == 5) {
+            return 0;
+        }
+
+        if ($cid == 4) {
+            $sql_str = "select sum(g_money) as money from g_user where g_nid like '{$top_nid}'";
+            $db = new DB();
+
+            $result = $db->query($sql_str, 1);
+            $ret += $result[0]['money'];
+        }
+
+        $sql_str = "select sum(g_money) as money from g_user where g_nid like '{$top_nid}'";
+        $db = new DB();
+
+        $result = $db->query($sql_str, 1);
+        $ret += $result[0]['money'];
+
+        $db = new DB();
+
+        $top_nid .= UserModel::Like();
+        $sql_str = "select sum(g_money) as money from g_rank where g_nid like '{$top_nid}'";
+        $result = $db->query($sql_str, 1);
+
+        $ret += $result[0]['money'];
+
+        return $ret;
+    }
 }
 
