@@ -285,9 +285,9 @@ class User_info extends ReportUser
         $this->my_account_id = $my_account_id;
         $this->top_account_id = $top_account_id;
         $this->db = new DB();*/
-        $this->userModel = new UserModel();
 
         parent::__construct($my_account_id, $cid, $top_account_id);
+        $this->userModel = new UserModel();
     }
 
     private function get_tuishui($account_id, $cid)

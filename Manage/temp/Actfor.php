@@ -904,7 +904,7 @@ function get_upper($user_nid) {
             <tbody>
             <script type="text/javascript">/*获得上级，跳转到新增页面.并将上级参数传入
                  */
-                function select_upper(value, cid)
+                function select_upper(cid, value)
                 {
                     if (value != "") {
                         var href = "/Manage/temp/account_oprations/account_oprations.php?action=add&cid="+ cid +value;
