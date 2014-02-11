@@ -429,8 +429,9 @@ class User_info extends ReportUser
         $top_info = $this->userModel->GetUserModel(null, $this->top_account_id);
         $top_nid = $top_info[0]['g_nid'];
         $top_login_id = $top_info[0]['g_login_id'];
-        if ($this->cid == 5) {
-            $this->cid = $top_nid;
+        if ($this->cid == 5
+            && $top_login_id == $this->userModel->agent_id) {
+                $this->nid = $top_nid;
         } else {
             $this->nid = $top_nid . md5(uniqid(time(), true));
         }

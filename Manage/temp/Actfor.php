@@ -907,7 +907,7 @@ function get_upper($user_nid) {
                 function select_upper(cid, value)
                 {
                     if (value != "") {
-                        var href = "/Manage/temp/account_oprations/account_oprations.php?action=add&cid="+ cid +value;
+                        var href = "/Manage/temp/account_oprations/account_oprations.php?action=add&cid=5" + cid;
                         location.href = href;
                     }
                 }</script>

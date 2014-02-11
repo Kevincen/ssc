@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     exit();
 } else if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
+
     $cid = $_GET['cid'];
     $top_cid = $_GET['top_cid'];
     $action = $_GET['action'];
