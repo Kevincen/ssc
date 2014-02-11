@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST')
 		$loginPwd = sha1($_POST['loginPwd']);
 		//瀏覽器檢測、只支持IE核心
 		if (!GetMsie()) exit(back($UserError));
-		if (!Matchs::isString($loginName, 4, 15)) 
+		if (!Matchs::isString($loginName, 2, 15))
 			exit(back($UserError));
 		$UserModel = new UserModel();
 		$User = $UserModel->ExistUniondl($loginName, $loginPwd);
