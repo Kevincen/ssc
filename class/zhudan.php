@@ -85,11 +85,11 @@ class Zhudan
     //$account_id 为空时，为子孙查找
     public static function getZhudan($start_date, $end_date, $balance, $number, $type, $user_nid,$account_id='')
     {
-        echo 'balance='.$balance.'<br/>';
+/*        echo 'balance='.$balance.'<br/>';
         echo 'number='.$number.'<br/>';
         echo 'type='.$type.'<br/>';
         echo 'user_nid='.$user_nid.'<br/>';
-        echo 'account_id='.$account_id.'<br/>';
+        echo 'account_id='.$account_id.'<br/>';*/
         $db = new DB();
         $condition_date = '';
         $condition_balance = '';
@@ -142,8 +142,8 @@ class Zhudan
             $sql_str = "select * from g_zhudan where g_s_nid like '{$user_nid}%' $condition_balance $condition_date $condition_number $condition_type";
         }
 
-        echo $sql_str;
-        echo '<br/>';
+/*        echo $sql_str;
+        echo '<br/>';*/
 
         $zhudan_array = $db->query($sql_str, 1);
         $zhudan_array = Zhudan::zhudan_translation($zhudan_array, $user_nid);

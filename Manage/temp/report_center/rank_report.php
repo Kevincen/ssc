@@ -186,10 +186,6 @@ switch ($type) {
             var c_view = new UserView(current_tree);
             $('#table').html(c_view.show());
 
-            $('.hc').click(function () {
-                var id = $(this).attr('id');
-                $('.' + id).toggle();
-            });
 
 
             $('#getBack').click(function () {
@@ -314,6 +310,10 @@ switch ($type) {
                 } else {
                     $(this).attr('style', '');
                 }
+            });
+            $('.hc').click(function () {
+                var id = $(this).attr('id');
+                $('.' + id).toggle();
             });
         }
     </script>

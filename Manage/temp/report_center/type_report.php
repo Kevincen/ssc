@@ -124,10 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var c_view = new FLZTotalView(cid, current_tree);
             $('#table').html(c_view.show());
 
-            $('.hc').click(function () {
-                var id = $(this).attr('id');
-                $('.' + id).toggle();
-            });
 
 
             /*            var sub_a = $('a.sub');*/
@@ -204,6 +200,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $(this).attr('style', '');
                     }
                 });
+            $('.hc').click(function () {
+                var id = $(this).attr('id');
+                $('.' + id).toggle();
+            });
         }
     </script>
 </head>

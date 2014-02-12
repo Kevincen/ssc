@@ -362,15 +362,68 @@ var FLZSubView = function (cid, data) {
     .method('showContent', function () {
         var html = '';
         var data = this.data;
+        var cid = this.cid;
         for (i = 0; i < data.children.length; i++) {
             var child = data.children[i];
             var zhudan = child.zhudan.data;
             title = wrap_elem('a', child.title, 'onclick="sub_click($(this))" index="' + i + '"');
 
+            var zhue = parseInt(zhudan.zhue)
+                , zhushu = parseInt(zhudan.zhushu)
+                , down_jiangjin = parseInt(zhudan[cid + 1].jiangjin)
+                , down_yingkui = parseInt(zhudan[cid + 1].yingkui)
+                , huiyuan_yingkui = parseInt(zhudan[5].yingkui)
+                , down_yongjin = parseInt(zhudan[cid+1].up_yongjin)
+                , zhanchengshangjiao = parseInt(zhudan[cid+1].up_dis_money)
+                , down_jine = parseInt(zhudan[cid+1].up_jine)
+                , down_shangjiao = parseInt(zhudan[cid+1].up_all)
+
+                , my_dis = parseInt(zhudan[cid].dis)
+                , my_dis_money = parseInt(zhudan[cid].dis_money)
+                , my_jiangjin = parseInt(zhudan[cid].jiangjin)
+                , my_yongjin = parseInt(zhudan[cid].yongjin)
+                , my_yongjincha = parseInt(zhudan[cid].yongjincha)
+                , my_yingkui = parseInt(zhudan[cid].yingkui)
+
+                , up_zhancheng = parseInt(zhudan[cid].up_dis_money)
+                , up_jine = parseInt(zhudan[cid].up_jine)
+                , up_yongjin = parseInt(parseInt(zhudan[cid].up_yongjin))
+                , shangjiaoshangji = parseInt(zhudan[cid].up_all);
+
+            if (cid == 4) {
+                down_yongjin = parseInt(zhudan[cid + 1].yongjin)
+            } else {//非代理
+                down_yongjin = parseInt(zhudan[cid + 1].up_yongjin);
+            }
             html += '<tr>';
 
             html += wrap_elem('td', i + 1);
             html += wrap_elem('td', title);
+            html += wrap_elem('td', xng(zhushu));
+            html += wrap_elem('td', xng(zhue));
+
+            if (cid == 4) {
+                html += wrap_elem('td', xng(down_jiangjin));
+                html += wrap_elem('td', xng(down_yongjin));
+                html += wrap_elem('td', xng(down_yingkui));
+            } else {
+                html += wrap_elem('td', xng(huiyuan_yingkui));//盈亏
+                html += wrap_elem('td', xng(zhanchengshangjiao));//占城上缴
+                html += wrap_elem('td', xng(down_jine), 'class="sh1"');//下级金额
+                html += wrap_elem('td', xng(down_yongjin), 'class="sh1"');//下级佣金
+                html += wrap_elem('td', xng(down_shangjiao), 'class="col1"');//下级上缴
+            }
+            html += wrap_elem('td', xng(my_dis));//占城%
+            html += wrap_elem('td', xng(my_dis_money));//本级占城
+            html += wrap_elem('td', xng(my_jiangjin), 'class="sh2"');//本级奖金
+            html += wrap_elem('td', xng(my_yongjin), 'class="sh2"');//本级佣金
+            html += wrap_elem('td', xng(my_yongjincha));//佣金差
+            html += wrap_elem('td', xng(my_yingkui), 'class="col1"');//本级盈亏
+
+            html += wrap_elem('td', xng(up_zhancheng));//上级占城
+            html += wrap_elem('td', xng(up_jine), 'class="sh3"');//金额
+            html += wrap_elem('td', xng(up_yongjin), 'class="sh3"');//佣金
+            html += wrap_elem('td', xng(shangjiaoshangji), 'class="col1"');//上缴上级
 
             html += '</tr>';
         }
