@@ -1765,8 +1765,8 @@ function InsertNumber_pk10 ($day=1, $closeTime=1)
 	 
 	//推算期号 
 	 
-	$date = '2013-02-16 09:08:30';
-	$expect = '345815';
+	$date = '2014-02-07 09:07:30';
+	$expect = '408107';
 	$day = date("Y-m-d",strtotime($date));
 	 
 	$diffday = $db->selectField("SELECT DATEDIFF('".$insertDate."','".$day."') AS DiffDate");   
