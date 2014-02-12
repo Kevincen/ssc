@@ -87,6 +87,7 @@ if (date("H") >= 3) {
                     endDate.val("<?php echo $sDate[4]?>");
                     break;
             }
+            form_type_change($('select#allClass').val());
         }
         $(document).ready(function () {
             var win_height = window.innerHeight;
@@ -124,11 +125,11 @@ if (date("H") >= 3) {
                             <td class="basic_left">彩票类型</td>
                             <td class="right">
                                 <select id="allClass" name="s_types" onchange="form_type_change(this.value)">
-                                    <option value="0">全部</option>
+                                    <option value="0" selected="selected">全部</option>
                                     <option value="1">广东快乐十分</option>
                                     <option value="2">重庆时时彩</option>
-                                    <option value="5">北京赛车(PK10)</option>
-                                    <option value="6">幸运农场</option>
+                                    <option value="6">北京赛车(PK10)</option>
+                                    <option value="5">幸运农场</option>
                                     <option value="9">江苏骰宝</option>
                                 </select></td>
                         </tr>
@@ -165,26 +166,31 @@ if (date("H") >= 3) {
                                     <option value="all">全部</option>
                                 </select>
                                 <select name="" id="klsf" class="hidden"><!--快乐十分-->
+                                    <option value="all">全部</option>
                                     <?php for ($i=0; $i<count($result); $i++){?>
                                         <option value='<?php echo$result[$i]['g_qishu']?>'> <?php echo$result[$i]['g_qishu']?> </option>
                                     <?php }?>
                                 </select>
                                 <select name="" id="cqssc" class="hidden"><!--时时彩-->
+                                    <option value="all">全部</option>
                                     <?php for ($i=0; $i<count($resultcq); $i++){?>
                                         <option value='<?php echo$resultcq[$i]['g_qishu']?>'> <?php echo$resultcq[$i]['g_qishu']?> </option>
                                     <?php }?>
                                 </select>
                                 <select name="" id="bjsc" class="hidden"><!--北京赛车-->
+                                    <option value="all">全部</option>
                                     <?php for ($i=0; $i<count($resultpk); $i++){?>
                                         <option value='<?php echo$resultpk[$i]['g_qishu']?>'> <?php echo$resultpk[$i]['g_qishu']?> </option>
                                     <?php }?>
                                 </select>
                                 <select name="" id="xync" class="hidden"> <!--幸运农场-->
+                                    <option value="all">全部</option>
                                     <?php for ($i=0; $i<count($resultnc); $i++){?>
                                         <option value='<?php echo$resultnc[$i]['g_qishu']?>'> <?php echo$resultnc[$i]['g_qishu']?> </option>
                                     <?php }?>
                                 </select>
                                 <select name="" id="jssb" class="hidden"> <!--江苏晒宝-->
+                                    <option value="all">全部</option>
                                     <?php for ($i=0; $i<count($resultjsk3); $i++){?>
                                         <option value='<?php echo$resultlhc[$i]['g_qishu']?>'> <?php echo$resultlhc[$i]['g_qishu']?> </option>
                                     <?php }?>

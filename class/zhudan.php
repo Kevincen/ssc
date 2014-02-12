@@ -81,9 +81,15 @@ class Zhudan
         return array('depth' => $depth, 'property' => $find);
     }
 
-
+    //user_nid为空时，为精确查找
+    //$account_id 为空时，为子孙查找
     public static function getZhudan($start_date, $end_date, $balance, $number, $type, $user_nid,$account_id='')
     {
+        echo 'balance='.$balance.'<br/>';
+        echo 'number='.$number.'<br/>';
+        echo 'type='.$type.'<br/>';
+        echo 'user_nid='.$user_nid.'<br/>';
+        echo 'account_id='.$account_id.'<br/>';
         $db = new DB();
         $condition_date = '';
         $condition_balance = '';
@@ -94,7 +100,7 @@ class Zhudan
         if ($start_date != ''
             && $end_date != ''
         ) {
-            $start_date .= '2:00';
+            $start_date .= ' 02:00';
             $end_date = dayMorning($end_date, (60 * 60 * 24)) . ' 02:00';
             $condition_date = "and g_date>'{$start_date}' and g_date <'{$end_date}'";
         }
@@ -105,10 +111,27 @@ class Zhudan
             $condition_balance = "and `g_win` is null";
         }
 
-        if ($number != '') {
-            $condition_number = "and `g_qishu`='{$number}";
+        if ($number != '' && $number != 'all') {
+            $condition_number = "and `g_qishu`='{$number}'";
         }
-        if ($type != '') {
+        if ($type != 0) {
+            switch ($type) {
+                case 1:
+                    $type = '廣東快樂十分';
+                    break;
+                case 2:
+                    $type = '重慶時時彩';
+                    break;
+                case 6:
+                    $type = '北京赛车PK10';
+                    break;
+                case 5:
+                    $type = '幸运农场';
+                    break;
+                case 9:
+                    $type = '江苏骰寶(快3)';
+                    break;
+            }
             $condition_type = "and `g_type`='{$type}'";
         }
 
@@ -119,6 +142,8 @@ class Zhudan
             $sql_str = "select * from g_zhudan where g_s_nid like '{$user_nid}%' $condition_balance $condition_date $condition_number $condition_type";
         }
 
+        echo $sql_str;
+        echo '<br/>';
 
         $zhudan_array = $db->query($sql_str, 1);
         $zhudan_array = Zhudan::zhudan_translation($zhudan_array, $user_nid);

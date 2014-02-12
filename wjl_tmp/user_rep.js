@@ -89,6 +89,9 @@ var UserView = function (data) {
             html += '</tr>';
         }
 
+        if (children.length == 0) {
+            html += '<tr ><td colspan="15" class="center">暂无数据</td></tr>';
+        }
         html = wrap_elem('tbody', html);
         return html;
     });

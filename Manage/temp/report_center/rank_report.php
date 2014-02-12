@@ -52,9 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $end_date = $_POST['endDate'];
 
 
-    $type = $_POST['s_type']; //彩票类型
+    $type = $_POST['s_types']; //彩票类型
     if ($type != 0 && $start_date == $end_date) { //只有在同一天并且写明彩票类型的情况下才会有期数这一说
         $number = $_POST['s_number']; //期数
+    } else {
+        $number = '';
     }
     $status = $_POST['Balance']; //结算状态 1为已结算，0为未结算
 
@@ -62,8 +64,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $current_user_name = $Users[0]['g_f_name'];
     $current_cid = $top_cid;
 
+/*    var_dump($_POST);
+
+    echo $start_date;
+    echo '</br>';
+    echo $end_date;
+    echo '</br>';
+    echo $status;
+    echo '</br>';
+    echo $number;
+    echo '</br>';
+    echo $type;
+    echo '</br>';
+    exit;*/
+
     $tree = ReportFactory::CreateUser($current_user_account_id, $current_cid, NULL);
-    $tree->buildTree('', '', '1', '', '');
+    $tree->buildTree($start_date, $end_date, $status, $number, $type);
 
     /*    print_r($current_user);*/
     //$current_view = ReportFactory::CreateUserView($current_user);
@@ -179,6 +195,7 @@ switch ($type) {
             $('#getBack').click(function () {
                 history.go(-1);
             });
+            set_effects();
         });
 
         function sub_click($this) {
@@ -216,6 +233,8 @@ switch ($type) {
             $('#getBack').unbind('click').click(function () {
                 backward();
             });
+
+            set_effects();
         }
         function backward(level) {
             if (level === undefined) {
@@ -255,6 +274,8 @@ switch ($type) {
 
             //最内层边栏隐藏
             $('#sysselect').hide();
+
+            set_effects();
         }
 
         function gen_nav() {
@@ -281,6 +302,19 @@ switch ($type) {
 
             var html = view.show();
             document.getElementById('table').innerHTML = html;
+        }
+        function set_effects() {
+            $('tbody tr').mouseenter(function(){
+                $(this).addClass('orange');
+            }).mouseleave(function(){
+                $(this).removeClass('orange');
+            }).click(function(){
+                if ($(this).attr('style') === '') {
+                    $(this).attr('style','background-color: rgb(202, 217, 255); background-position: initial initial; background-repeat: initial initial;');
+                } else {
+                    $(this).attr('style', '');
+                }
+            });
         }
     </script>
 </head>
@@ -343,6 +377,7 @@ switch ($type) {
                     var type = $(this).text();
                     select_type(type);
                 });
+
             });
         </script>
         <div class="reportForm-table" id="table">

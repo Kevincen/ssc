@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $user_model = new UserModel();
 
-    $type = $_POST['s_type']; //彩票类型
+    $type = $_POST['s_types']; //彩票类型
     switch ($type) {
         case 0:
             $type_name = '全部';
@@ -48,6 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if ($type != 0 && $start_date == $end_date) { //只有在同一天并且写明彩票类型的情况下才会有期数这一说
         $number = $_POST['s_number']; //期数
+    } else {
+        $number = '';
     }
     $status = $_POST['Balance']; //结算状态 1为已结算，0为未结算
 
@@ -74,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit(alert('用户登录权限有误，请联系管理员'));
     }
 
-    $tmp = zhudan::getZhudan('', '', '1', '', '', '67552ea64c6dce1646a263bae714e7888538fb9462debef706f62146c3f815aee81e3ae4ead0f8ef09a12e06b5915d859b0d6e5748c4d9193ccb01f03f9be86478ed187eb3b6486173d3f463d93f27ee');
+    $tmp = zhudan::getZhudan($start_date, $end_date, $status, $number, $type, '67552ea64c6dce1646a263bae714e7888538fb9462debef706f62146c3f815aee81e3ae4ead0f8ef09a12e06b5915d859b0d6e5748c4d9193ccb01f03f9be86478ed187eb3b6486173d3f463d93f27ee');
     $tree = new ReportTypeTree('total', 'total');
     $tree->buildTree($tmp);
 
@@ -137,6 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $('#getBack').click(function(){
                 history.go(-1);
             });
+            set_effects();
         })
         function sub_click($this) {
             var index = $this.attr('index');
@@ -165,6 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $('#getBack').unbind('click').click(function(){
                 backward();
             });
+            set_effects();
         }
         function backward() {
             do {
@@ -186,6 +190,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             var html = view.show();
             document.getElementById('table').innerHTML = html;
+            set_effects();
+        }
+        function set_effects() {
+            $('tbody tr').mouseenter(function(){
+                $(this).addClass('orange');
+            }).mouseleave(function(){
+                    $(this).removeClass('orange');
+                }).click(function(){
+                    if ($(this).attr('style') === '') {
+                        $(this).attr('style','background-color: rgb(202, 217, 255); background-position: initial initial; background-repeat: initial initial;');
+                    } else {
+                        $(this).attr('style', '');
+                    }
+                });
         }
     </script>
 </head>
