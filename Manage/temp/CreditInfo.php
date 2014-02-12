@@ -6,6 +6,7 @@ global $Users, $LoginId, $userModel;
 if ( /*$LoginId ==56 || */ //by wjl
     $LoginId == 89
 ) exit;
+//var_dump($Users);
 
 $db = new DB();
 $sql = "SELECT `g_type`, `g_a_limit`, `g_b_limit`, `g_c_limit`, `g_d_limit`, `g_e_limit`  
@@ -73,7 +74,7 @@ if (!$result) {
                                 case 2:
                                     echo '停押';
                                     break;
-                                case 3:
+                                case 1:
                                     echo '启用';
                                     break;
                             }
@@ -92,7 +93,7 @@ if (!$result) {
                         <th ishide="1">自己及下级占成数</th>
                         <td ishide="1" id="share_total"><?php echo $Users[0]['g_distribution_limit'] ?></td>
                         <th ishide="1">所属盘口</th>
-                        <td ishide="1" id="odds_set">C盘</td>
+                        <td ishide="1" id="odds_set"><?php echo $Users[0]['g_panlu'] ?>盘</td>
                     </tr>
                     <tr name="tr3">
                         <th>信用额度</th>

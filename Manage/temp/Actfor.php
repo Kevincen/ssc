@@ -772,16 +772,16 @@ function get_upper($user_nid) {
                     $d = $userModel->GetUserName_Like($v);
                     $top_account_id = $comp['name'];
                     $top_cid = 1;
-                    echo 'gudong ';
+                 //   echo 'gudong ';
                 }
 
             } else {
-                echo 'abc';
+                //echo 'abc';
                 $value = $result[$i]['g_nid'];
-                var_dump($value);
+                //var_dump($value);
                 $mumberType = '普通會員';
                 $agent = get_upper($value); //代理
-                var_dump($agent);
+                //var_dump($agent);
                 $main_agent = get_upper($agent['nid']); //总代理
                 $stockholder = get_upper($main_agent['nid']); //股东
                 $top_account_id = $agent['name'];
