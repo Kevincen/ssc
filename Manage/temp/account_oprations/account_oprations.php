@@ -128,6 +128,24 @@ $lang = new utf8_lang();
                 }
             })
 
+            //上下调节键
+            $('a[name=up]').click(function(){
+                var $input = $(this).prev('input');
+                var value = parseFloat($input.val()) + 0.01;
+
+                if (value <= $input.attr('maxvalue'))
+
+                $input.val(value).attr('current_val', value);
+
+            });
+            $('a[name=down]').click(function(){
+                var $input = $(this).prev().prev('input');
+                var value = parseFloat($input.val()) - 0.01;
+
+                if (value >= $input.attr('minvalue')) {
+                    $input.val(value).attr('current_val', value);
+                }
+            });
         });
     </script>
     <script type="text/javascript" src="/Manage/temp/js/Pwd_Safety.js"></script>

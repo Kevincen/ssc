@@ -75,7 +75,7 @@ $count=1;
                         'value="0.5" current_val="0.5" disabled="disabled '
                         : 'value="'.(100-$sub_array[$i]['g_panlu_a']).'" current_val="'.(100-$sub_array[$i]['g_panlu_a']).'"' ?>
                                         type="text" minvalue="0"
-                                        maxvalue="<?php //echo $count > 0 ? $sub_array[$i]['g_a_limit'] : 0; ?>"
+                                        maxvalue="100"
                                         vname="sub_<?php echo $color?>_A" class="tuishui" >
                     <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
@@ -86,7 +86,7 @@ $count=1;
                         ? 'value="1.6" current_val="1.6" disabled="disabled '
                         : 'value="'.(100-$sub_array[$i]['g_panlu_b']).'" current_val="'.(100-$sub_array[$i]['g_panlu_b']).'"' ?>
                                         vname="klcdiscountB00" type="text" minvalue="0"
-                                        maxvalue="<?php //echo $count > 0 ? $sub_array[$i]['g_b_limit'] : 0; ?>"
+                                        maxvalue="100"
                                         vname="sub_<?php echo $color?>_B" class="tuishui">
                     <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
@@ -97,7 +97,7 @@ $count=1;
                         ? 'value="2.6" current_val="2.6" disabled="disabled '
                         : 'value="'.(100-$sub_array[$i]['g_panlu_c']).'" current_val="'.(100-$sub_array[$i]['g_panlu_c']).'"' ?>
                                         vname="klcdiscountC00" type="text" minvalue="0"
-                                        maxvalue="<?php //echo $count > 0 ? $sub_array[$i]['g_c_limit'] : 0; ?>"
+                                        maxvalue="100"
                                         vname="sub_<?php echo $color?>_C" class="tuishui">
                 <a href="javascript:void(0)" name="up"></a>
                 <a href="javascript:void(0)" class="down" name="down"></a></div>
