@@ -230,6 +230,7 @@ function change_input_by_color($this) {
 
     var set_function = function ($this, $val) {
         $this.val($val);
+        $this.attr('current_val', $val);
         $this.addClass('quickset');
     };
 
@@ -253,4 +254,14 @@ function change_input_by_color($this) {
         set_function($(this), panlu_b)
     });
 
+}
+function change_all_tuishui(val)
+{
+    $('input.tuishui').each(function(){
+        if (val == 100) {
+            $(this).val(0);
+        } else {
+            $(this).val($(this).attr('current_val') - val);
+        }
+    });
 }

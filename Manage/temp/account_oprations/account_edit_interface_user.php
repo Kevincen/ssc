@@ -161,7 +161,7 @@
 </tr>
 <tr id="set_water_tr">
     <th><span class="set_water_t" style="display: inline;">退水设定</span></th>
-    <td id="set_water_td"><select name="set_water" style="visibility: visible;">
+    <td id="set_water_td"><select name="set_water" style="visibility: visible;" onchange="change_all_tuishui($(this).val())">
             <option selected="" value="0">水全退到底</option>
             <option value="100">赚取所有退水</option>
             <option value="0.05">赚取0.05%退水</option>

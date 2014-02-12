@@ -90,6 +90,11 @@ $lang = new utf8_lang();
             }).blur(function(){
                     $(this).prev().prev().hide().find('p').text('');
             });
+
+            $('input.tuishui').blur(function(){
+                $(this).attr('current_val',$(this).val());
+
+            })
             $('#user_form').Validform({
                 tiptype:function(msg,o,cssctl) {
                     console.log(msg);

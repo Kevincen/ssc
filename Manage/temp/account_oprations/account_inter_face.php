@@ -71,29 +71,34 @@ $count=1;
         <td>
             <?php //todo:所有的最大值都应该是上级的?>
             <div class="spaning"><input name="<?php echo $sub_array[$i]['g_game_id'].'['.$sub_array[$i]['g_type'].']'; ?>[panlu_a]"
-
-                    <?php echo $sub_array[$i]['g_panlu_a'] == NULL? 'value="0.5" disabled="disabled ': 'value="'.(100-$sub_array[$i]['g_panlu_a']).'"' ?>
+                    <?php echo $sub_array[$i]['g_panlu_a'] == NULL?
+                        'value="0.5" current_val="0.5" disabled="disabled '
+                        : 'value="'.(100-$sub_array[$i]['g_panlu_a']).'" current_val="'.(100-$sub_array[$i]['g_panlu_a']).'"' ?>
                                         type="text" minvalue="0"
                                         maxvalue="<?php //echo $count > 0 ? $sub_array[$i]['g_a_limit'] : 0; ?>"
-                                        vname="sub_<?php echo $color?>_A">
+                                        vname="sub_<?php echo $color?>_A" class="tuishui" >
                     <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
             <div class="spaning"><input name="<?php echo $sub_array[$i]['g_game_id'].'['.$sub_array[$i]['g_type'].']'; ?>[panlu_b]"
-                    <?php echo $sub_array[$i]['g_panlu_b'] == NULL? 'value="1.6" disabled="disabled ': 'value="'.(100-$sub_array[$i]['g_panlu_b']).'"' ?>
+                    <?php echo $sub_array[$i]['g_panlu_b'] == NULL
+                        ? 'value="1.6" current_val="1.6" disabled="disabled '
+                        : 'value="'.(100-$sub_array[$i]['g_panlu_b']).'" current_val="'.(100-$sub_array[$i]['g_panlu_b']).'"' ?>
                                         vname="klcdiscountB00" type="text" minvalue="0"
                                         maxvalue="<?php //echo $count > 0 ? $sub_array[$i]['g_b_limit'] : 0; ?>"
-                                        vname="sub_<?php echo $color?>_B">
+                                        vname="sub_<?php echo $color?>_B" class="tuishui">
                     <a href="javascript:void(0)" name="up"></a><a
                     href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
         <td>
             <div class="spaning"><input name="<?php echo $sub_array[$i]['g_game_id'].'['.$sub_array[$i]['g_type'].']'; ?>[panlu_c]"
-                    <?php echo $sub_array[$i]['g_panlu_c'] == NULL? 'value="2.6" disabled="disabled ': 'value="'.(100-$sub_array[$i]['g_panlu_c']).'"' ?>
+                    <?php echo $sub_array[$i]['g_panlu_c'] == NULL
+                        ? 'value="2.6" current_val="2.6" disabled="disabled '
+                        : 'value="'.(100-$sub_array[$i]['g_panlu_c']).'" current_val="'.(100-$sub_array[$i]['g_panlu_c']).'"' ?>
                                         vname="klcdiscountC00" type="text" minvalue="0"
                                         maxvalue="<?php //echo $count > 0 ? $sub_array[$i]['g_c_limit'] : 0; ?>"
-                                        vname="sub_<?php echo $color?>_C">
+                                        vname="sub_<?php echo $color?>_C" class="tuishui">
                 <a href="javascript:void(0)" name="up"></a>
                 <a href="javascript:void(0)" class="down" name="down"></a></div>
         </td>
