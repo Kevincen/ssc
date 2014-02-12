@@ -159,22 +159,25 @@
         </label>
     </td>
 </tr>
-<tr id="set_water_tr">
-    <th><span class="set_water_t" style="display: inline;">退水设定</span></th>
-    <td id="set_water_td"><select name="set_water" style="visibility: visible;" onchange="change_all_tuishui($(this).val())">
-            <option selected="" value="0">水全退到底</option>
-            <option value="100">赚取所有退水</option>
-            <option value="0.05">赚取0.05%退水</option>
-            <option value="0.1">赚取0.1%退水</option>
-            <option value="0.15">赚取0.15%退水</option>
-            <option value="0.2">赚取0.2%退水</option>
-            <option value="0.25">赚取0.25%退水</option>
-            <option value="0.3">赚取0.3%退水</option>
-        </select></td>
-    <th></th>
-    <td></td>
-    <th></th>
-    <td></td>
-    <th></th>
-    <td></td>
-</tr>
+<?php if ($action == 'add') { ?>
+    <tr id="set_water_tr">
+        <th><span class="set_water_t" style="display: inline;">退水设定</span></th>
+        <td id="set_water_td"><select name="set_water" style="visibility: visible;" onchange="change_all_tuishui($(this).val())">
+                <option selected="" value="0">水全退到底</option>
+                <option value="100">赚取所有退水</option>
+                <option value="0.05">赚取0.05%退水</option>
+                <option value="0.1">赚取0.1%退水</option>
+                <option value="0.15">赚取0.15%退水</option>
+                <option value="0.2">赚取0.2%退水</option>
+                <option value="0.25">赚取0.25%退水</option>
+                <option value="0.3">赚取0.3%退水</option>
+            </select></td>
+        <th></th>
+        <td></td>
+        <th></th>
+        <td></td>
+        <th></th>
+        <td></td>
+    </tr>
+
+<?php }?>
