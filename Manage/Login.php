@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST')
 		//瀏覽器檢測、只支持IE核心
 		if (!GetMsie()) exit(back($UserError));
 		if (!Matchs::isString($loginName, 2, 15))
-			exit(back($UserError));
+			exit(back($UserError.'用户名长度错误'));
 		$UserModel = new UserModel();
 		$User = $UserModel->ExistUniondl($loginName, $loginPwd);
-		if (!$User) exit(back($UserError));
+		if (!$User) exit(back($UserError.'用户不存在'));
 		if (!Matchs::isNumber($User[0][0]))
 		{ //子帳號
 			if ($ConfigModel['g_web_lock'] != 1) 
