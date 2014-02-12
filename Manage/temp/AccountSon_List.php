@@ -2,19 +2,24 @@
 define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
 include_once ROOT_PATH . 'Manage/ExistUser.php';
-global $Users;
+include_once ROOT_PATH .'Class/Lang.php';
+global $Users, $LoginId;
 $lock_6 = false;
 if (isset($Users[0]['g_lock_6'])) {
     $lock_6 = true;
     if ($Users[0]['g_lock_6'] != 1)
         exit(back('您的權限不足！'));
 }
+$lang = new utf8_lang();
+$ConfigModel = configModel("`g_son_member_lock`");
+$left_html = '';
+//TODO:要获得所有上级
+$tmprank = UserModel::GetNextRank(1,89,$Users);
 $userModel = new UserModel();
-$all_count = $userModel->Get_all_count(3); //获取所有阶层的个数
+$all_count = $userModel->Get_all_count(3,$Users[0]['g_nid'],$Users[0]['g_login_id']);//TODO:这个获取的是所有人，需要根据当前获取
 $son_count = $db->query("SELECT g_id, g_s_name, g_s_f_name,g_s_date, g_lock, g_out FROM
 	g_relation_user WHERE g_s_nid = '{$Users[0]['g_nid']}' AND {$sName} g_s_login_id = '{$Users[0]['g_login_id']}'
-	ORDER BY g_s_date DESC", 3);
-//获取子账号个数
+	ORDER BY g_s_date DESC", 3);//获取子账号个数
 
 if (isset($_GET['cid'])) {
     $cid = $_GET['cid'];
@@ -22,26 +27,52 @@ if (isset($_GET['cid'])) {
     //默认先显示会员
     $cid = 5;
 }
+$stock_count = 0;
+$main_agent_count = 0;
+$agent_count = 0;
+$memenber_count = 0;
+$loginid = $Users[0]['g_login_id'];
+if ($loginid == $userModel->cop_id) {
+    $stock_count = $all_count[1];
+    $main_agent_count = $all_count[2];
+    $agent_count = $all_count[3];
+    $memenber_count = $all_count[4];
+} else if ($loginid == $userModel->stock_id) {
+    $main_agent_count = $all_count[1];
+    $agent_count = $all_count[2];
+    $memenber_count = $all_count[3];
+} else if ($loginid == $userModel->maina_id) {
+    $agent_count = $all_count[1];
+    $memenber_count = $all_count[2];
+} else if ($loginid == $userModel->agent_id) {
+    $memenber_count = $all_count[1];
+} else {
+    exit(alert("当前用户登录id错误,请联系管理员"));
+}
 $left_html =
     '<div dom="left" class="sidebar" style="display: block;">
         <div id="account_nav">
             <div class="box account_nav"><h3 class="blue-title"><span>账号管理</span><em>数量</em></h3>
                 <ul id="nav" class="left_nav">';
-$left_html .= '<li level="0" class="on" onclick="Actfor_load(\'AccountSon_List.php\')">管理员<em id="accounts0">' . $son_count . '</em></li>';
+$left_html .= '<li level="0" class="on"  onclick="Actfor_load(\'AccountSon_List.php\')">管理员<em id="accounts0">'. $son_count.'</em></li>';
 
-if ($LoginId == 89 || $LoginId == 56) {
-    $left_html .= '<li level="1"  onclick="Actfor_load(\'Actfor.php?cid=1\')">分公司<em id="accounts0">' . $all_count[1] . '</em></li>';
+if ($LoginId == 89 ) {
+    $left_html .= '<li level="1"  onclick="Actfor_load(\'Actfor.php?cid=1\')">分公司<em id="accounts0">'. $all_count[0].'</em></li>';
 }
 if ($LoginId == 89 || $LoginId == 56) {
-    $left_html .= ' <li level="2" onclick="Actfor_load(\'Actfor.php?cid=2\')">股东<em id="accounts2">' . $all_count[2] . '</em></li> ';
+    $left_html .= ' <li level="2" onclick="Actfor_load(\'Actfor.php?cid=2\')">股东<em id="accounts2">'. $stock_count.'</em></li> ';
 }
 if ($LoginId == 89 || $LoginId == 56 || $LoginId == 22) {
-    $left_html .= ' <li level="3"  onclick="Actfor_load(\'Actfor.php?cid=3\')">总代理<em id="accounts3">' . $all_count[3] . '</em></li> ';
+    $left_html .= ' <li level="3"  onclick="Actfor_load(\'Actfor.php?cid=3\')">总代理<em id="accounts3">'. $main_agent_count.'</em></li> ';
 }
 if ($LoginId == 89 || $LoginId == 56 || $LoginId == 22 || $LoginId == 78) {
-    $left_html .= '<li level="4" class="" onclick="Actfor_load(\'Actfor.php?cid=4\')">代理<em id="accounts4">' . $all_count[4] . '</em></li>';
+    $left_html .= '<li level="4" class="" onclick="Actfor_load(\'Actfor.php?cid=4\')">代理<em id="accounts4">'. $agent_count.'</em></li>';
 }
-$left_html .= '<li level="5"  onclick="Actfor_load(\'Actfor.php?cid=5\')">会员<em id="accounts5">' . $all_count[5] . '</em></li>';
+$left_html .= '<li level="5"  onclick="Actfor_load(\'Actfor.php?cid=5\')">会员<em id="accounts5">'. $memenber_count.'</em></li>';
+//TODO:子账号 没有么？
+if (!isset($Users[0]['g_lock_6'])) {
+}
+//TODO:在线人数？
 $left_html .= '  </ul>
             <div class="accounts">在线会员数：<span id="num0">0</span><br>最高在线会员数：<span id="num1">0</span><br>在线经销商：<span
                     id="num2">1</span><br>最高在线经销商：<span id="num3">1</span><br></div>
