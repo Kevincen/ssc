@@ -170,7 +170,7 @@ function get_upper($user_nid) {
                     ?>;
                 var current_name = '<?php echo $Users[0]['g_name']; ?>';
                 if (current_cid == current_top_id + 1) {
-                select_upper(current_cid, '&top_account_id='+current_name+'&top_cid='+current_top_id);
+                    select_upper(current_cid, '&top_account_id='+current_name+'&top_cid='+current_top_id);
                 } else {
                     $('#rightLoader').hide();
                     $('#new_add').show();
@@ -907,14 +907,14 @@ function get_upper($user_nid) {
                 function select_upper(cid, value)
                 {
                     if (value != "") {
-                        var href = "/Manage/temp/account_oprations/account_oprations.php?action=add&cid=5" + cid;
+                        var href = "/Manage/temp/account_oprations/account_oprations.php?action=add&cid=" + cid+value;
                         location.href = href;
                     }
                 }</script>
             <tr>
                 <th>选择上级<span id="superior_name"></span></th>
                 <td>
-                    <select id="superior_new"  onchange="select_upper($(this).val(),<?php echo $end_index?>)">
+                    <select id="superior_new"  onchange="select_upper(<?php echo $end_index?>, $(this).val())">
 
                         <option value="0">选择上级</option>
 
