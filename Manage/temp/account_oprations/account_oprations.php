@@ -56,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     //var_dump($this_module);
 
     $below_money = $this_module->get_son_money();
+    $up_money = $top_module->account_money - $top_module->get_son_money() + $this_module->account_money;
 }
 $lang = new utf8_lang();
 

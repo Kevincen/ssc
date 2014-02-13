@@ -22,8 +22,8 @@
             <i></i>
         </span>
         <input autocomplete="off" type="text" name="account_money" maxlength="9" datatype="n"
-               nullmsg="请输入信用额度" errormsg="<?php echo $below_money?>~<?php echo $top_module->account_money?>"
-               title="<?php echo $below_money?>~<?php echo $top_module->account_money?>"
+               nullmsg="请输入信用额度" errormsg="<?php echo $below_money?>~<?php echo $up_money?>"
+               title="<?php echo $below_money?>~<?php echo $up_money?>"
                value="<?php echo $this_module->account_money; ?>">
     </td>
     <th>所属盘口</th>
