@@ -135,7 +135,7 @@ switch ($_REQUEST['bclass_wd']) {
 			if (($result && $result[0]['g_qishu'] <= $List['openTerm'])) {
 				$error = 1;
 				$number = $List['openTerm'];
-				$lastNum = mb_substr($number, - 2);
+				$lastNum = mb_substr($number, - 3);
 				if ($List['enddt'] != "") {
 					$date = $List['enddt'];
 				} else {
