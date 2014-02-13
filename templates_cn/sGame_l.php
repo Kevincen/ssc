@@ -211,18 +211,18 @@ $g = $_GET['g'];
             <th colspan="9" style="text-align: center">
                 总和
             </th>
-        </tr>
-        <tr class="t_list_caption">
-            <td>球号</td>
-            <td>赔率</td>
-            <td class="je">金额</td>
-            <td>球号</td>
-            <td>赔率</td>
-            <td class="je">金额</td>
-            <td>球号</td>
-            <td>赔率</td>
-            <td class="je">金额</td>
-        </tr>
+<!--         </tr> -->
+<!--         <tr class="t_list_caption"> -->
+<!--             <td>球号</td> -->
+<!--             <td>赔率</td> -->
+<!--             <td class="je">金额</td> -->
+<!--             <td>球号</td> -->
+<!--             <td>赔率</td> -->
+<!--             <td class="je">金额</td> -->
+<!--             <td>球号</td> -->
+<!--             <td>赔率</td> -->
+<!--             <td class="je">金额</td> -->
+<!--         </tr> -->
         <tr class="t_td_text">
             <td class="caption_1">总和大</span></td>
             <td class="o" id="h21" ball_name="总和大"></td>

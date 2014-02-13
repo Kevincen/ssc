@@ -1711,6 +1711,7 @@ function insertNumbers($day, $d, $times, $startNum, $endNum, $closeTime=2)//重�
 			$endNum = 23;
 			$insertDate = date( "Y-m-d ", mktime(0, 0, 0, date('m'), date('d')+$d+1, date('Y')));
 			$stratTime = date($insertDate.' 00:00:00');
+			$ys = date('Ymd', $t-2);
 		}
 		$number = $ys.$n; //期數 
 		$lock = $i == 24 ? 2 : 1;
