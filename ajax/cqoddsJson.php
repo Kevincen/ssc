@@ -11,6 +11,7 @@ define('Copyright', '作者QQ:914190123');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 if ($_SERVER["REQUEST_METHOD"] != "POST") {exit;}
 include_once ROOT_PATH.'function/cheCookie.php';
+include_once ROOT_PATH.'function/parameter.php';
 include_once ROOT_PATH.'config/Odds.php';
 //include_once ROOT_PATH.'Manage/config/config.php';
 global $user;
@@ -83,6 +84,10 @@ else if ($tid == 2)
 			$result = $db->query($sql, 1);
 			$endTime = strtotime($result[0]['g_feng_date']) - time();
 			$openTime =  strtotime($result[0]['g_open_date']) - time();
+            if ($openTime > timestamp(10)) {
+                $openTime = 0;
+                $endTime = 0;
+            }
 			$Phases = $result[0]['g_qishu'];
 			$RefreshTime = 90;
 		}

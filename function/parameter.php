@@ -6073,6 +6073,19 @@ function reset_per_info($array,$index_array)
     return $ret;
 }
 
+//开奖时间限制函数
+function timestamp($minutes)
+{
 
+    $starttime = '2014-01-21 16:10:00';
+    if ($minutes == 5) {
+        $endtime = '2014-01-21 16:15:00';
+    } else if ($minutes == 10) {
+        $endtime = '2014-01-21 16:20:00';
+    }
+
+    return strtotime($endtime) - strtotime($starttime);
+
+}
 
 ?>
