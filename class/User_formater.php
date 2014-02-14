@@ -471,7 +471,7 @@ class User_info extends ReportUser
             $insert_array['g_nid'] = $this->nid;
             $insert_array['g_login_id'] = $this->login_id;
             //普通会员和直属会员的区别
-            $insert_array['g_mumber_type'] = $this->login_id == 9 ? 2 : 1;
+            $insert_array['g_mumber_type'] = $this->login_id == 9 ? 1 : 2;
             $insert_array['g_xianer'] = 1000000;
             $insert_array['g_out'] = 0;
             $insert_array['g_uid'] = md5(uniqid(time(), true));
