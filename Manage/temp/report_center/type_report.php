@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit(alert('用户登录权限有误，请联系管理员'));
     }
 
-    $tmp = zhudan::getZhudan($start_date, $end_date, $status, $number, $type, '67552ea64c6dce1646a263bae714e7888538fb9462debef706f62146c3f815aee81e3ae4ead0f8ef09a12e06b5915d859b0d6e5748c4d9193ccb01f03f9be86478ed187eb3b6486173d3f463d93f27ee');
+    $tmp = zhudan::getZhudan($start_date, $end_date, $status, $number, $type, $Users[0]['g_nid']);
     $tree = new ReportTypeTree('total', 'total');
     $tree->buildTree($tmp);
 

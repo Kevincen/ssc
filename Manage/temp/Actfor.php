@@ -753,6 +753,8 @@ function get_upper($user_nid) {
                     //$d = $userModel->GetUserName_Like($v);
                     $main_agent['name'] = $_nid['g_name'];
                     $main_agent['dis'] = $result[$i]['g_distribution'];
+                    $main_agent['nid'] = $_nid['g_nid'];
+                    $stockholder = get_upper($main_agent['nid']); //股东
                     $top_account_id = $main_agent['name'];
                     $top_cid = 3;
                 } else if ($_nid['g_login_id'] == 22) { //股東直屬
@@ -777,7 +779,7 @@ function get_upper($user_nid) {
 
             } else {
                 //echo 'abc';
-                $value = $result[$i]['g_nid'];
+                $value = $result[$i]['g_nid'].UserModel::Like(); //因为普通会员的nid和自己的上级代理是一样的。因此此处要先扩充在带入getupper函数
                 //var_dump($value);
                 $mumberType = '普通會員';
                 $agent = get_upper($value); //代理
