@@ -111,16 +111,16 @@ $g = $_GET['g'];
         </tr>
 
         <tr class="t_list_caption">
-            <td>球号</td>
+            <td>号码</td>
             <td>赔率</td>
             <td class="je">金额</td>
-            <td>球号</td>
+            <td>号码</td>
             <td>赔率</td>
             <td class="je">金额</td>
-            <td>球号</td>
+            <td>号码</td>
             <td>赔率</td>
             <td class="je">金额</td>
-            <td>球号</td>
+            <td>号码</td>
             <td>赔率</td>
             <td class="je">金额</td>
         </tr>

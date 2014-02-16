@@ -65,7 +65,7 @@
                             >不允许</label></td>
                 </tr>
                 <tr>
-                    <th>补货是否占成???</th>
+                    <th>补货是否占成</th>
                     <td><label for="share_flag1"><input id="share_flag1" value="true" name="share_flag" type="radio"
                                                         checked="">是</label><label for="share_flag2"><input
                             id="share_flag2" value="false" name="share_flag" type="radio">否</label></td>

@@ -65,7 +65,7 @@
                 >不允许</label></td>
 </tr>
 <tr>
-    <th>补货是否占成???</th>
+    <th>补货是否占成</th>
     <td>
         <label for="share_flag1">
             <input id="share_flag1" value="1" name="buhuo_dis" type="radio"
