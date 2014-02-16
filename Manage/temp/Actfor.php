@@ -742,7 +742,7 @@ function get_upper($user_nid) {
                 $_nid = $userModel->GetUserName_Like($user_nid);
                 $_nid = $_nid[0];
                 if ($_nid['g_login_id'] == 78) { //總代直屬
-                    echo 'daili ';
+                    //echo 'daili ';
                     $mumberType = '<font class="red">直屬總代理</font>';
                     //$_a = $_nid['g_name'].'（'.$result[$i]['g_distribution'].'%）';
                     //$v = mb_substr($user_nid, 0, mb_strlen($user_nid,'utf-8')-32);
@@ -758,7 +758,7 @@ function get_upper($user_nid) {
                     $top_account_id = $main_agent['name'];
                     $top_cid = 3;
                 } else if ($_nid['g_login_id'] == 22) { //股東直屬
-                    echo 'gudong ';
+                    //echo 'gudong ';
                     $mumberType = '<font class="red">直屬股東</font>';
                     $stockholder['name'] = $_nid['g_name'];
                     $stockholder['dis'] = $result[$i]['g_distribution'];

@@ -476,7 +476,7 @@ var DateView = function (cid, data,type) {
 }.inherits(View).
     method('showCaption',function () {
         var cid = this.cid;
-        var html = '<th>账号</th><th>注单编号</th><th>下注时间</th> <th>期数</th> <th>玩法</th> <th>盘口</th> <th>金额</th> <th>退水</th> <th>结果</th>';
+        var html = '<th>注单编号</th><th>下注时间</th> <th>期数</th> <th>玩法</th> <th>盘口</th> <th>金额</th> <th>退水</th> <th>结果</th>';
         var zhudan = this.data.children[0].data;
 
         if (zhudan.is_zhishu == 1) {
@@ -510,7 +510,6 @@ var DateView = function (cid, data,type) {
             console.log(child);
             var row = '';
             zhudan = child.data;
-            colospan = 0;
 
             //分类
             if (this.type != null) {
@@ -518,6 +517,7 @@ var DateView = function (cid, data,type) {
                     continue;
                 }
             }
+            colospan = 0;
 
             if (child.type.indexOf('广东快乐十分') >= 0) {
                 zhudan.qishu = zhudan.qishu.substr(-2);
@@ -537,7 +537,7 @@ var DateView = function (cid, data,type) {
             sum_my_tuishui += zhudan[cid].tuishui;
 
 
-            row += wrap_elem('td', zhudan.username);
+/*            row += wrap_elem('td', zhudan.username);*/
             row += wrap_elem('td', wrap_elem('span', 'Z' + zhudan.id, 'class="greener"'));
             row += wrap_elem('td', zhudan.time);
             row += wrap_elem('td', zhudan.qishu);
@@ -578,29 +578,34 @@ var DateView = function (cid, data,type) {
             html += wrap_elem('tr', row);
         }
 
-        html = wrap_elem('tbody',html);
-        //总计合计
-        var footer= '<tr bg="0">\
-            <td colspan="6"><span class="bluer">小计</span></td>\
-            <td>' + sum_jine + '</td>\
-            <td></td>\
-            <td><span class="win">' + sum_jieguo.toFixed(2) + '</span></td>\
-            <td colspan="'+colospan+'"></td><td><span class="' + get_color(sum_my_yingkui) + ' win">' + sum_my_yingkui.toFixed(2) + '</span>' +
-            '<br><span class="reder win">' + (-sum_my_tuishui).toFixed(2) + '</span></td>\
-                <td></td><td></td>\
-            </tr>';
+        if (html ==  '') {
+            html = '<tr class=""><td colspan="30" class="center">暂无数据</td></tr>';
+            html = wrap_elem('tbody',html);
+        } else {
+            html = wrap_elem('tbody',html);
+            //总计合计
+            var footer= '<tr bg="0">\
+                <td colspan="5"><span class="bluer">小计</span></td>\
+                <td>' + sum_jine + '</td>\
+                <td></td>\
+                <td><span class="win">' + sum_jieguo.toFixed(2) + '</span></td>\
+                <td colspan="'+colospan+'"></td><td><span class="' + get_color(sum_my_yingkui) + ' win">' + sum_my_yingkui.toFixed(2) + '</span>' +
+                '<br><span class="reder win">' + (-sum_my_tuishui).toFixed(2) + '</span></td>\
+                    <td></td><td></td>\
+                </tr>';
 
-        footer += '<tr bg="0">\
-            <td colspan="6"><span class="bluer">总计</span></td>\
-            <td>' + sum_jine + '</td>\
-            <td></td>\
-            <td><span class="win">' + sum_jieguo.toFixed(2) + '</span></td>\
-            <td colspan="'+colospan+'"></td><td><span class="' + get_color(sum_my_yingkui) + ' win">' + sum_my_yingkui.toFixed(2) + '</span>' +
-            '<br><span class="reder win">' + (-sum_my_tuishui).toFixed(2) + '</span></td>\
-                <td></td><td></td>\
-            </tr>'
+            footer += '<tr bg="0">\
+                <td colspan="5"><span class="bluer">总计</span></td>\
+                <td>' + sum_jine + '</td>\
+                <td></td>\
+                <td><span class="win">' + sum_jieguo.toFixed(2) + '</span></td>\
+                <td colspan="'+colospan+'"></td><td><span class="' + get_color(sum_my_yingkui) + ' win">' + sum_my_yingkui.toFixed(2) + '</span>' +
+                '<br><span class="reder win">' + (-sum_my_tuishui).toFixed(2) + '</span></td>\
+                    <td></td><td></td>\
+                </tr>'
 
-        html += wrap_elem('tfoot',footer);
+            html += wrap_elem('tfoot',footer);
+        }
 
 
         return html;

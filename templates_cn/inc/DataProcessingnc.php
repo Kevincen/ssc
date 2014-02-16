@@ -227,9 +227,9 @@ if (isset($_SESSION['guid_code'])) {
         } else {//选二连直
             $s_front_array = explode('、', $s_front);
             $s_end_array = explode('、', $s_end);
-            var_dump($s_front_array);
-            var_dump($s_end_array);
-            echo "选二连直";
+/*            var_dump($s_front_array);
+            var_dump($s_end_array);*/
+/*            echo "选二连直";*/
             for ($i = 0; $i < count($s_front_array); $i++) {
                 $is_Number = isNumbernc($s_type, $s_front_array[$i], $s_number);
                 if ($is_Number === 2) exit(alert_href('抱歉！第 ' . $s_number . ' 期已經封盤', '../left.php'));

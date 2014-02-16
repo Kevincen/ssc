@@ -40,7 +40,7 @@ if (!$s_front_arr || !$s_end_arr) {//其他情况
     sort($s_front_arr);
     sort($s_end_arr);
     $results = subArray_xuanerlianzhi($s_front_arr,$s_end_arr);
-    var_dump($results);
+    //var_dump($results);
     for ($i=0; $i<count($s_front_arr); $i++)
     {
         $s_front_arr[$i] = mb_strlen($s_front_arr[$i]) <=1 ? '0'.$s_front_arr[$i] : $s_front_arr[$i];

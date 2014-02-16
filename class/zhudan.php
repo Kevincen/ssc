@@ -358,6 +358,7 @@ class Zhudan
                 }
                 break;
             case '总和、龙虎':
+            case '总和、家禽野兽':
                 switch ($mingxi_2) {
                     case '总和大':
                     case '总和小':

@@ -151,7 +151,7 @@ if (isset($_SESSION['guid_code']))
 				isUserMoney ($s_money_arr[$k], $max,$count_money); 																//驗證下注金額是否大於可用金額
 			}
 			$odds = GetOdds ($s_type, $s_hid_arr[$i]); 														//賠率
-            var_dump($odds);
+            //var_dump($odds);
 			if ($s_type=='總和、龍虎'){
 				$odds = setodds($s_hid_arr[$i], $odds, $ConfigModel, $user, 1);
 			} else {
@@ -283,7 +283,7 @@ if (isset($_SESSION['guid_code']))
 	{
 		$number_1 = $_POST['s_number'];//期数
 		$sm_arr = $_POST['sm_arr']; //第一球，8，100￥|第二球，8，20￥|
-        var_dump($sm_arr);
+        //var_dump($sm_arr);
 		$sm_arr = explode('|', $sm_arr, -1);
 		//$number_arr = array();
 		for ($i=0; $i<count($sm_arr); $i++){

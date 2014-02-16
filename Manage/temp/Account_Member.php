@@ -177,7 +177,7 @@ function update_MR($cid)
     global $_POST;
     $uModel = new UserModel();
     $name = $_POST['s_Name'];
-    var_dump($_POST);
+    //var_dump($_POST);
 
     if ($cid == 5) {
         $usersModel = $uModel->GetMemberModel($name);

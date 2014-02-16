@@ -199,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     }
 }
-var_dump($CentetArr);
+//var_dump($CentetArr);
 exit;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
