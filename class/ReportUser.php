@@ -81,7 +81,8 @@ class ReportProxy extends ReportUser
     }
 
     //获取所有的下级会员名
-    private function get_my_members($type = 0)
+    //@param type
+    private function get_my_members($direct = false)
     {
         $ret = array();
 
@@ -90,13 +91,11 @@ class ReportProxy extends ReportUser
         }
 
         $my_nid = $this->nid;
-        if ($type == 0) {
-            $sql_str = "select g_name from g_user where g_nid like '{$my_nid}%'";
-        } else if ($type == 1) { //获取直属会员
+        if (!$direct) {
+            $sql_str = "select g_name from g_user where g_nid like '{$my_nid}%' and g_mumber_type='1'";
+        } else { //获取直属会员
             $my_nid .= UserModel::Like();
-            $sql_str = "select g_name from g_user where g_nid like '{$my_nid}'";
-        } else {
-            exit('get_my_members type erro');
+            $sql_str = "select g_name from g_user where g_nid like '{$my_nid}' and g_mumber_type='2'";
         }
         $member_name_array = $this->db->query($sql_str, 1);
         $ret = $member_name_array;
@@ -134,7 +133,7 @@ class ReportProxy extends ReportUser
 
         // 代理或者透明代理
         if ($this->cid == 4 || $this->cid == 0) {
-            $members = $this->get_my_members(1);
+            $members = $this->get_my_members($this->cid == 0);
             foreach ($members as $member) {
                 $child = ReportFactory::CreateUser($member['g_name'],5, $this);
                 //$this->children[] = $child;
@@ -162,7 +161,7 @@ class ReportProxy extends ReportUser
                 }
             }
             if ($this->cid != 4
-                && count($this->get_my_members(1)) > 0
+                && count($this->get_my_members(true)) > 0
             ) {
                 $child = ReportFactory::CreateUser($this->my_account_id, 0, $this, $this->my_name, $this->nid);
                 $child = $child->buildTree($start_date, $end_date, $balance, $number, $type, $this);
@@ -196,7 +195,7 @@ class TransparentReportProxy extends ReportProxy
     function __construct($account_id, $name, $nid, $parent)
     {
         $this->parent = $parent;
-        $this->cid = 4;
+        $this->cid = 0;
         $this->nid = $nid;
         $this->my_account_id = $account_id.'.会员';
         $this->my_name = $name;

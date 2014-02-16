@@ -4,7 +4,7 @@
 
 
 var UserView = function (data) {
-    this.cid = data.cid;
+    this.cid = data.cid==0?4:data.cid;
     this.data = data;
 }.
     inherits(FLZSubView).
