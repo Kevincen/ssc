@@ -97,16 +97,16 @@ if ($typeId == "action" && Copyright)
 	{
 		$endTime = strtotime($result[0]['g_feng_date']) - time();
 		$openTime =  strtotime($result[0]['g_open_date']) - time();
-        if ($openTime > timestamp(10)) {
-            $openTime = 0;
-            $endTime = 0;
-        }
         //wjl for test
         //$endTime = 100;
         //$openTime= 200;
 		$Phases = $result[0]['g_qishu'];
 		$odds = json_encode($oArr);
 		$RefreshTime = 90; //刷新時間
+        if ($openTime > timestamp(10)) {
+            $openTime = 0;
+            $endTime = 0;
+        }
 		echo <<<JSON
 			{"Phases" : $Phases,
 			"endTime" : "$endTime",

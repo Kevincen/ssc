@@ -84,10 +84,6 @@ else if ($tid == 2)
 			$result = $db->query($sql, 1);
 			$endTime = strtotime($result[0]['g_feng_date']) - time();
 			$openTime =  strtotime($result[0]['g_open_date']) - time();
-            if ($openTime > timestamp(10)) {
-                $openTime = 0;
-                $endTime = 0;
-            }
 			$Phases = $result[0]['g_qishu'];
 			$RefreshTime = 90;
 		}
@@ -107,6 +103,10 @@ else if ($tid == 2)
 			}
 		}
 		$arrList = json_encode($arrList);
+        if ($openTime > timestamp(10)) {
+            $openTime = 0;
+            $endTime = 0;
+        }
 		echo <<<JSON
 			{
 			"Phases" : $Phases,

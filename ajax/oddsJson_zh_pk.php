@@ -79,10 +79,6 @@ else if ($tid == 2)
 			$result = $db->query("SELECT `g_qishu`, `g_feng_date`, `g_open_date` FROM g_kaipan6 WHERE `g_lock` = 2 LIMIT 1 ", 1);
 			$endTime = strtotime($result[0]['g_feng_date']) - time();
 			$openTime =  strtotime($result[0]['g_open_date']) - time();
-            if ($openTime > timestamp(5)) {
-                $openTime = 0;
-                $endTime = 0;
-            }
 			$Phases = $result[0]['g_qishu'];
 			$RefreshTime = 90; //刷新時間
 		}
@@ -103,6 +99,10 @@ else if ($tid == 2)
 			}
 		}
 		$arrList = json_encode($arrList);
+        if ($openTime > timestamp(5)) {
+            $openTime = 0;
+            $endTime = 0;
+        }
 		echo <<<JSON
 			{
 			"Phases" : $Phases,

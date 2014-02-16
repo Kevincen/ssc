@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST')
 		$sql = "INSERT INTO g_login_log (g_name, g_ip, g_ip_location, g_date) VALUES ('{$loginName}','{$loginIp}','{$ip_s}',now())";
 		$db=new DB();
 		$db->query($sql, 2);
-		include_once ROOT_PATH.'Manage/main.php';
+		include_once ROOT_PATH.'Manage_old/main.php';
 		exit;
 	} 
 	else 
