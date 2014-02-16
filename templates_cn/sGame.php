@@ -124,16 +124,16 @@ switch ($g) {
         <col style="width:8.33%">
     </colgroup>
 	<tr class="t_list_caption">
-    	<td>号</td>
+    	<td>号码</td>
         <td>赔率</td>
         <td class="je">金额</td>
-        <td>号</td>
+        <td>号码</td>
         <td>赔率</td>
         <td class="je">金额</td>
-        <td>号</td>
+        <td>号码</td>
         <td>赔率</td>
         <td class="je">金额</td>
-        <td>号</td>
+        <td>号码</td>
         <td>赔率</td>
         <td class="je">金额</td>
     </tr>
