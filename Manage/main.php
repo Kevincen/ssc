@@ -8,7 +8,7 @@ if (!defined('ROOT_PATH'))
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome</title>
+    <title><?php echo $loginName ?> - <?php echo $Title?></title>
     <script type="text/javascript">if ( top.location != self.location ) top.location=self.location;</script>
 </head>
 <?php

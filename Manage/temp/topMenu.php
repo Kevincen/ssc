@@ -126,7 +126,7 @@ $password_url = "UpdatePwd.php";
                 <span class="user_logo"></span>账号：<span id="member_id"><?php echo $name ?></span>,<span id="role">
                     <?php echo $Users[0]['g_Lnid'][0] ?>
                 </span>
-                <a href="Quit.php" id="logout" class="logout-link">退出</a>
+                <a href="Quit.php" id="logout" class="logout-link" target="_top">退出</a>
             </div>
         </div>
         <div class="marquee">
@@ -142,7 +142,7 @@ $password_url = "UpdatePwd.php";
                     <a href="News.aspx" class="more more_announcement">更多</a>&nbsp;
 					|
                         <?php //TODO:线路选择？?>
-					<a id="lineSelect" href="javascript:void(0)"><img src="/webssc/images/lineSelect.png" width="77"
+					<a id="lineSelect" href="javascript:void(0)"><img src="/wjl_tmp/lineSelect.png" width="77"
                                                                       height="18" border="0" alt="Live Help"></a>&nbsp;
 										</span>
             <span id="marqueeRefresh" class="hidden">17</span>

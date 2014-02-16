@@ -33,7 +33,7 @@ foreach($Home as $key=>$line)
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo base64_decode($_COOKIE['g_user']); ?> - <?php echo $Title_cn; ?></title>
-<link type="text/css" rel="stylesheet" href="templates_cn/css/skin.css">
+<link id="css_link" type="text/css" rel="stylesheet" href="templates_cn/css/skin.css">
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/artDialog.js?skin=twitter"></script>
 <style type="text/css">
@@ -59,6 +59,7 @@ html,body { margin:0;padding:0; height:100%; overflow:hidden;}
 function ChangeSkin(skin)
 {
 	$("body").removeClass("skin_brown skin_blue skin_red").addClass(skin);
+    //document.getElementById('css_link').href = document.getElementById('css_link').href;
 }
 
 var Dialog = null;
@@ -101,7 +102,7 @@ $(function(){
 		if(n_link !='')
 		{
 			n_link = n_link+"/index.php?version="+version;
-			alert('功能未完成！');
+			//alert('功能未完成！');
 			window.location = n_link;
 		}
 	});

@@ -34,7 +34,7 @@ foreach($dHome as $dkey=>$dline)
 		}
 		else
 		{
-			$dhost[] = 'http://'.$dline.':'.$dPort[$key];
+			$dhost[] = 'http://'.$dline.':'.$dPort[$dkey];
 		}
 	}
 }
@@ -42,7 +42,7 @@ foreach($dHome as $dkey=>$dline)
 
 
 
-$secode='888'; //安全码
+$secode='8888'; //安全码
 
 //未登录
 if(empty($_POST['dopost']) && !isset($_SESSION['daohang']))
@@ -199,7 +199,7 @@ h1 span{position:relative;z-index:2;}
             <div class="lh">
                 <ul>
                     <?php foreach($dhost as $dlink_key=>$dlink){?>             
-					<li><a href="<?php echo $dink; ?>" target="_blank">线路<?php echo $dlink_key+1; ?></a></li>
+					<li><a href="<?php echo $dlink; ?>" target="_blank">线路<?php echo $dlink_key+1; ?></a></li>
                     <?php }?> 
                 </ul>
                 <h3>备用线路：</h3>

@@ -5,6 +5,7 @@ if (!defined('Copyright') && Copyright != '作者QQ:1834219632')
 exit('作者QQ:1834219632');
 include_once ROOT_PATH.'function/global.php';
 
+//$loginName = base64_decode($_COOKIE['g_user']);
 //获取公告信息
 $text = $db->query("SELECT * FROM g_news WHERE g_number_alert_show = 1 ORDER BY g_id DESC LIMIT 10 ", 0);
 $list = '';

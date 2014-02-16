@@ -49,7 +49,7 @@ else if ($sHome == 2)
 }
 else if ($sHome == 3)
 {
-	include_once ROOT_PATH.'Manage/LoginRoot.php';
+	include_once ROOT_PATH.'Manage_old/Login.php';
 }
 else if ($sHome == 4)
 {
