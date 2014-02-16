@@ -32,42 +32,42 @@ switch ($g) {
     case 'g1':
         if ($ConfigModel['g_game_nc_1'] != 1) exit(href('right.php'));
         $types = '第一球';
-        $aHtml = '<a ' . $getResult . '>第1球</a>';
+        $aHtml = '<a ' . $getResult . '>第一球</a>';
         break;
     case 'g2':
         if ($ConfigModel['g_game_nc_2'] != 1) exit(href('right.php'));
         $types = '第二球';
-        $aHtml = '<a ' . $getResult . '>第2球</a>';
+        $aHtml = '<a ' . $getResult . '>第二球</a>';
         break;
     case 'g3':
         if ($ConfigModel['g_game_nc_3'] != 1) exit(href('right.php'));
         $types = '第三球';
-        $aHtml = '<a ' . $getResult . '>第3球</a>';
+        $aHtml = '<a ' . $getResult . '>第三球</a>';
         break;
     case 'g4':
         if ($ConfigModel['g_game_nc_4'] != 1) exit(href('right.php'));
         $types = '第四球';
-        $aHtml = '<a ' . $getResult . '>第4球</a>';
+        $aHtml = '<a ' . $getResult . '>第四球</a>';
         break;
     case 'g5':
         if ($ConfigModel['g_game_nc_5'] != 1) exit(href('right.php'));
         $types = '第五球';
-        $aHtml = '<a ' . $getResult . '>第5球</a>';
+        $aHtml = '<a ' . $getResult . '>第五球</a>';
         break;
     case 'g6':
         if ($ConfigModel['g_game_nc_6'] != 1) exit(href('right.php'));
         $types = '第六球';
-        $aHtml = '<a ' . $getResult . '>第6球</a>';
+        $aHtml = '<a ' . $getResult . '>第六球</a>';
         break;
     case 'g7':
         if ($ConfigModel['g_game_nc_7'] != 1) exit(href('right.php'));
         $types = '第七球';
-        $aHtml = '<a ' . $getResult . '>第7球</a>';
+        $aHtml = '<a ' . $getResult . '>第七球</a>';
         break;
     case 'g8':
         if ($ConfigModel['g_game_nc_8'] != 1) exit(href('right.php'));
         $types = '第八球';
-        $aHtml = '<a ' . $getResult . '>第8球</a>';
+        $aHtml = '<a ' . $getResult . '>第八球</a>';
         break;
     default:
         exit;
@@ -421,7 +421,8 @@ $number_type = "nc"
         <th><span>20</span></th>
     </tr>
     <tr id="su">
-        <td><span class="orange">冷热</span></td>
+<!--         <td><span class="orange">冷热</span></td> -->
+    	<td>冷热</td>
         <td>1</td>
         <td>1</td>
         <td>1</td>
@@ -444,7 +445,8 @@ $number_type = "nc"
         <td>2</td>
     </tr>
     <tr id="se">
-        <td><span class="orange">遗漏</span></td>
+<!--         <td><span class="orange">遗漏</span></td> -->
+   	 	<td>遗漏</td>
         <td>0</td>
         <td>2</td>
         <td>1</td>

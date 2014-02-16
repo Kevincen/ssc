@@ -196,8 +196,8 @@ setAction[6] = function () { //出球率與無出期數
 		var gid = _href.replace("g","");
 		$.post (URL, {typeid : "sumball", gid : gid}, function (data) {
 			//alert(data);return;
-			var th1 = '<th>冷热</th>';
-			var th2 = '<th>遗漏</th>';
+			var th1 = '<td>冷热</td>';
+			var th2 = '<td>遗漏</td>';
 			var row_1Html = new Array();
 			var row_2Html = new Array();
 			for (var i in data.row_1) {

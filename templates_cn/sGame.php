@@ -32,45 +32,45 @@ switch ($g) {
 	case 'g1':
 		if ($ConfigModel['g_game_1'] !=1)exit(href('right.php'));
 		$types = '第一球';
-		$aHtml = '<a '.$getResult.'>第1球</a>';
+		$aHtml = '<a '.$getResult.'>第一球</a>';
 		break;
 	case 'g2':
 		if ($ConfigModel['g_game_2'] !=1)exit(href('right.php'));
 		$types = '第二球';
-		$aHtml = '<a '.$getResult.'>第2球</a>';
+		$aHtml = '<a '.$getResult.'>第二球</a>';
 		break;
 	case 'g3':
 		if ($ConfigModel['g_game_3'] !=1)exit(href('right.php'));
 		$types = '第三球';
-		$aHtml = '<a '.$getResult.'>第3球</a>';
+		$aHtml = '<a '.$getResult.'>第三球</a>';
 		break;
 	case 'g4':
 		if ($ConfigModel['g_game_4'] !=1)exit(href('right.php'));
 		$types = '第四球';
-		$aHtml = '<a '.$getResult.'>第4球</a>';
+		$aHtml = '<a '.$getResult.'>第四球</a>';
 		break;
 	case 'g5':
 		if ($ConfigModel['g_game_5'] !=1)exit(href('right.php'));
 		$types = '第五球';
-		$aHtml = '<a '.$getResult.'>第5球</a>';
+		$aHtml = '<a '.$getResult.'>第五球</a>';
         $has_long_hu = false;
         break;
 	case 'g6':
 		if ($ConfigModel['g_game_6'] !=1)exit(href('right.php'));
 		$types = '第六球';
-		$aHtml = '<a '.$getResult.'>第6球</a>';
+		$aHtml = '<a '.$getResult.'>第六球</a>';
         $has_long_hu = false;
 		break;
 	case 'g7':
 		if ($ConfigModel['g_game_7'] !=1)exit(href('right.php'));
 		$types = '第七球';
-		$aHtml = '<a '.$getResult.'>第7球</a>';
+		$aHtml = '<a '.$getResult.'>第七球</a>';
         $has_long_hu = false;
 		break;
 	case 'g8':
 		if ($ConfigModel['g_game_8'] !=1)exit(href('right.php'));
 		$types = '第八球';
-		$aHtml = '<a '.$getResult.'>第8球</a>';
+		$aHtml = '<a '.$getResult.'>第八球</a>';
         $has_long_hu = false;
 		break;
 	default:exit;

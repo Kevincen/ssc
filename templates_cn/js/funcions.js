@@ -216,8 +216,8 @@ setAction[6] = function () { //出球率與無出期數
         var gid = _href.replace("g", "");
         $.post(URL, {typeid: "sumball", gid: gid}, function (data) {
             //alert(data);return;
-            var th1 = '<td class="nv">出球率</td>';
-            var th2 = '<td class="nv">无出期数</td>';
+            var th1 = '<td>出球率</td>';
+            var th2 = '<td>无出期数</td>';
             var row_1Html = new Array();
             var row_2Html = new Array();
             for (var i in data.row_1) {
