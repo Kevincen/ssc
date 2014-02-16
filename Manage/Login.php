@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
           } else {
               include_once ROOT_PATH.'Manage/main.php';
           }*/
-        include_once ROOT_PATH . 'Manage/main.php';
+        include_once ROOT_PATH . 'Manage/main_frame.php';
 
         exit;
     } else {

@@ -97,6 +97,9 @@ $password_url = "UpdatePwd.php";
                 $('.on').removeClass('on');
                 $(this).addClass('on');
             })
+            $('#lineSelect').click(function(){
+                window.top.ShowLinkBox();
+            })
         })
     </script>
     <div class="logo">

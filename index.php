@@ -34,7 +34,9 @@ else if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['version']))
 	{
         include_once ROOT_PATH.'main_cn.php';
     }
-	else
+    else if ($_GET['version'] == 'agent') {
+        include_once ROOT_PATH.'/Manage/main_frame.php';
+    } else
 	{
       	include_once ROOT_PATH.'main.php';
     }

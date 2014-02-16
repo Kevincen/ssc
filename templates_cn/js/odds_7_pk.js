@@ -311,7 +311,7 @@ function loadodds(oddslist, endtime, number){
 	var a = ["f","g","h","i","j"];
 	var odds, link, urls;
 	if (oddslist == null || oddslist == "" || endtime <1) {
-		$(".o").html("-");
+		$(".o").html("");
 		return false;
 	}
 	for (var n=0; n<oddslist.length; n++){

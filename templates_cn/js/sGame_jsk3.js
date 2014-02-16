@@ -206,7 +206,7 @@ var _hiden, _endtime, _opentime, _refreshtime, _openNumber, _lock=false;
 		var a = ["a","b","c","d","e"];
 		var odds, link, urls;
 		if (oddslist == null || oddslist == "" || endtime <1) {
-			$(".o").html("-");
+			$(".o").html("");
 			return false;
 		}
 		for (var n=0; n<oddslist.length; n++){
