@@ -209,3 +209,8 @@ function common_action_set(recall_function) {
     );
 }
 
+
+function kaijiang_sound() {
+    $('#player').append('<audio autoplay="autoplay"><source src="/wjl_tmp/kaijiang.mp3"><source src="/wjl_tmp/kaijiang.ogg"></audio>');
+}
+

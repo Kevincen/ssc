@@ -318,6 +318,7 @@ switch ($g) {
         </td>
     </tr>
 </table>
+
 <?php include_once 'inc/cl_file.php';?>
 <?php 
 $db = new DB();

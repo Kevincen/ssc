@@ -433,6 +433,8 @@ $number_type = "k3"
 </div>
 </div>
 </div>
+<div id="player" style="display: none">
+</div>
 
 </div>
 </body>

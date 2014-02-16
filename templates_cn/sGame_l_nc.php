@@ -357,4 +357,6 @@ $number_type = "nc"
     </div>
 
 </div>
+<div id="player" style="display: none">
+</div>
 </body>

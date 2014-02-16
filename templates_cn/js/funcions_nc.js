@@ -263,6 +263,7 @@ setAction[8] = function () { //开奖
 				if($("#soundbut").attr("value")=="on"){
 				$("#look").html("<embed width=\"0\" height=\"0\" src=\"js/c.swf\" type=\"application/x-shockwave-flash\" hidden=\"true\" />");
 				}getinfotop();
+                kaijiang_sound();
 				NumberCache = data.number;
 				_Number(data.number, data.ballArr);
 				setAction[6]();

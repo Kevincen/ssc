@@ -743,6 +743,8 @@ $sub_type = "两面盘";
         </div>
     </div>
 </form>
+<div id="player" style="display: none">
+</div>
 <?php include './popup.html'?>
 </div>
 </body>

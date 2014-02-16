@@ -285,5 +285,7 @@ $sub_type = "冠亚军组合";
 <?php include './popup.html' ?>
 </form>
 </div>
+<div id="player" style="display: none">
+</div>
 </body>
 </html>

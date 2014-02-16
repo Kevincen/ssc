@@ -532,6 +532,8 @@ div#row2 { }
     </tr>
 </table>
 <div id="look" style="display:none"></div>
+<div id="player" style="display: none">
+</div>
 <?php include_once 'inc/cl_filesz.php';?>
 <?php 
 $name = base64_decode($_COOKIE['g_user']);

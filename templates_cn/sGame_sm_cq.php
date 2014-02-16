@@ -271,6 +271,8 @@ div#row2 {}
         </td>
     </tr>
 </table>
+<div id="player" style="display: none">
+</div>
 <div id="look" style="display:none"></div>
 <?php include_once 'inc/cl_file.php';?>
 <?php 

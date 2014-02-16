@@ -12,7 +12,7 @@
         <td><strong class="c_blue"><?php echo $gametype ?> </strong> <b class="blue_h"><?php echo $sub_type ?></b></td>
         <td><strong class="red">今日输赢：<span id="sy" class="red">0</span></strong></td>
         <td colspan="3" id="resultnum" class="pk10" align="right"><strong class="c_blue"><b
-                    id="number">398261</b>期开奖</strong>
+                    id="number"></b>期开奖</strong>
             <?php if ($number_type === "k3") { ?>
                 <span id="a" class="number num6" style="float: right"></span>
                 <span id="b" class="number num1" style="float: right"></span>

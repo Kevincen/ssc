@@ -425,6 +425,8 @@ div#row2 { }
 <div class="blank10">&nbsp;</div>
 <input type="hidden" id="mix" value="<?php echo$ConfigModel['g_mix_money']?>" />
 <div id="look" style="display:none"></div>
+<div id="player" style="display: none">
+</div>
 <?php include './popup.html'?>
 <?php include_once 'inc/cl_file.php';?>
 <?php 

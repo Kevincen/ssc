@@ -182,7 +182,11 @@ var setResultcq = new Array();
 		var number = $("#number");
 		var sy = $("#sy");
 		$.post("/ajax/cqJson.php", { typeid : 1, mid : _hiden}, function(data){
+            console.log(data);
 			_Number (data.number, data.ballArr);
+            if (data.number != number.text()) {
+                kaijiang_sound();
+            }
 			openNumberCount(data, bool);
 			sy.html(data.winMoney);
 		}, "json");
@@ -190,6 +194,7 @@ var setResultcq = new Array();
 	
 	function loadDayInfo(){
 		$.post("/ajax/cqJson.php", { typeid : 2, mid : _hiden}, function(data){
+            console.log(data);
 			openNumber(data.Phases);
 			opentimes(data.openTime);
 			endtimes(data.endTime);

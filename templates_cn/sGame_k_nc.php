@@ -480,6 +480,8 @@ $sub_type = '连码';
     <?php include './popup.html'?>
 
 </div>
+<div id="player" style="display: none">
+</div>
 
 </body>
 </html>

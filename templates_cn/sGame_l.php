@@ -284,6 +284,8 @@ $g = $_GET['g'];
     <tr class="t_td_text" id="z_cl"><td>&nbsp;</td></tr>
 </table>
 <div class="blank10">&nbsp;</div>
+<div id="player" style="display: none">
+</div>
 <?php include_once 'inc/cl_file.php'; ?>
 </body>
 </html>

@@ -559,6 +559,8 @@ $sub_type = "6 ~ 10";
 </form>
 <?php include './popup.html' ?>
 </div>
+<div id="player" style="display: none">
+</div>
 </body>
 
 </html>

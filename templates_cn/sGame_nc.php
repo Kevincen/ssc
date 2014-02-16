@@ -537,6 +537,8 @@ $number_type = "nc"
 </div>
 </div>
 </div>
+<div id="player" style="display: none">
+</div>
 </form>
 <?php include './popup.html' ?>
 </div>

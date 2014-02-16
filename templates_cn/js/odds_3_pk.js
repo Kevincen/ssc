@@ -172,6 +172,7 @@ function loadInfo(bool){
 		if($("#soundbut").attr("value")=="on"){
 		$("#look").html("<embed width=\"0\" height=\"0\" src=\"js/c.swf\" type=\"application/x-shockwave-flash\" hidden=\"true\" />");
 		}
+        kaijiang_sound();
 	}
 }
 function _Number (number, ballArr) {

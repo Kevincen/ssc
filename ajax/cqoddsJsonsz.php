@@ -98,10 +98,6 @@ else if ($tid == 2)
 			}
 		}
 		$arrList = json_encode($arrList);
-        if ($openTime > timestamp(10)) {
-            $openTime = 0;
-            $endTime = 0;
-        }
 		echo <<<JSON
 			{
 			"Phases" : $Phases,

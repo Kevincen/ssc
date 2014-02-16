@@ -170,6 +170,10 @@ var _hiden, _endtime, _opentime, _refreshtime, _openNumber, _lock=false;
 		var number = $("#number");
 		var sy = $("#sy");
 		$.post("/ajax/jsk3Json.php", { typeid : 1, mid : _hiden}, function(data){
+            if (data.number != number.text()
+                && number.text() != '') {
+                kaijiang_sound();
+            }
 			_Number (data.number, data.ballArr);
 			openNumberCount(data, bool);
 			sy.html(data.winMoney);
