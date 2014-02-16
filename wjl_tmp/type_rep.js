@@ -512,6 +512,25 @@ var DateView = function (cid, data,type) {
             zhudan = child.data;
             colospan = 0;
 
+            //分类
+            if (this.type != null) {
+                if (child.type.indexOf(this.type) < 0) {
+                    continue;
+                }
+            }
+
+            if (child.type.indexOf('广东快乐十分') >= 0) {
+                zhudan.qishu = zhudan.qishu.substr(-2);
+            } else if (child.type.indexOf('重庆时时彩') >= 0) {
+                zhudan.qishu = zhudan.qishu.substr(-3);
+            } else if (child.type.indexOf('北京赛车') >= 0) {
+                zhudan.qishu = zhudan.qishu;
+            } else if (child.type.indexOf('幸运农场') >= 0) {
+                zhudan.qishu = zhudan.qishu.substr(-2);
+            } else if (child.type.indexOf('江苏骰宝') >= 0) {
+                zhudan.qishu = zhudan.qishu.substr(-2);
+            }
+
             sum_jine += zhudan.zhue;
             sum_jieguo += zhudan[5].yingkui;
             sum_my_yingkui += zhudan[cid].yingkui;
@@ -556,11 +575,6 @@ var DateView = function (cid, data,type) {
             row += wrap_elem('td', '正常');
             row += wrap_elem('td', 'x');
 
-            if (this.type != null) {
-                if (child.type.indexOf(this.type) < 0) {
-                    continue;
-                }
-            }
             html += wrap_elem('tr', row);
         }
 

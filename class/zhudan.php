@@ -191,7 +191,7 @@ class Zhudan
             $zhudan_obj->data['username'] = $tmp['g_nid'];
             $zhudan_obj->data['id'] = $tmp['g_id'];
             $zhudan_obj->data['time'] = $tmp['g_date'];
-            $zhudan_obj->data['qishu'] = substr($tmp['g_qishu'], -2);
+            $zhudan_obj->data['qishu'] = $tmp['g_qishu'];
             $zhudan_obj->data['odds'] =  $tmp['g_odds'];
             if (strstr($tmp['g_mingxi_1'],'选')) {
                 if ($tmp['g_mingxi_1'] == '选二连直') {
