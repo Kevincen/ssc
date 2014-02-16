@@ -69,11 +69,23 @@ $lang = new utf8_lang();
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script type="text/javascript" src="/js/actiontop.js"></script>
     <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/artDialog.js?skin=twitter"></script>
     <link rel="stylesheet" href="/wjl_tmp/steal.css"/>
     <script type="text/javascript" src="/Manage/temp/js/common.js"></script>
     <script type="text/javascript" src="/wjl_tmp/common.js"></script>
     <script type="text/javascript" src="/js/Validform_v5.3.2_min.js"></script>
     <script type="text/javascript">
+        //一般提示信息窗体
+        function my_alert(message, ok_func) {
+            art.dialog({
+                title: '用户提示',
+                content: message,
+                drag: true,
+                width: '410px',
+                ok: function () {
+                }
+            });
+        }
         $(document).ready(function(){
             var win_height = window.innerHeight;
             $("#layout").css('height',win_height+'px');
@@ -126,6 +138,26 @@ $lang = new utf8_lang();
                         }
                         return false;
                     }
+                },beforeSubmit:function(curform) {
+                    //在验证成功后，表单提交前执行的函数，curform参数是当前表单对象。
+                    //这里明确return false的话表单将不会提交;
+                    console.log(curform);
+                    var $money_input = $('input[name=account_money]');
+
+                    var money_limit = $money_input.attr('title').split('~');
+                    var account_money = $money_input.val();
+
+                    if (parseInt(account_money) < parseInt(money_limit[0])) {
+                        my_alert('上级信用总额必须大于下级信用总额之和:'+ money_limit[0]);
+                        return false;
+                    } else if (parseInt(account_money) > parseInt(money_limit[1])) {
+                        my_alert('下级信用总额不能超过上级剩余信用总额度:'+ money_limit[1]);
+                        return false;
+                    }
+
+
+                    return false;
+
                 }
             })
 
@@ -142,7 +174,6 @@ $lang = new utf8_lang();
             $('a[name=down]').click(function(){
                 var $input = $(this).prev().prev('input');
                 var value = parseFloat($input.val()) - 0.01;
-
                 if (value >= $input.attr('minvalue')) {
                     $input.val(value).attr('current_val', value);
                 }
@@ -152,7 +183,7 @@ $lang = new utf8_lang();
     <script type="text/javascript" src="/Manage/temp/js/Pwd_Safety.js"></script>
     <title></title>
 </head>
-<body>
+<body class="skin_red">
 <div id="layout" class="container" style="height:358px;">
 
 
