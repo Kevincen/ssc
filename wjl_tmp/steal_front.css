@@ -1049,17 +1049,17 @@ table.tc td, table.tc th, tr.tc td, tr.tc th, td.tc, th.tc {
 }
 
 .skin_blue .btn_s {
-    background: url(/wjl_tmp/btn-bg.png) repeat-x;
+    background: url(/templates_cn/images/skin_blue/btn-bg.png) repeat-x;
     width: 46px;
 }
 
 .skin_blue .btn_m {
-    background: url(/wjl_tmp/btn-bg.png) repeat-x;
+    background: url(/templates_cn/images/skin_blue/btn-bg.png) repeat-x;
     width: 65px;
 }
 
 .skin_blue .btn_b {
-    background: url(/wjl_tmp/btn-bg.png) repeat-x;
+    background: url(/templates_cn/images/skin_blue/btn-bg.png) repeat-x;
     width: 75px;
 }
 
@@ -1342,17 +1342,17 @@ table.tc td, table.tc th, tr.tc td, tr.tc th, td.tc, th.tc {
 }
 
 .skin_red .btn_s {
-    background: url(/wjl_tmp/btn-bg.png) repeat-x;
+    background: url(/templates_cn/images/skin_red/btn-bg.png) repeat-x;
     width: 46px;
 }
 
 .skin_red .btn_m {
-    background: url(../images/skin_red/imgf/btn-bg.png) repeat-x;
+    background: url(/templates_cn/images/skin_red/btn-bg.png) repeat-x;
     width: 65px;
 }
 
 .skin_red .btn_b {
-    background: url(/wjl_tmp/btn-bg.png) repeat-x;
+    background: url(/templates_cn/images/skin_red/btn-bg.png) repeat-x;
     width: 75px;
 }
 
@@ -1682,7 +1682,7 @@ table.tc td, table.tc th, tr.tc td, tr.tc th, td.tc, th.tc {
 }
 
 .skin_brown .btn_m {
-    background: url(/wjl_tmp/btn-bg.png) repeat-x;
+    background: url(/templates_cn/images/skin_brown/btn-bg.png) repeat-x;
     width: 63px;
     border-left: 1px solid #E9BA84;
     border-right: 1px solid #E9BA84;
@@ -1691,7 +1691,7 @@ table.tc td, table.tc th, tr.tc td, tr.tc th, td.tc, th.tc {
 }
 
 .skin_brown .btn_b {
-    background: url(/wjl_tmp/btn-bg.png) repeat-x;
+    background: url(/templates_cn/images/skin_brown/btn-bg.png) repeat-x;
     width: 75px;
 }
 

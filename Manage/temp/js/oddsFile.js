@@ -17,11 +17,13 @@ $(document).ready(function (){
 	EstateTime = $("#EstateTime").val();
 	NumberHtml = $("#number");
 	EndTimeHtml = $("#EndTime");//结束时间 offtime为封盘时间
+    OffTimeHtml = $("#offTime");
 	RefreshTimeHtml = $("#RefreshTime");
 	CountNumHtml = $("#CountNum");
 	CountNumsHtml = $("#CountNums");
 	CountLoseHtml = $("#CountLose");
 	CountWinHtml = $("#CountWin");
+
 	loadUserInfo (url);//加载所有用户数据
 	setLists();//期数获取，不知道具体是干啥的
 	_loadInfo();//开奖号码加载
@@ -44,15 +46,21 @@ function _Number (number, ballArr) {
 		$(idArr[i]).removeClass().addClass(Clss);
 	}
 }
-function setList () {
+function setList () {//双面长龙
 	$.post (Urls, {typeid : 3}, function (data) {
         console.log(data);
 		if (data.num != ""){
 			var row_1Html = new Array();
 			var setResult = new Array();
 			for (var key in data.num){
+
+                var ball_name = key.split('-');
+                if (ball_name[1] == undefined) {
+                    ball_name[1] = ball_name[0];
+                    ball_name[0] = '总和';
+                }
 				//row_1Html.push("<tr bgcolor=\"#fff\" height=\"18\"><td  class=\"uo\">"+key+"</td><td class=\"fe\">"+data.num[key]+" 期</td></tr>");
-                row_1Html.push( '<tr> <td class="grey blue" style="border-right:none;width:38%;">'+key+'</td> <td class="grey blue" style="border-left:none;width:32%;">??</td> <td class="bg-pink bg-pink2" style="width:30%;">'+data.num[key]+'</td> </tr>')
+                row_1Html.push( '<tr> <td class="grey blue" style="border-right:none;width:38%;">'+ball_name[0]+'</td> <td class="grey blue" style="border-left:none;width:32%;">'+ball_name[1]+'</td> <td class="bg-pink bg-pink2" style="width:30%;">'+data.num[key]+'期</td> </tr>')
 			}
             console.log(row_1Html);
 			//var cHtml = '<tr class="tr_top"><th colspan="2">兩面長龍排行</th></tr>';
@@ -102,14 +110,14 @@ function loadUserInfo (cid){
 		}
 		setOdds(data.infoList.oddList);//赔率都是在这里设置的。
         if (cid != undefined) {
-            setOddsByOrder(data.infoList.oddList);//按亏损排行 by wjl
+/*            setOddsByOrder(data.infoList.oddList);//按亏损排行 by wjl*///暂时用定死的数据代替
         }
 		if (lock == false){
 			endTime ();
 			lock = true;
 		}
 		planning();
-        set_sorted_list(data.infoList);
+/*        set_sorted_list(data.infoList);*/
 	}, "json");
 }
 /*
@@ -211,7 +219,8 @@ function endTime () {
 		lock = false;
 		$.post(Urls, {typeid : 9}, function(){});
 		$("td.odds").css("background", "#fff");
-		$("#offTime").html("距离封盘：").css("color","#333");
+        var time = setTime(EndTime);
+		$("#offTime").html(time[0]+':'+time[1]).css("color","#333");
 		loadUserInfo(url);
 		setLists();
 		return;
@@ -538,13 +547,18 @@ function convert_num(val)
  * @return null
  * */
 function set_sorted_list(data) {
+
     var infoList = data.userList;
     var oddList = data.oddList;
     var sorted = new Array();
     //排序：可以单独对list进行排序，再使用键名一起写入
     //先进行裁剪，因为我们只需要对1-20球进行排序
 
+    console.log('infolist');
     console.log(infoList);
+    if (infoList == null) {
+
+    }
     //infoList.list.length = 20;
     //获取前20位数字，然后排序
     sorted = sub_and_sort(infoList.list_s,sorted);

@@ -7,6 +7,8 @@
   Date:2011-12-28
 */
 define('Copyright', '作者QQ:1834219632');
+define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
+include_once ROOT_PATH. "class/Lang.php";
 
 function debug_log() {
 	if (false) return; //开关
@@ -114,13 +116,17 @@ JSON;
 	{
 		//雙面長龍
 		global $BallString, $BallString_a;
+        $lang = new utf8_lang();
 		$result = history_result(0);
 		$num_arr = sum_ball_count_1 ($BallString, $BallString_a, $result, 2);
 		arsort($num_arr);
-		$num_arr = json_encode($num_arr);
-			echo <<<JSON
+        foreach ($num_arr as $key=>$val) {
+            $result_arr[$lang->hk_cn($key)] = $val;
+        }
+		$result_arr = json_encode($result_arr);
+                echo <<<JSON
 				{
-					"num" : $num_arr
+					"num" : $result_arr
 				}
 JSON;
 	}

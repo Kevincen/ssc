@@ -125,37 +125,37 @@ switch ($g) {
         include_once "./oddsTopBar.php"
         ?>
         <ul>
-            <li class="red '.(isset($g)?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php')" id="sumDT">
+            <li class="red <?php echo $g != 0?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile.php')" id="sumDT">
                 正码-总和
             </li>
-            <li class="red '.($types != '第一球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=1')"
+            <li class="red <?php echo $types != '第一球'?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=1')"
                 id="ball1">第一球
             </li>
-            <li class="red '.($types != '第二球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=2')"
+            <li class="red <?php echo $types != '第二球'?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=2')"
                 id="ball2">第二球
             </li>
-            <li class="red '.($types != '第三球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=3')"
+            <li class="red <?php echo $types != '第三球'?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=3')"
                 id="ball3">第三球
             </li>
-            <li class="red '.($types != '第四球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=4')"
+            <li class="red <?php echo $types != '第四球'?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=4')"
                 id="ball4">第四球
             </li>
-            <li class="red '.($types != '第五球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=5')"
+            <li class="red <?php echo $types != '第五球'?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=5')"
                 id="ball5">第五球
             </li>
-            <li class="red '.($types != '第六球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=6')"
+            <li class="red <?php echo $types != '第六球'?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=6')"
                 id="ball6">第六球
             </li>
-            <li class="red '.($types != '第七球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=7')"
+            <li class="red <?php echo $types != '第七球'?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=7')"
                 id="ball7">第七球
             </li>
-            <li class="red '.($types != '第八球'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=8')"
+            <li class="red <?php echo $types != '第八球'?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile.php?cid=8')"
                 id="ball8">第八球
             </li>
-            <li class="red '.($types != '连码'?'':'active').'" onclick="Actfor_load('/Manage/temp/oddsFile_LM.php?cid=10')"
+            <li class="red <?php echo $types != '连码'?'':'active'?>" onclick="Actfor_load('/Manage/temp/oddsFile_LM.php?cid=10')"
                 id="evenCode">连码
             </li>
-            <li class="red '.($types != '账单'?'':'active').'" onclick="Actfor_load('/Manage/temp/Reckoning.php?tid=1')"
+            <li class="red <?php echo $types != '账单'?'':'active'?>" onclick="Actfor_load('/Manage/temp/Reckoning.php?tid=1')"
                 id="lizhangdan">账单
             </li>
         </ul>
@@ -245,17 +245,7 @@ switch ($g) {
                 </ul>
             </div>
         </caption>
-        <tbody>
-        <?php for ($i = 1; $i <= 20; $i++) { ?>
-            <tr number="01" playtype="" cat="01">
-                <td class="ball-color s-m-w-1" id="nsorted<?php echo $i?>">
-                </td>
-                <td class="s-m-w-2"><a class="line1 sup-line" id="hsorted<?php echo $i ?>"></a></td>
-                <td class="s-m-w-3"><a class="line2 sup-line" id="asorted<?php echo $i ?>"> </a></td>
-                <td class="s-m-w-3"><a class="line3 sup-line" id="dsorted<?php echo $i ?>"> </a></td>
-            </tr>
-        <?php } ?>
-        </tbody>
+        <tbody><tr number="11" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">11</td><td class="s-m-w-2"><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td class="s-m-w-3"><a class="line2 sup-line">0</a></td><td class="s-m-w-3"><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="01" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">01</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="03" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">03</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="04" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">04</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line" style="">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="05" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">05</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="06" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">06</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="07" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">07</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="08" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">08</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="09" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">09</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="10" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">10</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="02" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">02</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="12" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">12</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="13" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">13</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="14" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">14</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="15" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">15</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="16" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">16</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="17" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">17</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="18" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">18</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="19" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color ball-bc">19</td>          <td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="20" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color ball-bc">20</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr></tbody>
     </table>
     <table class="bet-table two-digit ycsort" id="sorted_extra"
            style="width: 33.1%; background-color: rgb(252, 247, 191); background-position: initial initial; background-repeat: initial initial;">
@@ -265,17 +255,7 @@ switch ($g) {
         <colgroup>
             <col class="col1">
         </colgroup>
-        <tbody>
-        <?php for ($i = 1; $i <= 20; $i++) { ?>
-            <tr number="01" playtype="" cat="01">
-                <td class="ball-color s-m-w-1" id="nsort_extra<?php echo $i ?>">
-                </td>
-                <td class="s-m-w-2"><a class="line1 sup-line" id="hsort_extra<?php echo $i ?>"></a></td>
-                <td class="s-m-w-3"><a class="line2 sup-line" id="asort_extra<?php echo $i ?>"> </a></td>
-                <td class="s-m-w-3"><a class="line3 sup-line" id="dsort_extra<?php echo $i ?>"> </a></td>
-            </tr>
-        <?php } ?>
-        </tbody>
+        <tbody><tr number="11" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">11</td><td class="s-m-w-2"><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td class="s-m-w-3"><a class="line2 sup-line">0</a></td><td class="s-m-w-3"><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="01" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">01</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line" style="">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="03" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">03</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="04" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">04</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line" style="">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="05" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">05</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="06" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">06</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="07" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">07</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="08" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">08</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="09" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;" class=""><td class="ball-color">09</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="10" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">10</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="02" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">02</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="12" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">12</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="13" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">13</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="14" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">14</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="15" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">15</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="16" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">16</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="17" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">17</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="18" playtype="000" cat="00" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color">18</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="19" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color ball-bc">19</td>          <td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr><tr number="20" playtype="000" cat="01" status="1" style="background-image: none; background-position: initial initial; background-repeat: initial initial;"><td class="ball-color ball-bc">20</td><td><a class="line1 sup-line" style="color: rgb(0, 17, 136);">19.87</a></td><td><a class="line2 sup-line">0</a></td><td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td></tr></tbody>
     </table>
     <table class="bet-table lmianlhlm" id="zhongfabai" style="width: 33.1%;">
         <colgroup>
@@ -428,176 +408,145 @@ switch ($g) {
         </div>
     </caption>
     <tbody>
-    <?php for ($i = 1; $i <= 20; $i++) { ?>
-        <tr number="01" playtype="" cat="01">
-            <td class="ball-color s-m-w-1">
-                <?php if ($i < 10) {
-                    echo "0" . $i;
-                } else {
-                    echo $i;
-                }
-                ?>
-            </td>
-            <td class="s-m-w-2"><a class="line1 sup-line" id="h<?php echo $i ?>"></a></td>
-            <td class="s-m-w-3"><a class="line2 sup-line" id="a<?php echo $i ?>"> </a></td>
-            <td class="s-m-w-3"><a class="line3 sup-line" id="d<?php echo $i ?>"> </a></td>
-        </tr>
-    <?php } ?>
-    <tr number="01" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;"
-        class="">
-        <td class="ball-color s-m-w-1">
-            <?php if ($i < 10) {
-                echo "0" . $i;
-           } else {
-                echo $i;
-            }
-            ?>
-        </td>
-        <td class="s-m-w-2"><a class="line1 sup-line" firstlogin="1"
-                               style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td class="s-m-w-3"><a class="line2 sup-line">0</a></td>
-        <td class="s-m-w-3"><a class="line3 sup-line" buhuo_sum="0"
-                               style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n1">
+            01                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h1">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a1">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d1">-</a></td>
     </tr>
-    <tr number="02" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;"
-        class="">
-        <td class="ball-color">02</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n2">
+            02                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h2">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a2">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d2">-</a></td>
     </tr>
-    <tr number="03" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;"
-        class="">
-        <td class="ball-color">03</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n3">
+            03                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h3">20.040</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a3">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d3">-</a></td>
     </tr>
-    <tr number="04" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;"
-        class="">
-        <td class="ball-color">04</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n4">
+            04                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h4">20.040</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a4">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d4">-</a></td>
     </tr>
-    <tr number="05" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;"
-        class="">
-        <td class="ball-color">05</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n5">
+            05                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h5">20.040</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a5">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d5">-</a></td>
     </tr>
-    <tr number="06" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;"
-        class="">
-        <td class="ball-color">06</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n6">
+            06                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h6">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a6">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d6">-</a></td>
     </tr>
-    <tr number="07" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">07</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n7">
+            07                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h7">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a7">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d7">-</a></td>
     </tr>
-    <tr number="08" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">08</td>
-        <td class="ball-color">08</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n8">
+            08                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h8">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a8">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d8">-</a></td>
     </tr>
-    <tr number="09" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">09</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n9">
+            09                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h9">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a9">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d9">-</a></td>
     </tr>
-    <tr number="10" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">10</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n10">
+            10                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h10">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a10">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d10">-</a></td>
     </tr>
-    <tr number="11" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">11</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n11">
+            11                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h11">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a11">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d11">-</a></td>
     </tr>
-    <tr number="12" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">12</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n12">
+            12                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h12">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a12">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d12">-</a></td>
     </tr>
-    <tr number="13" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">13</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n13">
+            13                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h13">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a13">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d13">-</a></td>
     </tr>
-    <tr number="14" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">14</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n14">
+            14                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h14">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a14">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d14">-</a></td>
     </tr>
-    <tr number="15" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">15</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n15">
+            15                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h15">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a15">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d15">-</a></td>
     </tr>
-    <tr number="16" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">16</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n16">
+            16                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h16">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a16">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d16">-</a></td>
     </tr>
-    <tr number="17" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">17</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n17">
+            17                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h17">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a17">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d17">-</a></td>
     </tr>
-    <tr number="18" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color">18</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n18">
+            18                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h18">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a18">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d18">-</a></td>
     </tr>
-    <tr number="19" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color ball-bc">19</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n19">
+            19                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h19">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a19">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d19">-</a></td>
     </tr>
-    <tr number="20" playtype="075" cat="29" status="1"
-        style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
-        <td class="ball-color ball-bc">20</td>
-        <td><a class="line1 sup-line" firstlogin="1" style="color: rgb(0, 17, 136);">2.38</a></td>
-        <td><a class="line2 sup-line">0</a></td>
-        <td><a class="line3 sup-line" buhuo_sum="0" style="color: rgb(0, 0, 0);">0</a></td>
+    <tr number="01" playtype="" cat="01">
+        <td class="ball-color s-m-w-1" id="n20">
+            20                </td>
+        <td class="s-m-w-2"><a class="line1 sup-line" id="h20">19.870</a></td>
+        <td class="s-m-w-3"><a class="line2 sup-line" id="a20">-</a></td>
+        <td class="s-m-w-3"><a class="line3 sup-line" id="d20">-</a></td>
     </tr>
     </tbody>
 </table>

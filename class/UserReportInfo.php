@@ -41,13 +41,13 @@ class UserReportInfo
 		if ($this->User[0]['g_login_id'] !=48 && Copyright){
 			$sql = "SELECT * FROM g_zhudan WHERE g_s_nid LIKE '{$this->User[0]['g_nid']}%' 
 			AND g_s_nid <> '{$this->User[0]['g_nid']}' 
-			AND g_qishu = '{$number}' 
+			AND g_qishu = '{$number}'
 			AND g_type = '廣東快樂十分' 
 			AND g_win is null ";
 		} else {
 			$sql = "SELECT * FROM g_zhudan WHERE g_s_nid LIKE '{$this->User[0]['g_nid']}%' 
 			AND g_mumber_type <> 5 
-			AND g_qishu = '{$number}' 
+			AND g_qishu = '{$number}'
 			AND g_type = '廣東快樂十分' 
 			AND g_win is null ";
 		}

@@ -74,9 +74,9 @@
     <tbody>
     <tr>
         <td width="18%">
-            <div class="elem_type" id="elem_type_div"><strong class="t">投注类型：</strong><a
-                    href="javascript:void(0)" class="elem_btn btnnav" id="kuijie">快捷</a><a
-                    href="javascript:void(0)" class="elem_btn btnnav on" id="yiban">一般</a></div>
+            <div class="elem_type" id="elem_type_div"><strong class="t">投注类型：</strong>
+                <a href="javascript:void(0)" class="elem_btn btnnav" id="kuijie">快捷</a>
+                <a href="javascript:void(0)" class="elem_btn btnnav on" id="yiban">一般</a></div>
         </td>
         <td width="28%" class="align-c">
             <div class="elem_amount">
@@ -91,6 +91,9 @@
                                     </span>
                     <?php } ?>
                 </div>
+<!--                <input type="button" onclick="submitforms()" id="submit_top" class="inputs ti" value="确定">
+                <input type="button" onclick="MyReset()" class="inputs ti" value="重置">-->
+
                 <a class="btn_m elem_btn" id="submit_top" onclick="submitforms()">确 定</a>
                 <a onclick="MyReset()" class="btn_m elem_btn" id="reset_top">重 置</a></div>
         </td>
