@@ -197,7 +197,7 @@ function klc_transfer_each($number_array,$type)
     </script>
     <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
 </head>
-<body class="skin_brown">
+<body class="<?php echo $_COOKIE['g_skin']; ?>">
 <div class="mains_corll wjl_container" id="layout">
 <div id="rightLoader" dom="right" style="">
 <?php

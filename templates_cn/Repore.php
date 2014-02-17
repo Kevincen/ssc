@@ -104,7 +104,7 @@ function setHtml($week, $str, $user, $type = 0)
     </script>
     <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
 </head>
-<body class="skin_brown">
+<body class="<?php echo $_COOKIE['g_skin']; ?>">
 
 <div id="rightLoader" dom="right" style="">
     <div id="history" class="history struct_table_center" tmp="history">

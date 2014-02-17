@@ -167,7 +167,7 @@ $lang = new utf8_lang();
     <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
     <title>PHP</title>
 </head>
-<body class="skin_brown">
+<body class="<?php echo $_COOKIE['g_skin']; ?>">
 <div class="main-content bet-content" dom="layoutright" id="layoutright" style="display: block;">
 <div class="mains_corll">
 <div id="rightLoader">

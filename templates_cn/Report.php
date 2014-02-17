@@ -143,7 +143,7 @@ $total_winable = 0;
     <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
     <title></title>
 </head>
-<body class="skin_brown">
+<body class="<?php echo $_COOKIE['g_skin']; ?>">
 <div style="display:none">
     <script type="text/javascript">
         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");

@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
     <link rel="stylesheet" href="/wjl_tmp/steal_front.css"/>
 </head>
-<body class="skin_brown">
+<body class="<?php echo $_COOKIE['g_skin']; ?>">
 <form action="" method="post" onsubmit="return SubChk()">
 <div id="rightLoader" dom="right" style="">
     <div id="change_password" class="dataArea"
