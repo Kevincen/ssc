@@ -9,10 +9,10 @@
 
 function isNumbernc ($type=null, $ball=null, $number=null)
 {
-    echo "type=".$type;
+/*    echo "type=".$type;
     echo "ball=".$ball;
     echo "number=".$number;
-    echo '</br>';
+    echo '</br>';*/
 	$bool = false;
 	if ($number != null)
 	{
@@ -875,9 +875,9 @@ function isBallTypexjsz($type, $ball, $p=false)
 
 function isNumberpk ($type=null, $ball=null, $number=null)
 {
-    echo $type;
+/*    echo $type;
     echo $ball;
-    echo $number;
+    echo $number;*/
 	$bool = false;
 	if ($number != null)
 	{
