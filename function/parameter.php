@@ -1607,13 +1607,13 @@ function InsertNumber ($day=1, $closeTime=2)
     $start_date = get_start_date(1);
 
     $start_date = date('Y-m-d '.$start_date,time()+60*60*24*$day);
-    echo $start_date;
+   // echo $start_date;
     $add_time = 10;
     $current_date = 0;
     $time_interval = $add_time *60;
     for ($i = 1; $i <=84;$i++) {
         $current_date = date("Y-m-d H:i:s", strtotime($start_date)+$time_interval*$i);
-        echo $current_date;
+    //    echo $current_date;
         if ($i < 10) {
             $dateArr['Number'][] = date('Ymd', strtotime($start_date)). '0' . $i;
         } else {
@@ -2107,8 +2107,8 @@ function floorMoneygx ($user, $types, $ball, $RankUser, $p=false)
 
 function RankUser ($db, $likeNid)
 {
-    echo "SELECT * FROM `g_rank` WHERE g_nid = '{$likeNid}' LIMIT 1";
-        echo '</br>';
+/*    echo "SELECT * FROM `g_rank` WHERE g_nid = '{$likeNid}' LIMIT 1";
+        echo '</br>';*/
 	return $db->query("SELECT * FROM `g_rank` WHERE g_nid = '{$likeNid}' LIMIT 1", 1);
 }
 
