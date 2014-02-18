@@ -200,9 +200,9 @@ th, td {
 padding: 7px 0
 }
 th {
-width: 21%;
+width: 23%;
 text-align: right;
-padding-left: 4px
+padding-left: 0
 }
 input {
 height: 20px;
