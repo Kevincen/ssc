@@ -156,7 +156,7 @@ $lang = new utf8_lang();
                     }
 
 
-                    return false;
+                    return true;
 
                 }
             })
