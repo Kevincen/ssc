@@ -345,16 +345,7 @@ $name = isset($Users[0]['g_lock_1']) ? $Users[0]['g_s_name'] : $Users[0]['g_name
     <td height="28" colspan="2"><table width="100%" cellspacing="0" cellpadding="0" border="0">
       <tbody><tr>
        <td  nowrap width="520" height="30" style="text-align:left">&nbsp;
-	    <!--  <select onchange="selectType(this.value)" style="color:#000000">
-	   		<option value="1">廣東快樂十分</option>
-			<option value="2">重慶時時彩</option>
-			<option value="3">廣西快樂十分</option>
-			<option value="6">北京賽車(PK10)</option>
-			<option value="7">六合彩</option>
-			<option value="5">幸运农场</option>
-			<option value="8">新疆時時彩</option>
-			<option value="9">江苏骰寶(快3)</option>
-	   </select>-->
+
 	   <input type="button" style="cursor: pointer;" onclick="selectType(1);" name="bST_1" id="bST_1" class="bST_3" value="廣東快樂十分"><input type="button" style="cursor: pointer;" onclick="selectType(2);" name="bST_2" id="bST_2"  class="bST_3" value="重慶時時彩"><input type="button" style="cursor: hand;display:none;" onclick="selectType(3);" name="bST_3" id="bST_3" class="bST_3" value="廣西快樂十分"><input type="button" style="cursor: pointer;" onclick="selectType(6);" name="bST_6" id="bST_6" class="bST_3" value="北京賽車(PK10)"><input type="button" style="cursor: hand;" onclick="selectType(9);" name="bST_9" id="bST_9" class="bST_3" value="江苏骰寶(快3)"><input type="button" style="cursor: pointer;" onclick="selectType(5);" name="bST_5" id="bST_5" class="bST_3" value="幸运农场"></td>
         <td id="But_Html" rowspan="2"><span id="a_span" ></span></td>
       </tr>
