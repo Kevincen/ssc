@@ -4474,24 +4474,24 @@ function sum_ball_str_a_nc ($ball, $index, $p=1)
 		if ($ball == 84)
 			return '和';
 		else if ($ball >=85 && Copyright)
-			return $p == 1 ? '總和大' : '大';
+			return $p == 1 ? '總和' : '大';
 		else
-			return $p == 1 ? '總和小' : '小';
+			return $p == 1 ? '總和' : '小';
 	}
 	else if ($index==4 || $index==5) //計算總和單雙
 	{
 		if ($ball % 2 == 0)
-			return $p == 1 ? '總和雙' : '雙';
+			return $p == 1 ? '總和' : '雙';
 		else
-			return $p == 1 ? '總和單' : '單';
+			return $p == 1 ? '總和' : '單';
 	}
 	else if ($index==6 || $index==7) //計算總和尾大小
 	{
 		$ball=substr($ball, -1);
 		if ($ball >=5)
-			return $p == 1 ? '總和尾大' : '大';
+			return $p == 1 ? '總和' : '尾大';
 		else
-			return $p == 1 ? '總和尾小' : '小';
+			return $p == 1 ? '總和' : '尾小';
 	}
 }
 
@@ -5052,15 +5052,15 @@ function sum_ball_str_a_pk ($ball, $index, $p=1)
 	if ($index==2 || $index==3) //計算冠亚和大小
 	{
 		if ($ball>11)
-			return '冠亞和大';
+			return '冠亞和';
 		else
-			return '冠亞和小';
+			return '冠亞和';
 	}else if ($index==4 || $index==5) //計算冠亚和单双
 	{
 		if ($ball % 2 == 0) 
-			return '冠亞和雙';
+			return '冠亞和';
 		else
-			return '冠亞和單';
+			return '冠亞和';
 	}
 	
 }
