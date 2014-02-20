@@ -103,7 +103,7 @@ $password_url = "UpdatePwd.php";
         })
     </script>
     <div class="logo">
-        <img width="120" src="/page/WebLogo_163.jpg">
+        <img width="120" src="/templates_cn/images/logo.png">
     </div>
     <!--用户信息 开关盘-->
     <div class="header-op">

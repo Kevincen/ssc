@@ -24,8 +24,11 @@ $iscash=$user[0][0];
     <td width="10%" valign="top">
 <table width="100%" border="0">
   <tbody><tr>
-    <td background="/pagef/TopLogo_163.jpg" width="231" height="79" ><object width="231" height="79" id="top_c" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,22,0" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"><param value="transparent" name="wmode"><param value="/pagef/lx.swf" name="movie"><param value="pageID=0" name="FlashVars"><param value="high" name="quality"><param value="false" name="menu"><embed width="231" height="79" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?p1_prod_version=shockwaveflash" type="application/x-shockwave-flash" wmode="transparent" quality="high" name="top_c" src="/pagef/lx.swf"></object>
-	</td>
+<!--      <td background="/pagef/TopLogo_163_1.jpg" width="231" height="79" ><object width="231" height="79" id="top_c" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,22,0" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"><param value="transparent" name="wmode"><param value="/pagef/lx.swf" name="movie"><param value="pageID=0" name="FlashVars"><param value="high" name="quality"><param value="false" name="menu"><embed width="231" height="79" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?p1_prod_version=shockwaveflash" type="application/x-shockwave-flash" wmode="transparent" quality="high" name="top_c" src="/pagef/lx.swf"></object>
+      </td>-->
+      <td style="background: url(/templates_cn/images/skin_brown/bg_body.png) repeat-x left top;" width="231" height="79" >
+          <img width="120" style="margin-left: 40px" src="/templates_cn/images/logo.png">
+      </td>
    </tr>
    <tr>
     <td><img width="231" height="29" src="/pagef/TopMenu_Top2.jpg"></td>
