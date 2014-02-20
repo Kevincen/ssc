@@ -97,7 +97,7 @@ div#row2 { }
     </tr>
 </table>
 <form id="dp" action="" method="post" target="leftFrame" onsubmit = "return submitforms()">
-<table class="ths" border="0" cellpadding="0" cellspacing="0">
+<table class="ths" border="0" cellpadding="0" cellspacing="0" style="display: none">
     <tr>
         <td >投注类型：</td>
         <td width="100"><a href="#this" class="intype_normal" id="kuijie">快捷</a><a href="#this" class="intype_hover" id="yiban">一般</a></td>

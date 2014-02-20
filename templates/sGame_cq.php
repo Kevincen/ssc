@@ -105,7 +105,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "%68%6D%2E%62%61%69%
 		<td id="e" class="l"> </td>
     </tr>
 </table>
-<table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px">
+<table class="ths" border="0" cellpadding="0" cellspacing="0" style="margin-top:0px; ">
     <tr>
         <td ><span id="o" style=" color:#009900; font-weight:bold; font-size:14px;position:relative; top:1px"></span>期</td>
         <td width="85">&nbsp;</td>
@@ -116,7 +116,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "%68%6D%2E%62%61%69%
 </table>   
  
 <form id="dp" action="" method="post" target="leftFrame" onsubmit = "return submitforms()">
-<table class="ths" border="0" cellpadding="0" cellspacing="0"  style="margin-top:0px">
+<table class="ths" border="0" cellpadding="0" cellspacing="0"  style="margin-top:0px;display: none">
     <tr>
         <td >投注类型：</td>
         <td width="100"><a href="#this" class="intype_normal" id="kuijie">快捷</a><a href="#this" class="intype_hover" id="yiban">一般</a></td>
