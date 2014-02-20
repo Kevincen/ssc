@@ -66,10 +66,11 @@ exit('invalid request');
 		}
         private function rep_first() {
                 @$html.=
-                    '<a title="第一页" class="first" id="first" href="'.$this->uri.'&page=1"></a>';
+                    '<a title="第一页" class="first" id="first" href="'.$this->uri.'&page=1">▕◀</a>';
 
             return $html;
         }
+
 
 		private function prev(){
 			if($this->page==1)
@@ -81,7 +82,7 @@ exit('invalid request');
 		}
         private function rep_prev() {
 
-                @$html.='<a title="上一页" class="previous" id="previous" href="'.$this->uri.'&page='.($this->page-1).'"></a>';
+                @$html.='<a title="上一页" class="previous" id="previous" href="'.$this->uri.'&page='.($this->page-1).'">◀</a>';
 
             return $html;
         }
@@ -133,7 +134,7 @@ exit('invalid request');
 		}
         private function rep_next() {
 
-                @$html.='<a title="下一页" class="next" id="next" href="'.$this->uri.'&page='.($this->page+1).'"></a>';
+                @$html.='<a title="下一页" class="next" id="next" href="'.$this->uri.'&page='.($this->page+1).'">▶</a>';
 
             return $html;
         }
@@ -147,7 +148,7 @@ exit('invalid request');
 			return $html;
 		}
         private function rep_last(){
-                @$html.='<a title="末页" class="last" id="last" href="'.$this->uri.'&page='.($this->pageNum).'"></a>';
+                @$html.='<a title="末页" class="last" id="last" href="'.$this->uri.'&page='.($this->pageNum).'">▶▏</a>';
 
             return $html;
         }
