@@ -9,7 +9,10 @@ $db=new DB();
 $sql = "SELECT * FROM g_zhudan where g_nid='$name' ORDER BY g_id DESC LIMIT 10";
 $result1 = $db->query($sql, 1);
  $configModel = configModel("g_kg_game_lock,g_cq_game_lock,g_gx_game_lock,g_pk_game_lock,g_nc_game_lock,g_lhc_game_lock,g_xj_game_lock,g_jsk3_game_lock");
-		 
+
+$sql = "SELECT sum(g_jiner) as sum_jiner FROM g_zhudan where g_nid='$name' and g_type='$type' and g_win is null ORDER BY g_id ";
+$result_total = $db->query($sql, 1);
+$used_money = $result_total[0]['sum_jiner'] == NULL ? 0:$result_total[0]['sum_jiner'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" oncontextmenu="return false">
@@ -83,13 +86,22 @@ setInterval(getinfo2, 20000);
                     
                     <tr>
                         <td class="t_td_caption_1">可用金額</td>
-                        <td id="jine" class="t_td_text"><?php echo is_Number($user[0]['g_money_yes'])?></td>
+                        <td id="jine" class="t_td_text"><?php echo is_Number($user[0]['g_money'])?></td>
                     </tr>
+    <tr>
+        <td class="t_td_caption_1">信用余额：</td>
+        <td id="jine" class="t_td_text" style="font-weight:bold;"><?php echo is_Number($user[0]['g_money_yes'])?></td>
+    </tr>
+    <tr>
+        <td class="t_td_caption_1">已下金额：</td>
+        <td class="t_td_text" id='used_money'><?php echo $used_money ?></td>
+    </tr>
     <!--新旧版跳转临时按钮-->
     <tr>
-        <td class="t_list_caption">
+        <td class="t_list_caption left_version"  colspan="2">
             <a href="/index.php?version=cn" target="_parent">
-                <button>新版</button>
+                <img src="./images/shengji.gif" alt=""/>
+
             </a>
         </td>
     </tr>
