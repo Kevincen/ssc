@@ -48,8 +48,8 @@ function setHtml($week, $str, $user, $type = 0)
 			            ' . $html . '
 			            <td align="center">' . $count_bishu . '</td>
 			            <td >' . is_Number($count_jiner) . '&nbsp;</td>
-			            <td >' . number_format($count_tueishui,1,".","") . '&nbsp;</td>
-			            <td >' . number_format($count_win, 1, ".", "") . '&nbsp;</td>
+			            <td >' . number_format($count_tueishui,0,".","") . '&nbsp;</td>
+			            <td >' . number_format($count_win, 0, ".", "") . '&nbsp;</td>
         			  </tr>';
     }
     echo '<tfoot class="bg_g1">
@@ -57,9 +57,9 @@ function setHtml($week, $str, $user, $type = 0)
         	<td><b>' . $str . '</b></td>
             <td>' . $a . '</td>
             <td >' . is_Number($b) . '&nbsp;</td>
-            <td ><b>' . number_format($e, 1, ".", "") . '</b>&nbsp;</td>
+            <td ><b>' . number_format($e, 0, ".", "") . '</b>&nbsp;</td>
 
-            <td >' . number_format($g, 1, ".", "") . '&nbsp;</td>
+            <td >' . number_format($g, 0, ".", "") . '&nbsp;</td>
         </tr>
     </tfoot>   ';
 }
