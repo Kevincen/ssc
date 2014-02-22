@@ -109,9 +109,15 @@ function _isNumberIsNotNullnc ($db, $ball, $number)
 function postForms ($list)
 {
 	$db = new DB();
-	$sql = "INSERT INTO `g_zhudan` ( `g_s_nid`, `g_mumber_type`, `g_nid`, `g_date`, `g_type`, `g_qishu`, `g_mingxi_1`, `g_mingxi_1_str`, `g_mingxi_2`, `g_mingxi_2_str`, `g_odds`, `g_jiner`, `g_tueishui`, `g_tueishui_1`, `g_tueishui_2`, `g_tueishui_3`, `g_tueishui_4`, `g_distribution`, `g_distribution_1`, `g_distribution_2`, `g_distribution_3`,`g_distribution_4`) "; 
+    $sql = "select max(g_id) as id from g_zhudan";
+    $result = $db->query($sql, 1);
+    $id = date('Ymd').$result[0]['id'];
+
+
+	$sql = "INSERT INTO `g_zhudan` (`g_id`, `g_s_nid`, `g_mumber_type`, `g_nid`, `g_date`, `g_type`, `g_qishu`, `g_mingxi_1`, `g_mingxi_1_str`, `g_mingxi_2`, `g_mingxi_2_str`, `g_odds`, `g_jiner`, `g_tueishui`, `g_tueishui_1`, `g_tueishui_2`, `g_tueishui_3`, `g_tueishui_4`, `g_distribution`, `g_distribution_1`, `g_distribution_2`, `g_distribution_3`,`g_distribution_4`) ";
 	$sql .= "VALUES (
-					'{$list['g_s_nid']}', 
+	                '{$id}',
+					'{$list['g_s_nid']}',
 					'{$list['g_mumber_type']}', 
 					'{$list['g_nid']}', 
 					'{$list['g_date']}', 

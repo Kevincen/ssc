@@ -3,6 +3,7 @@ define('Copyright', '作者QQ:1834219632');
 define('ROOT_PATH', $_SERVER["DOCUMENT_ROOT"] . '/');
 include_once ROOT_PATH . 'Manage/ExistUser.php';
 include_once ROOT_PATH . 'function/opNumberList.php';
+include_once ROOT_PATH . 'class/Lang.php';
 
 $head_number = 0; //顶部球号数量
 if (!isset($_GET['date'])) {
@@ -44,6 +45,7 @@ if (isset($_SESSION['GameType']) && $_SESSION['GameType'] == 2 || $_GET['tid'] =
     $GameType = 1;
 }
 //$page = $numberList['page'];
+$lang = new utf8_lang();
 ?>
 <!DOCTYPE html>
 <head>
@@ -209,7 +211,7 @@ switch ($GameType) {
                 <th>开奖时间</th>
                 <th colspan="8">开奖号码</th>
                 <th colspan="4">总和</th>
-                <th colspan="4">1~4龙虎????</th>
+                <th colspan="4">1~4龙虎</th>
             </tr>';
             $noresult_html = '<td colspan="18">暂无数据!</td>';
             break;
@@ -225,7 +227,7 @@ switch ($GameType) {
             break;
         case 5:
             echo
-            '<tr class=""><th>期数</th><th>开奖时间</th><th colspan="8">开奖号码</th><th colspan="4">总和</th><th colspan="4">1~4龙虎??-家禽野兽-</th></tr>';
+            '<tr class=""><th>期数</th><th>开奖时间</th><th colspan="8">开奖号码</th><th colspan="4">总和</th><th colspan="4">1~4龙虎</th></tr>';
             $noresult_html = '<td colspan="18">暂无数据！</td>';
             break;
         case 9:
@@ -253,13 +255,13 @@ switch ($GameType) {
                             class="number num12"></span></td>-->
                 <td colspan="8" id="<?php echo $numberList[$i][1] ?>"><?php echo $numberList[$i][3] ?></td>
                 <td class="bold"><?php echo $numberList[$i][4] ?></td>
-                <td class="bold"><?php echo $numberList[$i][5] ?></td>
-                <td class="bold"><span class="reder "><?php echo $numberList[$i][6] ?></span></td>
-                <td class="bold"><span class="reder "><?php echo $numberList[$i][7] ?> </span></td>
-                <td class="bold"><?php echo $numberList[$i][8] ?></td>
-                <td class="bold">虎</td>
-                <td class="bold">虎</td>
-                <td class="bold">虎</td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][5]) ?></td>
+                <td class="bold"><span class="reder "><?php echo $lang->hk_cn($numberList[$i][6]) ?></span></td>
+                <td class="bold"><span class="reder "><?php echo $lang->hk_cn($numberList[$i][7]) ?> </span></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][8]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][9]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][10]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][11]) ?></td>
             </tr>
         <?php
         } //for end
@@ -273,12 +275,12 @@ switch ($GameType) {
                     <?php echo $numberList[$i][3] ?>
                 </td>
                 <td class="bold"><?php echo $numberList[$i][4] ?></td>
-                <td class="bold"><?php echo $numberList[$i][5] ?></td>
-                <td class="bold"><?php echo $numberList[$i][6] ?></td>
-                <td class="bold"><?php echo $numberList[$i][7] ?></td>
-                <td class="bold"><?php echo $numberList[$i][8] ?></td>
-                <td class="bold"><?php echo $numberList[$i][9] ?></td>
-                <td class="bold"><?php echo $numberList[$i][10] ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][5]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][6]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][7]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][8]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][9]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][10]) ?></td>
             </tr>
         <?php
         }
@@ -293,13 +295,13 @@ switch ($GameType) {
                     <?php echo $numberList[$i][3] ?>
                 </td>
                 <td class="bold"><?php echo $numberList[$i][4] ?></td>
-                <td class="bold"><?php echo $numberList[$i][5] ?></td>
-                <td class="bold"><?php echo $numberList[$i][6] ?></td>
-                <td class="bold"><?php echo $numberList[$i][7] ?></td>
-                <td class="bold"><?php echo $numberList[$i][8] ?></td>
-                <td class="bold"><?php echo $numberList[$i][9] ?></td>
-                <td class="bold"><?php echo $numberList[$i][10] ?></td>
-                <td class="bold"><?php echo $numberList[$i][11] ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][5]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][6]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][7]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][8]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][9]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][10]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][11]) ?></td>
             </tr>
         <?php
         }
@@ -313,13 +315,13 @@ switch ($GameType) {
                     <?php echo $numberList[$i][3] ?>
                 </td>
                 <td class="bold"><?php echo $numberList[$i][4] ?></td>
-                <td class="bold"><span class="reder "><?php echo $numberList[$i][5] ?></span></td>
-                <td class="bold"><span class="reder "><?php echo $numberList[$i][6] ?></span></td>
-                <td class="bold"><span class="reder "><?php echo $numberList[$i][7] ?> </span></td>
-                <td class="bold"><?php echo $numberList[$i][8] ?></td>
-                <td class="bold"><span class="reder ">龙?? </span></td>
-                <td class="bold">虎??</td>
-                <td class="bold">虎??</td>
+                <td class="bold"><span class="reder "><?php echo $lang->hk_cn($numberList[$i][5]) ?></span></td>
+                <td class="bold"><span class="reder "><?php echo $lang->hk_cn($numberList[$i][6]) ?></span></td>
+                <td class="bold"><span class="reder "><?php echo $lang->hk_cn($numberList[$i][7]) ?> </span></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][8]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][9]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][10]) ?></td>
+                <td class="bold"><?php echo $lang->hk_cn($numberList[$i][11]) ?></td>
             </tr>
         <?php
         }

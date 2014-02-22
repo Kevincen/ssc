@@ -352,7 +352,7 @@ function set_mingxi($result_list)
                                             class="red"><?php echo $result[$i]['g_odds'] ?></span></td>
                                     <td><?php echo $user[0]['g_panlu'] ?></td>
                                     <td><?php echo $money ?></td>
-                                    <td><?php echo $result[$i]['g_tueishui'] ?>%</td>
+                                    <td><?php echo 100 - $result[$i]['g_tueishui'] ?>%</td>
                                     <td><?php echo $win_str ?></td>
                                     <td <?php echo $class ?>><?php echo $result[$i]['g_win'] ?></td>
                                     <td>成功</td>
