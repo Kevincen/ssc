@@ -34,7 +34,7 @@ function _Number (number, ballArr) {
 	var idArr = ["#q_a","#q_b","#q_c","#q_d","#q_e","#q_f","#q_g","#q_h","#q_i","#q_j"];
 	$("#q_number").html(number);
 	for (var i = 0; i<ballArr.length; i++) {
-		Clss = "No_"+ballArr[i];
+		Clss = "number num"+ballArr[i];
 		$(idArr[i]).removeClass().addClass(Clss);
 	}
 }

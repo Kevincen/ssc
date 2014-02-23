@@ -29,7 +29,7 @@ function _Number (number, ballArr) {
 	  
 	for (var i = 0; i<ballArr.length; i++) {
 		
-		var Class='NO_JS_'+ballArr[i];
+		var Class='number num'+ballArr[i];
 		 
 		$(idArr[i]).removeClass().addClass(Class);
 		 

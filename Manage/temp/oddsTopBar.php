@@ -16,9 +16,11 @@ if (!isset($tid)) {
 }
 
 $ball_html = '';
+$ball_cover = '';
 
 switch ($tid) {
     case 1:
+        $ball_cover = 'klc';
         $ball_html =
         '
                             <span id="q_a" class="number num16"></span>
@@ -32,6 +34,7 @@ switch ($tid) {
         ';
         break;
     case 2:
+        $ball_cover = 'klc';
         $ball_html = '
                             <span id="q_a" class="number num16"></span>
                             <span id="q_b" class="number num17"></span>
@@ -41,6 +44,7 @@ switch ($tid) {
         ';
         break;
     case 6:
+        $ball_cover = 'pk10';
         $ball_html =//北京赛车，10个球
             '
                             <span id="q_a" class="number num16"></span>
@@ -56,6 +60,7 @@ switch ($tid) {
             ';
         break;
     case 5:
+        $ball_cover = 'nc';
         $ball_html =
             '
                             <span id="q_a" class="number num16"></span>
@@ -69,6 +74,7 @@ switch ($tid) {
             ';
         break;
     case 9:
+        $ball_cover = 'ks';
         $ball_html =
             '
                             <span id="q_a" class="number num16"></span>
@@ -90,7 +96,7 @@ switch ($tid) {
             class="reder letter_space2" id="EndTime" nc="359">05:59</span></strong><strong
         class="resultnum-str">【<span class="bluer letter_space3 bold" id="q_number">加载中...</span>】<span
             class="ggray">期</span>&nbsp;&nbsp;&nbsp;开奖号码：
-                        <span class="reder resultnum" id="resultnum">
+                        <span class="reder resultnum <?php echo $ball_cover?>" id="resultnum">
                             <?php echo $ball_html?>
                             </span>
     </strong>
