@@ -111,8 +111,10 @@ function postForms ($list)
 	$db = new DB();
     $sql = "select max(g_id) as id from g_zhudan";
     $result = $db->query($sql, 1);
-    $id = date('Ymd').(intval($result[0]['id'])+1);
-
+    $id = substr($result[0]['id'], -7);
+    $id = 'ZZ' . date('Ymd').(intval($id)+1);
+/*    echo $id;
+    exit;*/
 
 	$sql = "INSERT INTO `g_zhudan` (`g_id`, `g_s_nid`, `g_mumber_type`, `g_nid`, `g_date`, `g_type`, `g_qishu`, `g_mingxi_1`, `g_mingxi_1_str`, `g_mingxi_2`, `g_mingxi_2_str`, `g_odds`, `g_jiner`, `g_tueishui`, `g_tueishui_1`, `g_tueishui_2`, `g_tueishui_3`, `g_tueishui_4`, `g_distribution`, `g_distribution_1`, `g_distribution_2`, `g_distribution_3`,`g_distribution_4`) ";
 	$sql .= "VALUES (
@@ -139,7 +141,10 @@ function postForms ($list)
 					'{$list['g_distribution_2']}',
 					'{$list['g_distribution_3']}',
 					'{$list['g_distribution_4']}')";
-	$insertId = $db->query($sql, 4);
+	$insertId = $db->query($sql, 2);
+    if ($insertId > 0) {
+        $insertId = $id;
+    }
 	return $insertId;
 }
 /**
