@@ -17,7 +17,7 @@ $resultxj = $db->query("SELECT `g_id`, `g_qishu` FROM `g_history8` ORDER BY g_qi
 $resultjsk3 = $db->query("SELECT `g_id`, `g_qishu` FROM `g_history9` ORDER BY g_qishu DESC LIMIT 30 ", 1);
 $week = week();
 if (date("H") >= 3) {
-    $week['weekend'][6] = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
+    //$week['weekend'][6] = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 1, date('Y')));
     $sDate = array(
         0 => date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 1, date('Y'))),
         1 => date('Y-m-d', mktime(0, 0, 0, date('n'), 1, date('Y'))),
@@ -31,7 +31,7 @@ if (date("H") >= 3) {
         9 => date("Y-m-d", mktime(0, 0, 0, date('m') - 1, date('d') - 4, date('Y'))),
         10 => date("Y-m-d"));
 } else {
-    $week['weekend'][6] = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y')));
+    //$week['weekend'][6] = date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y')));
     $sDate = array(
         0 => date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 2, date('Y'))),
         1 => date('Y-m-d', mktime(0, 0, 0, date('n'), 1, date('Y'))),
@@ -45,7 +45,6 @@ if (date("H") >= 3) {
         9 => date("Y-m-d", mktime(0, 0, 0, date('m') - 1, date('d') - 4, date('Y'))),
         10 => date("Y-m-d", mktime(0, 0, 0, date('m'), date('d') - 1, date('Y'))));
 }
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
