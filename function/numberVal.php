@@ -112,7 +112,7 @@ function postForms ($list)
     $sql = "select max(g_id) as id from g_zhudan";
     $result = $db->query($sql, 1);
     $id = substr($result[0]['id'], -7);
-    $id = 'ZZ' . date('Ymd').(intval($id)+1);
+    $id = 'Z' . date('Ymd').(intval($id)+1);
 /*    echo $id;
     exit;*/
 
