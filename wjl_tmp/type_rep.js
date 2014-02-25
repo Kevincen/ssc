@@ -538,7 +538,7 @@ var DateView = function (cid, data,type) {
 
 
 /*            row += wrap_elem('td', zhudan.username);*/
-            row += wrap_elem('td', wrap_elem('span', 'Z' + zhudan.id, 'class="greener"'));
+            row += wrap_elem('td', wrap_elem('span', zhudan.id, 'class="greener"'));
             row += wrap_elem('td', zhudan.time);
             row += wrap_elem('td', zhudan.qishu);
             row += wrap_elem('td', wrap_elem('span', zhudan.type, 'class="bluer"') + ' @ ' + wrap_elem('span', zhudan.odds, 'class="reder"'));
